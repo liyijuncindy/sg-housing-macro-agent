@@ -1,0 +1,51 @@
+"""Command-line entry point."""
+import argparse
+import json
+import sys
+from pathlib import Path
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Auditable Singapore housing macroeconomic research agent")
+    sub = parser.add_subparsers(dest="command", required=True)
+    run = sub.add_parser("run", help="Download, evaluate, select and report in one workflow")
+    run.add_argument("--as-of", required=True, help="YYYY-MM-DD; latest-vintage observation cutoff, not a historical information set")
+    run.add_argument("--output", required=True, type=Path, help="New run directory; existing paths will not be overwritten")
+    run.add_argument("--mode", choices=["rules", "llm"], default="rules", help="rules is a deterministic baseline; llm makes live model calls")
+    run.add_argument("--limit", type=int, default=5, help="Maximum indicators, selected from eligible candidates")
+    run.add_argument("--model", help="Tool-capable OpenAI model available to your project; overrides OPENAI_MODEL")
+    run.add_argument("--timeout", type=float, default=20, help="Per-source HTTP timeout in seconds")
+    rep = sub.add_parser("replay", help="Verify and regenerate a saved report without network access")
+    rep.add_argument("run_dir", type=Path)
+    rep.add_argument("--output", type=Path, required=True)
+    disc = sub.add_parser("discover", help="Search official SingStat table metadata and preserve responses")
+    disc.add_argument("query")
+    disc.add_argument("--output", type=Path, required=True)
+    args = parser.parse_args(argv)
+    try:
+        if args.command == "run":
+            from .pipeline import run_workflow
+            result = run_workflow(args.as_of, args.output, args.mode, args.limit, args.model, args.timeout)
+            print(json.dumps({"status": result["status"], "selected_ids": result["selected_ids"], "mode": result["mode"], "usage": result["usage"]}, indent=2))
+        elif args.command == "replay":
+            from .pipeline import replay
+            print(json.dumps(replay(args.run_dir, args.output), indent=2))
+        else:
+            from .sources import SingStatClient
+            from .storage import write_json
+            args.output.mkdir(parents=True, exist_ok=False)
+            client = SingStatClient(args.output)
+            try:
+                records = client.discover(args.query)
+                write_json(args.output / "discovery.json", records)
+                print(json.dumps(records, ensure_ascii=False, indent=2))
+            finally:
+                client.save_records()
+        return 0
+    except (ValueError, RuntimeError, OSError, ImportError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

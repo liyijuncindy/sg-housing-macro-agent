@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sg-housing-macro-agent"
+version = "0.1.0"
+description = "Auditable, data-quality-driven Singapore housing macroeconomic research workflow"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+llm = ["openai>=1.68,<3"]
+
+[project.scripts]
+housing-agent = "housing_agent.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["housing_agent*"]
+
+[tool.setuptools.package-data]
+housing_agent = ["data/*.json"]

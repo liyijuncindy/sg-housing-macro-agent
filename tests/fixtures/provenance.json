@@ -1,0 +1,53 @@
+{
+  "kind": "Unmodified official public API captures; offline regression fixtures",
+  "records": [
+    {
+      "file": "metadata_M015661.json",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M015661",
+      "retrieved_at": "2026-09-30T16:31:36.131901+00:00",
+      "http_status": 200,
+      "api_status": 200,
+      "sha256": "b82a0944fb70940feaf362bd09e7ebcd9000255355ec8bcb62a67a2eeb03b056"
+    },
+    {
+      "file": "tabledata_M015661_1.json",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M015661?seriesNoORrowNo=1",
+      "retrieved_at": "2026-09-30T16:31:35.785798+00:00",
+      "http_status": 200,
+      "api_status": 200,
+      "sha256": "75ee0ac536d3a39fc6f75daec337db6ad5490bef29e97a666af54a1c11adde04"
+    },
+    {
+      "file": "metadata_M810001.json",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "retrieved_at": "2026-09-30T16:31:36.118175+00:00",
+      "http_status": 200,
+      "api_status": 200,
+      "sha256": "c31ba1ad10337d2e5c530ac000904ce5a2b54420d9d6727433041b1006901807"
+    },
+    {
+      "file": "tabledata_M810001_2.json",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810001?seriesNoORrowNo=2",
+      "retrieved_at": "2026-09-30T16:31:35.742374+00:00",
+      "http_status": 200,
+      "api_status": 200,
+      "sha256": "888cc3db49eecf57aa7fa057b11b3b8c606d88f7b7eade838be416516a8730de"
+    },
+    {
+      "file": "metadata_M700071.json",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M700071",
+      "retrieved_at": "2026-09-30T16:31:36.240272+00:00",
+      "http_status": 200,
+      "api_status": 200,
+      "sha256": "25c98acdf25dabfe33b3a79578901b33324a54908adfc5d83e2b78dbe6273280"
+    },
+    {
+      "file": "tabledata_M700071_23.json",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M700071?seriesNoORrowNo=23",
+      "retrieved_at": "2026-09-30T16:31:35.897721+00:00",
+      "http_status": 200,
+      "api_status": 200,
+      "sha256": "77fc485912f5d154d7864b59674a24e2c1cc6ed8a62230c1deb7df1cd8de52a5"
+    }
+  ]
+}

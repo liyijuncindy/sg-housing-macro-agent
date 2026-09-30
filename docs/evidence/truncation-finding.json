@@ -1,0 +1,10 @@
+{
+  "source_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M213751",
+  "source_generated_date": "01/10/2026",
+  "raw_sha256": "f91c13ee8c5078bb075697ceca555948e9c1e3a7471e333f76daafa4aa9b9846",
+  "observation_cells": 5000,
+  "rows_returned": 22,
+  "last_row_series": "1.01.3.3",
+  "last_row_last_period": "2023 Aug",
+  "finding": "Unfiltered table ends at the default cell cap; precise per-series downloads avoid silently truncated candidate data."
+}
