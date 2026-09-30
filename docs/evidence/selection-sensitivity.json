@@ -1,0 +1,55 @@
+{
+  "warning": "Retrospective observation-cutoff sensitivity over the current captured vintage, not a historically available information set or backtest.",
+  "cases": [
+    {
+      "as_of": "2020-12-31",
+      "selected_ids": [
+        "M015661:1",
+        "M016081:1",
+        "M182342:2",
+        "M213751:1",
+        "M400391:2"
+      ],
+      "ineligible": [
+        {
+          "id": "M184101:1",
+          "reasons": [
+            "Insufficient history: 0 valid Q observations; at least 8 are required.",
+            "Incomplete history: 0.0% of calendar periods have values; at least 75% are required.",
+            "No usable observation exists within the report cutoff."
+          ]
+        },
+        {
+          "id": "M701091:1.2.1",
+          "reasons": [
+            "Insufficient history: 0 valid M observations; at least 24 are required.",
+            "Incomplete history: 0.0% of calendar periods have values; at least 75% are required.",
+            "No usable observation exists within the report cutoff."
+          ]
+        }
+      ]
+    },
+    {
+      "as_of": "2023-12-31",
+      "selected_ids": [
+        "M015661:1",
+        "M016081:1",
+        "M182342:2",
+        "M213751:1",
+        "M400391:2"
+      ],
+      "ineligible": []
+    },
+    {
+      "as_of": "2026-09-30",
+      "selected_ids": [
+        "M810001:2",
+        "M213751:1",
+        "M700071:23",
+        "M701091:1.2.1",
+        "M015661:1"
+      ],
+      "ineligible": []
+    }
+  ]
+}

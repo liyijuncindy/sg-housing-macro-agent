@@ -1,0 +1,124 @@
+{
+  "selected_ids": [
+    "M810001:2",
+    "M213751:1",
+    "M700071:23",
+    "M701091:1.2.1",
+    "M015661:1"
+  ],
+  "decisions": [
+    {
+      "id": "M015661:1",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (economic_activity): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: household_income."
+    },
+    {
+      "id": "M182342:2",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: labour_market."
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: household_income."
+    },
+    {
+      "id": "M213751:1",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (inflation): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+    },
+    {
+      "id": "M400841:1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+    },
+    {
+      "id": "M400841:2",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+    },
+    {
+      "id": "M700071:23",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (financing_cost): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (housing_credit): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M810001:2",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (population_demand): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: population_demand."
+    }
+  ],
+  "method": "Deterministic data-quality and economic-family diversity selection. Family is metadata.selection_family when specified, otherwise metadata.theme. Exclude ineligible data; sort by quality score descending then id ascending; first select the best candidate per family, then fill remaining capacity by score. Never fill capacity with ineligible data. Scores measure usability and do not establish causal or predictive value; no target-based predictive validation is performed.",
+  "narratives": {
+    "M810001:2": {
+      "sales": "A larger resident population may support owner-occupier demand when household formation and purchasing capacity also increase.",
+      "rents": "Population growth may support rental demand, conditional on household formation and tenure choices.",
+      "lag": "Annual demand context; the effect may develop over multiple quarters.",
+      "limitations": "Population is not household formation; pre-1990 population concepts and the 2003 coverage change limit long-run comparability. Historical observations may be revised.",
+      "evidence_ids": [
+        "M810001:2:latest"
+      ]
+    },
+    "M015661:1": {
+      "sales": "Stronger real activity may support jobs, incomes and confidence, which can support purchasing demand.",
+      "rents": "Stronger activity may support employment-linked rental demand.",
+      "lag": "Economic conditions may affect housing over several quarters.",
+      "limitations": "This series is not labelled seasonally adjusted: prioritise year-on-year comparisons. GDP and housing may share common causes; advance estimates and history can be revised.",
+      "evidence_ids": [
+        "M015661:1:latest"
+      ]
+    },
+    "M700071:23": {
+      "sales": "Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage rates reset.",
+      "rents": "Higher ownership financing costs may shift tenure choices and landlords' costs; the net rental effect is ambiguous.",
+      "lag": "Pass-through depends on mortgage pricing, reset dates and fixed-rate periods, often over subsequent months.",
+      "limitations": "Month-end snapshot, not a monthly average. Mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through; SORA changes alone cannot determine housing prices.",
+      "evidence_ids": [
+        "M700071:23:latest"
+      ]
+    },
+    "M701091:1.2.1": {
+      "sales": "Expanding housing credit may accompany financed housing demand, but it can also respond to higher prices.",
+      "rents": "Credit conditions may affect ownership-versus-renting decisions; the rental relationship is indirect.",
+      "lag": "Credit stocks adjust gradually and may lag transactions.",
+      "limitations": "This is outstanding stock, not credit availability or origination flow; repayments also affect it. Revised reporting starts July 2021 following changes to MAS Notices 610 and 1003.",
+      "evidence_ids": [
+        "M701091:1.2.1:latest"
+      ]
+    },
+    "M213751:1": {
+      "sales": "Inflation affects real purchasing power and building or financing conditions, but its net association with home values is ambiguous.",
+      "rents": "Inflation affects household budgets and landlords' costs, with an ambiguous net effect on rent growth.",
+      "lag": "Monthly cost-of-living context; effects can be contemporaneous or lagged.",
+      "limitations": "CPI includes housing-related components, so its relationship with rents can partly reflect overlap. It is not a construction-cost index, house-price index or independent causal predictor.",
+      "evidence_ids": [
+        "M213751:1:latest"
+      ]
+    }
+  },
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  }
+}

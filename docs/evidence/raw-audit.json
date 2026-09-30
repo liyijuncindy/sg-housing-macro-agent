@@ -1,0 +1,10 @@
+{
+  "official_series": 12,
+  "raw_observations_checked": 2189,
+  "changes_independently_recalculated_with_decimal": 19,
+  "run_code_commit": "f42b64838c2c774e4fef7da32a5c80964957b165",
+  "worktree_dirty_at_run": false,
+  "raw_and_metadata_requests": 30,
+  "status": "passed",
+  "model_calls": 0
+}

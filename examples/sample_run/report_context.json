@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "run_id": "sample_run",
+  "created_at": "2026-09-30T16:48:33+00:00",
+  "as_of": "2026-09-30",
+  "as_of_policy": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "mode": "rules",
+  "mode_label": "Deterministic rules; reviewed qualitative templates, no model call",
+  "data_basis": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "package_version": "0.1.0",
+  "python_version": "3.12.14",
+  "warnings": [],
+  "status": "complete",
+  "code_commit": "f42b64838c2c774e4fef7da32a5c80964957b165",
+  "code_worktree_dirty": false,
+  "code_hashes": {
+    "__init__.py": "317887a06fbcf9959e1393d3ee1911689881a6cbbe20a8e404ca966a8db9425d",
+    "__main__.py": "269fca04615b5b719fc2993321963f686bb482fccf5b41bf979dac7a2324e55d",
+    "agent.py": "3cead3840bf2de1b10157c0655e164364e93856596520179204b1c95f69f3311",
+    "engine.py": "ebad3238e3eec2614fa4c61802acc5cbb2bc7d32379f3aec4f86624324837c51",
+    "pipeline.py": "774a7d31047595c1c27c39d128d1815682348248686be831ebfe4517de029635",
+    "report.py": "e2b4d34831cab79ad22aacb3a4b271f4d0f1909b967e78b00c858be5e0884831",
+    "sources.py": "06732c2c9f5bb4874dd16af129259388c00321e8129f501437c5485dab147635",
+    "storage.py": "7778396b86c99c8ce251016cd009c109a5baf11657d30e1306950aa37fe72ac8"
+  },
+  "selected_ids": [
+    "M810001:2",
+    "M213751:1",
+    "M700071:23",
+    "M701091:1.2.1",
+    "M015661:1"
+  ],
+  "model": null,
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  }
+}
