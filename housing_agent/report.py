@@ -296,6 +296,12 @@ def _render_report_v2(run, evaluations, selection, research):
     model_count = sum(d.get('reason_origin') == 'system' for d in selection.get('decisions', []))
     if model_count:
         output += [f"**Selection completeness:** {model_count} exclusion reason(s) were supplied by the system because the model omitted them. They are labelled in the appendix.", '']
+    review = run.get('editorial_review')
+    if review:
+        output += [f"**Editorial review:** {review['summary']} "
+                   f"{review['decision_edits']} selection reasons were corrected and are labelled editorial_review. "
+                   "[Review record](selection_review.json) and [original model selection](original_selection.json) preserve the distinction. "
+                   "Values, selected indicators, source captures and statistical results are unchanged; this presentation makes no new API calls.", '']
     output += ['## Market outcomes', '',
                'These official outcome series describe observed markets. Index levels are not currency prices and different indices should not be compared by their numeric levels.', '']
     output += _table(['Outcome', 'Reference period', 'Latest index', 'Quarter on quarter', 'Year on year', 'Source'], [
@@ -403,7 +409,8 @@ def _render_report_v2(run, evaluations, selection, research):
                '- Reference dates, publication dates and retrieval dates have different meanings. Table updates do not establish historical observation-level availability.',
                '- Later revisions may affect all retrospective statistics. A strict historical-vintage validation requires archived releases and is not claimed here.',
                '- Each index and indicator retains its official coverage; private residential evidence is not automatically HDB evidence.',
-               '- Main-page values and comparisons are generated from saved calculations. Model-authored selection reasons below remain qualitative judgements and may contain errors.',
+               ('- Main-page values and comparisons are generated from saved calculations. Reasons labelled editorial_review are reviewed wording; other model-authored reasons remain qualitative judgements.'
+                if review else '- Main-page values and comparisons are generated from saved calculations. Model-authored selection reasons below remain qualitative judgements and may contain errors.'),
                '- Replay verifies saved file hashes and regenerates this report without source or model calls. A source refresh creates a new run.']
     output += ['- ' + str(x) for x in run.get('warnings', [])]
     output += ['', '## Appendix: indicator selection', '',

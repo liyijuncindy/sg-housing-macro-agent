@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "run": "english_glm_v2_run",
+  "status": "passed",
+  "manifest_sha256": "c0a0cef196dc4ec304c778df7cf252a7607816ca840f5678c081993a74cd2ce4",
+  "method": "Original SingStat cell/period checks; Decimal changes; independent NumPy Pearson correlations and ridge matrix solves.",
+  "inventoried_files_checked": 87,
+  "raw_observations_checked": 2816,
+  "latest_changes_checked": 29,
+  "correlations_checked": 174,
+  "ridge_predictions_checked": 408,
+  "metric_values_checked": 288,
+  "vacancy_rates_checked": 154,
+  "english_presentation_files_checked": [
+    "report.md",
+    "report.html",
+    "indicator_pool.md",
+    "indicator_pool.html",
+    "indicator_pool.json"
+  ],
+  "max_absolute_differences": {
+    "latest_changes": 4.97241563741173e-11,
+    "correlations": 4.9465626039690846e-11,
+    "ridge_predictions": 3.8191672047105385e-14,
+    "metrics": 4.8145265552079763e-11
+  },
+  "limitations": "Arithmetic and captured-data integrity checks do not validate causal explanations, publication-time availability or future predictive accuracy."
+}

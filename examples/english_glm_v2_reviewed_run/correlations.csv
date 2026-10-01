@@ -1,0 +1,193 @@
+candidate_id,outcome_id,analysis_frequency,target_change,lag,lag_unit,n,pearson_r,status,reason,start_period,end_period
+M810001:2,M212261:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.1299935818,computed,,2016,2025
+M810001:2,M212261:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.3113001312,computed,,2017,2025
+M810001:2,M212261:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.3536168464,computed,,2018,2025
+M810001:2,M212261:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810001:2,M212311:1,annual,Q4 year-on-year index percentage change,0,years,10,0.3498951681,computed,,2016,2025
+M810001:2,M212311:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.719801789,computed,,2017,2025
+M810001:2,M212311:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.371943963,computed,,2018,2025
+M810001:2,M212311:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810001:2,M212161:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.2151936103,computed,,2016,2025
+M810001:2,M212161:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.2251636777,computed,,2017,2025
+M810001:2,M212161:1,annual,Q4 year-on-year index percentage change,2,years,8,0.0660862856,computed,,2018,2025
+M810001:2,M212161:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810001:5,M212261:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.1049757987,computed,,2016,2025
+M810001:5,M212261:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.4827685358,computed,,2017,2025
+M810001:5,M212261:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.2710277282,computed,,2018,2025
+M810001:5,M212261:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810001:5,M212311:1,annual,Q4 year-on-year index percentage change,0,years,10,0.2173186233,computed,,2016,2025
+M810001:5,M212311:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.7152066839,computed,,2017,2025
+M810001:5,M212311:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.3676593418,computed,,2018,2025
+M810001:5,M212311:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810001:5,M212161:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.1035621138,computed,,2016,2025
+M810001:5,M212161:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.0984420519,computed,,2017,2025
+M810001:5,M212161:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.0204409043,computed,,2018,2025
+M810001:5,M212161:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M015661:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.1306127941,computed,,2016-Q1,2026-Q2
+M015661:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.0980050941,computed,,2016-Q2,2026-Q2
+M015661:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.1872550272,computed,,2016-Q3,2026-Q2
+M015661:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.1724664556,computed,,2017-Q1,2026-Q2
+M015661:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.1585889897,computed,,2016-Q1,2026-Q2
+M015661:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.1815765424,computed,,2016-Q2,2026-Q2
+M015661:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.2471167306,computed,,2016-Q3,2026-Q2
+M015661:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.3872965513,computed,,2017-Q1,2026-Q2
+M015661:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.293293123,computed,,2016-Q1,2026-Q2
+M015661:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.141326886,computed,,2016-Q2,2026-Q2
+M015661:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.0058726067,computed,,2016-Q3,2026-Q2
+M015661:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.1732266228,computed,,2017-Q1,2026-Q2
+M182342:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,-0.3583550439,computed,,2016-Q1,2026-Q2
+M182342:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,-0.3003978661,computed,,2016-Q2,2026-Q2
+M182342:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.1681812137,computed,,2016-Q3,2026-Q2
+M182342:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.0294811546,computed,,2017-Q1,2026-Q2
+M182342:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,-0.5189454521,computed,,2016-Q1,2026-Q2
+M182342:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,-0.5138112344,computed,,2016-Q2,2026-Q2
+M182342:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.4968319193,computed,,2016-Q3,2026-Q2
+M182342:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.3868484407,computed,,2017-Q1,2026-Q2
+M182342:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,-0.3432811587,computed,,2016-Q1,2026-Q2
+M182342:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,-0.1848935839,computed,,2016-Q2,2026-Q2
+M182342:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.0676622569,computed,,2016-Q3,2026-Q2
+M182342:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.1036043978,computed,,2017-Q1,2026-Q2
+M184101:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,17,0.2088079956,computed,,2022-Q2,2026-Q2
+M184101:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,16,0.1181934994,computed,,2022-Q3,2026-Q2
+M184101:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,15,-0.3194312069,computed,,2022-Q4,2026-Q2
+M184101:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,13,-0.0381681825,computed,,2023-Q2,2026-Q2
+M184101:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,17,-0.090310724,computed,,2022-Q2,2026-Q2
+M184101:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,16,0.2609453582,computed,,2022-Q3,2026-Q2
+M184101:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,15,0.5207149773,computed,,2022-Q4,2026-Q2
+M184101:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,13,0.6393190484,computed,,2023-Q2,2026-Q2
+M184101:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,17,0.1327780147,computed,,2022-Q2,2026-Q2
+M184101:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,16,0.2485134337,computed,,2022-Q3,2026-Q2
+M184101:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,15,0.2791052149,computed,,2022-Q4,2026-Q2
+M184101:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,13,-0.1386310105,computed,,2023-Q2,2026-Q2
+M016081:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.2538335995,computed,,2016-Q1,2026-Q2
+M016081:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.2035908944,computed,,2016-Q2,2026-Q2
+M016081:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.0482386059,computed,,2016-Q3,2026-Q2
+M016081:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.1759064019,computed,,2017-Q1,2026-Q2
+M016081:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.6112659933,computed,,2016-Q1,2026-Q2
+M016081:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.488212379,computed,,2016-Q2,2026-Q2
+M016081:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.3167914928,computed,,2016-Q3,2026-Q2
+M016081:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.1367477822,computed,,2017-Q1,2026-Q2
+M016081:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.3349985979,computed,,2016-Q1,2026-Q2
+M016081:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.2283774325,computed,,2016-Q2,2026-Q2
+M016081:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.1556772752,computed,,2016-Q3,2026-Q2
+M016081:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.0114586031,computed,,2017-Q1,2026-Q2
+M700071:23,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.1610261428,computed,,2016-Q1,2026-Q2
+M700071:23,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.0923919926,computed,,2016-Q2,2026-Q2
+M700071:23,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.054881134,computed,,2016-Q3,2026-Q2
+M700071:23,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.1249762728,computed,,2017-Q1,2026-Q2
+M700071:23,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.5434387966,computed,,2016-Q1,2026-Q2
+M700071:23,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.3045046509,computed,,2016-Q2,2026-Q2
+M700071:23,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.0378026944,computed,,2016-Q3,2026-Q2
+M700071:23,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.3494171983,computed,,2017-Q1,2026-Q2
+M700071:23,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.0796675043,computed,,2016-Q1,2026-Q2
+M700071:23,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.0078190157,computed,,2016-Q2,2026-Q2
+M700071:23,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.0434283478,computed,,2016-Q3,2026-Q2
+M700071:23,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.0154159783,computed,,2017-Q1,2026-Q2
+M701091:1.2.1,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,16,-0.0700127814,computed,,2022-Q3,2026-Q2
+M701091:1.2.1,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,15,-0.1185029066,computed,,2022-Q4,2026-Q2
+M701091:1.2.1,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,14,-0.0786664861,computed,,2023-Q1,2026-Q2
+M701091:1.2.1,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,12,0.0816374815,computed,,2023-Q3,2026-Q2
+M701091:1.2.1,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,16,0.1212653682,computed,,2022-Q3,2026-Q2
+M701091:1.2.1,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,15,0.3462584913,computed,,2022-Q4,2026-Q2
+M701091:1.2.1,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,14,0.5138695069,computed,,2023-Q1,2026-Q2
+M701091:1.2.1,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,12,0.0522264659,computed,,2023-Q3,2026-Q2
+M701091:1.2.1,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,16,-0.5650703868,computed,,2022-Q3,2026-Q2
+M701091:1.2.1,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,15,-0.6826158107,computed,,2022-Q4,2026-Q2
+M701091:1.2.1,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,14,-0.8336751396,computed,,2023-Q1,2026-Q2
+M701091:1.2.1,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,12,-0.6868885864,computed,,2023-Q3,2026-Q2
+M400841:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,-0.2855161977,computed,,2016-Q1,2026-Q2
+M400841:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,-0.2588194569,computed,,2016-Q2,2026-Q2
+M400841:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.2527898046,computed,,2016-Q3,2026-Q2
+M400841:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.1778008813,computed,,2017-Q1,2026-Q2
+M400841:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,-0.3278607367,computed,,2016-Q1,2026-Q2
+M400841:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,-0.4040378697,computed,,2016-Q2,2026-Q2
+M400841:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.4372012629,computed,,2016-Q3,2026-Q2
+M400841:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.4176961864,computed,,2017-Q1,2026-Q2
+M400841:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,-0.3801471213,computed,,2016-Q1,2026-Q2
+M400841:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,-0.4157448352,computed,,2016-Q2,2026-Q2
+M400841:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.4426295716,computed,,2016-Q3,2026-Q2
+M400841:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.5374929708,computed,,2017-Q1,2026-Q2
+M400841:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,6.47634e-05,computed,,2016-Q1,2026-Q2
+M400841:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.0181690052,computed,,2016-Q2,2026-Q2
+M400841:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.0577105508,computed,,2016-Q3,2026-Q2
+M400841:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.0771768747,computed,,2017-Q1,2026-Q2
+M400841:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,-0.1656727668,computed,,2016-Q1,2026-Q2
+M400841:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,-0.3107734859,computed,,2016-Q2,2026-Q2
+M400841:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.3316149767,computed,,2016-Q3,2026-Q2
+M400841:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.0801437202,computed,,2017-Q1,2026-Q2
+M400841:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.1204335872,computed,,2016-Q1,2026-Q2
+M400841:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.1615827807,computed,,2016-Q2,2026-Q2
+M400841:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.1950549658,computed,,2016-Q3,2026-Q2
+M400841:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.232350733,computed,,2017-Q1,2026-Q2
+M400391:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.3720381798,computed,,2016-Q1,2026-Q2
+M400391:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.2529451883,computed,,2016-Q2,2026-Q2
+M400391:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.10586633,computed,,2016-Q3,2026-Q2
+M400391:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.091363245,computed,,2017-Q1,2026-Q2
+M400391:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.2904666749,computed,,2016-Q1,2026-Q2
+M400391:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.3143960151,computed,,2016-Q2,2026-Q2
+M400391:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.3050363831,computed,,2016-Q3,2026-Q2
+M400391:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.1301827677,computed,,2017-Q1,2026-Q2
+M400391:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.0110859581,computed,,2016-Q1,2026-Q2
+M400391:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,-0.0131428114,computed,,2016-Q2,2026-Q2
+M400391:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,-0.0259353956,computed,,2016-Q3,2026-Q2
+M400391:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,-0.031629205,computed,,2017-Q1,2026-Q2
+M213751:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.4525583198,computed,,2016-Q1,2026-Q2
+M213751:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.3339068952,computed,,2016-Q2,2026-Q2
+M213751:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.2867688904,computed,,2016-Q3,2026-Q2
+M213751:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.0768877182,computed,,2017-Q1,2026-Q2
+M213751:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.8012182395,computed,,2016-Q1,2026-Q2
+M213751:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.7305827715,computed,,2016-Q2,2026-Q2
+M213751:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.5900834915,computed,,2016-Q3,2026-Q2
+M213751:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.1630272544,computed,,2017-Q1,2026-Q2
+M213751:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,0,quarters,42,0.5871162784,computed,,2016-Q1,2026-Q2
+M213751:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,1,quarters,41,0.5014501903,computed,,2016-Q2,2026-Q2
+M213751:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,2,quarters,40,0.420885317,computed,,2016-Q3,2026-Q2
+M213751:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,4,quarters,38,0.3018082432,computed,,2017-Q1,2026-Q2
+M810371:1,M212261:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.3626917278,computed,,2016,2025
+M810371:1,M212261:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.877026356,computed,,2017,2025
+M810371:1,M212261:1,annual,Q4 year-on-year index percentage change,2,years,8,0.1273518741,computed,,2018,2025
+M810371:1,M212261:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810371:1,M212311:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.5002074266,computed,,2016,2025
+M810371:1,M212311:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.551091566,computed,,2017,2025
+M810371:1,M212311:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.4785324709,computed,,2018,2025
+M810371:1,M212311:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810371:1,M212161:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.5290390637,computed,,2016,2025
+M810371:1,M212161:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.6707813283,computed,,2017,2025
+M810371:1,M212161:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.2652561078,computed,,2018,2025
+M810371:1,M212161:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810361:5,M212261:1,annual,Q4 year-on-year index percentage change,0,years,10,0.4500730461,computed,,2016,2025
+M810361:5,M212261:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.3232215472,computed,,2017,2025
+M810361:5,M212261:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.572528864,computed,,2018,2025
+M810361:5,M212261:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810361:5,M212311:1,annual,Q4 year-on-year index percentage change,0,years,10,0.5043299582,computed,,2016,2025
+M810361:5,M212311:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.0660853895,computed,,2017,2025
+M810361:5,M212311:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.761351802,computed,,2018,2025
+M810361:5,M212311:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M810361:5,M212161:1,annual,Q4 year-on-year index percentage change,0,years,10,0.2958317624,computed,,2016,2025
+M810361:5,M212161:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.075057801,computed,,2017,2025
+M810361:5,M212161:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.2641974185,computed,,2018,2025
+M810361:5,M212161:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M183111:7,M212261:1,annual,Q4 year-on-year index percentage change,0,years,10,0.4353009417,computed,,2016,2025
+M183111:7,M212261:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.3515738205,computed,,2017,2025
+M183111:7,M212261:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.3643505243,computed,,2018,2025
+M183111:7,M212261:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M183111:7,M212311:1,annual,Q4 year-on-year index percentage change,0,years,10,0.7370254488,computed,,2016,2025
+M183111:7,M212311:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.0872362555,computed,,2017,2025
+M183111:7,M212311:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.7634386957,computed,,2018,2025
+M183111:7,M212311:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M183111:7,M212161:1,annual,Q4 year-on-year index percentage change,0,years,10,0.2781659223,computed,,2016,2025
+M183111:7,M212161:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.2461371157,computed,,2017,2025
+M183111:7,M212161:1,annual,Q4 year-on-year index percentage change,2,years,8,0.0812505043,computed,,2018,2025
+M183111:7,M212161:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M400751:1.1,M212261:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.3447296243,computed,,2016,2025
+M400751:1.1,M212261:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.34039361,computed,,2017,2025
+M400751:1.1,M212261:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.6593611164,computed,,2018,2025
+M400751:1.1,M212261:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M400751:1.1,M212311:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.3288016772,computed,,2016,2025
+M400751:1.1,M212311:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.5554339307,computed,,2017,2025
+M400751:1.1,M212311:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.6052732596,computed,,2018,2025
+M400751:1.1,M212311:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025
+M400751:1.1,M212161:1,annual,Q4 year-on-year index percentage change,0,years,10,-0.594875496,computed,,2016,2025
+M400751:1.1,M212161:1,annual,Q4 year-on-year index percentage change,1,years,9,-0.7038500986,computed,,2017,2025
+M400751:1.1,M212161:1,annual,Q4 year-on-year index percentage change,2,years,8,-0.8553635567,computed,,2018,2025
+M400751:1.1,M212161:1,annual,Q4 year-on-year index percentage change,4,years,6,,skipped,Fewer than eight exact-calendar matched observations; sparse history is not scored.,2020,2025

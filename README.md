@@ -6,6 +6,8 @@ The default CLI report is **version 2**: an executive summary, actual private pr
 
 Quality scores measure data usability, not predictive importance. The checks do not establish causation, an optimal indicator set, historical publication-time forecasting ability, or a production price forecast.
 
+**Latest verified report:** [reviewed English report](examples/english_glm_v2_reviewed_run/report.md), [HTML report](examples/english_glm_v2_reviewed_run/report.html), and [complete indicator pool](examples/english_glm_v2_reviewed_run/indicator_pool.md). The full live GLM run captured all 19 series from SingStat, made six model requests and finished in about 225 seconds. All 16 decisions have model reasons; six reasons and three narrative fields were subsequently corrected in a labelled editorial presentation. Original output is preserved in [the live run](examples/english_glm_v2_run/report.md). See [current validation and cost](docs/report-v2-validation.md).
+
 ## Quick start
 
 Python 3.11 or newer is required. Run from the project directory:
@@ -119,10 +121,13 @@ Evidence follows calculation → evaluation input → raw locator → original r
 ```bash
 python -m housing_agent discover "residential properties" --output runs/discovery
 python -m housing_agent indicator-pool examples/independent_sources_run --output runs/pool-export
+python -m housing_agent review-report examples/english_glm_v2_run --review-file docs/evidence/english-report-v2-editorial-review.json --output runs/reviewed-report
 python -m housing_agent --help
 ```
 
 Standalone pool export verifies its source run without modifying it, fetching data, selecting indicators or calling a model. It retains the source run's presentation version.
+
+Editorial review creates a separate presentation from verified v2 artifacts, preserves original model output, labels corrected reasons, and records zero new API calls. Selected IDs, raw observations, charts and statistical results remain unchanged. Corrections are explicit English review input, not additional model output; this step is not automatic semantic validation.
 
 Historical audit notes and examples are preserved in their original form, including Chinese documentation. They record earlier behavior, not current results. New report v2 outputs and documentation are English. Earlier evidence includes [source verification](docs/source-evidence.md), [retry diagnosis](docs/evidence/singstat-maintenance-diagnosis.json), [GLM review](docs/glm-run-review.md) and [earlier validation](docs/validation.md).
 

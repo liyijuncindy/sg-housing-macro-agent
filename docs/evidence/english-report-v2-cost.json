@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "run": "english_glm_v2_run",
+  "currency": "CNY",
+  "price_checked_on": "2026-10-01",
+  "price_source": "https://www.siliconflow.cn/pricing",
+  "price_confirmation": "https://siliconflow.cn/news/is96b67809iqvyxrumd90q7x",
+  "price_per_million_tokens": {
+    "uncached_input": 8,
+    "cached_input": 2,
+    "output": 28
+  },
+  "usage": {
+    "input_tokens": 156787,
+    "output_tokens": 8869,
+    "total_tokens": 165656,
+    "requests": 6,
+    "cached_input_tokens": 109248,
+    "reasoning_output_tokens": 5104
+  },
+  "formula": "(input_tokens - cached_input_tokens) * 8 / 1000000 + cached_input_tokens * 2 / 1000000 + output_tokens * 28 / 1000000",
+  "estimated_cny": "0.84714",
+  "thirty_runs_at_same_usage_estimated_cny": "25.41420",
+  "elapsed_seconds": 224.542,
+  "agent_elapsed_seconds": 113.167208,
+  "basis": "Returned API usage multiplied by published prices; not an observed account debit or a guaranteed future spending limit. Cache tokens are an input subset and reasoning tokens an output subset; neither is added again.",
+  "validation_repairs": [
+    "selected_ids contains 0 IDs, but 16 eligible candidate(s) exist; choose from 1 to 5 inspected eligible candidates. Update selected_ids, decisions.selected and narratives together: exactly the selected IDs must have decisions.selected=true and exactly those IDs must have narratives. Do not discard useful coverage merely to repair wording; you need not fill the limit."
+  ],
+  "reviewed_presentation_api_cost": 0
+}

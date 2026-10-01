@@ -25,6 +25,10 @@ def main(argv=None):
     pool = sub.add_parser("indicator-pool", help="Export the full indicator table from a verified saved run, without data or model calls")
     pool.add_argument("run_dir", type=Path)
     pool.add_argument("--output", type=Path, required=True, help="New directory outside the immutable source run")
+    review = sub.add_parser("review-report", help="Apply explicit English editorial corrections offline; preserve original model output")
+    review.add_argument("run_dir", type=Path)
+    review.add_argument("--review-file", type=Path, required=True)
+    review.add_argument("--output", type=Path, required=True)
     disc = sub.add_parser("discover", help="Search official SingStat table metadata and preserve responses")
     disc.add_argument("query")
     disc.add_argument("--output", type=Path, required=True)
@@ -40,6 +44,10 @@ def main(argv=None):
         elif args.command == "indicator-pool":
             from .pipeline import export_indicator_pool
             print(json.dumps(export_indicator_pool(args.run_dir, args.output), ensure_ascii=False, indent=2))
+        elif args.command == "review-report":
+            from .review import review_report
+            result = review_report(args.run_dir, args.review_file, args.output)
+            print(json.dumps({k:result[k] for k in ("artifact_type","run_id","network_calls","model_calls","editorial_review")},indent=2))
         else:
             from .sources import SingStatClient
             from .storage import write_json

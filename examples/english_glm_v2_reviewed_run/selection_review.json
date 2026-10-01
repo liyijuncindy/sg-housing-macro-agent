@@ -1,0 +1,30 @@
+{
+  "summary": "Reviewed the model wording against the captured definitions; removed unsupported scope and employment claims.",
+  "decision_edits": {
+    "M184101:1": "Excluded within household_income as a capacity choice. This is mean income per employed resident, including employer CPF and excluding bonus; it may proxy purchasing capacity but is not household income. Its captured history is shorter than several alternatives. The annual household median was preferred for household-level scope, with a loss of quarterly timeliness.",
+    "M016081:1": "Excluded within household_income as a capacity choice. Aggregate nominal personal disposable income is not income per household and can combine population and price changes with income changes. The median among resident employed households was preferred for that specific population; it is not a measure of every household or of the typical property buyer.",
+    "M400391:2": "Excluded within housing_supply as a capacity choice. This is the total non-landed private residential pipeline across development stages, not an unpurchased or unsold subset. The expectations channel may matter, but completion timing and cancellations prevent interpreting the pipeline as a completion forecast. The vacant-stock measure was preferred for current absorption context; incremental predictive value has not been established.",
+    "M183111:7": "Excluded within labour_market as a capacity choice. Total year-end employment includes resident and non-resident employees, self-employed persons and migrant domestic workers. Some workers do not require an ordinary separate rental unit, but these data do not establish how most workers are housed or a strong correlation with GDP. Quarterly resident unemployment was preferred for resident labour-market stress; total employment remains potentially informative.",
+    "M810361:5": "Selected for affordability context among resident employed households. The household employment-income median is less sensitive to very high incomes than the mean, but it does not represent non-employed households, all households or the typical property buyer. It includes employer CPF and annual bonus allocation, is nominal, and is not take-home income. Its annual frequency limits near-term monitoring.",
+    "M400751:1.1": "Excluded within housing_supply as a capacity choice. Total HDB flats are public-housing stock, not new additions. This is distinct from private-sector vacancy and may inform the HDB resale outcome; private vacancy does not fully substitute for it. The model preferred other dashboard channels, but this does not establish that HDB stock lacks explanatory or predictive value."
+  },
+  "narrative_edits": {
+    "M182342:2": {
+      "lag": "Housing decisions may adjust after labour-market changes, but the supplied metadata and correlations do not establish unemployment as an early business-cycle indicator or a fixed response delay."
+    },
+    "M810361:5": {
+      "sales": "Higher nominal median employment income among resident employed households could support affordability and debt servicing within that group. Employer CPF and bonus treatment, household composition, inflation and lending rules prevent interpreting this as universal take-home purchasing power."
+    },
+    "M810371:1": {
+      "limitations": "This is a stock of resident households. Its changes are net changes and cannot separately identify gross formation or dissolution. Tenure choices, eligibility, sampling variability and source changes limit housing-demand interpretation; publication-time historical availability is not reconstructed."
+    }
+  },
+  "notes": [
+    "All original model decisions and narratives are preserved in original_selection.json. Selected IDs, raw observations, evidence IDs and statistical calculations are unchanged.",
+    "Pipeline correction: evaluation metadata for M400391:2 defines total non-landed pipeline across development statuses. It does not identify unpurchased units or substantiate double-counting.",
+    "Employment correction: metadata for M183111:7 identifies resident and non-resident employment coverage, including migrant domestic workers. No tenure-share or GDP-correlation evidence was supplied.",
+    "Income corrections preserve the distinction between a per-employed-person mean, aggregate disposable income and the median among resident employed households.",
+    "Unemployment lag wording is now conditional; early-cycle behavior was not established. Annual seasonal revisions are stated in the supplied mechanism notes and were retained.",
+    "These editorial corrections are review judgements grounded in the captured definitions, not additional model output or automatic semantic proof."
+  ]
+}

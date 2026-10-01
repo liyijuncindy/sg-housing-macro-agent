@@ -58,3 +58,11 @@ Model reasons remain qualitative judgements. Main-page numeric values and signal
 Runs are immutable directories with SHA-256 inventories. Replay validates files and regenerates Markdown without Matplotlib, keys, source requests or model calls. Saved-source v2 analysis requires captured outcomes and never mixes a fresh outcome download into an old snapshot.
 
 Fresh source errors remain independent and receive bounded retries. Unavailable outcomes create explicit omissions and skipped checks, never fabricated values. Charts are optional for generation; core replay is dependency-free. HTML escapes source text and rejects external images, traversal and symlinks outside its asset directory.
+
+## Explicit editorial review
+
+`review-report` accepts a completed, inventoried v2 run and a review JSON containing a summary, decision edits, narrative edits and notes. It cannot change selected IDs or evidence IDs. Unknown candidates and unsupported fields are rejected before creating output.
+
+The separate reviewed presentation records its original execution, preserves original model selection and trace, labels changed reasons as `editorial_review`, and records zero new API calls. Source captures, chart files and statistical artifacts retain their original hashes. Its report also replays exactly. Original execution usage remains available separately; it is not billed again by review.
+
+The review is an explicit human/editorial judgement. Automatic syntax, evidence and numeric checks cannot guarantee correct qualitative economic reasoning.

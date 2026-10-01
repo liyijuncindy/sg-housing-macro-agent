@@ -1,0 +1,110 @@
+[
+  {
+    "row_id": "1",
+    "expected_unit": "Index",
+    "frequency": "Q",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "comparisons": [
+      "previous_period",
+      "year_on_year"
+    ],
+    "role": "evaluation_outcome",
+    "base_period": "2009-Q1",
+    "base_value": 100,
+    "comparability_floor_period": "2015-Q1",
+    "evaluation_note": "Use changes rather than index levels for exploratory association checks. For a common post-methodology window, retain comparison endpoints from 2015 Q1 onward: the first within-window quarter-on-quarter change is 2015 Q2 and the first year-on-year change is 2016 Q1. This is an analyst comparability restriction, not an official finding of predictive validity. The captured latest vintage cannot reconstruct historical release timing or revisions.",
+    "table_id": "M212261",
+    "expected_name": "Residential Properties",
+    "theme": "private_residential_prices",
+    "selection_family": "housing_outcomes",
+    "outcome_key": "private_residential_price",
+    "definition": "URA overall private residential property sale-price index, covering landed and non-landed property; 2009 Q1 = 100. Stratified hedonic regression is used from 2015 Q1.",
+    "update_frequency": "Quarterly. URA states that its time-series service updates on the fourth Friday of January, April, July and October, or the following working day after a public holiday. This upstream schedule is not a guaranteed SingStat mirror update time; individual historical release dates are not reconstructed.",
+    "scope": "Private residential sales; excludes HDB flats and other public-sector buildings. Non-landed price coverage includes executive condominiums more than ten years old. It is an aggregate index, not a dwelling price in dollars.",
+    "methodology_change_period": "2015-Q1",
+    "methodology_sources": [
+      "https://eservice.ura.gov.sg/reis/coverageandMethodology",
+      "https://tablebuilder.singstat.gov.sg/table/TS/M212261"
+    ],
+    "mechanism": {
+      "sales": "Observed private residential sale-price outcome for exploratory evaluation; not an explanatory candidate.",
+      "rents": "Not a rental index; assess rental outcomes separately.",
+      "lag": "No predictive lag is established by the outcome definition.",
+      "limitations": "The current-base history includes a methodology change in 2015 Q1. Do not splice older-base downloads into this series. Aggregation, rounding and later revisions limit comparisons; matched index bases do not imply matched housing coverage. The series is not labelled seasonally adjusted."
+    }
+  },
+  {
+    "row_id": "1",
+    "expected_unit": "Index",
+    "frequency": "Q",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "comparisons": [
+      "previous_period",
+      "year_on_year"
+    ],
+    "role": "evaluation_outcome",
+    "base_period": "2009-Q1",
+    "base_value": 100,
+    "comparability_floor_period": "2015-Q1",
+    "evaluation_note": "Use changes rather than index levels for exploratory association checks. For a common post-methodology window, retain comparison endpoints from 2015 Q1 onward: the first within-window quarter-on-quarter change is 2015 Q2 and the first year-on-year change is 2016 Q1. This is an analyst comparability restriction, not an official finding of predictive validity. The captured latest vintage cannot reconstruct historical release timing or revisions.",
+    "table_id": "M212311",
+    "expected_name": "Rental Index Of Residential Properties",
+    "theme": "private_residential_rents",
+    "selection_family": "housing_outcomes",
+    "outcome_key": "private_residential_rent",
+    "definition": "URA overall private residential rental index, based on tenancy-agreement data; 2009 Q1 = 100. Stratified hedonic regression is used from 2015 Q1.",
+    "update_frequency": "Quarterly. URA states that its time-series service updates on the fourth Friday of January, April, July and October, or the following working day after a public holiday. This upstream schedule is not a guaranteed SingStat mirror update time; individual historical release dates are not reconstructed.",
+    "scope": "Private landed and non-landed rentals, including executive condominiums; excludes HDB flats and other public-sector buildings. It is an aggregate index, not monthly rent in dollars or a measure of HDB rents.",
+    "methodology_change_period": "2015-Q1",
+    "methodology_sources": [
+      "https://eservice.ura.gov.sg/reis/coverageandMethodology",
+      "https://tablebuilder.singstat.gov.sg/table/TS/M212311"
+    ],
+    "mechanism": {
+      "sales": "Not a sale-price index; assess sales outcomes separately.",
+      "rents": "Observed private residential rental outcome for exploratory evaluation; not an explanatory candidate.",
+      "lag": "No predictive lag is established by the outcome definition.",
+      "limitations": "The current-base history includes a methodology change in 2015 Q1. Do not splice older-base downloads into this series. Rental coverage differs from the sale-price index and from private stock series that exclude executive condominiums. Aggregation, rounding and later revisions limit comparisons. The series is not labelled seasonally adjusted."
+    }
+  },
+  {
+    "row_id": "1",
+    "expected_unit": "Index",
+    "frequency": "Q",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "comparisons": [
+      "previous_period",
+      "year_on_year"
+    ],
+    "role": "evaluation_outcome",
+    "base_period": "2009-Q1",
+    "base_value": 100,
+    "comparability_floor_period": "2015-Q1",
+    "evaluation_note": "Use changes rather than index levels for exploratory association checks. For a common post-methodology window, retain comparison endpoints from 2015 Q1 onward: the first within-window quarter-on-quarter change is 2015 Q2 and the first year-on-year change is 2016 Q1. This is an analyst comparability restriction, not an official finding of predictive validity. The captured latest vintage cannot reconstruct historical release timing or revisions.",
+    "table_id": "M212161",
+    "expected_name": "HDB Resale Price Index",
+    "theme": "hdb_resale_prices",
+    "selection_family": "housing_outcomes",
+    "outcome_key": "hdb_resale_price",
+    "definition": "HDB resale flat price index based on registered resale transactions; 2009 Q1 = 100. The method changes from stratification to stratified hedonic regression in 2014 Q4.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. The SingStat mirror schedule and individual historical observation release dates are not confirmed.",
+    "scope": "HDB resale flats; a public-housing resale outcome distinct from private residential sale prices, new HDB sale prices and HDB rents.",
+    "methodology_change_period": "2014-Q4",
+    "methodology_sources": [
+      "https://tablebuilder.singstat.gov.sg/table/TS/M212161",
+      "https://www.hdb.gov.sg/managing-my-home/selling-a-flat/process-for-selling-a-flat/resale-flat-planning/resale-statistics"
+    ],
+    "mechanism": {
+      "sales": "Observed HDB resale price outcome for a separate public-housing comparison; not an explanatory candidate.",
+      "rents": "Not a rental index and cannot establish HDB rental movements.",
+      "lag": "No predictive lag is established by the outcome definition.",
+      "limitations": "The current series rescales 1990 Q1 through 2014 Q3 by 100/138.3 to the 2009 Q1 base; source metadata warns that rounding can change quarterly percentage movements relative to the earlier release. The method changes in 2014 Q4. Keep public resale, private sales and rents separate; latest-vintage revisions are not historical information sets."
+    }
+  }
+]

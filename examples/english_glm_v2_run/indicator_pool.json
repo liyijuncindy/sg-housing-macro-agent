@@ -1,0 +1,1802 @@
+{
+  "schema_version": 2,
+  "language": "en",
+  "title": "Singapore housing: full candidate indicator pool",
+  "columns": [
+    "Candidate",
+    "Definition and frequency",
+    "Candidate rationale",
+    "Official source",
+    "Data status",
+    "Selection and reason",
+    "Limitations"
+  ],
+  "run": {
+    "run_id": "english_glm_v2_run",
+    "as_of": "2026-10-01",
+    "created_at": "2026-10-01T14:41:54+00:00",
+    "mode": "llm",
+    "mode_label": "Live SiliconFlow Chat Completions tool-calling agent (zai-org/GLM-5.3)",
+    "source_policy": "auto",
+    "source_run": null,
+    "data_basis": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set."
+  },
+  "rows": [
+    {
+      "id": "M810001:2",
+      "name": "Resident Population",
+      "definition": "Singapore citizens and permanent residents as at end-June; from 2003 excludes residents continuously overseas for at least 12 months at the reference date.",
+      "scope": "Singapore resident population, not number of households or homebuyers.",
+      "frequency": "A",
+      "unit": "Number",
+      "selection_family": "population_demand",
+      "candidate_rationale": "Sales: A larger resident population may support owner-occupier demand when household formation and purchasing capacity also increase. Rent: Population growth may support rental demand, conditional on household formation and tenure choices.",
+      "limitations": "Population is not household formation; pre-1990 population concepts and the 2003 coverage change limit long-run comparability. Historical observations may be revised.",
+      "source": {
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.",
+          "Used source-backed observation dates within the period for 48 observations; other observations use period-end cutoffs."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 48,
+        "window_start_period": "2017",
+        "window_end_period": "2026",
+        "coverage_start_period": "2017",
+        "coverage_end_period": "2026",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026",
+        "value": 4231524.0,
+        "raw_period": "2026",
+        "raw_value": "4231524",
+        "raw_index": 47,
+        "observation_date": "2026-06-30"
+      },
+      "changes": [
+        {
+          "id": "M810001:2:year_on_year",
+          "comparison": "year_on_year",
+          "value": 0.6423808691,
+          "unit": "%",
+          "latest_period": "2026",
+          "latest_value": 4231524.0,
+          "base_period": "2025",
+          "base_value": 4204515.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026",
+              "value": 4231524.0,
+              "raw_period": "2026",
+              "raw_value": "4231524",
+              "raw_index": 47,
+              "observation_date": "2026-06-30"
+            },
+            {
+              "period": "2025",
+              "value": 4204515.0,
+              "raw_period": "2025",
+              "raw_value": "4204515",
+              "raw_index": 46,
+              "observation_date": "2025-06-30"
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded within the population-demand family: resident population is not the number of households or homebuyers, and the household count was preferred as the more direct marker of occupied-dwelling demand. An annual headcount also cannot separate household formation or tenure shifts. Not a quality failure and not treated as fully substituted.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M810001_111a5f764bb0c97b.json",
+        "raw_sha256": "998bd3587b86d8d74e329bcc6a6a5225966482a689d42eec3a165e2f3452d6d2",
+        "metadata_file": "raw/metadata_M810001_65f2a1a53b2339e3.json",
+        "metadata_sha256": "c31ba1ad10337d2e5c530ac000904ce5a2b54420d9d6727433041b1006901807"
+      },
+      "retrieved_at": "2026-10-01T14:43:26+00:00"
+    },
+    {
+      "id": "M810001:5",
+      "name": "Non-Resident Population",
+      "definition": "Foreigners working, studying or living in Singapore without permanent residence, excluding tourists and short-term visitors, as at end-June.",
+      "scope": "Singapore non-resident population; housing needs include arrangements beyond private residential rentals.",
+      "frequency": "A",
+      "unit": "Number",
+      "selection_family": "population_demand",
+      "candidate_rationale": "Sales: An increase may support housing demand indirectly, but tenure preferences and purchase restrictions affect the link to sales. Rent: A larger non-resident population may support rental demand where residents seek ordinary residential accommodation.",
+      "limitations": "Does not identify income, visa category, dormitory residence, household size or dwelling tenure. Population alone is not a rental-demand forecast.",
+      "source": {
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.",
+          "Used source-backed observation dates within the period for 48 observations; other observations use period-end cutoffs."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 48,
+        "window_start_period": "2017",
+        "window_end_period": "2026",
+        "coverage_start_period": "2017",
+        "coverage_end_period": "2026",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026",
+        "value": 1976999.0,
+        "raw_period": "2026",
+        "raw_value": "1976999",
+        "raw_index": 47,
+        "observation_date": "2026-06-30"
+      },
+      "changes": [
+        {
+          "id": "M810001:5:year_on_year",
+          "comparison": "year_on_year",
+          "value": 3.6891212906,
+          "unit": "%",
+          "latest_period": "2026",
+          "latest_value": 1976999.0,
+          "base_period": "2025",
+          "base_value": 1906660.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026",
+              "value": 1976999.0,
+              "raw_period": "2026",
+              "raw_value": "1976999",
+              "raw_index": 47,
+              "observation_date": "2026-06-30"
+            },
+            {
+              "period": "2025",
+              "value": 1906660.0,
+              "raw_period": "2025",
+              "raw_value": "1906660",
+              "raw_index": 46,
+              "observation_date": "2025-06-30"
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded within the population-demand family: non-resident population is rental-relevant, but metadata notes its accommodation includes arrangements beyond ordinary residential letting, and residence status can restrict ownership, so the link to sales is looser. The household-count slot was consolidated for the family. A useful supplementary rental-demand signal.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M810001_495ed32846bcfef1.json",
+        "raw_sha256": "553d1d43645babc2d30ac1bbe939abe2c2cbde0d36a4fb5088ec1f7171e4ca4d",
+        "metadata_file": "raw/metadata_M810001_65f2a1a53b2339e3.json",
+        "metadata_sha256": "c31ba1ad10337d2e5c530ac000904ce5a2b54420d9d6727433041b1006901807"
+      },
+      "retrieved_at": "2026-10-01T14:43:26+00:00"
+    },
+    {
+      "id": "M015661:1",
+      "name": "GDP In Chained (2015) Dollars",
+      "definition": "Quarterly gross domestic product measured in chained 2015 Singapore dollars; a measure of real domestic economic activity.",
+      "scope": "Whole Singapore economy; million Singapore dollars at chained 2015 prices.",
+      "frequency": "Q",
+      "unit": "Million Dollars",
+      "selection_family": "economic_activity",
+      "candidate_rationale": "Sales: Stronger real activity may support jobs, incomes and confidence, which can support purchasing demand. Rent: Stronger activity may support employment-linked rental demand.",
+      "limitations": "This series is not labelled seasonally adjusted: prioritise year-on-year comparisons. GDP and housing may share common causes; advance estimates and history can be revised.",
+      "source": {
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M015661",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 206,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-Q2",
+        "value": 155247.2,
+        "raw_period": "2026 2Q",
+        "raw_value": "155247.2",
+        "raw_index": 205
+      },
+      "changes": [
+        {
+          "id": "M015661:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 5.9403406939,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 155247.2,
+          "base_period": "2025-Q2",
+          "base_value": 146542.1,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 155247.2,
+              "raw_period": "2026 2Q",
+              "raw_value": "155247.2",
+              "raw_index": 205
+            },
+            {
+              "period": "2025-Q2",
+              "value": 146542.1,
+              "raw_period": "2025 2Q",
+              "raw_value": "146542.1",
+              "raw_index": 201
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded on capacity: gross domestic product activity links to housing largely through jobs, incomes and confidence, which are monitored more directly by the selected labour-market and household-income signals. It belongs to a distinct family that was not filled, a channel-priority choice rather than an irrelevance or substitution claim.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M015661_98fd049aa87c5bb9.json",
+        "raw_sha256": "138acbe058be5f2b1786287fa818e0efe86cebcd6877fbb79c9e832dc1093baf",
+        "metadata_file": "raw/metadata_M015661_784158104d4175d7.json",
+        "metadata_sha256": "714a6267fd6dd5a8011502d897c8e67e8becbe5001cad9965a719ab4d5b04099"
+      },
+      "retrieved_at": "2026-10-01T14:43:26+00:00"
+    },
+    {
+      "id": "M182342:2",
+      "name": "Resident Unemployment Rate, (SA)",
+      "definition": "Resident unemployment rate at quarter-end, seasonally adjusted; residents are citizens and permanent residents.",
+      "scope": "Resident labour force, not the entire resident population or non-resident workforce.",
+      "frequency": "Q",
+      "unit": "Per Cent",
+      "selection_family": "labour_market",
+      "candidate_rationale": "Sales: A higher unemployment rate may weaken purchasing capacity and confidence. Rent: A higher rate may weaken residents' ability to pay rents, with effects depending on household circumstances.",
+      "limitations": "The seasonally adjusted series is revised annually. It excludes non-residents and does not measure earnings, job security or underemployment.",
+      "source": {
+        "agency": "MINISTRY OF MANPOWER",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M182342",
+        "kind": "captured"
+      },
+      "status": "selected",
+      "selected": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 138,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-Q2",
+        "value": 2.9,
+        "raw_period": "2026 2Q",
+        "raw_value": "2.9",
+        "raw_index": 137
+      },
+      "changes": [
+        {
+          "id": "M182342:2:previous_period",
+          "comparison": "previous_period",
+          "value": 0.0,
+          "unit": "percentage points",
+          "latest_period": "2026-Q2",
+          "latest_value": 2.9,
+          "base_period": "2026-Q1",
+          "base_value": 2.9,
+          "formula": "latest_value - base_value",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 2.9,
+              "raw_period": "2026 2Q",
+              "raw_value": "2.9",
+              "raw_index": 137
+            },
+            {
+              "period": "2026-Q1",
+              "value": 2.9,
+              "raw_period": "2026 1Q",
+              "raw_value": "2.9",
+              "raw_index": 136
+            }
+          ]
+        },
+        {
+          "id": "M182342:2:year_on_year",
+          "comparison": "year_on_year",
+          "value": 0.2,
+          "unit": "percentage points",
+          "latest_period": "2026-Q2",
+          "latest_value": 2.9,
+          "base_period": "2025-Q2",
+          "base_value": 2.7,
+          "formula": "latest_value - base_value",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 2.9,
+              "raw_period": "2026 2Q",
+              "raw_value": "2.9",
+              "raw_index": 137
+            },
+            {
+              "period": "2025-Q2",
+              "value": 2.7,
+              "raw_period": "2025 2Q",
+              "raw_value": "2.7",
+              "raw_index": 133
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Selected as the cyclical labour-market signal: a seasonally adjusted resident unemployment rate measured at quarter-end may speak directly to residents' purchasing capacity and willingness to commit to purchases, and to rent affordability. Complete quarterly coverage within the current window permits timely monitoring of downside stress.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M182342_48b7788b41cef5e4.json",
+        "raw_sha256": "84b73c77a3fa5e42e0f44d882ba2c465d8d7d8e426020c3f02578f7976904f27",
+        "metadata_file": "raw/metadata_M182342_a8645aa92a612265.json",
+        "metadata_sha256": "d61b0cdaafee2cc3ed0154e70e7a6fcfd22659f46c2fd3b359668f690e5330c4"
+      },
+      "retrieved_at": "2026-10-01T14:43:27+00:00"
+    },
+    {
+      "id": "M184101:1",
+      "name": "Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents",
+      "definition": "Mean gross monthly employment income of employed residents, including employer CPF contributions and excluding bonus; employees' amounts are before employee CPF and income tax deductions.",
+      "scope": "Employed citizens and permanent residents excluding full-time National Servicemen; Singapore dollars per employed person.",
+      "frequency": "Q",
+      "unit": "Dollars",
+      "selection_family": "household_income",
+      "candidate_rationale": "Sales: Higher employment income may improve borrowing and purchasing capacity. Rent: Higher employment income may support rent affordability.",
+      "limitations": "Includes employer CPF and is not cash take-home pay. The mean can be skewed by high earners; composition changes matter. Official metadata recommends same-quarter year-on-year comparisons; history begins in 2021 Q2.",
+      "source": {
+        "agency": "MINISTRY OF MANPOWER",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M184101",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 21,
+        "expected_count": 21,
+        "window_valid_count": 21,
+        "total_valid_count": 21,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2021-Q2",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-Q2",
+        "value": 6605.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "6605",
+        "raw_index": 20
+      },
+      "changes": [
+        {
+          "id": "M184101:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 3.3646322379,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 6605.0,
+          "base_period": "2025-Q2",
+          "base_value": 6390.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 6605.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "6605",
+              "raw_index": 20
+            },
+            {
+              "period": "2025-Q2",
+              "value": 6390.0,
+              "raw_period": "2025 2Q",
+              "raw_value": "6390",
+              "raw_index": 16
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded within household-income: it is a mean income per employed resident, not income per household, so it is not a measure of household purchasing capacity; a mean can also be lifted by high earners, and the available history is comparatively short. Capacity choice, not a quality failure.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M184101_fb465df65995a904.json",
+        "raw_sha256": "d8cbf8315336bd54bc69fc88739a236d44e8e9c0163deb5b497a83ea158917fe",
+        "metadata_file": "raw/metadata_M184101_a25547ab734fb98d.json",
+        "metadata_sha256": "21699f7802f141be3ca4ba78bb2c3e20d8a51a71660b533b8faa02756bef0112"
+      },
+      "retrieved_at": "2026-10-01T14:43:27+00:00"
+    },
+    {
+      "id": "M016081:1",
+      "name": "Personal Disposable Income (Nominal)",
+      "definition": "Quarterly aggregate personal disposable income at current prices.",
+      "scope": "Singapore aggregate nominal personal disposable income; million Singapore dollars, not median household income.",
+      "frequency": "Q",
+      "unit": "Million Dollars",
+      "selection_family": "household_income",
+      "candidate_rationale": "Sales: Higher aggregate disposable income may increase the resources available for housing purchases. Rent: Higher aggregate disposable income may support rental spending.",
+      "limitations": "Nominal aggregate growth also reflects inflation and population change; it is not income per household. This series is not labelled seasonally adjusted.",
+      "source": {
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M016081",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 186,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-Q2",
+        "value": 94423.4,
+        "raw_period": "2026 2Q",
+        "raw_value": "94423.4",
+        "raw_index": 185
+      },
+      "changes": [
+        {
+          "id": "M016081:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 6.8838073806,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 94423.4,
+          "base_period": "2025-Q2",
+          "base_value": 88342.1,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 94423.4,
+              "raw_period": "2026 2Q",
+              "raw_value": "94423.4",
+              "raw_index": 185
+            },
+            {
+              "period": "2025-Q2",
+              "value": 88342.1,
+              "raw_period": "2025 2Q",
+              "raw_value": "88342.1",
+              "raw_index": 181
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded within household-income: aggregate nominal personal disposable income is not income per household, and it partly blends price and population effects. The retained median measure better reflects typical-purchaser affordability; aggregate and median alternatives are distinct concepts.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M016081_3de81f4c4307fd66.json",
+        "raw_sha256": "927b20623c10c369782544e906b5387db81cbbef6b8e412ef62d0496f0804535",
+        "metadata_file": "raw/metadata_M016081_e340ae096293a0e7.json",
+        "metadata_sha256": "4b018efb861e20669317b3032079b89e53e44e3b302a7619976ffff500228ca4"
+      },
+      "retrieved_at": "2026-10-01T14:43:28+00:00"
+    },
+    {
+      "id": "M700071:23",
+      "name": "Compounded Singapore Overnight Rate Average (SORA) - 3 Month",
+      "definition": "Three-month compounded Singapore Overnight Rate Average (SORA), observed at month-end and expressed as an annual percentage rate.",
+      "scope": "Singapore-dollar benchmark interest rate; not an individual mortgage offer.",
+      "frequency": "M",
+      "unit": "Per Cent Per Annum",
+      "selection_family": "financing_cost",
+      "candidate_rationale": "Sales: Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage rates reset. Rent: Higher ownership financing costs may shift tenure choices and landlords' costs; the net rental effect is ambiguous.",
+      "limitations": "Month-end snapshot, not a monthly average. Mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through; SORA changes alone cannot determine housing prices.",
+      "source": {
+        "agency": "MONETARY AUTHORITY OF SINGAPORE",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M700071",
+        "kind": "captured"
+      },
+      "status": "selected",
+      "selected": true,
+      "quality": {
+        "eligible": true,
+        "score": 97.14,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 119,
+        "expected_count": 119,
+        "window_valid_count": 119,
+        "total_valid_count": 251,
+        "window_start_period": "2016-10",
+        "window_end_period": "2026-09",
+        "coverage_start_period": "2016-10",
+        "coverage_end_period": "2026-08",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 24,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 6
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 17.1429,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-08",
+        "value": 1.1863,
+        "raw_period": "2026 Aug",
+        "raw_value": "1.1863",
+        "raw_index": 250
+      },
+      "changes": [
+        {
+          "id": "M700071:23:previous_period",
+          "comparison": "previous_period",
+          "value": 5.09,
+          "unit": "basis points",
+          "latest_period": "2026-08",
+          "latest_value": 1.1863,
+          "base_period": "2026-07",
+          "base_value": 1.1354,
+          "formula": "(latest_value - base_value) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 1.1863,
+              "raw_period": "2026 Aug",
+              "raw_value": "1.1863",
+              "raw_index": 250
+            },
+            {
+              "period": "2026-07",
+              "value": 1.1354,
+              "raw_period": "2026 Jul",
+              "raw_value": "1.1354",
+              "raw_index": 249
+            }
+          ]
+        },
+        {
+          "id": "M700071:23:year_on_year",
+          "comparison": "year_on_year",
+          "value": -37.75,
+          "unit": "basis points",
+          "latest_period": "2026-08",
+          "latest_value": 1.1863,
+          "base_period": "2025-08",
+          "base_value": 1.5638,
+          "formula": "(latest_value - base_value) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 1.1863,
+              "raw_period": "2026 Aug",
+              "raw_value": "1.1863",
+              "raw_index": 250
+            },
+            {
+              "period": "2025-08",
+              "value": 1.5638,
+              "raw_period": "2025 Aug",
+              "raw_value": "1.5638",
+              "raw_index": 238
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Selected as the financing-cost signal: a compounded Singapore-dollar overnight benchmark rate is the reference for domestic floating-rate mortgage pricing, so movements may affect borrowing capacity and tenure choices for both purchases and rentals. Long continuous coverage supports monitoring across the window.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M700071_5ec2ab86786f7bd2.json",
+        "raw_sha256": "844467d877f0fc311402be16f7fb1e606b894eb34185683c8a20f9039d4c70a2",
+        "metadata_file": "raw/metadata_M700071_92125fcf7454ccaf.json",
+        "metadata_sha256": "25c98acdf25dabfe33b3a79578901b33324a54908adfc5d83e2b78dbe6273280"
+      },
+      "retrieved_at": "2026-10-01T14:43:29+00:00"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "name": "Consumer Loans - Housing And Bridging Loans",
+      "definition": "Commercial-bank consumer housing and bridging loans to residents outstanding at month-end.",
+      "scope": "Commercial-bank lending stock to residents; million Singapore dollars, not new monthly mortgage approvals.",
+      "frequency": "M",
+      "unit": "Million Dollars",
+      "selection_family": "housing_credit",
+      "candidate_rationale": "Sales: Expanding housing credit may accompany financed housing demand, but it can also respond to higher prices. Rent: Credit conditions may affect ownership-versus-renting decisions; the rental relationship is indirect.",
+      "limitations": "This is outstanding stock, not credit availability or origination flow; repayments also affect it. Revised reporting starts July 2021 following changes to MAS Notices 610 and 1003.",
+      "source": {
+        "agency": "MONETARY AUTHORITY OF SINGAPORE",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M701091",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 97.14,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 62,
+        "expected_count": 62,
+        "window_valid_count": 62,
+        "total_valid_count": 62,
+        "window_start_period": "2016-10",
+        "window_end_period": "2026-09",
+        "coverage_start_period": "2021-07",
+        "coverage_end_period": "2026-08",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 24,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 6
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 17.1429,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-08",
+        "value": 256563.5,
+        "raw_period": "2026 Aug",
+        "raw_value": "256563.5",
+        "raw_index": 61
+      },
+      "changes": [
+        {
+          "id": "M701091:1.2.1:previous_period",
+          "comparison": "previous_period",
+          "value": 0.7422057986,
+          "unit": "%",
+          "latest_period": "2026-08",
+          "latest_value": 256563.5,
+          "base_period": "2026-07",
+          "base_value": 254673.3,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 256563.5,
+              "raw_period": "2026 Aug",
+              "raw_value": "256563.5",
+              "raw_index": 61
+            },
+            {
+              "period": "2026-07",
+              "value": 254673.3,
+              "raw_period": "2026 Jul",
+              "raw_value": "254673.3",
+              "raw_index": 60
+            }
+          ]
+        },
+        {
+          "id": "M701091:1.2.1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 7.2803815811,
+          "unit": "%",
+          "latest_period": "2026-08",
+          "latest_value": 256563.5,
+          "base_period": "2025-08",
+          "base_value": 239152.3,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 256563.5,
+              "raw_period": "2026 Aug",
+              "raw_value": "256563.5",
+              "raw_index": 61
+            },
+            {
+              "period": "2025-08",
+              "value": 239152.3,
+              "raw_period": "2025 Aug",
+              "raw_value": "239152.3",
+              "raw_index": 49
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded from housing-credit: this is an outstanding loan stock rather than credit availability, so it partly responds to volumes and prices already embodied in the housing market, potentially creating circularity between lending and the outcomes being explained. The distinct financing-cost channel was retained instead.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M701091_11d6417c6fe41133.json",
+        "raw_sha256": "b8bc0b0d9f1fa8d7fe20072630210799fc9d32057a3ea71765b2032259933e8d",
+        "metadata_file": "raw/metadata_M701091_7210b11a5c896615.json",
+        "metadata_sha256": "a9df676d599d1f9fce49b468fae1cbeb8de8ecbc5c675ba8519c9fb560003a0f"
+      },
+      "retrieved_at": "2026-10-01T14:43:29+00:00"
+    },
+    {
+      "id": "M400841:1",
+      "name": "All Types Private Residential Properties Available",
+      "definition": "Completed private residential units at quarter-end with a Temporary Occupation Permit or Certificate of Statutory Completion; this is the housing stock labelled available by URA.",
+      "scope": "All landed and non-landed private residential units; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+      "frequency": "Q",
+      "unit": "Number Of Units",
+      "selection_family": "housing_supply",
+      "candidate_rationale": "Sales: Growth in completed stock may ease supply constraints relative to demand. Rent: Additional completed homes may increase potential rental supply.",
+      "limitations": "Available denotes total completed stock, not units actively listed for sale or rent. Coverage expanded in 1995 and 1996; private-sector results do not directly represent HDB.",
+      "source": {
+        "agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 154,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-Q2",
+        "value": 424581.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "424581",
+        "raw_index": 153
+      },
+      "changes": [
+        {
+          "id": "M400841:1:previous_period",
+          "comparison": "previous_period",
+          "value": 0.0980750416,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 424581.0,
+          "base_period": "2026-Q1",
+          "base_value": 424165.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 424581.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "424581",
+              "raw_index": 153
+            },
+            {
+              "period": "2026-Q1",
+              "value": 424165.0,
+              "raw_period": "2026 1Q",
+              "raw_value": "424165",
+              "raw_index": 152
+            }
+          ]
+        },
+        {
+          "id": "M400841:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 1.0565475482,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 424581.0,
+          "base_period": "2025-Q2",
+          "base_value": 420142.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 424581.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "424581",
+              "raw_index": 153
+            },
+            {
+              "period": "2025-Q2",
+              "value": 420142.0,
+              "raw_period": "2025 2Q",
+              "raw_value": "420142",
+              "raw_index": 149
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded within the housing-supply family: the completed available stock is a slowly moving total, not new supply or active listings, while the vacant-unit count was preferred as the tighter slack measure, interpreted against the available-stock denominator rather than adding another selection from the same family.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M400841_9cbe20a8bfdb6540.json",
+        "raw_sha256": "e6363fdf9c307229226c70f6210a01bed31099f9e2cca622a1f7faa1a8741cbd",
+        "metadata_file": "raw/metadata_M400841_1a2f023546b256ff.json",
+        "metadata_sha256": "74145d40646cc5b6381a59c580f6e8a62da91b79c75851e13e595a6cb7a36bb6"
+      },
+      "retrieved_at": "2026-10-01T14:43:30+00:00"
+    },
+    {
+      "id": "M400841:2",
+      "name": "All Types Private Residential Properties Vacant",
+      "definition": "Number of vacant completed private residential units at quarter-end, not the vacancy rate.",
+      "scope": "All landed and non-landed private residential units; same exclusions and coverage as the completed stock in table M400841 row 1.",
+      "frequency": "Q",
+      "unit": "Number Of Units",
+      "selection_family": "housing_supply",
+      "candidate_rationale": "Sales: More vacant units may indicate weaker absorption and reduce price pressure, depending on total stock and location. Rent: More vacant units may indicate greater rental availability and reduce rent pressure, depending on demand.",
+      "limitations": "Interpret against completed stock: a rising count can coexist with a falling vacancy rate. Vacancy rate must be derived as row 2 divided by row 1 for matching periods; this row alone is a count.",
+      "source": {
+        "agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+        "kind": "captured"
+      },
+      "status": "selected",
+      "selected": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 154,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-Q2",
+        "value": 26961.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "26961",
+        "raw_index": 153
+      },
+      "changes": [
+        {
+          "id": "M400841:2:previous_period",
+          "comparison": "previous_period",
+          "value": 3.0698065601,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 26961.0,
+          "base_period": "2026-Q1",
+          "base_value": 26158.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 26961.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "26961",
+              "raw_index": 153
+            },
+            {
+              "period": "2026-Q1",
+              "value": 26158.0,
+              "raw_period": "2026 1Q",
+              "raw_value": "26158",
+              "raw_index": 152
+            }
+          ]
+        },
+        {
+          "id": "M400841:2:year_on_year",
+          "comparison": "year_on_year",
+          "value": -10.2108102708,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 26961.0,
+          "base_period": "2025-Q2",
+          "base_value": 30027.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 26961.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "26961",
+              "raw_index": 153
+            },
+            {
+              "period": "2025-Q2",
+              "value": 30027.0,
+              "raw_period": "2025 2Q",
+              "raw_value": "30027",
+              "raw_index": 149
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Selected as the housing-supply slack signal: vacant completed private homes at quarter-end may indicate absorption weakness relevant to both capital values and rents, depending on demand. The count must be interpreted against the completed-stock denominator from the same source, which is not separately retained.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M400841_de38dc09e41862f3.json",
+        "raw_sha256": "0104a610532cf4ac51fba4e4ee1eceed2f7960241c4bbf9e818ed72ec5ac8d54",
+        "metadata_file": "raw/metadata_M400841_1a2f023546b256ff.json",
+        "metadata_sha256": "74145d40646cc5b6381a59c580f6e8a62da91b79c75851e13e595a6cb7a36bb6"
+      },
+      "retrieved_at": "2026-10-01T14:43:30+00:00"
+    },
+    {
+      "id": "M400391:2",
+      "name": "Total Non-Landed Properties",
+      "definition": "Total non-landed private residential units in the pipeline at quarter-end across development statuses.",
+      "scope": "Non-landed private residential pipeline; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+      "frequency": "Q",
+      "unit": "Number Of Units",
+      "selection_family": "housing_supply",
+      "candidate_rationale": "Sales: A larger prospective pipeline may ease expected future supply constraints. Rent: Future completions may expand potential rental supply.",
+      "limitations": "The pipeline is not completed housing or a completion forecast. Timing, cancellations and development stages vary; landed housing is excluded from this row.",
+      "source": {
+        "agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M400391",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 133,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-Q2",
+        "value": 51677.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "51677",
+        "raw_index": 132
+      },
+      "changes": [
+        {
+          "id": "M400391:2:previous_period",
+          "comparison": "previous_period",
+          "value": 7.4120263557,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 51677.0,
+          "base_period": "2026-Q1",
+          "base_value": 48111.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 51677.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "51677",
+              "raw_index": 132
+            },
+            {
+              "period": "2026-Q1",
+              "value": 48111.0,
+              "raw_period": "2026 1Q",
+              "raw_value": "48111",
+              "raw_index": 131
+            }
+          ]
+        },
+        {
+          "id": "M400391:2:year_on_year",
+          "comparison": "year_on_year",
+          "value": 6.6076659653,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 51677.0,
+          "base_period": "2025-Q2",
+          "base_value": 48474.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 51677.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "51677",
+              "raw_index": 132
+            },
+            {
+              "period": "2025-Q2",
+              "value": 48474.0,
+              "raw_period": "2025 2Q",
+              "raw_value": "48474",
+              "raw_index": 128
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded within the housing-supply family: the unpurchased pipeline may shape expectations about future supply, but it is not a completion forecast and its timing is unknown. Slower-moving and potentially double-counted with completions in practice; the forward channel may still add signal.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M400391_fb25f7621ca819ff.json",
+        "raw_sha256": "f088bab517f48eb2861a305667fb52c24ceca6eaed2d855d6bcf6d0f8fa56a01",
+        "metadata_file": "raw/metadata_M400391_e4a98695091d7655.json",
+        "metadata_sha256": "4e3117548991605f5546c80e29d831d16563292bf79bce56c349342cc6f982d7"
+      },
+      "retrieved_at": "2026-10-01T14:43:31+00:00"
+    },
+    {
+      "id": "M213751:1",
+      "name": "All Items",
+      "definition": "All-items Consumer Price Index, 2024 = 100, based on the official household expenditure weighting pattern.",
+      "scope": "Singapore consumer prices; index, not residential property sale prices.",
+      "frequency": "M",
+      "unit": "Index",
+      "selection_family": "inflation",
+      "candidate_rationale": "Sales: Inflation affects real purchasing power and building or financing conditions, but its net association with home values is ambiguous. Rent: Inflation affects household budgets and landlords' costs, with an ambiguous net effect on rent growth.",
+      "limitations": "CPI includes housing-related components, so its relationship with rents can partly reflect overlap. It is not a construction-cost index, house-price index or independent causal predictor.",
+      "source": {
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M213751",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 97.14,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 119,
+        "expected_count": 119,
+        "window_valid_count": 119,
+        "total_valid_count": 788,
+        "window_start_period": "2016-10",
+        "window_end_period": "2026-09",
+        "coverage_start_period": "2016-10",
+        "coverage_end_period": "2026-08",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 24,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 6
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 17.1429,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026-08",
+        "value": 103.334,
+        "raw_period": "2026 Aug",
+        "raw_value": "103.334",
+        "raw_index": 787
+      },
+      "changes": [
+        {
+          "id": "M213751:1:previous_period",
+          "comparison": "previous_period",
+          "value": 0.6212510711,
+          "unit": "%",
+          "latest_period": "2026-08",
+          "latest_value": 103.334,
+          "base_period": "2026-07",
+          "base_value": 102.696,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 103.334,
+              "raw_period": "2026 Aug",
+              "raw_value": "103.334",
+              "raw_index": 787
+            },
+            {
+              "period": "2026-07",
+              "value": 102.696,
+              "raw_period": "2026 Jul",
+              "raw_value": "102.696",
+              "raw_index": 786
+            }
+          ]
+        },
+        {
+          "id": "M213751:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 2.3483850519,
+          "unit": "%",
+          "latest_period": "2026-08",
+          "latest_value": 103.334,
+          "base_period": "2025-08",
+          "base_value": 100.963,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 103.334,
+              "raw_period": "2026 Aug",
+              "raw_value": "103.334",
+              "raw_index": 787
+            },
+            {
+              "period": "2025-08",
+              "value": 100.963,
+              "raw_period": "2025 Aug",
+              "raw_value": "100.963",
+              "raw_index": 775
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded: the all-items price index partially overlaps with the outcomes through its accommodation components, which risks mechanically induced rather than independently predictive variation, and its relationship to sale and rent growth is ambiguous. A related but cleaner money-rate channel is retained.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M213751_62f62cd25bf5df72.json",
+        "raw_sha256": "28aec21bd4c894fbc1df63dd140903d8342e8e064bd3ad8e9997aa02a58c9669",
+        "metadata_file": "raw/metadata_M213751_ffb93a81df629642.json",
+        "metadata_sha256": "fa077c6298e363d92893240514a02b2c3fb4a74854ae2e86b877bbb25e04c0c7"
+      },
+      "retrieved_at": "2026-10-01T14:43:31+00:00"
+    },
+    {
+      "id": "M810371:1",
+      "name": "Resident Households",
+      "definition": "Annual number of resident households; household counts are distinct from population and are not the number of newly formed households.",
+      "scope": "Resident households. Source estimates combine Census of Population, General Household Survey and Comprehensive June Labour Force Survey; sampling variability and source changes apply.",
+      "frequency": "A",
+      "unit": "Number",
+      "selection_family": "population_demand",
+      "candidate_rationale": "Sales: Household counts may better represent potential dwelling demand than population alone, subject to tenure, household composition and affordability. Rent: More households may support rental demand depending on tenure choices.",
+      "limitations": "Differences in household counts are not gross household formation. Census and survey years use different sources; metadata does not establish one exact reference day for every year. Period-end filtering is conservative and is not a claim that the count was measured at year-end.",
+      "source": {
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M810371",
+        "kind": "captured"
+      },
+      "status": "selected",
+      "selected": true,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 44,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2025",
+        "value": 1487100.0,
+        "raw_period": "2025",
+        "raw_value": "1487100",
+        "raw_index": 43
+      },
+      "changes": [
+        {
+          "id": "M810371:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 1.6195161952,
+          "unit": "%",
+          "latest_period": "2025",
+          "latest_value": 1487100.0,
+          "base_period": "2024",
+          "base_value": 1463400.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2025",
+              "value": 1487100.0,
+              "raw_period": "2025",
+              "raw_value": "1487100",
+              "raw_index": 43
+            },
+            {
+              "period": "2024",
+              "value": 1463400.0,
+              "raw_period": "2024",
+              "raw_value": "1463400",
+              "raw_index": 42
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Selected as the structural demand signal: the resident household count may better represent the base of dwelling demand than population alone, since households are the units that occupy homes, whether as owners or tenants. Complete annual coverage within the window.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M810371_8461ccdf2c645031.json",
+        "raw_sha256": "3b1c98d7f8191a8c4ab000444fe34c827a556ab416c85e2623154d79c458595d",
+        "metadata_file": "raw/metadata_M810371_586abac18b9b2be7.json",
+        "metadata_sha256": "5c9fecec616dbbe0c3a07860ffe1b3e2829377dd050fca26af46c81e2dfd177d"
+      },
+      "retrieved_at": "2026-10-01T14:43:32+00:00"
+    },
+    {
+      "id": "M810361:5",
+      "name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+      "definition": "Median nominal monthly household employment income among resident employed households, including employer CPF contributions and one-twelfth of annual bonus, before Government transfers and taxes.",
+      "scope": "Households whose reference person is a citizen or permanent resident and with at least one employed member. Income sums employment and business income of employed household members, excluding live-in domestic workers.",
+      "frequency": "A",
+      "unit": "Dollar",
+      "selection_family": "household_income",
+      "candidate_rationale": "Sales: Median household employment income may describe typical household purchasing capacity more directly than mean income per employed person. Rent: Median household income may contextualise household rent affordability.",
+      "limitations": "Not income per household member or an individual wage. Excludes households with no employed person; includes employer CPF and annual bonus allocation, unlike the existing bonus-excluding quarterly individual mean. Nominal and not take-home income.",
+      "source": {
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M810361",
+        "kind": "captured"
+      },
+      "status": "selected",
+      "selected": true,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 26,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2025",
+        "value": 12027.0,
+        "raw_period": "2025",
+        "raw_value": "12027",
+        "raw_index": 25
+      },
+      "changes": [
+        {
+          "id": "M810361:5:year_on_year",
+          "comparison": "year_on_year",
+          "value": 6.3019268163,
+          "unit": "%",
+          "latest_period": "2025",
+          "latest_value": 12027.0,
+          "base_period": "2024",
+          "base_value": 11314.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2025",
+              "value": 12027.0,
+              "raw_period": "2025",
+              "raw_value": "12027",
+              "raw_index": 25
+            },
+            {
+              "period": "2024",
+              "value": 11314.0,
+              "raw_period": "2024",
+              "raw_value": "11314",
+              "raw_index": 24
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Selected as the affordability signal: median household employment income covers resident employed households, so it reflects the typical household's purchasing capacity for both purchase affordability and rent affordability, distinct from per employed person measures.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M810361_ace929ea782b332d.json",
+        "raw_sha256": "64b079f81758a381e25fe6bc001bf4ee5057f00f4d86c542b8fbbfa85313b231",
+        "metadata_file": "raw/metadata_M810361_fb50c1a81edc5973.json",
+        "metadata_sha256": "148b8261931177e7cf30de972656658bc73a4a1f60a01f6c8e696fe55575adb6"
+      },
+      "retrieved_at": "2026-10-01T14:43:33+00:00"
+    },
+    {
+      "id": "M183111:7",
+      "name": "Employment (Persons) As At Year End",
+      "definition": "Total persons in employment as at year-end, expressed in thousands; includes migrant domestic workers and excludes persons serving two-year full-time national service.",
+      "scope": "Resident and non-resident employees plus self-employed persons. MOM administrative-record coverage excludes two-year full-time national servicemen; the current MOM summary identifies the matching total as including migrant domestic workers. SingStat row footnote confirms administrative records plus Labour Force Survey estimates for the self-employed.",
+      "frequency": "A",
+      "unit": "Thousand",
+      "selection_family": "labour_market",
+      "candidate_rationale": "Sales: A larger employment base may support aggregate earned income and housing purchasing capacity. Rent: Employment expansion may support work-related housing and rental demand.",
+      "limitations": "Counts employed persons, not vacancies, new hires or the unemployment rate. Includes migrant domestic workers and other workers whose accommodation need is not an ordinary separate rental unit. Employment and housing may share common causes; not a residents-only series.",
+      "source": {
+        "agency": "MINISTRY OF MANPOWER",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M183111",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 32,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2025",
+        "value": 4117.0,
+        "raw_period": "2025",
+        "raw_value": "4117",
+        "raw_index": 31,
+        "observation_date": "2025-12-31"
+      },
+      "changes": [
+        {
+          "id": "M183111:7:year_on_year",
+          "comparison": "year_on_year",
+          "value": 1.7497899264,
+          "unit": "%",
+          "latest_period": "2025",
+          "latest_value": 4117.0,
+          "base_period": "2024",
+          "base_value": 4046.2,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2025",
+              "value": 4117.0,
+              "raw_period": "2025",
+              "raw_value": "4117",
+              "raw_index": 31,
+              "observation_date": "2025-12-31"
+            },
+            {
+              "period": "2024",
+              "value": 4046.2,
+              "raw_period": "2024",
+              "raw_value": "4046.2",
+              "raw_index": 30,
+              "observation_date": "2024-12-31"
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded within the labour-market family: annual year-end employment includes many temporary pass holders whose housing needs are largely employer-arranged, and it is highly correlated with overall activity. The resident unemployment rate was preferred as the sharper residential-risk indicator. Not a quality failure.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M183111_78ebddbf3477131c.json",
+        "raw_sha256": "091816d24a8931e0b39195330d1c3b00fca60057cff5755fadcdbd6ec53487cd",
+        "metadata_file": "raw/metadata_M183111_9051b2d9ad2d5178.json",
+        "metadata_sha256": "d7f0f27f5ba85714f914688ce758d8d4efc404d3d5e43e5974cdb4b6e4bbbd29"
+      },
+      "retrieved_at": "2026-10-01T14:43:34+00:00"
+    },
+    {
+      "id": "M400751:1.1",
+      "name": "Total HDB Flats",
+      "definition": "Total HDB flats as at end-June of each year, including non-privatised Housing and Urban Development Corporation flats.",
+      "scope": "Public-housing dwelling stock; not annual completions, BTO launches, resale transactions or flats available for rent.",
+      "frequency": "A",
+      "unit": "Number",
+      "selection_family": "housing_supply",
+      "candidate_rationale": "Sales: The public-housing stock adds supply context not represented by private residential stock and may influence tenure and purchase choices. Rent: Public-housing supply can affect tenure choices and rental alternatives subject to eligibility and rental rules.",
+      "limitations": "Stock is not new supply or vacancies and includes non-privatised HUDC flats. Public and private markets differ in eligibility and policy; aggregate stock alone does not predict prices or rents.",
+      "source": {
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "label": "SingStat Table Builder",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M400751",
+        "kind": "captured"
+      },
+      "status": "eligible_unselected",
+      "selected": false,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.",
+          "Used source-backed observation dates within the period for 27 observations; other observations use period-end cutoffs."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 27,
+        "window_start_period": "2017",
+        "window_end_period": "2026",
+        "coverage_start_period": "2017",
+        "coverage_end_period": "2026",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "latest": {
+        "period": "2026",
+        "value": 1177601.0,
+        "raw_period": "2026",
+        "raw_value": "1177601",
+        "raw_index": 26,
+        "observation_date": "2026-06-30"
+      },
+      "changes": [
+        {
+          "id": "M400751:1.1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 1.4705286786,
+          "unit": "%",
+          "latest_period": "2026",
+          "latest_value": 1177601.0,
+          "base_period": "2025",
+          "base_value": 1160535.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026",
+              "value": 1177601.0,
+              "raw_period": "2026",
+              "raw_value": "1177601",
+              "raw_index": 26,
+              "observation_date": "2026-06-30"
+            },
+            {
+              "period": "2025",
+              "value": 1160535.0,
+              "raw_period": "2025",
+              "raw_value": "1160535",
+              "raw_index": 25,
+              "observation_date": "2025-06-30"
+            }
+          ]
+        }
+      ],
+      "decision_reason": "Excluded within the housing-supply family: total HDB flats are the settled public-housing stock, not new additions, and they follow a distinct regulatory regime that may respond differently from private values; vacancy and financial-condition channels were ranked higher. Retaining private-market slack made this overlap less central.",
+      "decision_reason_origin": "model",
+      "provenance": {
+        "raw_file": "raw/tabledata_M400751_c10997a05cec390f.json",
+        "raw_sha256": "ae44af016d20a58cd79503fe3d95d1e18e17f10218aae45b76afe211b8c363bf",
+        "metadata_file": "raw/metadata_M400751_84d47a9a0e863650.json",
+        "metadata_sha256": "607a6fe303baf45d1771d70d26392a47b95227cb665aa6f419b278a2053abe45"
+      },
+      "retrieved_at": "2026-10-01T14:43:34+00:00"
+    }
+  ],
+  "counts": {
+    "candidates": 16,
+    "selected": 5,
+    "by_status": {
+      "eligible_unselected": 11,
+      "selected": 5
+    }
+  },
+  "disclaimers": [
+    "Candidate inclusion is an editorial research hypothesis; each run's selection reason is recorded separately.",
+    "Quality scores describe source-data usability, not forecast accuracy or causation.",
+    "Configured sources without captured files are not evidence of successful retrieval.",
+    "Annual, quarterly and monthly observations retain their actual periods; no interpolation is performed.",
+    "Historical analysis uses the latest captured vintage, not a reconstructed publication-time information set."
+  ]
+}

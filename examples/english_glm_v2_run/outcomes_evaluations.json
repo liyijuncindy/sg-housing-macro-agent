@@ -1,0 +1,3950 @@
+[
+  {
+    "id": "M212261:1",
+    "metadata": {
+      "id": "M212261:1",
+      "name": "Residential Properties",
+      "theme": "private_residential_prices",
+      "selection_family": "housing_outcomes",
+      "definition": "URA overall private residential property sale-price index, covering landed and non-landed property; 2009 Q1 = 100. Stratified hedonic regression is used from 2015 Q1.",
+      "unit": "Index",
+      "frequency": "Q",
+      "update_frequency": "Quarterly. URA states that its time-series service updates on the fourth Friday of January, April, July and October, or the following working day after a public holiday. This upstream schedule is not a guaranteed SingStat mirror update time; individual historical release dates are not reconstructed.",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M212261",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M212261?seriesNoORrowNo=1&limit=5000",
+      "table_id": "M212261",
+      "row_id": "1",
+      "table_title": "Private Residential Property Price Index By Type Of Property, (1st Quarter 2009 = 100), Quarterly",
+      "source_agency": "URBAN REDEVELOPMENT AUTHORITY",
+      "retrieved_at": "2026-10-01T14:43:35+00:00",
+      "source_updated_at": "24/07/2026",
+      "source_footnote": "From 1Q 2015, the private residential property price indices are computed using a stratified hedonic regression method.  Under this method, variations in the attributes of private residential properties transacted such as age and unit size are controlled for by using hedonic regressions and price movements are aggregated using 5-quarter fixed weights to derive the aggregate price change.  Data are compiled from caveats lodged at Singapore Land Authority, stamp duty data from the Inland Revenue Authority of Singapore, as well as data provided by developers. ",
+      "row_footnote": "",
+      "change_kind": "percent",
+      "scope": "Private residential sales; excludes HDB flats and other public-sector buildings. Non-landed price coverage includes executive condominiums more than ten years old. It is an aggregate index, not a dwelling price in dollars.",
+      "seasonal_adjustment": "Not labelled as seasonally adjusted",
+      "reference_month_day": null,
+      "comparisons": [
+        "previous_period",
+        "year_on_year"
+      ],
+      "provenance": {
+        "raw_file": "raw/tabledata_M212261_c3a25b4277d30991.json",
+        "raw_sha256": "4967798301efceddac69743cc15c23f0ebed0d374e00dd46d3be2084a00bdf16",
+        "metadata_file": "raw/metadata_M212261_ef72d11da47fd905.json",
+        "metadata_sha256": "a7b29d912ae2f70952d372d81648409b0eefe468d4d7c55b5298af2c9df4ecf6"
+      },
+      "mechanism": {
+        "sales": "Observed private residential sale-price outcome for exploratory evaluation; not an explanatory candidate.",
+        "rents": "Not a rental index; assess rental outcomes separately.",
+        "lag": "No predictive lag is established by the outcome definition.",
+        "limitations": "The current-base history includes a methodology change in 2015 Q1. Do not splice older-base downloads into this series. Aggregation, rounding and later revisions limit comparisons; matched index bases do not imply matched housing coverage. The series is not labelled seasonally adjusted."
+      },
+      "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed.",
+      "role": "evaluation_outcome",
+      "outcome_key": "private_residential_price",
+      "base_period": "2009-Q1",
+      "base_value": 100,
+      "methodology_change_period": "2015-Q1",
+      "comparability_floor_period": "2015-Q1",
+      "evaluation_note": "Use changes rather than index levels for exploratory association checks. For a common post-methodology window, retain comparison endpoints from 2015 Q1 onward: the first within-window quarter-on-quarter change is 2015 Q2 and the first year-on-year change is 2016 Q1. This is an analyst comparability restriction, not an official finding of predictive validity. The captured latest vintage cannot reconstruct historical release timing or revisions.",
+      "methodology_sources": [
+        "https://eservice.ura.gov.sg/reis/coverageandMethodology",
+        "https://tablebuilder.singstat.gov.sg/table/TS/M212261"
+      ]
+    },
+    "latest": {
+      "period": "2026-Q2",
+      "value": 219.4,
+      "raw_period": "2026 2Q",
+      "raw_value": "219.4",
+      "raw_index": 205
+    },
+    "changes": [
+      {
+        "id": "M212261:1:previous_period",
+        "comparison": "previous_period",
+        "value": 0.5038937242,
+        "unit": "%",
+        "latest_period": "2026-Q2",
+        "latest_value": 219.4,
+        "base_period": "2026-Q1",
+        "base_value": 218.3,
+        "formula": "(latest_value / base_value - 1) * 100",
+        "reason": null,
+        "evidence": [
+          {
+            "period": "2026-Q2",
+            "value": 219.4,
+            "raw_period": "2026 2Q",
+            "raw_value": "219.4",
+            "raw_index": 205
+          },
+          {
+            "period": "2026-Q1",
+            "value": 218.3,
+            "raw_period": "2026 1Q",
+            "raw_value": "218.3",
+            "raw_index": 204
+          }
+        ]
+      },
+      {
+        "id": "M212261:1:year_on_year",
+        "comparison": "year_on_year",
+        "value": 2.9080675422,
+        "unit": "%",
+        "latest_period": "2026-Q2",
+        "latest_value": 219.4,
+        "base_period": "2025-Q2",
+        "base_value": 213.2,
+        "formula": "(latest_value / base_value - 1) * 100",
+        "reason": null,
+        "evidence": [
+          {
+            "period": "2026-Q2",
+            "value": 219.4,
+            "raw_period": "2026 2Q",
+            "raw_value": "219.4",
+            "raw_index": 205
+          },
+          {
+            "period": "2025-Q2",
+            "value": 213.2,
+            "raw_period": "2025 2Q",
+            "raw_value": "213.2",
+            "raw_index": 201
+          }
+        ]
+      }
+    ],
+    "quality": {
+      "eligible": true,
+      "score": 95.0,
+      "reasons": [],
+      "warnings": [
+        "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+        "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+      ],
+      "missing_fraction": 0.0,
+      "valid_count": 39,
+      "expected_count": 39,
+      "window_valid_count": 39,
+      "total_valid_count": 206,
+      "window_start_period": "2016-Q4",
+      "window_end_period": "2026-Q3",
+      "coverage_start_period": "2016-Q4",
+      "coverage_end_period": "2026-Q2",
+      "missing_count": 0,
+      "lag_periods": 1,
+      "thresholds": {
+        "minimum_valid": 8,
+        "minimum_completeness": 0.75,
+        "maximum_lag_periods": 3
+      },
+      "score_components": {
+        "history": 30.0,
+        "completeness": 35.0,
+        "recency": 15.0,
+        "comparisons": 15.0
+      },
+      "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+    },
+    "observations": [
+      {
+        "period": "1975-Q1",
+        "value": 8.9,
+        "raw_period": "1975 1Q",
+        "raw_value": "8.9",
+        "raw_index": 0
+      },
+      {
+        "period": "1975-Q2",
+        "value": 9.1,
+        "raw_period": "1975 2Q",
+        "raw_value": "9.1",
+        "raw_index": 1
+      },
+      {
+        "period": "1975-Q3",
+        "value": 9.1,
+        "raw_period": "1975 3Q",
+        "raw_value": "9.1",
+        "raw_index": 2
+      },
+      {
+        "period": "1975-Q4",
+        "value": 9.1,
+        "raw_period": "1975 4Q",
+        "raw_value": "9.1",
+        "raw_index": 3
+      },
+      {
+        "period": "1976-Q1",
+        "value": 9.5,
+        "raw_period": "1976 1Q",
+        "raw_value": "9.5",
+        "raw_index": 4
+      },
+      {
+        "period": "1976-Q2",
+        "value": 9.5,
+        "raw_period": "1976 2Q",
+        "raw_value": "9.5",
+        "raw_index": 5
+      },
+      {
+        "period": "1976-Q3",
+        "value": 9.8,
+        "raw_period": "1976 3Q",
+        "raw_value": "9.8",
+        "raw_index": 6
+      },
+      {
+        "period": "1976-Q4",
+        "value": 9.5,
+        "raw_period": "1976 4Q",
+        "raw_value": "9.5",
+        "raw_index": 7
+      },
+      {
+        "period": "1977-Q1",
+        "value": 9.5,
+        "raw_period": "1977 1Q",
+        "raw_value": "9.5",
+        "raw_index": 8
+      },
+      {
+        "period": "1977-Q2",
+        "value": 9.5,
+        "raw_period": "1977 2Q",
+        "raw_value": "9.5",
+        "raw_index": 9
+      },
+      {
+        "period": "1977-Q3",
+        "value": 9.5,
+        "raw_period": "1977 3Q",
+        "raw_value": "9.5",
+        "raw_index": 10
+      },
+      {
+        "period": "1977-Q4",
+        "value": 9.1,
+        "raw_period": "1977 4Q",
+        "raw_value": "9.1",
+        "raw_index": 11
+      },
+      {
+        "period": "1978-Q1",
+        "value": 9.1,
+        "raw_period": "1978 1Q",
+        "raw_value": "9.1",
+        "raw_index": 12
+      },
+      {
+        "period": "1978-Q2",
+        "value": 9.5,
+        "raw_period": "1978 2Q",
+        "raw_value": "9.5",
+        "raw_index": 13
+      },
+      {
+        "period": "1978-Q3",
+        "value": 9.5,
+        "raw_period": "1978 3Q",
+        "raw_value": "9.5",
+        "raw_index": 14
+      },
+      {
+        "period": "1978-Q4",
+        "value": 9.8,
+        "raw_period": "1978 4Q",
+        "raw_value": "9.8",
+        "raw_index": 15
+      },
+      {
+        "period": "1979-Q1",
+        "value": 10.4,
+        "raw_period": "1979 1Q",
+        "raw_value": "10.4",
+        "raw_index": 16
+      },
+      {
+        "period": "1979-Q2",
+        "value": 10.9,
+        "raw_period": "1979 2Q",
+        "raw_value": "10.9",
+        "raw_index": 17
+      },
+      {
+        "period": "1979-Q3",
+        "value": 11.9,
+        "raw_period": "1979 3Q",
+        "raw_value": "11.9",
+        "raw_index": 18
+      },
+      {
+        "period": "1979-Q4",
+        "value": 12.7,
+        "raw_period": "1979 4Q",
+        "raw_value": "12.7",
+        "raw_index": 19
+      },
+      {
+        "period": "1980-Q1",
+        "value": 15.1,
+        "raw_period": "1980 1Q",
+        "raw_value": "15.1",
+        "raw_index": 20
+      },
+      {
+        "period": "1980-Q2",
+        "value": 17.7,
+        "raw_period": "1980 2Q",
+        "raw_value": "17.7",
+        "raw_index": 21
+      },
+      {
+        "period": "1980-Q3",
+        "value": 20.4,
+        "raw_period": "1980 3Q",
+        "raw_value": "20.4",
+        "raw_index": 22
+      },
+      {
+        "period": "1980-Q4",
+        "value": 23.9,
+        "raw_period": "1980 4Q",
+        "raw_value": "23.9",
+        "raw_index": 23
+      },
+      {
+        "period": "1981-Q1",
+        "value": 30.5,
+        "raw_period": "1981 1Q",
+        "raw_value": "30.5",
+        "raw_index": 24
+      },
+      {
+        "period": "1981-Q2",
+        "value": 34.6,
+        "raw_period": "1981 2Q",
+        "raw_value": "34.6",
+        "raw_index": 25
+      },
+      {
+        "period": "1981-Q3",
+        "value": 34.0,
+        "raw_period": "1981 3Q",
+        "raw_value": "34",
+        "raw_index": 26
+      },
+      {
+        "period": "1981-Q4",
+        "value": 32.2,
+        "raw_period": "1981 4Q",
+        "raw_value": "32.2",
+        "raw_index": 27
+      },
+      {
+        "period": "1982-Q1",
+        "value": 32.0,
+        "raw_period": "1982 1Q",
+        "raw_value": "32",
+        "raw_index": 28
+      },
+      {
+        "period": "1982-Q2",
+        "value": 32.8,
+        "raw_period": "1982 2Q",
+        "raw_value": "32.8",
+        "raw_index": 29
+      },
+      {
+        "period": "1982-Q3",
+        "value": 33.5,
+        "raw_period": "1982 3Q",
+        "raw_value": "33.5",
+        "raw_index": 30
+      },
+      {
+        "period": "1982-Q4",
+        "value": 34.6,
+        "raw_period": "1982 4Q",
+        "raw_value": "34.6",
+        "raw_index": 31
+      },
+      {
+        "period": "1983-Q1",
+        "value": 36.1,
+        "raw_period": "1983 1Q",
+        "raw_value": "36.1",
+        "raw_index": 32
+      },
+      {
+        "period": "1983-Q2",
+        "value": 37.2,
+        "raw_period": "1983 2Q",
+        "raw_value": "37.2",
+        "raw_index": 33
+      },
+      {
+        "period": "1983-Q3",
+        "value": 37.5,
+        "raw_period": "1983 3Q",
+        "raw_value": "37.5",
+        "raw_index": 34
+      },
+      {
+        "period": "1983-Q4",
+        "value": 37.5,
+        "raw_period": "1983 4Q",
+        "raw_value": "37.5",
+        "raw_index": 35
+      },
+      {
+        "period": "1984-Q1",
+        "value": 37.2,
+        "raw_period": "1984 1Q",
+        "raw_value": "37.2",
+        "raw_index": 36
+      },
+      {
+        "period": "1984-Q2",
+        "value": 35.5,
+        "raw_period": "1984 2Q",
+        "raw_value": "35.5",
+        "raw_index": 37
+      },
+      {
+        "period": "1984-Q3",
+        "value": 34.6,
+        "raw_period": "1984 3Q",
+        "raw_value": "34.6",
+        "raw_index": 38
+      },
+      {
+        "period": "1984-Q4",
+        "value": 33.1,
+        "raw_period": "1984 4Q",
+        "raw_value": "33.1",
+        "raw_index": 39
+      },
+      {
+        "period": "1985-Q1",
+        "value": 31.0,
+        "raw_period": "1985 1Q",
+        "raw_value": "31",
+        "raw_index": 40
+      },
+      {
+        "period": "1985-Q2",
+        "value": 30.2,
+        "raw_period": "1985 2Q",
+        "raw_value": "30.2",
+        "raw_index": 41
+      },
+      {
+        "period": "1985-Q3",
+        "value": 28.7,
+        "raw_period": "1985 3Q",
+        "raw_value": "28.7",
+        "raw_index": 42
+      },
+      {
+        "period": "1985-Q4",
+        "value": 28.1,
+        "raw_period": "1985 4Q",
+        "raw_value": "28.1",
+        "raw_index": 43
+      },
+      {
+        "period": "1986-Q1",
+        "value": 26.3,
+        "raw_period": "1986 1Q",
+        "raw_value": "26.3",
+        "raw_index": 44
+      },
+      {
+        "period": "1986-Q2",
+        "value": 23.9,
+        "raw_period": "1986 2Q",
+        "raw_value": "23.9",
+        "raw_index": 45
+      },
+      {
+        "period": "1986-Q3",
+        "value": 25.3,
+        "raw_period": "1986 3Q",
+        "raw_value": "25.3",
+        "raw_index": 46
+      },
+      {
+        "period": "1986-Q4",
+        "value": 27.9,
+        "raw_period": "1986 4Q",
+        "raw_value": "27.9",
+        "raw_index": 47
+      },
+      {
+        "period": "1987-Q1",
+        "value": 28.5,
+        "raw_period": "1987 1Q",
+        "raw_value": "28.5",
+        "raw_index": 48
+      },
+      {
+        "period": "1987-Q2",
+        "value": 29.7,
+        "raw_period": "1987 2Q",
+        "raw_value": "29.7",
+        "raw_index": 49
+      },
+      {
+        "period": "1987-Q3",
+        "value": 32.0,
+        "raw_period": "1987 3Q",
+        "raw_value": "32",
+        "raw_index": 50
+      },
+      {
+        "period": "1987-Q4",
+        "value": 32.0,
+        "raw_period": "1987 4Q",
+        "raw_value": "32",
+        "raw_index": 51
+      },
+      {
+        "period": "1988-Q1",
+        "value": 31.4,
+        "raw_period": "1988 1Q",
+        "raw_value": "31.4",
+        "raw_index": 52
+      },
+      {
+        "period": "1988-Q2",
+        "value": 32.2,
+        "raw_period": "1988 2Q",
+        "raw_value": "32.2",
+        "raw_index": 53
+      },
+      {
+        "period": "1988-Q3",
+        "value": 32.6,
+        "raw_period": "1988 3Q",
+        "raw_value": "32.6",
+        "raw_index": 54
+      },
+      {
+        "period": "1988-Q4",
+        "value": 34.0,
+        "raw_period": "1988 4Q",
+        "raw_value": "34",
+        "raw_index": 55
+      },
+      {
+        "period": "1989-Q1",
+        "value": 34.5,
+        "raw_period": "1989 1Q",
+        "raw_value": "34.5",
+        "raw_index": 56
+      },
+      {
+        "period": "1989-Q2",
+        "value": 35.5,
+        "raw_period": "1989 2Q",
+        "raw_value": "35.5",
+        "raw_index": 57
+      },
+      {
+        "period": "1989-Q3",
+        "value": 37.7,
+        "raw_period": "1989 3Q",
+        "raw_value": "37.7",
+        "raw_index": 58
+      },
+      {
+        "period": "1989-Q4",
+        "value": 38.3,
+        "raw_period": "1989 4Q",
+        "raw_value": "38.3",
+        "raw_index": 59
+      },
+      {
+        "period": "1990-Q1",
+        "value": 40.9,
+        "raw_period": "1990 1Q",
+        "raw_value": "40.9",
+        "raw_index": 60
+      },
+      {
+        "period": "1990-Q2",
+        "value": 41.8,
+        "raw_period": "1990 2Q",
+        "raw_value": "41.8",
+        "raw_index": 61
+      },
+      {
+        "period": "1990-Q3",
+        "value": 42.0,
+        "raw_period": "1990 3Q",
+        "raw_value": "42",
+        "raw_index": 62
+      },
+      {
+        "period": "1990-Q4",
+        "value": 40.3,
+        "raw_period": "1990 4Q",
+        "raw_value": "40.3",
+        "raw_index": 63
+      },
+      {
+        "period": "1991-Q1",
+        "value": 42.1,
+        "raw_period": "1991 1Q",
+        "raw_value": "42.1",
+        "raw_index": 64
+      },
+      {
+        "period": "1991-Q2",
+        "value": 45.6,
+        "raw_period": "1991 2Q",
+        "raw_value": "45.6",
+        "raw_index": 65
+      },
+      {
+        "period": "1991-Q3",
+        "value": 46.8,
+        "raw_period": "1991 3Q",
+        "raw_value": "46.8",
+        "raw_index": 66
+      },
+      {
+        "period": "1991-Q4",
+        "value": 47.6,
+        "raw_period": "1991 4Q",
+        "raw_value": "47.6",
+        "raw_index": 67
+      },
+      {
+        "period": "1992-Q1",
+        "value": 49.9,
+        "raw_period": "1992 1Q",
+        "raw_value": "49.9",
+        "raw_index": 68
+      },
+      {
+        "period": "1992-Q2",
+        "value": 51.8,
+        "raw_period": "1992 2Q",
+        "raw_value": "51.8",
+        "raw_index": 69
+      },
+      {
+        "period": "1992-Q3",
+        "value": 53.8,
+        "raw_period": "1992 3Q",
+        "raw_value": "53.8",
+        "raw_index": 70
+      },
+      {
+        "period": "1992-Q4",
+        "value": 55.3,
+        "raw_period": "1992 4Q",
+        "raw_value": "55.3",
+        "raw_index": 71
+      },
+      {
+        "period": "1993-Q1",
+        "value": 58.3,
+        "raw_period": "1993 1Q",
+        "raw_value": "58.3",
+        "raw_index": 72
+      },
+      {
+        "period": "1993-Q2",
+        "value": 64.9,
+        "raw_period": "1993 2Q",
+        "raw_value": "64.9",
+        "raw_index": 73
+      },
+      {
+        "period": "1993-Q3",
+        "value": 71.1,
+        "raw_period": "1993 3Q",
+        "raw_value": "71.1",
+        "raw_index": 74
+      },
+      {
+        "period": "1993-Q4",
+        "value": 75.1,
+        "raw_period": "1993 4Q",
+        "raw_value": "75.1",
+        "raw_index": 75
+      },
+      {
+        "period": "1994-Q1",
+        "value": 82.1,
+        "raw_period": "1994 1Q",
+        "raw_value": "82.1",
+        "raw_index": 76
+      },
+      {
+        "period": "1994-Q2",
+        "value": 93.6,
+        "raw_period": "1994 2Q",
+        "raw_value": "93.6",
+        "raw_index": 77
+      },
+      {
+        "period": "1994-Q3",
+        "value": 104.5,
+        "raw_period": "1994 3Q",
+        "raw_value": "104.5",
+        "raw_index": 78
+      },
+      {
+        "period": "1994-Q4",
+        "value": 106.9,
+        "raw_period": "1994 4Q",
+        "raw_value": "106.9",
+        "raw_index": 79
+      },
+      {
+        "period": "1995-Q1",
+        "value": 109.8,
+        "raw_period": "1995 1Q",
+        "raw_value": "109.8",
+        "raw_index": 80
+      },
+      {
+        "period": "1995-Q2",
+        "value": 111.1,
+        "raw_period": "1995 2Q",
+        "raw_value": "111.1",
+        "raw_index": 81
+      },
+      {
+        "period": "1995-Q3",
+        "value": 112.7,
+        "raw_period": "1995 3Q",
+        "raw_value": "112.7",
+        "raw_index": 82
+      },
+      {
+        "period": "1995-Q4",
+        "value": 117.9,
+        "raw_period": "1995 4Q",
+        "raw_value": "117.9",
+        "raw_index": 83
+      },
+      {
+        "period": "1996-Q1",
+        "value": 122.3,
+        "raw_period": "1996 1Q",
+        "raw_value": "122.3",
+        "raw_index": 84
+      },
+      {
+        "period": "1996-Q2",
+        "value": 129.7,
+        "raw_period": "1996 2Q",
+        "raw_value": "129.7",
+        "raw_index": 85
+      },
+      {
+        "period": "1996-Q3",
+        "value": 127.2,
+        "raw_period": "1996 3Q",
+        "raw_value": "127.2",
+        "raw_index": 86
+      },
+      {
+        "period": "1996-Q4",
+        "value": 123.7,
+        "raw_period": "1996 4Q",
+        "raw_value": "123.7",
+        "raw_index": 87
+      },
+      {
+        "period": "1997-Q1",
+        "value": 119.2,
+        "raw_period": "1997 1Q",
+        "raw_value": "119.2",
+        "raw_index": 88
+      },
+      {
+        "period": "1997-Q2",
+        "value": 118.2,
+        "raw_period": "1997 2Q",
+        "raw_value": "118.2",
+        "raw_index": 89
+      },
+      {
+        "period": "1997-Q3",
+        "value": 113.0,
+        "raw_period": "1997 3Q",
+        "raw_value": "113",
+        "raw_index": 90
+      },
+      {
+        "period": "1997-Q4",
+        "value": 108.4,
+        "raw_period": "1997 4Q",
+        "raw_value": "108.4",
+        "raw_index": 91
+      },
+      {
+        "period": "1998-Q1",
+        "value": 98.3,
+        "raw_period": "1998 1Q",
+        "raw_value": "98.3",
+        "raw_index": 92
+      },
+      {
+        "period": "1998-Q2",
+        "value": 90.1,
+        "raw_period": "1998 2Q",
+        "raw_value": "90.1",
+        "raw_index": 93
+      },
+      {
+        "period": "1998-Q3",
+        "value": 78.3,
+        "raw_period": "1998 3Q",
+        "raw_value": "78.3",
+        "raw_index": 94
+      },
+      {
+        "period": "1998-Q4",
+        "value": 71.5,
+        "raw_period": "1998 4Q",
+        "raw_value": "71.5",
+        "raw_index": 95
+      },
+      {
+        "period": "1999-Q1",
+        "value": 75.4,
+        "raw_period": "1999 1Q",
+        "raw_value": "75.4",
+        "raw_index": 96
+      },
+      {
+        "period": "1999-Q2",
+        "value": 84.3,
+        "raw_period": "1999 2Q",
+        "raw_value": "84.3",
+        "raw_index": 97
+      },
+      {
+        "period": "1999-Q3",
+        "value": 91.1,
+        "raw_period": "1999 3Q",
+        "raw_value": "91.1",
+        "raw_index": 98
+      },
+      {
+        "period": "1999-Q4",
+        "value": 95.9,
+        "raw_period": "1999 4Q",
+        "raw_value": "95.9",
+        "raw_index": 99
+      },
+      {
+        "period": "2000-Q1",
+        "value": 98.9,
+        "raw_period": "2000 1Q",
+        "raw_value": "98.9",
+        "raw_index": 100
+      },
+      {
+        "period": "2000-Q2",
+        "value": 100.4,
+        "raw_period": "2000 2Q",
+        "raw_value": "100.4",
+        "raw_index": 101
+      },
+      {
+        "period": "2000-Q3",
+        "value": 97.6,
+        "raw_period": "2000 3Q",
+        "raw_value": "97.6",
+        "raw_index": 102
+      },
+      {
+        "period": "2000-Q4",
+        "value": 94.9,
+        "raw_period": "2000 4Q",
+        "raw_value": "94.9",
+        "raw_index": 103
+      },
+      {
+        "period": "2001-Q1",
+        "value": 91.1,
+        "raw_period": "2001 1Q",
+        "raw_value": "91.1",
+        "raw_index": 104
+      },
+      {
+        "period": "2001-Q2",
+        "value": 90.3,
+        "raw_period": "2001 2Q",
+        "raw_value": "90.3",
+        "raw_index": 105
+      },
+      {
+        "period": "2001-Q3",
+        "value": 87.6,
+        "raw_period": "2001 3Q",
+        "raw_value": "87.6",
+        "raw_index": 106
+      },
+      {
+        "period": "2001-Q4",
+        "value": 83.8,
+        "raw_period": "2001 4Q",
+        "raw_value": "83.8",
+        "raw_index": 107
+      },
+      {
+        "period": "2002-Q1",
+        "value": 82.8,
+        "raw_period": "2002 1Q",
+        "raw_value": "82.8",
+        "raw_index": 108
+      },
+      {
+        "period": "2002-Q2",
+        "value": 82.2,
+        "raw_period": "2002 2Q",
+        "raw_value": "82.2",
+        "raw_index": 109
+      },
+      {
+        "period": "2002-Q3",
+        "value": 82.6,
+        "raw_period": "2002 3Q",
+        "raw_value": "82.6",
+        "raw_index": 110
+      },
+      {
+        "period": "2002-Q4",
+        "value": 82.3,
+        "raw_period": "2002 4Q",
+        "raw_value": "82.3",
+        "raw_index": 111
+      },
+      {
+        "period": "2003-Q1",
+        "value": 81.6,
+        "raw_period": "2003 1Q",
+        "raw_value": "81.6",
+        "raw_index": 112
+      },
+      {
+        "period": "2003-Q2",
+        "value": 81.1,
+        "raw_period": "2003 2Q",
+        "raw_value": "81.1",
+        "raw_index": 113
+      },
+      {
+        "period": "2003-Q3",
+        "value": 80.7,
+        "raw_period": "2003 3Q",
+        "raw_value": "80.7",
+        "raw_index": 114
+      },
+      {
+        "period": "2003-Q4",
+        "value": 80.6,
+        "raw_period": "2003 4Q",
+        "raw_value": "80.6",
+        "raw_index": 115
+      },
+      {
+        "period": "2004-Q1",
+        "value": 80.3,
+        "raw_period": "2004 1Q",
+        "raw_value": "80.3",
+        "raw_index": 116
+      },
+      {
+        "period": "2004-Q2",
+        "value": 80.4,
+        "raw_period": "2004 2Q",
+        "raw_value": "80.4",
+        "raw_index": 117
+      },
+      {
+        "period": "2004-Q3",
+        "value": 80.7,
+        "raw_period": "2004 3Q",
+        "raw_value": "80.7",
+        "raw_index": 118
+      },
+      {
+        "period": "2004-Q4",
+        "value": 81.3,
+        "raw_period": "2004 4Q",
+        "raw_value": "81.3",
+        "raw_index": 119
+      },
+      {
+        "period": "2005-Q1",
+        "value": 81.9,
+        "raw_period": "2005 1Q",
+        "raw_value": "81.9",
+        "raw_index": 120
+      },
+      {
+        "period": "2005-Q2",
+        "value": 82.3,
+        "raw_period": "2005 2Q",
+        "raw_value": "82.3",
+        "raw_index": 121
+      },
+      {
+        "period": "2005-Q3",
+        "value": 83.3,
+        "raw_period": "2005 3Q",
+        "raw_value": "83.3",
+        "raw_index": 122
+      },
+      {
+        "period": "2005-Q4",
+        "value": 84.5,
+        "raw_period": "2005 4Q",
+        "raw_value": "84.5",
+        "raw_index": 123
+      },
+      {
+        "period": "2006-Q1",
+        "value": 85.8,
+        "raw_period": "2006 1Q",
+        "raw_value": "85.8",
+        "raw_index": 124
+      },
+      {
+        "period": "2006-Q2",
+        "value": 87.3,
+        "raw_period": "2006 2Q",
+        "raw_value": "87.3",
+        "raw_index": 125
+      },
+      {
+        "period": "2006-Q3",
+        "value": 89.6,
+        "raw_period": "2006 3Q",
+        "raw_value": "89.6",
+        "raw_index": 126
+      },
+      {
+        "period": "2006-Q4",
+        "value": 93.1,
+        "raw_period": "2006 4Q",
+        "raw_value": "93.1",
+        "raw_index": 127
+      },
+      {
+        "period": "2007-Q1",
+        "value": 97.6,
+        "raw_period": "2007 1Q",
+        "raw_value": "97.6",
+        "raw_index": 128
+      },
+      {
+        "period": "2007-Q2",
+        "value": 105.6,
+        "raw_period": "2007 2Q",
+        "raw_value": "105.6",
+        "raw_index": 129
+      },
+      {
+        "period": "2007-Q3",
+        "value": 114.4,
+        "raw_period": "2007 3Q",
+        "raw_value": "114.4",
+        "raw_index": 130
+      },
+      {
+        "period": "2007-Q4",
+        "value": 122.1,
+        "raw_period": "2007 4Q",
+        "raw_value": "122.1",
+        "raw_index": 131
+      },
+      {
+        "period": "2008-Q1",
+        "value": 126.7,
+        "raw_period": "2008 1Q",
+        "raw_value": "126.7",
+        "raw_index": 132
+      },
+      {
+        "period": "2008-Q2",
+        "value": 126.9,
+        "raw_period": "2008 2Q",
+        "raw_value": "126.9",
+        "raw_index": 133
+      },
+      {
+        "period": "2008-Q3",
+        "value": 123.9,
+        "raw_period": "2008 3Q",
+        "raw_value": "123.9",
+        "raw_index": 134
+      },
+      {
+        "period": "2008-Q4",
+        "value": 116.4,
+        "raw_period": "2008 4Q",
+        "raw_value": "116.4",
+        "raw_index": 135
+      },
+      {
+        "period": "2009-Q1",
+        "value": 100.0,
+        "raw_period": "2009 1Q",
+        "raw_value": "100",
+        "raw_index": 136
+      },
+      {
+        "period": "2009-Q2",
+        "value": 95.3,
+        "raw_period": "2009 2Q",
+        "raw_value": "95.3",
+        "raw_index": 137
+      },
+      {
+        "period": "2009-Q3",
+        "value": 110.3,
+        "raw_period": "2009 3Q",
+        "raw_value": "110.3",
+        "raw_index": 138
+      },
+      {
+        "period": "2009-Q4",
+        "value": 118.4,
+        "raw_period": "2009 4Q",
+        "raw_value": "118.4",
+        "raw_index": 139
+      },
+      {
+        "period": "2010-Q1",
+        "value": 125.1,
+        "raw_period": "2010 1Q",
+        "raw_value": "125.1",
+        "raw_index": 140
+      },
+      {
+        "period": "2010-Q2",
+        "value": 131.7,
+        "raw_period": "2010 2Q",
+        "raw_value": "131.7",
+        "raw_index": 141
+      },
+      {
+        "period": "2010-Q3",
+        "value": 135.5,
+        "raw_period": "2010 3Q",
+        "raw_value": "135.5",
+        "raw_index": 142
+      },
+      {
+        "period": "2010-Q4",
+        "value": 139.2,
+        "raw_period": "2010 4Q",
+        "raw_value": "139.2",
+        "raw_index": 143
+      },
+      {
+        "period": "2011-Q1",
+        "value": 142.3,
+        "raw_period": "2011 1Q",
+        "raw_value": "142.3",
+        "raw_index": 144
+      },
+      {
+        "period": "2011-Q2",
+        "value": 145.1,
+        "raw_period": "2011 2Q",
+        "raw_value": "145.1",
+        "raw_index": 145
+      },
+      {
+        "period": "2011-Q3",
+        "value": 147.0,
+        "raw_period": "2011 3Q",
+        "raw_value": "147",
+        "raw_index": 146
+      },
+      {
+        "period": "2011-Q4",
+        "value": 147.4,
+        "raw_period": "2011 4Q",
+        "raw_value": "147.4",
+        "raw_index": 147
+      },
+      {
+        "period": "2012-Q1",
+        "value": 147.2,
+        "raw_period": "2012 1Q",
+        "raw_value": "147.2",
+        "raw_index": 148
+      },
+      {
+        "period": "2012-Q2",
+        "value": 147.9,
+        "raw_period": "2012 2Q",
+        "raw_value": "147.9",
+        "raw_index": 149
+      },
+      {
+        "period": "2012-Q3",
+        "value": 148.8,
+        "raw_period": "2012 3Q",
+        "raw_value": "148.8",
+        "raw_index": 150
+      },
+      {
+        "period": "2012-Q4",
+        "value": 151.5,
+        "raw_period": "2012 4Q",
+        "raw_value": "151.5",
+        "raw_index": 151
+      },
+      {
+        "period": "2013-Q1",
+        "value": 152.4,
+        "raw_period": "2013 1Q",
+        "raw_value": "152.4",
+        "raw_index": 152
+      },
+      {
+        "period": "2013-Q2",
+        "value": 154.0,
+        "raw_period": "2013 2Q",
+        "raw_value": "154",
+        "raw_index": 153
+      },
+      {
+        "period": "2013-Q3",
+        "value": 154.6,
+        "raw_period": "2013 3Q",
+        "raw_value": "154.6",
+        "raw_index": 154
+      },
+      {
+        "period": "2013-Q4",
+        "value": 153.2,
+        "raw_period": "2013 4Q",
+        "raw_value": "153.2",
+        "raw_index": 155
+      },
+      {
+        "period": "2014-Q1",
+        "value": 151.3,
+        "raw_period": "2014 1Q",
+        "raw_value": "151.3",
+        "raw_index": 156
+      },
+      {
+        "period": "2014-Q2",
+        "value": 149.7,
+        "raw_period": "2014 2Q",
+        "raw_value": "149.7",
+        "raw_index": 157
+      },
+      {
+        "period": "2014-Q3",
+        "value": 148.6,
+        "raw_period": "2014 3Q",
+        "raw_value": "148.6",
+        "raw_index": 158
+      },
+      {
+        "period": "2014-Q4",
+        "value": 147.0,
+        "raw_period": "2014 4Q",
+        "raw_value": "147",
+        "raw_index": 159
+      },
+      {
+        "period": "2015-Q1",
+        "value": 145.5,
+        "raw_period": "2015 1Q",
+        "raw_value": "145.5",
+        "raw_index": 160
+      },
+      {
+        "period": "2015-Q2",
+        "value": 144.2,
+        "raw_period": "2015 2Q",
+        "raw_value": "144.2",
+        "raw_index": 161
+      },
+      {
+        "period": "2015-Q3",
+        "value": 142.3,
+        "raw_period": "2015 3Q",
+        "raw_value": "142.3",
+        "raw_index": 162
+      },
+      {
+        "period": "2015-Q4",
+        "value": 141.6,
+        "raw_period": "2015 4Q",
+        "raw_value": "141.6",
+        "raw_index": 163
+      },
+      {
+        "period": "2016-Q1",
+        "value": 140.6,
+        "raw_period": "2016 1Q",
+        "raw_value": "140.6",
+        "raw_index": 164
+      },
+      {
+        "period": "2016-Q2",
+        "value": 140.0,
+        "raw_period": "2016 2Q",
+        "raw_value": "140",
+        "raw_index": 165
+      },
+      {
+        "period": "2016-Q3",
+        "value": 137.9,
+        "raw_period": "2016 3Q",
+        "raw_value": "137.9",
+        "raw_index": 166
+      },
+      {
+        "period": "2016-Q4",
+        "value": 137.2,
+        "raw_period": "2016 4Q",
+        "raw_value": "137.2",
+        "raw_index": 167
+      },
+      {
+        "period": "2017-Q1",
+        "value": 136.7,
+        "raw_period": "2017 1Q",
+        "raw_value": "136.7",
+        "raw_index": 168
+      },
+      {
+        "period": "2017-Q2",
+        "value": 136.6,
+        "raw_period": "2017 2Q",
+        "raw_value": "136.6",
+        "raw_index": 169
+      },
+      {
+        "period": "2017-Q3",
+        "value": 137.6,
+        "raw_period": "2017 3Q",
+        "raw_value": "137.6",
+        "raw_index": 170
+      },
+      {
+        "period": "2017-Q4",
+        "value": 138.7,
+        "raw_period": "2017 4Q",
+        "raw_value": "138.7",
+        "raw_index": 171
+      },
+      {
+        "period": "2018-Q1",
+        "value": 144.1,
+        "raw_period": "2018 1Q",
+        "raw_value": "144.1",
+        "raw_index": 172
+      },
+      {
+        "period": "2018-Q2",
+        "value": 149.0,
+        "raw_period": "2018 2Q",
+        "raw_value": "149",
+        "raw_index": 173
+      },
+      {
+        "period": "2018-Q3",
+        "value": 149.7,
+        "raw_period": "2018 3Q",
+        "raw_value": "149.7",
+        "raw_index": 174
+      },
+      {
+        "period": "2018-Q4",
+        "value": 149.6,
+        "raw_period": "2018 4Q",
+        "raw_value": "149.6",
+        "raw_index": 175
+      },
+      {
+        "period": "2019-Q1",
+        "value": 148.6,
+        "raw_period": "2019 1Q",
+        "raw_value": "148.6",
+        "raw_index": 176
+      },
+      {
+        "period": "2019-Q2",
+        "value": 150.8,
+        "raw_period": "2019 2Q",
+        "raw_value": "150.8",
+        "raw_index": 177
+      },
+      {
+        "period": "2019-Q3",
+        "value": 152.8,
+        "raw_period": "2019 3Q",
+        "raw_value": "152.8",
+        "raw_index": 178
+      },
+      {
+        "period": "2019-Q4",
+        "value": 153.6,
+        "raw_period": "2019 4Q",
+        "raw_value": "153.6",
+        "raw_index": 179
+      },
+      {
+        "period": "2020-Q1",
+        "value": 152.1,
+        "raw_period": "2020 1Q",
+        "raw_value": "152.1",
+        "raw_index": 180
+      },
+      {
+        "period": "2020-Q2",
+        "value": 152.6,
+        "raw_period": "2020 2Q",
+        "raw_value": "152.6",
+        "raw_index": 181
+      },
+      {
+        "period": "2020-Q3",
+        "value": 153.8,
+        "raw_period": "2020 3Q",
+        "raw_value": "153.8",
+        "raw_index": 182
+      },
+      {
+        "period": "2020-Q4",
+        "value": 157.0,
+        "raw_period": "2020 4Q",
+        "raw_value": "157",
+        "raw_index": 183
+      },
+      {
+        "period": "2021-Q1",
+        "value": 162.2,
+        "raw_period": "2021 1Q",
+        "raw_value": "162.2",
+        "raw_index": 184
+      },
+      {
+        "period": "2021-Q2",
+        "value": 163.5,
+        "raw_period": "2021 2Q",
+        "raw_value": "163.5",
+        "raw_index": 185
+      },
+      {
+        "period": "2021-Q3",
+        "value": 165.3,
+        "raw_period": "2021 3Q",
+        "raw_value": "165.3",
+        "raw_index": 186
+      },
+      {
+        "period": "2021-Q4",
+        "value": 173.6,
+        "raw_period": "2021 4Q",
+        "raw_value": "173.6",
+        "raw_index": 187
+      },
+      {
+        "period": "2022-Q1",
+        "value": 174.8,
+        "raw_period": "2022 1Q",
+        "raw_value": "174.8",
+        "raw_index": 188
+      },
+      {
+        "period": "2022-Q2",
+        "value": 180.9,
+        "raw_period": "2022 2Q",
+        "raw_value": "180.9",
+        "raw_index": 189
+      },
+      {
+        "period": "2022-Q3",
+        "value": 187.8,
+        "raw_period": "2022 3Q",
+        "raw_value": "187.8",
+        "raw_index": 190
+      },
+      {
+        "period": "2022-Q4",
+        "value": 188.6,
+        "raw_period": "2022 4Q",
+        "raw_value": "188.6",
+        "raw_index": 191
+      },
+      {
+        "period": "2023-Q1",
+        "value": 194.8,
+        "raw_period": "2023 1Q",
+        "raw_value": "194.8",
+        "raw_index": 192
+      },
+      {
+        "period": "2023-Q2",
+        "value": 194.4,
+        "raw_period": "2023 2Q",
+        "raw_value": "194.4",
+        "raw_index": 193
+      },
+      {
+        "period": "2023-Q3",
+        "value": 196.0,
+        "raw_period": "2023 3Q",
+        "raw_value": "196",
+        "raw_index": 194
+      },
+      {
+        "period": "2023-Q4",
+        "value": 201.5,
+        "raw_period": "2023 4Q",
+        "raw_value": "201.5",
+        "raw_index": 195
+      },
+      {
+        "period": "2024-Q1",
+        "value": 204.3,
+        "raw_period": "2024 1Q",
+        "raw_value": "204.3",
+        "raw_index": 196
+      },
+      {
+        "period": "2024-Q2",
+        "value": 206.1,
+        "raw_period": "2024 2Q",
+        "raw_value": "206.1",
+        "raw_index": 197
+      },
+      {
+        "period": "2024-Q3",
+        "value": 204.7,
+        "raw_period": "2024 3Q",
+        "raw_value": "204.7",
+        "raw_index": 198
+      },
+      {
+        "period": "2024-Q4",
+        "value": 209.4,
+        "raw_period": "2024 4Q",
+        "raw_value": "209.4",
+        "raw_index": 199
+      },
+      {
+        "period": "2025-Q1",
+        "value": 211.1,
+        "raw_period": "2025 1Q",
+        "raw_value": "211.1",
+        "raw_index": 200
+      },
+      {
+        "period": "2025-Q2",
+        "value": 213.2,
+        "raw_period": "2025 2Q",
+        "raw_value": "213.2",
+        "raw_index": 201
+      },
+      {
+        "period": "2025-Q3",
+        "value": 215.1,
+        "raw_period": "2025 3Q",
+        "raw_value": "215.1",
+        "raw_index": 202
+      },
+      {
+        "period": "2025-Q4",
+        "value": 216.4,
+        "raw_period": "2025 4Q",
+        "raw_value": "216.4",
+        "raw_index": 203
+      },
+      {
+        "period": "2026-Q1",
+        "value": 218.3,
+        "raw_period": "2026 1Q",
+        "raw_value": "218.3",
+        "raw_index": 204
+      },
+      {
+        "period": "2026-Q2",
+        "value": 219.4,
+        "raw_period": "2026 2Q",
+        "raw_value": "219.4",
+        "raw_index": 205
+      }
+    ]
+  },
+  {
+    "id": "M212311:1",
+    "metadata": {
+      "id": "M212311:1",
+      "name": "Rental Index Of Residential Properties",
+      "theme": "private_residential_rents",
+      "selection_family": "housing_outcomes",
+      "definition": "URA overall private residential rental index, based on tenancy-agreement data; 2009 Q1 = 100. Stratified hedonic regression is used from 2015 Q1.",
+      "unit": "Index",
+      "frequency": "Q",
+      "update_frequency": "Quarterly. URA states that its time-series service updates on the fourth Friday of January, April, July and October, or the following working day after a public holiday. This upstream schedule is not a guaranteed SingStat mirror update time; individual historical release dates are not reconstructed.",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M212311",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M212311?seriesNoORrowNo=1&limit=5000",
+      "table_id": "M212311",
+      "row_id": "1",
+      "table_title": "Rental Index Of Residential Properties, (1st Quarter 2009 = 100), Quarterly",
+      "source_agency": "URBAN REDEVELOPMENT AUTHORITY",
+      "retrieved_at": "2026-10-01T14:43:36+00:00",
+      "source_updated_at": "24/07/2026",
+      "source_footnote": "From 1Q 2015, the private residential property rental indices are computed using a stratified hedonic regression method.  Under this method, variations in the attributes of rental private residential properties transacted such as age and unit size are controlled for by using hedonic regressions and rental movements are aggregated using 5-quarter fixed weights to derive the aggregate rental change.  Rental indices are computed from data on rentals provided by the Inland Revenue Authority of Singapore.",
+      "row_footnote": "",
+      "change_kind": "percent",
+      "scope": "Private landed and non-landed rentals, including executive condominiums; excludes HDB flats and other public-sector buildings. It is an aggregate index, not monthly rent in dollars or a measure of HDB rents.",
+      "seasonal_adjustment": "Not labelled as seasonally adjusted",
+      "reference_month_day": null,
+      "comparisons": [
+        "previous_period",
+        "year_on_year"
+      ],
+      "provenance": {
+        "raw_file": "raw/tabledata_M212311_502bd6e9031c8c37.json",
+        "raw_sha256": "2400cd710aae599415c988c8dc6411b7fe0800c2cb57f715b91ffa0e317c58c6",
+        "metadata_file": "raw/metadata_M212311_d70cc1da81adee87.json",
+        "metadata_sha256": "cae87f0bc29b66dc848b6c638451f216f992c84519c45c85f3445b704fe4ae45"
+      },
+      "mechanism": {
+        "sales": "Not a sale-price index; assess sales outcomes separately.",
+        "rents": "Observed private residential rental outcome for exploratory evaluation; not an explanatory candidate.",
+        "lag": "No predictive lag is established by the outcome definition.",
+        "limitations": "The current-base history includes a methodology change in 2015 Q1. Do not splice older-base downloads into this series. Rental coverage differs from the sale-price index and from private stock series that exclude executive condominiums. Aggregation, rounding and later revisions limit comparisons. The series is not labelled seasonally adjusted."
+      },
+      "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed.",
+      "role": "evaluation_outcome",
+      "outcome_key": "private_residential_rent",
+      "base_period": "2009-Q1",
+      "base_value": 100,
+      "methodology_change_period": "2015-Q1",
+      "comparability_floor_period": "2015-Q1",
+      "evaluation_note": "Use changes rather than index levels for exploratory association checks. For a common post-methodology window, retain comparison endpoints from 2015 Q1 onward: the first within-window quarter-on-quarter change is 2015 Q2 and the first year-on-year change is 2016 Q1. This is an analyst comparability restriction, not an official finding of predictive validity. The captured latest vintage cannot reconstruct historical release timing or revisions.",
+      "methodology_sources": [
+        "https://eservice.ura.gov.sg/reis/coverageandMethodology",
+        "https://tablebuilder.singstat.gov.sg/table/TS/M212311"
+      ]
+    },
+    "latest": {
+      "period": "2026-Q2",
+      "value": 162.5,
+      "raw_period": "2026 2Q",
+      "raw_value": "162.5",
+      "raw_index": 145
+    },
+    "changes": [
+      {
+        "id": "M212311:1:previous_period",
+        "comparison": "previous_period",
+        "value": 0.6815365551,
+        "unit": "%",
+        "latest_period": "2026-Q2",
+        "latest_value": 162.5,
+        "base_period": "2026-Q1",
+        "base_value": 161.4,
+        "formula": "(latest_value / base_value - 1) * 100",
+        "reason": null,
+        "evidence": [
+          {
+            "period": "2026-Q2",
+            "value": 162.5,
+            "raw_period": "2026 2Q",
+            "raw_value": "162.5",
+            "raw_index": 145
+          },
+          {
+            "period": "2026-Q1",
+            "value": 161.4,
+            "raw_period": "2026 1Q",
+            "raw_value": "161.4",
+            "raw_index": 144
+          }
+        ]
+      },
+      {
+        "id": "M212311:1:year_on_year",
+        "comparison": "year_on_year",
+        "value": 1.689612015,
+        "unit": "%",
+        "latest_period": "2026-Q2",
+        "latest_value": 162.5,
+        "base_period": "2025-Q2",
+        "base_value": 159.8,
+        "formula": "(latest_value / base_value - 1) * 100",
+        "reason": null,
+        "evidence": [
+          {
+            "period": "2026-Q2",
+            "value": 162.5,
+            "raw_period": "2026 2Q",
+            "raw_value": "162.5",
+            "raw_index": 145
+          },
+          {
+            "period": "2025-Q2",
+            "value": 159.8,
+            "raw_period": "2025 2Q",
+            "raw_value": "159.8",
+            "raw_index": 141
+          }
+        ]
+      }
+    ],
+    "quality": {
+      "eligible": true,
+      "score": 95.0,
+      "reasons": [],
+      "warnings": [
+        "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+        "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+      ],
+      "missing_fraction": 0.0,
+      "valid_count": 39,
+      "expected_count": 39,
+      "window_valid_count": 39,
+      "total_valid_count": 146,
+      "window_start_period": "2016-Q4",
+      "window_end_period": "2026-Q3",
+      "coverage_start_period": "2016-Q4",
+      "coverage_end_period": "2026-Q2",
+      "missing_count": 0,
+      "lag_periods": 1,
+      "thresholds": {
+        "minimum_valid": 8,
+        "minimum_completeness": 0.75,
+        "maximum_lag_periods": 3
+      },
+      "score_components": {
+        "history": 30.0,
+        "completeness": 35.0,
+        "recency": 15.0,
+        "comparisons": 15.0
+      },
+      "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+    },
+    "observations": [
+      {
+        "period": "1990-Q1",
+        "value": 75.5,
+        "raw_period": "1990 1Q",
+        "raw_value": "75.5",
+        "raw_index": 0
+      },
+      {
+        "period": "1990-Q2",
+        "value": 82.6,
+        "raw_period": "1990 2Q",
+        "raw_value": "82.6",
+        "raw_index": 1
+      },
+      {
+        "period": "1990-Q3",
+        "value": 84.1,
+        "raw_period": "1990 3Q",
+        "raw_value": "84.1",
+        "raw_index": 2
+      },
+      {
+        "period": "1990-Q4",
+        "value": 85.7,
+        "raw_period": "1990 4Q",
+        "raw_value": "85.7",
+        "raw_index": 3
+      },
+      {
+        "period": "1991-Q1",
+        "value": 90.4,
+        "raw_period": "1991 1Q",
+        "raw_value": "90.4",
+        "raw_index": 4
+      },
+      {
+        "period": "1991-Q2",
+        "value": 93.8,
+        "raw_period": "1991 2Q",
+        "raw_value": "93.8",
+        "raw_index": 5
+      },
+      {
+        "period": "1991-Q3",
+        "value": 101.4,
+        "raw_period": "1991 3Q",
+        "raw_value": "101.4",
+        "raw_index": 6
+      },
+      {
+        "period": "1991-Q4",
+        "value": 99.1,
+        "raw_period": "1991 4Q",
+        "raw_value": "99.1",
+        "raw_index": 7
+      },
+      {
+        "period": "1992-Q1",
+        "value": 100.4,
+        "raw_period": "1992 1Q",
+        "raw_value": "100.4",
+        "raw_index": 8
+      },
+      {
+        "period": "1992-Q2",
+        "value": 104.7,
+        "raw_period": "1992 2Q",
+        "raw_value": "104.7",
+        "raw_index": 9
+      },
+      {
+        "period": "1992-Q3",
+        "value": 107.3,
+        "raw_period": "1992 3Q",
+        "raw_value": "107.3",
+        "raw_index": 10
+      },
+      {
+        "period": "1992-Q4",
+        "value": 105.4,
+        "raw_period": "1992 4Q",
+        "raw_value": "105.4",
+        "raw_index": 11
+      },
+      {
+        "period": "1993-Q1",
+        "value": 104.7,
+        "raw_period": "1993 1Q",
+        "raw_value": "104.7",
+        "raw_index": 12
+      },
+      {
+        "period": "1993-Q2",
+        "value": 108.7,
+        "raw_period": "1993 2Q",
+        "raw_value": "108.7",
+        "raw_index": 13
+      },
+      {
+        "period": "1993-Q3",
+        "value": 111.5,
+        "raw_period": "1993 3Q",
+        "raw_value": "111.5",
+        "raw_index": 14
+      },
+      {
+        "period": "1993-Q4",
+        "value": 107.1,
+        "raw_period": "1993 4Q",
+        "raw_value": "107.1",
+        "raw_index": 15
+      },
+      {
+        "period": "1994-Q1",
+        "value": 107.0,
+        "raw_period": "1994 1Q",
+        "raw_value": "107",
+        "raw_index": 16
+      },
+      {
+        "period": "1994-Q2",
+        "value": 105.4,
+        "raw_period": "1994 2Q",
+        "raw_value": "105.4",
+        "raw_index": 17
+      },
+      {
+        "period": "1994-Q3",
+        "value": 102.6,
+        "raw_period": "1994 3Q",
+        "raw_value": "102.6",
+        "raw_index": 18
+      },
+      {
+        "period": "1994-Q4",
+        "value": 101.6,
+        "raw_period": "1994 4Q",
+        "raw_value": "101.6",
+        "raw_index": 19
+      },
+      {
+        "period": "1995-Q1",
+        "value": 103.4,
+        "raw_period": "1995 1Q",
+        "raw_value": "103.4",
+        "raw_index": 20
+      },
+      {
+        "period": "1995-Q2",
+        "value": 106.2,
+        "raw_period": "1995 2Q",
+        "raw_value": "106.2",
+        "raw_index": 21
+      },
+      {
+        "period": "1995-Q3",
+        "value": 107.7,
+        "raw_period": "1995 3Q",
+        "raw_value": "107.7",
+        "raw_index": 22
+      },
+      {
+        "period": "1995-Q4",
+        "value": 108.5,
+        "raw_period": "1995 4Q",
+        "raw_value": "108.5",
+        "raw_index": 23
+      },
+      {
+        "period": "1996-Q1",
+        "value": 114.6,
+        "raw_period": "1996 1Q",
+        "raw_value": "114.6",
+        "raw_index": 24
+      },
+      {
+        "period": "1996-Q2",
+        "value": 107.7,
+        "raw_period": "1996 2Q",
+        "raw_value": "107.7",
+        "raw_index": 25
+      },
+      {
+        "period": "1996-Q3",
+        "value": 108.1,
+        "raw_period": "1996 3Q",
+        "raw_value": "108.1",
+        "raw_index": 26
+      },
+      {
+        "period": "1996-Q4",
+        "value": 104.8,
+        "raw_period": "1996 4Q",
+        "raw_value": "104.8",
+        "raw_index": 27
+      },
+      {
+        "period": "1997-Q1",
+        "value": 100.5,
+        "raw_period": "1997 1Q",
+        "raw_value": "100.5",
+        "raw_index": 28
+      },
+      {
+        "period": "1997-Q2",
+        "value": 97.1,
+        "raw_period": "1997 2Q",
+        "raw_value": "97.1",
+        "raw_index": 29
+      },
+      {
+        "period": "1997-Q3",
+        "value": 101.1,
+        "raw_period": "1997 3Q",
+        "raw_value": "101.1",
+        "raw_index": 30
+      },
+      {
+        "period": "1997-Q4",
+        "value": 99.2,
+        "raw_period": "1997 4Q",
+        "raw_value": "99.2",
+        "raw_index": 31
+      },
+      {
+        "period": "1998-Q1",
+        "value": 92.5,
+        "raw_period": "1998 1Q",
+        "raw_value": "92.5",
+        "raw_index": 32
+      },
+      {
+        "period": "1998-Q2",
+        "value": 86.2,
+        "raw_period": "1998 2Q",
+        "raw_value": "86.2",
+        "raw_index": 33
+      },
+      {
+        "period": "1998-Q3",
+        "value": 79.6,
+        "raw_period": "1998 3Q",
+        "raw_value": "79.6",
+        "raw_index": 34
+      },
+      {
+        "period": "1998-Q4",
+        "value": 71.7,
+        "raw_period": "1998 4Q",
+        "raw_value": "71.7",
+        "raw_index": 35
+      },
+      {
+        "period": "1999-Q1",
+        "value": 67.9,
+        "raw_period": "1999 1Q",
+        "raw_value": "67.9",
+        "raw_index": 36
+      },
+      {
+        "period": "1999-Q2",
+        "value": 68.7,
+        "raw_period": "1999 2Q",
+        "raw_value": "68.7",
+        "raw_index": 37
+      },
+      {
+        "period": "1999-Q3",
+        "value": 69.4,
+        "raw_period": "1999 3Q",
+        "raw_value": "69.4",
+        "raw_index": 38
+      },
+      {
+        "period": "1999-Q4",
+        "value": 70.4,
+        "raw_period": "1999 4Q",
+        "raw_value": "70.4",
+        "raw_index": 39
+      },
+      {
+        "period": "2000-Q1",
+        "value": 70.6,
+        "raw_period": "2000 1Q",
+        "raw_value": "70.6",
+        "raw_index": 40
+      },
+      {
+        "period": "2000-Q2",
+        "value": 71.9,
+        "raw_period": "2000 2Q",
+        "raw_value": "71.9",
+        "raw_index": 41
+      },
+      {
+        "period": "2000-Q3",
+        "value": 73.2,
+        "raw_period": "2000 3Q",
+        "raw_value": "73.2",
+        "raw_index": 42
+      },
+      {
+        "period": "2000-Q4",
+        "value": 70.8,
+        "raw_period": "2000 4Q",
+        "raw_value": "70.8",
+        "raw_index": 43
+      },
+      {
+        "period": "2001-Q1",
+        "value": 70.6,
+        "raw_period": "2001 1Q",
+        "raw_value": "70.6",
+        "raw_index": 44
+      },
+      {
+        "period": "2001-Q2",
+        "value": 70.4,
+        "raw_period": "2001 2Q",
+        "raw_value": "70.4",
+        "raw_index": 45
+      },
+      {
+        "period": "2001-Q3",
+        "value": 69.8,
+        "raw_period": "2001 3Q",
+        "raw_value": "69.8",
+        "raw_index": 46
+      },
+      {
+        "period": "2001-Q4",
+        "value": 68.8,
+        "raw_period": "2001 4Q",
+        "raw_value": "68.8",
+        "raw_index": 47
+      },
+      {
+        "period": "2002-Q1",
+        "value": 67.9,
+        "raw_period": "2002 1Q",
+        "raw_value": "67.9",
+        "raw_index": 48
+      },
+      {
+        "period": "2002-Q2",
+        "value": 67.9,
+        "raw_period": "2002 2Q",
+        "raw_value": "67.9",
+        "raw_index": 49
+      },
+      {
+        "period": "2002-Q3",
+        "value": 68.4,
+        "raw_period": "2002 3Q",
+        "raw_value": "68.4",
+        "raw_index": 50
+      },
+      {
+        "period": "2002-Q4",
+        "value": 67.8,
+        "raw_period": "2002 4Q",
+        "raw_value": "67.8",
+        "raw_index": 51
+      },
+      {
+        "period": "2003-Q1",
+        "value": 66.3,
+        "raw_period": "2003 1Q",
+        "raw_value": "66.3",
+        "raw_index": 52
+      },
+      {
+        "period": "2003-Q2",
+        "value": 65.2,
+        "raw_period": "2003 2Q",
+        "raw_value": "65.2",
+        "raw_index": 53
+      },
+      {
+        "period": "2003-Q3",
+        "value": 64.6,
+        "raw_period": "2003 3Q",
+        "raw_value": "64.6",
+        "raw_index": 54
+      },
+      {
+        "period": "2003-Q4",
+        "value": 64.4,
+        "raw_period": "2003 4Q",
+        "raw_value": "64.4",
+        "raw_index": 55
+      },
+      {
+        "period": "2004-Q1",
+        "value": 64.0,
+        "raw_period": "2004 1Q",
+        "raw_value": "64",
+        "raw_index": 56
+      },
+      {
+        "period": "2004-Q2",
+        "value": 64.0,
+        "raw_period": "2004 2Q",
+        "raw_value": "64",
+        "raw_index": 57
+      },
+      {
+        "period": "2004-Q3",
+        "value": 64.2,
+        "raw_period": "2004 3Q",
+        "raw_value": "64.2",
+        "raw_index": 58
+      },
+      {
+        "period": "2004-Q4",
+        "value": 64.6,
+        "raw_period": "2004 4Q",
+        "raw_value": "64.6",
+        "raw_index": 59
+      },
+      {
+        "period": "2005-Q1",
+        "value": 65.2,
+        "raw_period": "2005 1Q",
+        "raw_value": "65.2",
+        "raw_index": 60
+      },
+      {
+        "period": "2005-Q2",
+        "value": 65.6,
+        "raw_period": "2005 2Q",
+        "raw_value": "65.6",
+        "raw_index": 61
+      },
+      {
+        "period": "2005-Q3",
+        "value": 66.1,
+        "raw_period": "2005 3Q",
+        "raw_value": "66.1",
+        "raw_index": 62
+      },
+      {
+        "period": "2005-Q4",
+        "value": 66.5,
+        "raw_period": "2005 4Q",
+        "raw_value": "66.5",
+        "raw_index": 63
+      },
+      {
+        "period": "2006-Q1",
+        "value": 67.2,
+        "raw_period": "2006 1Q",
+        "raw_value": "67.2",
+        "raw_index": 64
+      },
+      {
+        "period": "2006-Q2",
+        "value": 68.7,
+        "raw_period": "2006 2Q",
+        "raw_value": "68.7",
+        "raw_index": 65
+      },
+      {
+        "period": "2006-Q3",
+        "value": 72.1,
+        "raw_period": "2006 3Q",
+        "raw_value": "72.1",
+        "raw_index": 66
+      },
+      {
+        "period": "2006-Q4",
+        "value": 75.9,
+        "raw_period": "2006 4Q",
+        "raw_value": "75.9",
+        "raw_index": 67
+      },
+      {
+        "period": "2007-Q1",
+        "value": 81.6,
+        "raw_period": "2007 1Q",
+        "raw_value": "81.6",
+        "raw_index": 68
+      },
+      {
+        "period": "2007-Q2",
+        "value": 90.1,
+        "raw_period": "2007 2Q",
+        "raw_value": "90.1",
+        "raw_index": 69
+      },
+      {
+        "period": "2007-Q3",
+        "value": 100.4,
+        "raw_period": "2007 3Q",
+        "raw_value": "100.4",
+        "raw_index": 70
+      },
+      {
+        "period": "2007-Q4",
+        "value": 107.2,
+        "raw_period": "2007 4Q",
+        "raw_value": "107.2",
+        "raw_index": 71
+      },
+      {
+        "period": "2008-Q1",
+        "value": 113.6,
+        "raw_period": "2008 1Q",
+        "raw_value": "113.6",
+        "raw_index": 72
+      },
+      {
+        "period": "2008-Q2",
+        "value": 116.5,
+        "raw_period": "2008 2Q",
+        "raw_value": "116.5",
+        "raw_index": 73
+      },
+      {
+        "period": "2008-Q3",
+        "value": 115.5,
+        "raw_period": "2008 3Q",
+        "raw_value": "115.5",
+        "raw_index": 74
+      },
+      {
+        "period": "2008-Q4",
+        "value": 109.3,
+        "raw_period": "2008 4Q",
+        "raw_value": "109.3",
+        "raw_index": 75
+      },
+      {
+        "period": "2009-Q1",
+        "value": 100.0,
+        "raw_period": "2009 1Q",
+        "raw_value": "100",
+        "raw_index": 76
+      },
+      {
+        "period": "2009-Q2",
+        "value": 94.8,
+        "raw_period": "2009 2Q",
+        "raw_value": "94.8",
+        "raw_index": 77
+      },
+      {
+        "period": "2009-Q3",
+        "value": 92.8,
+        "raw_period": "2009 3Q",
+        "raw_value": "92.8",
+        "raw_index": 78
+      },
+      {
+        "period": "2009-Q4",
+        "value": 93.3,
+        "raw_period": "2009 4Q",
+        "raw_value": "93.3",
+        "raw_index": 79
+      },
+      {
+        "period": "2010-Q1",
+        "value": 97.7,
+        "raw_period": "2010 1Q",
+        "raw_value": "97.7",
+        "raw_index": 80
+      },
+      {
+        "period": "2010-Q2",
+        "value": 103.5,
+        "raw_period": "2010 2Q",
+        "raw_value": "103.5",
+        "raw_index": 81
+      },
+      {
+        "period": "2010-Q3",
+        "value": 107.2,
+        "raw_period": "2010 3Q",
+        "raw_value": "107.2",
+        "raw_index": 82
+      },
+      {
+        "period": "2010-Q4",
+        "value": 110.0,
+        "raw_period": "2010 4Q",
+        "raw_value": "110",
+        "raw_index": 83
+      },
+      {
+        "period": "2011-Q1",
+        "value": 111.4,
+        "raw_period": "2011 1Q",
+        "raw_value": "111.4",
+        "raw_index": 84
+      },
+      {
+        "period": "2011-Q2",
+        "value": 112.8,
+        "raw_period": "2011 2Q",
+        "raw_value": "112.8",
+        "raw_index": 85
+      },
+      {
+        "period": "2011-Q3",
+        "value": 113.7,
+        "raw_period": "2011 3Q",
+        "raw_value": "113.7",
+        "raw_index": 86
+      },
+      {
+        "period": "2011-Q4",
+        "value": 114.2,
+        "raw_period": "2011 4Q",
+        "raw_value": "114.2",
+        "raw_index": 87
+      },
+      {
+        "period": "2012-Q1",
+        "value": 114.5,
+        "raw_period": "2012 1Q",
+        "raw_value": "114.5",
+        "raw_index": 88
+      },
+      {
+        "period": "2012-Q2",
+        "value": 114.8,
+        "raw_period": "2012 2Q",
+        "raw_value": "114.8",
+        "raw_index": 89
+      },
+      {
+        "period": "2012-Q3",
+        "value": 115.9,
+        "raw_period": "2012 3Q",
+        "raw_value": "115.9",
+        "raw_index": 90
+      },
+      {
+        "period": "2012-Q4",
+        "value": 116.6,
+        "raw_period": "2012 4Q",
+        "raw_value": "116.6",
+        "raw_index": 91
+      },
+      {
+        "period": "2013-Q1",
+        "value": 117.6,
+        "raw_period": "2013 1Q",
+        "raw_value": "117.6",
+        "raw_index": 92
+      },
+      {
+        "period": "2013-Q2",
+        "value": 117.9,
+        "raw_period": "2013 2Q",
+        "raw_value": "117.9",
+        "raw_index": 93
+      },
+      {
+        "period": "2013-Q3",
+        "value": 118.2,
+        "raw_period": "2013 3Q",
+        "raw_value": "118.2",
+        "raw_index": 94
+      },
+      {
+        "period": "2013-Q4",
+        "value": 117.6,
+        "raw_period": "2013 4Q",
+        "raw_value": "117.6",
+        "raw_index": 95
+      },
+      {
+        "period": "2014-Q1",
+        "value": 116.8,
+        "raw_period": "2014 1Q",
+        "raw_value": "116.8",
+        "raw_index": 96
+      },
+      {
+        "period": "2014-Q2",
+        "value": 116.1,
+        "raw_period": "2014 2Q",
+        "raw_value": "116.1",
+        "raw_index": 97
+      },
+      {
+        "period": "2014-Q3",
+        "value": 115.2,
+        "raw_period": "2014 3Q",
+        "raw_value": "115.2",
+        "raw_index": 98
+      },
+      {
+        "period": "2014-Q4",
+        "value": 114.1,
+        "raw_period": "2014 4Q",
+        "raw_value": "114.1",
+        "raw_index": 99
+      },
+      {
+        "period": "2015-Q1",
+        "value": 112.2,
+        "raw_period": "2015 1Q",
+        "raw_value": "112.2",
+        "raw_index": 100
+      },
+      {
+        "period": "2015-Q2",
+        "value": 111.0,
+        "raw_period": "2015 2Q",
+        "raw_value": "111",
+        "raw_index": 101
+      },
+      {
+        "period": "2015-Q3",
+        "value": 110.3,
+        "raw_period": "2015 3Q",
+        "raw_value": "110.3",
+        "raw_index": 102
+      },
+      {
+        "period": "2015-Q4",
+        "value": 108.9,
+        "raw_period": "2015 4Q",
+        "raw_value": "108.9",
+        "raw_index": 103
+      },
+      {
+        "period": "2016-Q1",
+        "value": 107.5,
+        "raw_period": "2016 1Q",
+        "raw_value": "107.5",
+        "raw_index": 104
+      },
+      {
+        "period": "2016-Q2",
+        "value": 106.9,
+        "raw_period": "2016 2Q",
+        "raw_value": "106.9",
+        "raw_index": 105
+      },
+      {
+        "period": "2016-Q3",
+        "value": 105.6,
+        "raw_period": "2016 3Q",
+        "raw_value": "105.6",
+        "raw_index": 106
+      },
+      {
+        "period": "2016-Q4",
+        "value": 104.5,
+        "raw_period": "2016 4Q",
+        "raw_value": "104.5",
+        "raw_index": 107
+      },
+      {
+        "period": "2017-Q1",
+        "value": 103.6,
+        "raw_period": "2017 1Q",
+        "raw_value": "103.6",
+        "raw_index": 108
+      },
+      {
+        "period": "2017-Q2",
+        "value": 103.4,
+        "raw_period": "2017 2Q",
+        "raw_value": "103.4",
+        "raw_index": 109
+      },
+      {
+        "period": "2017-Q3",
+        "value": 103.4,
+        "raw_period": "2017 3Q",
+        "raw_value": "103.4",
+        "raw_index": 110
+      },
+      {
+        "period": "2017-Q4",
+        "value": 102.5,
+        "raw_period": "2017 4Q",
+        "raw_value": "102.5",
+        "raw_index": 111
+      },
+      {
+        "period": "2018-Q1",
+        "value": 102.8,
+        "raw_period": "2018 1Q",
+        "raw_value": "102.8",
+        "raw_index": 112
+      },
+      {
+        "period": "2018-Q2",
+        "value": 103.8,
+        "raw_period": "2018 2Q",
+        "raw_value": "103.8",
+        "raw_index": 113
+      },
+      {
+        "period": "2018-Q3",
+        "value": 104.1,
+        "raw_period": "2018 3Q",
+        "raw_value": "104.1",
+        "raw_index": 114
+      },
+      {
+        "period": "2018-Q4",
+        "value": 103.1,
+        "raw_period": "2018 4Q",
+        "raw_value": "103.1",
+        "raw_index": 115
+      },
+      {
+        "period": "2019-Q1",
+        "value": 104.1,
+        "raw_period": "2019 1Q",
+        "raw_value": "104.1",
+        "raw_index": 116
+      },
+      {
+        "period": "2019-Q2",
+        "value": 105.5,
+        "raw_period": "2019 2Q",
+        "raw_value": "105.5",
+        "raw_index": 117
+      },
+      {
+        "period": "2019-Q3",
+        "value": 105.6,
+        "raw_period": "2019 3Q",
+        "raw_value": "105.6",
+        "raw_index": 118
+      },
+      {
+        "period": "2019-Q4",
+        "value": 104.5,
+        "raw_period": "2019 4Q",
+        "raw_value": "104.5",
+        "raw_index": 119
+      },
+      {
+        "period": "2020-Q1",
+        "value": 105.6,
+        "raw_period": "2020 1Q",
+        "raw_value": "105.6",
+        "raw_index": 120
+      },
+      {
+        "period": "2020-Q2",
+        "value": 104.3,
+        "raw_period": "2020 2Q",
+        "raw_value": "104.3",
+        "raw_index": 121
+      },
+      {
+        "period": "2020-Q3",
+        "value": 103.8,
+        "raw_period": "2020 3Q",
+        "raw_value": "103.8",
+        "raw_index": 122
+      },
+      {
+        "period": "2020-Q4",
+        "value": 103.9,
+        "raw_period": "2020 4Q",
+        "raw_value": "103.9",
+        "raw_index": 123
+      },
+      {
+        "period": "2021-Q1",
+        "value": 106.2,
+        "raw_period": "2021 1Q",
+        "raw_value": "106.2",
+        "raw_index": 124
+      },
+      {
+        "period": "2021-Q2",
+        "value": 109.3,
+        "raw_period": "2021 2Q",
+        "raw_value": "109.3",
+        "raw_index": 125
+      },
+      {
+        "period": "2021-Q3",
+        "value": 111.3,
+        "raw_period": "2021 3Q",
+        "raw_value": "111.3",
+        "raw_index": 126
+      },
+      {
+        "period": "2021-Q4",
+        "value": 114.2,
+        "raw_period": "2021 4Q",
+        "raw_value": "114.2",
+        "raw_index": 127
+      },
+      {
+        "period": "2022-Q1",
+        "value": 119.0,
+        "raw_period": "2022 1Q",
+        "raw_value": "119",
+        "raw_index": 128
+      },
+      {
+        "period": "2022-Q2",
+        "value": 127.0,
+        "raw_period": "2022 2Q",
+        "raw_value": "127",
+        "raw_index": 129
+      },
+      {
+        "period": "2022-Q3",
+        "value": 137.9,
+        "raw_period": "2022 3Q",
+        "raw_value": "137.9",
+        "raw_index": 130
+      },
+      {
+        "period": "2022-Q4",
+        "value": 148.1,
+        "raw_period": "2022 4Q",
+        "raw_value": "148.1",
+        "raw_index": 131
+      },
+      {
+        "period": "2023-Q1",
+        "value": 158.8,
+        "raw_period": "2023 1Q",
+        "raw_value": "158.8",
+        "raw_index": 132
+      },
+      {
+        "period": "2023-Q2",
+        "value": 163.2,
+        "raw_period": "2023 2Q",
+        "raw_value": "163.2",
+        "raw_index": 133
+      },
+      {
+        "period": "2023-Q3",
+        "value": 164.5,
+        "raw_period": "2023 3Q",
+        "raw_value": "164.5",
+        "raw_index": 134
+      },
+      {
+        "period": "2023-Q4",
+        "value": 161.0,
+        "raw_period": "2023 4Q",
+        "raw_value": "161",
+        "raw_index": 135
+      },
+      {
+        "period": "2024-Q1",
+        "value": 157.9,
+        "raw_period": "2024 1Q",
+        "raw_value": "157.9",
+        "raw_index": 136
+      },
+      {
+        "period": "2024-Q2",
+        "value": 156.6,
+        "raw_period": "2024 2Q",
+        "raw_value": "156.6",
+        "raw_index": 137
+      },
+      {
+        "period": "2024-Q3",
+        "value": 157.9,
+        "raw_period": "2024 3Q",
+        "raw_value": "157.9",
+        "raw_index": 138
+      },
+      {
+        "period": "2024-Q4",
+        "value": 157.9,
+        "raw_period": "2024 4Q",
+        "raw_value": "157.9",
+        "raw_index": 139
+      },
+      {
+        "period": "2025-Q1",
+        "value": 158.5,
+        "raw_period": "2025 1Q",
+        "raw_value": "158.5",
+        "raw_index": 140
+      },
+      {
+        "period": "2025-Q2",
+        "value": 159.8,
+        "raw_period": "2025 2Q",
+        "raw_value": "159.8",
+        "raw_index": 141
+      },
+      {
+        "period": "2025-Q3",
+        "value": 161.7,
+        "raw_period": "2025 3Q",
+        "raw_value": "161.7",
+        "raw_index": 142
+      },
+      {
+        "period": "2025-Q4",
+        "value": 160.9,
+        "raw_period": "2025 4Q",
+        "raw_value": "160.9",
+        "raw_index": 143
+      },
+      {
+        "period": "2026-Q1",
+        "value": 161.4,
+        "raw_period": "2026 1Q",
+        "raw_value": "161.4",
+        "raw_index": 144
+      },
+      {
+        "period": "2026-Q2",
+        "value": 162.5,
+        "raw_period": "2026 2Q",
+        "raw_value": "162.5",
+        "raw_index": 145
+      }
+    ]
+  },
+  {
+    "id": "M212161:1",
+    "metadata": {
+      "id": "M212161:1",
+      "name": "HDB Resale Price Index",
+      "theme": "hdb_resale_prices",
+      "selection_family": "housing_outcomes",
+      "definition": "HDB resale flat price index based on registered resale transactions; 2009 Q1 = 100. The method changes from stratification to stratified hedonic regression in 2014 Q4.",
+      "unit": "Index",
+      "frequency": "Q",
+      "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. The SingStat mirror schedule and individual historical observation release dates are not confirmed.",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M212161",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M212161?seriesNoORrowNo=1&limit=5000",
+      "table_id": "M212161",
+      "row_id": "1",
+      "table_title": "Housing And Development Board (HDB) Resale Price Index (1Q2009 = 100), Quarterly",
+      "source_agency": "HOUSING AND DEVELOPMENT BOARD",
+      "retrieved_at": "2026-10-01T14:43:37+00:00",
+      "source_updated_at": "24/07/2026",
+      "source_footnote": "The index is based on quarterly average resale price by date of registration.  The index till 3Q2014 was computed using stratification method, while that from 4Q2014 onwards is computed using the stratified hedonic regression method.  1Q2009 is adopted as the new base period with index at 100.  The index from 1Q1990 to 3Q2014 are rebased to the new base period at 1Q2009.  Indices from 1Q1990 to 3Q2014 are re-scaled using a factor of 100 (new index in 1Q2009) / 138.3 (original index in 1Q2009) multiplied on the original index level to derive the re-based index level for the respective quarters.  Due to rounding, there could be some differences in the quarterly price change compared to the RPI series before re-scaling.",
+      "row_footnote": "",
+      "change_kind": "percent",
+      "scope": "HDB resale flats; a public-housing resale outcome distinct from private residential sale prices, new HDB sale prices and HDB rents.",
+      "seasonal_adjustment": "Not labelled as seasonally adjusted",
+      "reference_month_day": null,
+      "comparisons": [
+        "previous_period",
+        "year_on_year"
+      ],
+      "provenance": {
+        "raw_file": "raw/tabledata_M212161_ba87364e38d7841c.json",
+        "raw_sha256": "160da7ffc52a4beaaff9f5a6767635e160541d67ee908488d865c0a73bdc065c",
+        "metadata_file": "raw/metadata_M212161_7793145160360e40.json",
+        "metadata_sha256": "1fc08ab988ce19650d459752503fa6c9cba42c876d1d8ba019549982cd24a80c"
+      },
+      "mechanism": {
+        "sales": "Observed HDB resale price outcome for a separate public-housing comparison; not an explanatory candidate.",
+        "rents": "Not a rental index and cannot establish HDB rental movements.",
+        "lag": "No predictive lag is established by the outcome definition.",
+        "limitations": "The current series rescales 1990 Q1 through 2014 Q3 by 100/138.3 to the 2009 Q1 base; source metadata warns that rounding can change quarterly percentage movements relative to the earlier release. The method changes in 2014 Q4. Keep public resale, private sales and rents separate; latest-vintage revisions are not historical information sets."
+      },
+      "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed.",
+      "role": "evaluation_outcome",
+      "outcome_key": "hdb_resale_price",
+      "base_period": "2009-Q1",
+      "base_value": 100,
+      "methodology_change_period": "2014-Q4",
+      "comparability_floor_period": "2015-Q1",
+      "evaluation_note": "Use changes rather than index levels for exploratory association checks. For a common post-methodology window, retain comparison endpoints from 2015 Q1 onward: the first within-window quarter-on-quarter change is 2015 Q2 and the first year-on-year change is 2016 Q1. This is an analyst comparability restriction, not an official finding of predictive validity. The captured latest vintage cannot reconstruct historical release timing or revisions.",
+      "methodology_sources": [
+        "https://tablebuilder.singstat.gov.sg/table/TS/M212161",
+        "https://www.hdb.gov.sg/managing-my-home/selling-a-flat/process-for-selling-a-flat/resale-flat-planning/resale-statistics"
+      ]
+    },
+    "latest": {
+      "period": "2026-Q2",
+      "value": 202.8,
+      "raw_period": "2026 2Q",
+      "raw_value": "202.8",
+      "raw_index": 145
+    },
+    "changes": [
+      {
+        "id": "M212161:1:previous_period",
+        "comparison": "previous_period",
+        "value": -0.2949852507,
+        "unit": "%",
+        "latest_period": "2026-Q2",
+        "latest_value": 202.8,
+        "base_period": "2026-Q1",
+        "base_value": 203.4,
+        "formula": "(latest_value / base_value - 1) * 100",
+        "reason": null,
+        "evidence": [
+          {
+            "period": "2026-Q2",
+            "value": 202.8,
+            "raw_period": "2026 2Q",
+            "raw_value": "202.8",
+            "raw_index": 145
+          },
+          {
+            "period": "2026-Q1",
+            "value": 203.4,
+            "raw_period": "2026 1Q",
+            "raw_value": "203.4",
+            "raw_index": 144
+          }
+        ]
+      },
+      {
+        "id": "M212161:1:year_on_year",
+        "comparison": "year_on_year",
+        "value": -0.0492853622,
+        "unit": "%",
+        "latest_period": "2026-Q2",
+        "latest_value": 202.8,
+        "base_period": "2025-Q2",
+        "base_value": 202.9,
+        "formula": "(latest_value / base_value - 1) * 100",
+        "reason": null,
+        "evidence": [
+          {
+            "period": "2026-Q2",
+            "value": 202.8,
+            "raw_period": "2026 2Q",
+            "raw_value": "202.8",
+            "raw_index": 145
+          },
+          {
+            "period": "2025-Q2",
+            "value": 202.9,
+            "raw_period": "2025 2Q",
+            "raw_value": "202.9",
+            "raw_index": 141
+          }
+        ]
+      }
+    ],
+    "quality": {
+      "eligible": true,
+      "score": 95.0,
+      "reasons": [],
+      "warnings": [
+        "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+        "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+      ],
+      "missing_fraction": 0.0,
+      "valid_count": 39,
+      "expected_count": 39,
+      "window_valid_count": 39,
+      "total_valid_count": 146,
+      "window_start_period": "2016-Q4",
+      "window_end_period": "2026-Q3",
+      "coverage_start_period": "2016-Q4",
+      "coverage_end_period": "2026-Q2",
+      "missing_count": 0,
+      "lag_periods": 1,
+      "thresholds": {
+        "minimum_valid": 8,
+        "minimum_completeness": 0.75,
+        "maximum_lag_periods": 3
+      },
+      "score_components": {
+        "history": 30.0,
+        "completeness": 35.0,
+        "recency": 15.0,
+        "comparisons": 15.0
+      },
+      "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+    },
+    "observations": [
+      {
+        "period": "1990-Q1",
+        "value": 24.3,
+        "raw_period": "1990 1Q",
+        "raw_value": "24.3",
+        "raw_index": 0
+      },
+      {
+        "period": "1990-Q2",
+        "value": 24.4,
+        "raw_period": "1990 2Q",
+        "raw_value": "24.4",
+        "raw_index": 1
+      },
+      {
+        "period": "1990-Q3",
+        "value": 25.0,
+        "raw_period": "1990 3Q",
+        "raw_value": "25",
+        "raw_index": 2
+      },
+      {
+        "period": "1990-Q4",
+        "value": 24.7,
+        "raw_period": "1990 4Q",
+        "raw_value": "24.7",
+        "raw_index": 3
+      },
+      {
+        "period": "1991-Q1",
+        "value": 24.9,
+        "raw_period": "1991 1Q",
+        "raw_value": "24.9",
+        "raw_index": 4
+      },
+      {
+        "period": "1991-Q2",
+        "value": 25.5,
+        "raw_period": "1991 2Q",
+        "raw_value": "25.5",
+        "raw_index": 5
+      },
+      {
+        "period": "1991-Q3",
+        "value": 25.2,
+        "raw_period": "1991 3Q",
+        "raw_value": "25.2",
+        "raw_index": 6
+      },
+      {
+        "period": "1991-Q4",
+        "value": 25.1,
+        "raw_period": "1991 4Q",
+        "raw_value": "25.1",
+        "raw_index": 7
+      },
+      {
+        "period": "1992-Q1",
+        "value": 25.8,
+        "raw_period": "1992 1Q",
+        "raw_value": "25.8",
+        "raw_index": 8
+      },
+      {
+        "period": "1992-Q2",
+        "value": 27.4,
+        "raw_period": "1992 2Q",
+        "raw_value": "27.4",
+        "raw_index": 9
+      },
+      {
+        "period": "1992-Q3",
+        "value": 28.0,
+        "raw_period": "1992 3Q",
+        "raw_value": "28",
+        "raw_index": 10
+      },
+      {
+        "period": "1992-Q4",
+        "value": 28.6,
+        "raw_period": "1992 4Q",
+        "raw_value": "28.6",
+        "raw_index": 11
+      },
+      {
+        "period": "1993-Q1",
+        "value": 30.2,
+        "raw_period": "1993 1Q",
+        "raw_value": "30.2",
+        "raw_index": 12
+      },
+      {
+        "period": "1993-Q2",
+        "value": 39.6,
+        "raw_period": "1993 2Q",
+        "raw_value": "39.6",
+        "raw_index": 13
+      },
+      {
+        "period": "1993-Q3",
+        "value": 47.7,
+        "raw_period": "1993 3Q",
+        "raw_value": "47.7",
+        "raw_index": 14
+      },
+      {
+        "period": "1993-Q4",
+        "value": 49.0,
+        "raw_period": "1993 4Q",
+        "raw_value": "49",
+        "raw_index": 15
+      },
+      {
+        "period": "1994-Q1",
+        "value": 50.4,
+        "raw_period": "1994 1Q",
+        "raw_value": "50.4",
+        "raw_index": 16
+      },
+      {
+        "period": "1994-Q2",
+        "value": 51.7,
+        "raw_period": "1994 2Q",
+        "raw_value": "51.7",
+        "raw_index": 17
+      },
+      {
+        "period": "1994-Q3",
+        "value": 54.6,
+        "raw_period": "1994 3Q",
+        "raw_value": "54.6",
+        "raw_index": 18
+      },
+      {
+        "period": "1994-Q4",
+        "value": 54.8,
+        "raw_period": "1994 4Q",
+        "raw_value": "54.8",
+        "raw_index": 19
+      },
+      {
+        "period": "1995-Q1",
+        "value": 57.3,
+        "raw_period": "1995 1Q",
+        "raw_value": "57.3",
+        "raw_index": 20
+      },
+      {
+        "period": "1995-Q2",
+        "value": 63.9,
+        "raw_period": "1995 2Q",
+        "raw_value": "63.9",
+        "raw_index": 21
+      },
+      {
+        "period": "1995-Q3",
+        "value": 67.7,
+        "raw_period": "1995 3Q",
+        "raw_value": "67.7",
+        "raw_index": 22
+      },
+      {
+        "period": "1995-Q4",
+        "value": 73.7,
+        "raw_period": "1995 4Q",
+        "raw_value": "73.7",
+        "raw_index": 23
+      },
+      {
+        "period": "1996-Q1",
+        "value": 80.5,
+        "raw_period": "1996 1Q",
+        "raw_value": "80.5",
+        "raw_index": 24
+      },
+      {
+        "period": "1996-Q2",
+        "value": 90.9,
+        "raw_period": "1996 2Q",
+        "raw_value": "90.9",
+        "raw_index": 25
+      },
+      {
+        "period": "1996-Q3",
+        "value": 96.4,
+        "raw_period": "1996 3Q",
+        "raw_value": "96.4",
+        "raw_index": 26
+      },
+      {
+        "period": "1996-Q4",
+        "value": 99.0,
+        "raw_period": "1996 4Q",
+        "raw_value": "99",
+        "raw_index": 27
+      },
+      {
+        "period": "1997-Q1",
+        "value": 98.6,
+        "raw_period": "1997 1Q",
+        "raw_value": "98.6",
+        "raw_index": 28
+      },
+      {
+        "period": "1997-Q2",
+        "value": 97.5,
+        "raw_period": "1997 2Q",
+        "raw_value": "97.5",
+        "raw_index": 29
+      },
+      {
+        "period": "1997-Q3",
+        "value": 93.6,
+        "raw_period": "1997 3Q",
+        "raw_value": "93.6",
+        "raw_index": 30
+      },
+      {
+        "period": "1997-Q4",
+        "value": 88.0,
+        "raw_period": "1997 4Q",
+        "raw_value": "88",
+        "raw_index": 31
+      },
+      {
+        "period": "1998-Q1",
+        "value": 81.7,
+        "raw_period": "1998 1Q",
+        "raw_value": "81.7",
+        "raw_index": 32
+      },
+      {
+        "period": "1998-Q2",
+        "value": 78.3,
+        "raw_period": "1998 2Q",
+        "raw_value": "78.3",
+        "raw_index": 33
+      },
+      {
+        "period": "1998-Q3",
+        "value": 74.9,
+        "raw_period": "1998 3Q",
+        "raw_value": "74.9",
+        "raw_index": 34
+      },
+      {
+        "period": "1998-Q4",
+        "value": 72.3,
+        "raw_period": "1998 4Q",
+        "raw_value": "72.3",
+        "raw_index": 35
+      },
+      {
+        "period": "1999-Q1",
+        "value": 71.2,
+        "raw_period": "1999 1Q",
+        "raw_value": "71.2",
+        "raw_index": 36
+      },
+      {
+        "period": "1999-Q2",
+        "value": 72.2,
+        "raw_period": "1999 2Q",
+        "raw_value": "72.2",
+        "raw_index": 37
+      },
+      {
+        "period": "1999-Q3",
+        "value": 78.1,
+        "raw_period": "1999 3Q",
+        "raw_value": "78.1",
+        "raw_index": 38
+      },
+      {
+        "period": "1999-Q4",
+        "value": 79.8,
+        "raw_period": "1999 4Q",
+        "raw_value": "79.8",
+        "raw_index": 39
+      },
+      {
+        "period": "2000-Q1",
+        "value": 80.3,
+        "raw_period": "2000 1Q",
+        "raw_value": "80.3",
+        "raw_index": 40
+      },
+      {
+        "period": "2000-Q2",
+        "value": 79.3,
+        "raw_period": "2000 2Q",
+        "raw_value": "79.3",
+        "raw_index": 41
+      },
+      {
+        "period": "2000-Q3",
+        "value": 77.6,
+        "raw_period": "2000 3Q",
+        "raw_value": "77.6",
+        "raw_index": 42
+      },
+      {
+        "period": "2000-Q4",
+        "value": 75.8,
+        "raw_period": "2000 4Q",
+        "raw_value": "75.8",
+        "raw_index": 43
+      },
+      {
+        "period": "2001-Q1",
+        "value": 73.2,
+        "raw_period": "2001 1Q",
+        "raw_value": "73.2",
+        "raw_index": 44
+      },
+      {
+        "period": "2001-Q2",
+        "value": 72.1,
+        "raw_period": "2001 2Q",
+        "raw_value": "72.1",
+        "raw_index": 45
+      },
+      {
+        "period": "2001-Q3",
+        "value": 70.6,
+        "raw_period": "2001 3Q",
+        "raw_value": "70.6",
+        "raw_index": 46
+      },
+      {
+        "period": "2001-Q4",
+        "value": 69.6,
+        "raw_period": "2001 4Q",
+        "raw_value": "69.6",
+        "raw_index": 47
+      },
+      {
+        "period": "2002-Q1",
+        "value": 69.1,
+        "raw_period": "2002 1Q",
+        "raw_value": "69.1",
+        "raw_index": 48
+      },
+      {
+        "period": "2002-Q2",
+        "value": 69.2,
+        "raw_period": "2002 2Q",
+        "raw_value": "69.2",
+        "raw_index": 49
+      },
+      {
+        "period": "2002-Q3",
+        "value": 69.9,
+        "raw_period": "2002 3Q",
+        "raw_value": "69.9",
+        "raw_index": 50
+      },
+      {
+        "period": "2002-Q4",
+        "value": 69.9,
+        "raw_period": "2002 4Q",
+        "raw_value": "69.9",
+        "raw_index": 51
+      },
+      {
+        "period": "2003-Q1",
+        "value": 71.0,
+        "raw_period": "2003 1Q",
+        "raw_value": "71",
+        "raw_index": 52
+      },
+      {
+        "period": "2003-Q2",
+        "value": 72.5,
+        "raw_period": "2003 2Q",
+        "raw_value": "72.5",
+        "raw_index": 53
+      },
+      {
+        "period": "2003-Q3",
+        "value": 74.3,
+        "raw_period": "2003 3Q",
+        "raw_value": "74.3",
+        "raw_index": 54
+      },
+      {
+        "period": "2003-Q4",
+        "value": 75.1,
+        "raw_period": "2003 4Q",
+        "raw_value": "75.1",
+        "raw_index": 55
+      },
+      {
+        "period": "2004-Q1",
+        "value": 75.3,
+        "raw_period": "2004 1Q",
+        "raw_value": "75.3",
+        "raw_index": 56
+      },
+      {
+        "period": "2004-Q2",
+        "value": 76.2,
+        "raw_period": "2004 2Q",
+        "raw_value": "76.2",
+        "raw_index": 57
+      },
+      {
+        "period": "2004-Q3",
+        "value": 76.3,
+        "raw_period": "2004 3Q",
+        "raw_value": "76.3",
+        "raw_index": 58
+      },
+      {
+        "period": "2004-Q4",
+        "value": 77.1,
+        "raw_period": "2004 4Q",
+        "raw_value": "77.1",
+        "raw_index": 59
+      },
+      {
+        "period": "2005-Q1",
+        "value": 77.2,
+        "raw_period": "2005 1Q",
+        "raw_value": "77.2",
+        "raw_index": 60
+      },
+      {
+        "period": "2005-Q2",
+        "value": 73.5,
+        "raw_period": "2005 2Q",
+        "raw_value": "73.5",
+        "raw_index": 61
+      },
+      {
+        "period": "2005-Q3",
+        "value": 73.2,
+        "raw_period": "2005 3Q",
+        "raw_value": "73.2",
+        "raw_index": 62
+      },
+      {
+        "period": "2005-Q4",
+        "value": 73.5,
+        "raw_period": "2005 4Q",
+        "raw_value": "73.5",
+        "raw_index": 63
+      },
+      {
+        "period": "2006-Q1",
+        "value": 73.6,
+        "raw_period": "2006 1Q",
+        "raw_value": "73.6",
+        "raw_index": 64
+      },
+      {
+        "period": "2006-Q2",
+        "value": 74.3,
+        "raw_period": "2006 2Q",
+        "raw_value": "74.3",
+        "raw_index": 65
+      },
+      {
+        "period": "2006-Q3",
+        "value": 74.2,
+        "raw_period": "2006 3Q",
+        "raw_value": "74.2",
+        "raw_index": 66
+      },
+      {
+        "period": "2006-Q4",
+        "value": 74.9,
+        "raw_period": "2006 4Q",
+        "raw_value": "74.9",
+        "raw_index": 67
+      },
+      {
+        "period": "2007-Q1",
+        "value": 75.8,
+        "raw_period": "2007 1Q",
+        "raw_value": "75.8",
+        "raw_index": 68
+      },
+      {
+        "period": "2007-Q2",
+        "value": 78.1,
+        "raw_period": "2007 2Q",
+        "raw_value": "78.1",
+        "raw_index": 69
+      },
+      {
+        "period": "2007-Q3",
+        "value": 83.2,
+        "raw_period": "2007 3Q",
+        "raw_value": "83.2",
+        "raw_index": 70
+      },
+      {
+        "period": "2007-Q4",
+        "value": 88.0,
+        "raw_period": "2007 4Q",
+        "raw_value": "88",
+        "raw_index": 71
+      },
+      {
+        "period": "2008-Q1",
+        "value": 91.3,
+        "raw_period": "2008 1Q",
+        "raw_value": "91.3",
+        "raw_index": 72
+      },
+      {
+        "period": "2008-Q2",
+        "value": 95.4,
+        "raw_period": "2008 2Q",
+        "raw_value": "95.4",
+        "raw_index": 73
+      },
+      {
+        "period": "2008-Q3",
+        "value": 99.4,
+        "raw_period": "2008 3Q",
+        "raw_value": "99.4",
+        "raw_index": 74
+      },
+      {
+        "period": "2008-Q4",
+        "value": 100.8,
+        "raw_period": "2008 4Q",
+        "raw_value": "100.8",
+        "raw_index": 75
+      },
+      {
+        "period": "2009-Q1",
+        "value": 100.0,
+        "raw_period": "2009 1Q",
+        "raw_value": "100",
+        "raw_index": 76
+      },
+      {
+        "period": "2009-Q2",
+        "value": 101.4,
+        "raw_period": "2009 2Q",
+        "raw_value": "101.4",
+        "raw_index": 77
+      },
+      {
+        "period": "2009-Q3",
+        "value": 105.0,
+        "raw_period": "2009 3Q",
+        "raw_value": "105",
+        "raw_index": 78
+      },
+      {
+        "period": "2009-Q4",
+        "value": 109.0,
+        "raw_period": "2009 4Q",
+        "raw_value": "109",
+        "raw_index": 79
+      },
+      {
+        "period": "2010-Q1",
+        "value": 112.1,
+        "raw_period": "2010 1Q",
+        "raw_value": "112.1",
+        "raw_index": 80
+      },
+      {
+        "period": "2010-Q2",
+        "value": 116.6,
+        "raw_period": "2010 2Q",
+        "raw_value": "116.6",
+        "raw_index": 81
+      },
+      {
+        "period": "2010-Q3",
+        "value": 121.3,
+        "raw_period": "2010 3Q",
+        "raw_value": "121.3",
+        "raw_index": 82
+      },
+      {
+        "period": "2010-Q4",
+        "value": 124.4,
+        "raw_period": "2010 4Q",
+        "raw_value": "124.4",
+        "raw_index": 83
+      },
+      {
+        "period": "2011-Q1",
+        "value": 126.4,
+        "raw_period": "2011 1Q",
+        "raw_value": "126.4",
+        "raw_index": 84
+      },
+      {
+        "period": "2011-Q2",
+        "value": 130.4,
+        "raw_period": "2011 2Q",
+        "raw_value": "130.4",
+        "raw_index": 85
+      },
+      {
+        "period": "2011-Q3",
+        "value": 135.4,
+        "raw_period": "2011 3Q",
+        "raw_value": "135.4",
+        "raw_index": 86
+      },
+      {
+        "period": "2011-Q4",
+        "value": 137.7,
+        "raw_period": "2011 4Q",
+        "raw_value": "137.7",
+        "raw_index": 87
+      },
+      {
+        "period": "2012-Q1",
+        "value": 138.5,
+        "raw_period": "2012 1Q",
+        "raw_value": "138.5",
+        "raw_index": 88
+      },
+      {
+        "period": "2012-Q2",
+        "value": 140.3,
+        "raw_period": "2012 2Q",
+        "raw_value": "140.3",
+        "raw_index": 89
+      },
+      {
+        "period": "2012-Q3",
+        "value": 143.1,
+        "raw_period": "2012 3Q",
+        "raw_value": "143.1",
+        "raw_index": 90
+      },
+      {
+        "period": "2012-Q4",
+        "value": 146.7,
+        "raw_period": "2012 4Q",
+        "raw_value": "146.7",
+        "raw_index": 91
+      },
+      {
+        "period": "2013-Q1",
+        "value": 148.6,
+        "raw_period": "2013 1Q",
+        "raw_value": "148.6",
+        "raw_index": 92
+      },
+      {
+        "period": "2013-Q2",
+        "value": 149.4,
+        "raw_period": "2013 2Q",
+        "raw_value": "149.4",
+        "raw_index": 93
+      },
+      {
+        "period": "2013-Q3",
+        "value": 148.1,
+        "raw_period": "2013 3Q",
+        "raw_value": "148.1",
+        "raw_index": 94
+      },
+      {
+        "period": "2013-Q4",
+        "value": 145.8,
+        "raw_period": "2013 4Q",
+        "raw_value": "145.8",
+        "raw_index": 95
+      },
+      {
+        "period": "2014-Q1",
+        "value": 143.5,
+        "raw_period": "2014 1Q",
+        "raw_value": "143.5",
+        "raw_index": 96
+      },
+      {
+        "period": "2014-Q2",
+        "value": 141.5,
+        "raw_period": "2014 2Q",
+        "raw_value": "141.5",
+        "raw_index": 97
+      },
+      {
+        "period": "2014-Q3",
+        "value": 139.1,
+        "raw_period": "2014 3Q",
+        "raw_value": "139.1",
+        "raw_index": 98
+      },
+      {
+        "period": "2014-Q4",
+        "value": 137.0,
+        "raw_period": "2014 4Q",
+        "raw_value": "137",
+        "raw_index": 99
+      },
+      {
+        "period": "2015-Q1",
+        "value": 135.6,
+        "raw_period": "2015 1Q",
+        "raw_value": "135.6",
+        "raw_index": 100
+      },
+      {
+        "period": "2015-Q2",
+        "value": 135.0,
+        "raw_period": "2015 2Q",
+        "raw_value": "135",
+        "raw_index": 101
+      },
+      {
+        "period": "2015-Q3",
+        "value": 134.6,
+        "raw_period": "2015 3Q",
+        "raw_value": "134.6",
+        "raw_index": 102
+      },
+      {
+        "period": "2015-Q4",
+        "value": 134.8,
+        "raw_period": "2015 4Q",
+        "raw_value": "134.8",
+        "raw_index": 103
+      },
+      {
+        "period": "2016-Q1",
+        "value": 134.7,
+        "raw_period": "2016 1Q",
+        "raw_value": "134.7",
+        "raw_index": 104
+      },
+      {
+        "period": "2016-Q2",
+        "value": 134.7,
+        "raw_period": "2016 2Q",
+        "raw_value": "134.7",
+        "raw_index": 105
+      },
+      {
+        "period": "2016-Q3",
+        "value": 134.7,
+        "raw_period": "2016 3Q",
+        "raw_value": "134.7",
+        "raw_index": 106
+      },
+      {
+        "period": "2016-Q4",
+        "value": 134.6,
+        "raw_period": "2016 4Q",
+        "raw_value": "134.6",
+        "raw_index": 107
+      },
+      {
+        "period": "2017-Q1",
+        "value": 133.9,
+        "raw_period": "2017 1Q",
+        "raw_value": "133.9",
+        "raw_index": 108
+      },
+      {
+        "period": "2017-Q2",
+        "value": 133.7,
+        "raw_period": "2017 2Q",
+        "raw_value": "133.7",
+        "raw_index": 109
+      },
+      {
+        "period": "2017-Q3",
+        "value": 132.8,
+        "raw_period": "2017 3Q",
+        "raw_value": "132.8",
+        "raw_index": 110
+      },
+      {
+        "period": "2017-Q4",
+        "value": 132.6,
+        "raw_period": "2017 4Q",
+        "raw_value": "132.6",
+        "raw_index": 111
+      },
+      {
+        "period": "2018-Q1",
+        "value": 131.6,
+        "raw_period": "2018 1Q",
+        "raw_value": "131.6",
+        "raw_index": 112
+      },
+      {
+        "period": "2018-Q2",
+        "value": 131.7,
+        "raw_period": "2018 2Q",
+        "raw_value": "131.7",
+        "raw_index": 113
+      },
+      {
+        "period": "2018-Q3",
+        "value": 131.6,
+        "raw_period": "2018 3Q",
+        "raw_value": "131.6",
+        "raw_index": 114
+      },
+      {
+        "period": "2018-Q4",
+        "value": 131.4,
+        "raw_period": "2018 4Q",
+        "raw_value": "131.4",
+        "raw_index": 115
+      },
+      {
+        "period": "2019-Q1",
+        "value": 131.0,
+        "raw_period": "2019 1Q",
+        "raw_value": "131",
+        "raw_index": 116
+      },
+      {
+        "period": "2019-Q2",
+        "value": 130.8,
+        "raw_period": "2019 2Q",
+        "raw_value": "130.8",
+        "raw_index": 117
+      },
+      {
+        "period": "2019-Q3",
+        "value": 130.9,
+        "raw_period": "2019 3Q",
+        "raw_value": "130.9",
+        "raw_index": 118
+      },
+      {
+        "period": "2019-Q4",
+        "value": 131.5,
+        "raw_period": "2019 4Q",
+        "raw_value": "131.5",
+        "raw_index": 119
+      },
+      {
+        "period": "2020-Q1",
+        "value": 131.5,
+        "raw_period": "2020 1Q",
+        "raw_value": "131.5",
+        "raw_index": 120
+      },
+      {
+        "period": "2020-Q2",
+        "value": 131.9,
+        "raw_period": "2020 2Q",
+        "raw_value": "131.9",
+        "raw_index": 121
+      },
+      {
+        "period": "2020-Q3",
+        "value": 133.9,
+        "raw_period": "2020 3Q",
+        "raw_value": "133.9",
+        "raw_index": 122
+      },
+      {
+        "period": "2020-Q4",
+        "value": 138.1,
+        "raw_period": "2020 4Q",
+        "raw_value": "138.1",
+        "raw_index": 123
+      },
+      {
+        "period": "2021-Q1",
+        "value": 142.2,
+        "raw_period": "2021 1Q",
+        "raw_value": "142.2",
+        "raw_index": 124
+      },
+      {
+        "period": "2021-Q2",
+        "value": 146.4,
+        "raw_period": "2021 2Q",
+        "raw_value": "146.4",
+        "raw_index": 125
+      },
+      {
+        "period": "2021-Q3",
+        "value": 150.6,
+        "raw_period": "2021 3Q",
+        "raw_value": "150.6",
+        "raw_index": 126
+      },
+      {
+        "period": "2021-Q4",
+        "value": 155.7,
+        "raw_period": "2021 4Q",
+        "raw_value": "155.7",
+        "raw_index": 127
+      },
+      {
+        "period": "2022-Q1",
+        "value": 159.5,
+        "raw_period": "2022 1Q",
+        "raw_value": "159.5",
+        "raw_index": 128
+      },
+      {
+        "period": "2022-Q2",
+        "value": 163.9,
+        "raw_period": "2022 2Q",
+        "raw_value": "163.9",
+        "raw_index": 129
+      },
+      {
+        "period": "2022-Q3",
+        "value": 168.1,
+        "raw_period": "2022 3Q",
+        "raw_value": "168.1",
+        "raw_index": 130
+      },
+      {
+        "period": "2022-Q4",
+        "value": 171.9,
+        "raw_period": "2022 4Q",
+        "raw_value": "171.9",
+        "raw_index": 131
+      },
+      {
+        "period": "2023-Q1",
+        "value": 173.6,
+        "raw_period": "2023 1Q",
+        "raw_value": "173.6",
+        "raw_index": 132
+      },
+      {
+        "period": "2023-Q2",
+        "value": 176.2,
+        "raw_period": "2023 2Q",
+        "raw_value": "176.2",
+        "raw_index": 133
+      },
+      {
+        "period": "2023-Q3",
+        "value": 178.5,
+        "raw_period": "2023 3Q",
+        "raw_value": "178.5",
+        "raw_index": 134
+      },
+      {
+        "period": "2023-Q4",
+        "value": 180.4,
+        "raw_period": "2023 4Q",
+        "raw_value": "180.4",
+        "raw_index": 135
+      },
+      {
+        "period": "2024-Q1",
+        "value": 183.7,
+        "raw_period": "2024 1Q",
+        "raw_value": "183.7",
+        "raw_index": 136
+      },
+      {
+        "period": "2024-Q2",
+        "value": 187.9,
+        "raw_period": "2024 2Q",
+        "raw_value": "187.9",
+        "raw_index": 137
+      },
+      {
+        "period": "2024-Q3",
+        "value": 192.9,
+        "raw_period": "2024 3Q",
+        "raw_value": "192.9",
+        "raw_index": 138
+      },
+      {
+        "period": "2024-Q4",
+        "value": 197.9,
+        "raw_period": "2024 4Q",
+        "raw_value": "197.9",
+        "raw_index": 139
+      },
+      {
+        "period": "2025-Q1",
+        "value": 201.0,
+        "raw_period": "2025 1Q",
+        "raw_value": "201",
+        "raw_index": 140
+      },
+      {
+        "period": "2025-Q2",
+        "value": 202.9,
+        "raw_period": "2025 2Q",
+        "raw_value": "202.9",
+        "raw_index": 141
+      },
+      {
+        "period": "2025-Q3",
+        "value": 203.7,
+        "raw_period": "2025 3Q",
+        "raw_value": "203.7",
+        "raw_index": 142
+      },
+      {
+        "period": "2025-Q4",
+        "value": 203.6,
+        "raw_period": "2025 4Q",
+        "raw_value": "203.6",
+        "raw_index": 143
+      },
+      {
+        "period": "2026-Q1",
+        "value": 203.4,
+        "raw_period": "2026 1Q",
+        "raw_value": "203.4",
+        "raw_index": 144
+      },
+      {
+        "period": "2026-Q2",
+        "value": 202.8,
+        "raw_period": "2026 2Q",
+        "raw_value": "202.8",
+        "raw_index": 145
+      }
+    ]
+  }
+]

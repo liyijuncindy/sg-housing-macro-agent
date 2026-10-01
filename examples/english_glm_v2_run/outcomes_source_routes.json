@@ -1,0 +1,44 @@
+[
+  {
+    "id": "M212261:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T14:43:35+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M212311:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T14:43:36+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M212161:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T14:43:36+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  }
+]
