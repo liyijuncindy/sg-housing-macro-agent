@@ -1,0 +1,22 @@
+{
+  "metadata_origin": "Locally generated adapter metadata; not an official API response",
+  "source_url": "https://stats.mom.gov.sg/Pages/Unemployment-Summary-Table.aspx",
+  "download_url": "https://stats.mom.gov.sg/iMAS_Tables1/CSV/mrsd_11_Resident_unemployment_rate_n_number.csv",
+  "columns": [
+    "period",
+    "quarter_annual",
+    "residential_status",
+    "seasonally_adjusted_unemployment_rate",
+    "non-seasonally_adjusted_unemployment_rate",
+    "seasonally_adjusted_unemployed_num",
+    "non-seasonally_adjusted_unemployed_num",
+    "annual_avg_unemployment_rate",
+    "annual_avg_unemployed_num"
+  ],
+  "selected_filters": {
+    "quarter_annual": "quarter",
+    "residential_status": "resident"
+  },
+  "value_column": "seasonally_adjusted_unemployment_rate",
+  "notes": "Resident means Singapore citizens and permanent residents. This adapter selects quarter rows and the seasonally_adjusted_unemployment_rate column, preserving the published CSV precision. It excludes annual averages and unadjusted rates. Seasonal adjustment can be revised. The CSV does not provide observation publication dates or preliminary flags; none are inferred. Definitions and current release notes: https://stats.mom.gov.sg/Pages/Unemployment-Summary-Table.aspx"
+}

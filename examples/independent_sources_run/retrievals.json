@@ -1,0 +1,145 @@
+[
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=population&searchOption=all",
+    "retrieved_at": "2026-10-01T09:19:06+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "failed",
+        "error": "SourceMaintenanceError: SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+        "http_status": 502,
+        "response_headers": {
+          "server": "Microsoft-Azure-Application-Gateway/v2",
+          "content-type": "text/html"
+        },
+        "content_type": "text/html"
+      }
+    ],
+    "status": "failed",
+    "http_status": 502,
+    "response_headers": {
+      "server": "Microsoft-Azure-Application-Gateway/v2",
+      "content-type": "text/html"
+    },
+    "content_type": "text/html",
+    "maintenance_notice": "The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "maintenance_source_url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=population&searchOption=all",
+    "maintenance_body_prefix_sha256": "1589b99423c4aa657b256ac1b0a614e8dc0a52229afc158a447a89dda4f65866",
+    "error": "SourceMaintenanceError: SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "completed_at": "2026-10-01T09:19:06+00:00",
+    "maintenance": true
+  },
+  {
+    "url": "https://stats.mom.gov.sg/iMAS_Tables1/CSV/mrsd_11_Resident_unemployment_rate_n_number.csv",
+    "method": "GET",
+    "retrieved_at": "2026-10-01T09:19:06+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/octet-stream"
+        },
+        "content_type": "application/octet-stream",
+        "final_url": "https://stats.mom.gov.sg/iMAS_Tables1/CSV/mrsd_11_Resident_unemployment_rate_n_number.csv",
+        "http_last_modified": "Mon, 21 Sep 2026 05:27:21 GMT"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/octet-stream"
+    },
+    "content_type": "application/octet-stream",
+    "final_url": "https://stats.mom.gov.sg/iMAS_Tables1/CSV/mrsd_11_Resident_unemployment_rate_n_number.csv",
+    "http_last_modified": "Mon, 21 Sep 2026 05:27:21 GMT",
+    "completed_at": "2026-10-01T09:19:06+00:00",
+    "raw_file": "raw/mom_resident_unemployment_01_70f48654b5a63952.csv",
+    "raw_sha256": "832bf5774be0a6d48d85e8869d58327140c2bd04bb053064a8cbdc95ffa7ded1"
+  },
+  {
+    "url": "https://stats.mom.gov.sg/iMAS_Tables1/Time-Series-Table/mrsd_72_Mean_GMI_Emp_Res_Quarterly.xlsx",
+    "method": "GET",
+    "retrieved_at": "2026-10-01T09:19:06+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        },
+        "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "final_url": "https://stats.mom.gov.sg/iMAS_Tables1/Time-Series-Table/mrsd_72_Mean_GMI_Emp_Res_Quarterly.xlsx",
+        "http_last_modified": "Mon, 31 Aug 2026 02:30:59 GMT"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    },
+    "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "final_url": "https://stats.mom.gov.sg/iMAS_Tables1/Time-Series-Table/mrsd_72_Mean_GMI_Emp_Res_Quarterly.xlsx",
+    "http_last_modified": "Mon, 31 Aug 2026 02:30:59 GMT",
+    "completed_at": "2026-10-01T09:19:07+00:00",
+    "raw_file": "raw/mom_mean_employment_income_02_8fc73a0c377c47e2.xlsx",
+    "raw_sha256": "dc0ab955ae76b339d1955d7f2482b80121258a957ce51896a2bf773f581c1d77"
+  },
+  {
+    "url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "method": "GET",
+    "retrieved_at": "2026-10-01T09:19:07+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "text/html; charset=utf-8"
+        },
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "completed_at": "2026-10-01T09:19:07+00:00",
+    "raw_file": "raw/mas_sora_form_03_f6b6b3a888ef6703.html",
+    "raw_sha256": "0c9c47b95930cebd0afff3461acc85382facf7f322bf3ea6d48342452d704a40"
+  },
+  {
+    "url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "method": "POST",
+    "retrieved_at": "2026-10-01T09:19:07+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "text/csv; charset=utf-8"
+        },
+        "content_type": "text/csv; charset=utf-8",
+        "final_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx"
+      }
+    ],
+    "status": "ok",
+    "request_body_sha256": "90b1e7fa95e8990cc020473661514c5abfceca370f4f7f4645b10d1f25f7c16a",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "text/csv; charset=utf-8"
+    },
+    "content_type": "text/csv; charset=utf-8",
+    "final_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "completed_at": "2026-10-01T09:19:07+00:00",
+    "raw_file": "raw/mas_sora_daily_04_78ea273ef62f7c09.csv",
+    "raw_sha256": "53828a3f009324dce050a6a8bd0285bc071da79271bb62d4151a944d1ec257c9"
+  }
+]

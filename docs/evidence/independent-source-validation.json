@@ -1,0 +1,94 @@
+{
+  "run": "examples/independent_sources_run",
+  "manifest_sha256": "82b762929708fbed26935892af3c79213c3d6104f873a5c0caa03543b57b39c9",
+  "code_commit": "14b80b7d65897f695adb28192d781be6bbc98f8e",
+  "code_worktree_dirty": false,
+  "status": "complete_with_warnings",
+  "elapsed_seconds": 0.963,
+  "source_coverage": {
+    "candidates": 12,
+    "downloaded": 3,
+    "eligible": 3,
+    "singstat_maintenance": true,
+    "providers": [
+      "MAS direct public daily CSV; verified month-end sampling",
+      "MOM official CSV",
+      "MOM official XLSX"
+    ]
+  },
+  "logical_requests": 5,
+  "http_attempts": 5,
+  "singstat_requests": 1,
+  "model_calls": 0,
+  "raw_observations_checked": 414,
+  "changes_recomputed_with_decimal": 5,
+  "series": [
+    {
+      "id": "M182342:2",
+      "raw_observations_checked": 138,
+      "overlapping_non_null_periods": 138,
+      "differences": [],
+      "raw_file": "raw/mom_resident_unemployment_01_70f48654b5a63952.csv",
+      "raw_sha256": "832bf5774be0a6d48d85e8869d58327140c2bd04bb053064a8cbdc95ffa7ded1",
+      "latest": {
+        "period": "2026-Q2",
+        "value": 2.9,
+        "raw_period": "2026-06",
+        "raw_value": "2.9",
+        "raw_index": 137,
+        "raw_locator": "CSV row 139, column seasonally_adjusted_unemployment_rate"
+      }
+    },
+    {
+      "id": "M184101:1",
+      "raw_observations_checked": 21,
+      "overlapping_non_null_periods": 21,
+      "differences": [],
+      "raw_file": "raw/mom_mean_employment_income_02_8fc73a0c377c47e2.xlsx",
+      "raw_sha256": "dc0ab955ae76b339d1955d7f2482b80121258a957ce51896a2bf773f581c1d77",
+      "latest": {
+        "period": "2026-Q2",
+        "value": 6605.0,
+        "raw_period": "2Q 2026p",
+        "raw_value": "6605",
+        "raw_index": 20,
+        "raw_locator": "Sheet1!U6 (period Sheet1!U5)",
+        "preliminary": true
+      }
+    },
+    {
+      "id": "M700071:23",
+      "raw_observations_checked": 255,
+      "overlapping_non_null_periods": 251,
+      "differences": [],
+      "raw_file": "raw/mas_sora_daily_04_78ea273ef62f7c09.csv",
+      "raw_sha256": "53828a3f009324dce050a6a8bd0285bc071da79271bb62d4151a944d1ec257c9",
+      "latest": {
+        "period": "2026-09",
+        "value": 1.2336,
+        "raw_period": "  30",
+        "raw_value": "1.2336",
+        "raw_index": 5402,
+        "sampling_date": "2026-09-30",
+        "source_value_date": "2026-09-30",
+        "source_publication_date": "2026-10-01",
+        "raw_sora_value_date": [
+          "",
+          "",
+          "30"
+        ],
+        "raw_sora_publication_date": "01 Oct 2026",
+        "raw_locator": "CSV record 5403, column 5 (Compound SORA - 3 month)",
+        "sampling_rule": "last SORA Value Date in a verified closed calendar month"
+      }
+    }
+  ],
+  "mas_wrong_publication_month_grouping_mismatches": 247,
+  "replay": {
+    "verified_files": 17,
+    "report_sha256": "5dd1d793e43e401a3ae4fb6bd399b75822140f247fa91643e3ede6841e262709",
+    "network_calls": 0,
+    "model_calls": 0
+  },
+  "initial_integration_finding": "First live attempt identified annual repeated MAS CSV headers. That attempt selected only MOM series and excluded MAS with a schema error; parser and regression tests were corrected before this clean-checkout successful run."
+}

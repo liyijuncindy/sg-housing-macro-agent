@@ -1,0 +1,16 @@
+{
+  "installed_from": "non-editable wheel",
+  "openai_sdk_present": false,
+  "parser_observations_matched": {
+    "M182342:2": 138,
+    "M184101:1": 21,
+    "M700071:23": 255
+  },
+  "replay": {
+    "verified_files": 17,
+    "report": "/Users/liyijun/Documents/Codex/2026-10-01/kan/work/installed-independent-replay.md",
+    "sha256": "5dd1d793e43e401a3ae4fb6bd399b75822140f247fa91643e3ede6841e262709",
+    "network_calls": 0,
+    "model_calls": 0
+  }
+}

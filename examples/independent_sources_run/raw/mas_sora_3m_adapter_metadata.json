@@ -1,0 +1,86 @@
+{
+  "adapter": "mas_compounded_sora_3m_month_end",
+  "as_of": "2026-10-01",
+  "source_page": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+  "reviewed_equivalent_series": "M700071:23",
+  "source_columns": [
+    "SORA Value Date",
+    "",
+    "",
+    "SORA Publication Date",
+    "Compound SORA - 3 month"
+  ],
+  "source_frequency": "Daily business-day observations",
+  "output_frequency": "M",
+  "unit": "Per Cent Per Annum",
+  "transformation_note": "Group daily records by the calendar month of SORA Value Date and select the last value-date record, not the last publication-date record and not an average. The month must end on or before as_of. Its last record's SORA Publication Date must cross that month-end, providing conservative evidence that the last business-day record was received. Otherwise omit the month instead of substituting an earlier value. This can temporarily omit the newest month. A null final value remains null. The original daily CSV dates and row position are retained. Source publication dates are CSV labels, also described by MAS as compounded-index value dates; they do not prove when the historical three-month series was first available. No observation published_at is invented.",
+  "request": {
+    "requested_start": "2005-01",
+    "requested_end": "2026-09",
+    "selected_label": "3-month Compounded SORA",
+    "selected_control": "ctl00$ContentPlaceHolder1$ColumnsCheckBoxList$16"
+  },
+  "source_form": {
+    "url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "method": "GET",
+    "retrieved_at": "2026-10-01T09:19:07+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "text/html; charset=utf-8"
+        },
+        "content_type": "text/html; charset=utf-8",
+        "final_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "text/html; charset=utf-8"
+    },
+    "content_type": "text/html; charset=utf-8",
+    "final_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "completed_at": "2026-10-01T09:19:07+00:00",
+    "raw_file": "raw/mas_sora_form_03_f6b6b3a888ef6703.html",
+    "raw_sha256": "0c9c47b95930cebd0afff3461acc85382facf7f322bf3ea6d48342452d704a40"
+  },
+  "source_csv": {
+    "url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "method": "POST",
+    "retrieved_at": "2026-10-01T09:19:07+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "text/csv; charset=utf-8"
+        },
+        "content_type": "text/csv; charset=utf-8",
+        "final_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx"
+      }
+    ],
+    "status": "ok",
+    "request_body_sha256": "90b1e7fa95e8990cc020473661514c5abfceca370f4f7f4645b10d1f25f7c16a",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "text/csv; charset=utf-8"
+    },
+    "content_type": "text/csv; charset=utf-8",
+    "final_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "completed_at": "2026-10-01T09:19:07+00:00",
+    "raw_file": "raw/mas_sora_daily_04_78ea273ef62f7c09.csv",
+    "raw_sha256": "53828a3f009324dce050a6a8bd0285bc071da79271bb62d4151a944d1ec257c9"
+  },
+  "daily_record_count": 5333,
+  "monthly_record_count": 255,
+  "first_source_value_date": "2005-07-01",
+  "last_source_value_date": "2026-09-30",
+  "last_source_publication_date": "2026-10-01",
+  "omitted_months": [],
+  "validation_basis": "Date convention was checked against the saved official M700071:23 series over all overlapping non-null observations; this adapter never obtains values from that snapshot.",
+  "metadata_origin": "Locally generated adapter metadata; not an official API response"
+}

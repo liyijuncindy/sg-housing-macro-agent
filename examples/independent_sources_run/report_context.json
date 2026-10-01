@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "run_id": "independent_sources_run",
+  "created_at": "2026-10-01T09:19:06+00:00",
+  "as_of": "2026-10-01",
+  "as_of_policy": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "mode": "rules",
+  "mode_label": "Deterministic rules; reviewed qualitative templates, no model call",
+  "provider": null,
+  "model": null,
+  "source_policy": "auto",
+  "data_basis": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "package_version": "0.1.0",
+  "python_version": "3.12.14",
+  "warnings": [
+    "SingStat Table Builder is under maintenance; remaining searches and SingStat-only candidates were skipped. Independent MOM and MAS downloads were still attempted.",
+    "Excluded M810001:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M810001:5 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M015661:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M016081:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M701091:1.2.1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M400841:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M400841:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M400391:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M213751:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Selected fewer candidates than requested; missing slots were not filled with ineligible series."
+  ],
+  "status": "complete_with_warnings",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  },
+  "code_commit": "14b80b7d65897f695adb28192d781be6bbc98f8e",
+  "code_worktree_dirty": false,
+  "code_hashes": {
+    "__init__.py": "317887a06fbcf9959e1393d3ee1911689881a6cbbe20a8e404ca966a8db9425d",
+    "__main__.py": "3d8d9292d9e7ef023c496dfccbdf9a7c626bd41b565acf1942542b3d4feee6df",
+    "agent.py": "51447c92d6938a231cd7bb10baafae791035d51179cfdc291ff97ad8bc5955c1",
+    "engine.py": "ebad3238e3eec2614fa4c61802acc5cbb2bc7d32379f3aec4f86624324837c51",
+    "mas_sources.py": "fb147735d7ec035e2057650a3521a30eb9af347ca8381d4920b90554c79aecef",
+    "mom_sources.py": "ea94901b7ed3f6899fda887c25a9f8a642db65f2bed90b2a58ece5644125f308",
+    "official_sources.py": "39607ee459f5e07968c478bb920a8684ebf06754fa9db746c3231153c18ed308",
+    "pipeline.py": "b4aed8b9cfbbccc392b518da4f31bb115a9cead2bc4faf8ea562d51041291f3c",
+    "report.py": "5c3d3ce3093ab0ab542fdee6ecd4f649133639dfb7514b186a02a4ffd23f1a54",
+    "sources.py": "fd1ff79face05ad3795d3c3590af08e44e70e45cf63de39182f7eade4f5968b9",
+    "storage.py": "7778396b86c99c8ce251016cd009c109a5baf11657d30e1306950aa37fe72ac8"
+  },
+  "source_coverage": {
+    "candidates": 12,
+    "downloaded": 3,
+    "eligible": 3,
+    "singstat_maintenance": true,
+    "providers": [
+      "MAS direct public daily CSV; verified month-end sampling",
+      "MOM official CSV",
+      "MOM official XLSX"
+    ]
+  },
+  "selected_ids": [
+    "M700071:23",
+    "M182342:2",
+    "M184101:1"
+  ],
+  "finished_at": "2026-10-01T09:19:07+00:00",
+  "elapsed_seconds": 0.963
+}

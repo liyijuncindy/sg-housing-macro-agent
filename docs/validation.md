@@ -8,12 +8,35 @@ Checked on **1 October 2026, Singapore time**, using Python 3.12.14. This docume
 python -m unittest discover -v
 ```
 
-**Observed: 126 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
+**Observed: 168 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
 
 - 41 engine tests: true-calendar baselines, missing quarters, zero denominators, percentage/basis-point units, date cutoffs, population reference dates, quality windows, staleness and family selection.
 - 33 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
 - 21 source tests: explicit maintenance detection, immediate stop, plain-text diagnostic capture, retained generic-gateway retry, captured official GDP/population/SORA responses, exact series requests, source identity/metadata consistency, cell-limit rejection, API errors and retry audit trails.
-- 31 pipeline tests: maintenance aborts before remaining source requests or model calls, provider routing and explicit saved-snapshot verification/reanalysis, full workflow with explicit synthetic fixtures, partial and total failure, cutoff-filtered CSV, table rendering, immutable output, environment handling, replay and tampering.
+- 31 original pipeline tests: explicit SingStat-only maintenance aborts, provider routing and explicit saved-snapshot verification/reanalysis, full workflow with explicit synthetic fixtures, partial and total failure, cutoff-filtered CSV, table rendering, immutable output, environment handling, replay and tampering.
+- 12 MOM tests: quarterly resident/SA selection, CSV precision, workbook title/unit/coverage validation, preliminary markers, source locators, formula rejection and catalogue-definition drift.
+- 19 MAS tests: public form selection, repeated annual headers, value-date versus publication-date grouping, complete month boundaries, weekend endpoints, null terminal values, malformed rows and source identity.
+- 11 independent transport/integration tests: original-file auditing, public-host restrictions, bounded retries, HTTP 206 rejection, local metadata labels, maintenance isolation, one/all route failures, mixed-source saved snapshots and replay.
+
+## Live independent-source workflow
+
+```bash
+python -m housing_agent run --as-of 2026-10-01 --mode rules --output examples/independent_sources_run
+```
+
+**Observed: completed with explicit partial-coverage warnings from a clean tracked checkout at `14b80b7`.** The run made five HTTP attempts: one SingStat discovery request returned the maintenance notice, both MOM files downloaded successfully, and MAS form GET plus CSV POST succeeded. The other nine candidates were excluded without further SingStat requests. Three candidates passed the same quality gates and were selected; no old source snapshot was substituted. This was a rules-mode source integration check with **zero model calls and zero model tokens**, not another live SoCLaaS trial. End-to-end time recorded by the workflow was 0.963 seconds for this particular run, not a performance guarantee.
+
+| Selected source | Latest observation | Captured history |
+|---|---|---|
+| MOM seasonally adjusted resident unemployment | 2026 Q2: 2.9% | 138 quarters |
+| MOM mean employment income, including employer/platform CPF, excluding bonuses | 2026 Q2: SGD 6,605, preliminary | 21 quarters |
+| MAS compounded three-month SORA, sampled at month-end | September 2026: 1.2336% per annum | 255 sampled months, 252 non-null |
+
+The initial integration run exposed MAS's repeated annual CSV headers. That attempt correctly excluded the unparsed MAS series and reported only two available candidates. The parser was corrected to accept identical repeated headers while resetting date context, and regression tests were added before the final fresh run. No failed run was relabelled as successful.
+
+An independent raw-file audit checked **414 normalized observations** against original CSV rows or XLSX cells and recalculated **five changes** using decimal arithmetic. Cross-source comparison against the original SingStat snapshot found **410 matching non-null observations and zero differences**: 138 unemployment quarters, 21 income quarters and 251 SORA months. Grouping MAS by publication date instead of value date would have produced 247 mismatches. See [the validation evidence](evidence/independent-source-validation.json) and [the resulting report](../examples/independent_sources_run/report.md).
+
+Replay verified all **17 run files** with no network/model calls and produced identical report bytes (SHA-256 `5dd1d793e43e401a3ae4fb6bd399b75822140f247fa91643e3ede6841e262709`). The original SingStat and SoCLaaS reports also still replay identically. A new non-editable wheel was installed into the clean environment without the optional OpenAI SDK; all three raw parsers reproduced the saved observations and replay succeeded from outside the repository. `pip check` passed. See [the installed-package check](evidence/independent-source-install-check.json).
 
 ## Live official-data workflow
 
@@ -86,8 +109,8 @@ No held-out forecasting evaluation, historical-vintage reconstruction, automated
 
 A follow-up on 1 October 2026 received an explicit maintenance page from both the Table Builder API and homepage; the main SingStat website returned HTTP 200. Agent and browser User-Agent strings produced the same maintenance response. [The recorded diagnosis](evidence/singstat-maintenance-diagnosis.json) confirms this specific cause, rather than inferring it solely from HTTP 502.
 
-The source client now identifies that explicit notice and the workflow stops immediately, with a maintenance category and recovery advice. A live check made **one HTTP request**, stopped in the recorded duration, made **zero model calls** and created no report; see [the check](evidence/maintenance-stop-check.json). Generic gateway errors without a maintenance notice still receive bounded retries. This improves client behaviour but does not restore the upstream service.
+The earlier single-source implementation identified that explicit notice and stopped immediately, with a maintenance category and recovery advice. Its live check made **one HTTP request**, made **zero model calls** and created no report; see [the historical check](evidence/maintenance-stop-check.json). This behaviour remains available with `--source-policy singstat`. The current default continues independent MOM/MAS downloads after stopping SingStat requests, as validated above. Generic gateway errors without a maintenance notice still receive bounded retries.
 
-The accessible main-site national-accounts page was also fetched directly and its displayed GDP rows extracted successfully; see [the independent source feasibility probe](evidence/direct-official-gdp-probe.json). These latest/previous observations are not a replacement for a complete historical dataset. Independent official-file adapters remain a separate integration step.
+The accessible main-site national-accounts page was also fetched directly and its displayed GDP rows extracted successfully; see [the independent source feasibility probe](evidence/direct-official-gdp-probe.json). These latest/previous observations are not a replacement for a complete historical dataset and that GDP route is not integrated.
 
-Independent MOM unemployment CSV and quarterly income XLSX downloads, and the MAS public daily compounded-SORA CSV export, returned HTTP 200 during source-route checks. [Recorded routes](evidence/independent-official-source-routes.json) explain scope and frequency checks still needed before integration. These checks do not claim the main workflow already supports these alternate parsers.
+Independent MOM unemployment CSV and quarterly income XLSX downloads, and the MAS public daily compounded-SORA CSV export, are now integrated and live-validated in the default workflow. [Recorded routes](evidence/independent-official-source-routes.json) distinguish these integrations from the separate GDP feasibility check.

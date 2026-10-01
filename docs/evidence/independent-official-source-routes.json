@@ -1,6 +1,6 @@
 {
   "checked_date_singapore": "2026-10-01",
-  "status": "Feasibility checks, not integrated replacement adapters",
+  "status": "MOM and MAS routes integrated and live-validated; GDP latest-page route remains a feasibility probe only",
   "routes": [
     {
       "indicator": "Resident unemployment rate, seasonally adjusted",
@@ -8,7 +8,8 @@
       "url": "https://stats.mom.gov.sg/iMAS_Tables1/CSV/mrsd_11_Resident_unemployment_rate_n_number.csv",
       "format": "CSV",
       "observed_http_status": 200,
-      "coverage_note": "Quarterly history, with explicit residential status and seasonally adjusted unemployment rate fields. Exclude annual-average rows when matching quarterly series."
+      "coverage_note": "Quarterly history, with explicit residential status and seasonally adjusted unemployment rate fields. Exclude annual-average rows when matching quarterly series.",
+      "integrated": true
     },
     {
       "indicator": "Mean gross monthly employment income of residents, quarterly",
@@ -16,7 +17,8 @@
       "url": "https://stats.mom.gov.sg/iMAS_Tables1/Time-Series-Table/mrsd_72_Mean_GMI_Emp_Res_Quarterly.xlsx",
       "format": "XLSX",
       "observed_http_status": 200,
-      "coverage_note": "Includes employer/platform CPF and excludes bonuses. Review concepts, revisions, preliminary markers and published precision before treating it as identical to the existing series."
+      "coverage_note": "Includes employer/platform CPF and excludes bonuses. Review concepts, revisions, preliminary markers and published precision before treating it as identical to the existing series.",
+      "integrated": true
     },
     {
       "indicator": "Compounded three-month SORA",
@@ -24,7 +26,8 @@
       "url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
       "format": "Public download form returning CSV",
       "observed_http_status": 200,
-      "coverage_note": "Tested public daily export includes SORA value and publication dates. Daily data require validated month-end selection to match the existing monthly series; do not silently change frequency."
+      "coverage_note": "Tested public daily export includes SORA value and publication dates. Daily data require validated month-end selection to match the existing monthly series; do not silently change frequency.",
+      "integrated": true
     },
     {
       "indicator": "GDP in chained 2015 dollars",
@@ -32,7 +35,8 @@
       "url": "https://www.singstat.gov.sg/find-data/explore-data-themes/economy-prices/national-accounts/latest-news-data",
       "format": "HTML table",
       "observed_http_status": 200,
-      "coverage_note": "Root extracted current/previous observations, not full history; see direct-official-gdp-probe.json."
+      "coverage_note": "Root extracted current/previous observations, not full history; see direct-official-gdp-probe.json.",
+      "integrated": false
     }
   ],
   "implementation_requirements": [
@@ -40,5 +44,6 @@
     "Map each indicator by scope, frequency, unit, adjustment and revisions",
     "Keep displayed precision and publication dates separate from observation dates",
     "Do not splice unrelated or stale series merely because labels look similar"
-  ]
+  ],
+  "validation": "independent-source-validation.json"
 }

@@ -1,0 +1,26 @@
+{
+  "metadata_origin": "Locally generated adapter metadata; not an official API response",
+  "source_url": "https://stats.mom.gov.sg/Pages/Income-Summary-Table.aspx",
+  "download_url": "https://stats.mom.gov.sg/iMAS_Tables1/Time-Series-Table/mrsd_72_Mean_GMI_Emp_Res_Quarterly.xlsx",
+  "official_title": "Mean Gross Monthly Income From Employment (Including Employer/Platform Operator CPF contributions and Excluding Bonus) of Employed Residents",
+  "unit": "Dollars",
+  "sheet": "Sheet1",
+  "source_attribution": "Source: Labour Force Survey, Manpower Research and Statistics Department, MOM",
+  "notes": [
+    "1. Residents refer to Singapore Citizens and Permanent Residents.",
+    "2. Gross monthly income refers to income earned from employment. For employees, it refers to the gross monthly wages or salaries before deduction of employee CPF contributions and personal income tax. It comprises basic wages, overtime pay, commissions, tips and other allowances. For self-employed persons, gross monthly income refers to the average monthly profits from their business, trade or profession (i.e. total receipts less business expenses incurred) before deduction of income tax and platform workers’ share of CPF contributions.",
+    "3. Data are for all employed persons excluding full-time National Servicemen.",
+    "4. The change in mean gross monthly income (GMI) (change in income per worker) is a suitable statistic for comparison with the change in labour productivity (change in value-added per worker) as both are expressed on a “per worker” basis.  When studying the change in mean gross monthly income of any quarter, it would be more meaningful to compare it with the same quarter of prior years, so as to limit seasonal variations that mask the underlying actual trend in income. Also, as the mean GMI pertains to mean earnings, it can be skewed upwards by a small number of very high income earners.",
+    "5. p: preliminary."
+  ],
+  "note_locators": [
+    "Sheet1!A10",
+    "Sheet1!A11",
+    "Sheet1!A12",
+    "Sheet1!A13",
+    "Sheet1!A14"
+  ],
+  "layout": "Sheet1: title A2, unit row 4, quarter labels row 5, dollar levels row 6, source row 7, notes column A",
+  "preliminary_marker": "p in the quarter label; retained in raw_period and preliminary",
+  "mapping_note": "Mapped to the reviewed SingStat series ID; publisher title explicitly includes platform operator CPF contributions."
+}

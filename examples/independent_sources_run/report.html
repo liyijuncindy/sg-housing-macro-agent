@@ -1,0 +1,175 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Housing research brief</title><style>body{max-width:1100px;margin:40px auto;padding:0 24px;background:#f6f7f9;color:#172033;font:16px/1.7 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;border:1px solid #dbe1e8;padding:28px;border-radius:12px;font:inherit}</style><body><pre># Singapore housing: macroeconomic research brief
+
+**Reporting date:** 2026-10-01  
+**Run:** `independent_sources_run`  
+**Generated at:** 2026-10-01T09:19:06+00:00  
+**Analysis mode:** Deterministic rules; reviewed qualitative templates, no model call  
+**Data basis:** Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.
+
+&gt; This is a study of possible indicators, not a price forecast or evidence of causation. The reporting date filters observation dates; the values are from the latest downloaded vintage. Observation-level release dates and historical revisions are generally unavailable. This report does not recreate the information set known on the reporting date.
+
+## Candidate selection
+
+Evaluated 12 candidates and selected 3. Deterministic data-quality and economic-family diversity selection. Family is metadata.selection_family when specified, otherwise metadata.theme. Exclude ineligible data; sort by quality score descending then id ascending; first select the best candidate per family, then fill remaining capacity by score. Never fill capacity with ineligible data. Scores measure usability and do not establish causal or predictive value; no target-based predictive validation is performed.
+
+Quality scores describe data usability, not predictive strength. The candidate universe is bounded by a reviewed catalogue; live official catalogue search is saved separately. Final inclusion changes with actual data quality and the reporting date. Predictive validation against housing outcomes is not performed in this first version.
+
+| Candidate | Theme | Latest usable period | Quality score | Decision | Reason |
+|---|---|---|---:|---|---|
+| Resident Population (M810001:2) | population_demand | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+| Non-Resident Population (M810001:5) | population_demand | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+| GDP In Chained (2015) Dollars (M015661:1) | economic_activity | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+| Resident Unemployment Rate, (SA) (M182342:2) | labour_market | 2026-Q2 | 95 | Selected | Selected for economic-family coverage (labour_market): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified. |
+| Mean Gross Monthly Income From Employment (Including Employer/Platform Operator CPF contributions and Excluding Bonus) of Employed Residents (M184101:1) | household_income | 2026-Q2 | 95 | Selected | Selected for economic-family coverage (household_income): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified. |
+| Personal Disposable Income (Nominal) (M016081:1) | household_income | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+| Compounded Singapore Overnight Rate Average (SORA) - 3 Month (M700071:23) | financing_cost | 2026-09 | 100 | Selected | Selected for economic-family coverage (financing_cost): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified. |
+| Consumer Loans - Housing And Bridging Loans (M701091:1.2.1) | housing_credit | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+| All Types Private Residential Properties Available (M400841:1) | completed_supply | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+| All Types Private Residential Properties Vacant (M400841:2) | vacant_supply | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+| Total Non-Landed Properties (M400391:2) | future_supply | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+| All Items (M213751:1) | inflation | Unavailable | 0 | Excluded | Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience. |
+
+## Compounded Singapore Overnight Rate Average (SORA) - 3 Month
+
+- **Series:** `M700071:23`; **Theme:** financing_cost
+- **Source:** MONETARY AUTHORITY OF SINGAPORE via [MAS direct public daily CSV; verified month-end sampling](https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx)
+- **Definition:** Three-month compounded Singapore Overnight Rate Average (SORA), observed at month-end and expressed as an annual percentage rate.
+- **Coverage:** Singapore-dollar benchmark interest rate; not an individual mortgage offer.
+- **Unit:** Per Cent Per Annum; **Observation frequency:** M; **Seasonal adjustment:** Not labelled as seasonally adjusted
+- **Update frequency:** MAS publishes daily business-day observations; this adapter derives verified completed calendar-month endpoints. Source publication/index dates are retained separately.
+- **Latest usable observation:** 1.2336 Per Cent Per Annum in 2026-09 (evidence `M700071:23:latest`)
+- **Observation reference date:** Period end used conservatively
+- **Source table last updated:** Not supplied; **Retrieved:** 2026-10-01T09:19:07+00:00
+
+| Comparison | Latest period | Base period | Change | Unit | Evidence |
+|---|---|---|---:|---|---|
+| previous_period | 2026-09 | 2026-08 | 4.73 | basis points | M700071:23:previous_period |
+| year_on_year | 2026-09 | 2025-09 | -21.96 | basis points | M700071:23:year_on_year |
+
+**Possible sales-market channel:** Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage rates reset.
+
+**Possible rental-market channel:** Higher ownership financing costs may shift tenure choices and landlords&#x27; costs; the net rental effect is ambiguous.
+
+**Possible lag:** Pass-through depends on mortgage pricing, reset dates and fixed-rate periods, often over subsequent months.
+
+**Limitations:** Month-end snapshot, not a monthly average. Mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through; SORA changes alone cannot determine housing prices.
+
+Referenced evidence: `M700071:23:latest`.
+- Data warning: Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.
+- Data warning: Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.
+- Source transformation: Group daily records by the calendar month of SORA Value Date and select the last value-date record, not the last publication-date record and not an average. The month must end on or before as_of. Its last record&#x27;s SORA Publication Date must cross that month-end, providing conservative evidence that the last business-day record was received. Otherwise omit the month instead of substituting an earlier value. This can temporarily omit the newest month. A null final value remains null. The original daily CSV dates and row position are retained. Source publication dates are CSV labels, also described by MAS as compounded-index value dates; they do not prove when the historical three-month series was first available. No observation published_at is invented.
+
+&lt;details&gt;&lt;summary&gt;Trace the numbers&lt;/summary&gt;
+
+Raw response: `raw/mas_sora_daily_04_78ea273ef62f7c09.csv`; SHA-256 `53828a3f009324dce050a6a8bd0285bc071da79271bb62d4151a944d1ec257c9`.
+
+Reviewed catalogue identity: `M700071:23`. Actual source location for the latest value: `CSV record 5403, column 5 (Compound SORA - 3 month)`. The observations retain original labels, values and file locations; monthly samples also retain their source daily dates. Adapter-generated definition and transformation notes: `raw/mas_sora_3m_adapter_metadata.json` (SHA-256 `a29728b251ab02c7734e0eab3531747016844a39dc473457a9f60928ff27c15e`); this is not an official API metadata response. Each calculated change retains the formula and both input observations.
+
+- `M700071:23:previous_period`: `(latest_value - base_value) * 100`; inputs 1.2336 and 1.1863.
+- `M700071:23:year_on_year`: `(latest_value - base_value) * 100`; inputs 1.2336 and 1.4532.
+
+Source row note: Monthly sampling uses the last SORA Value Date, not the SORA Publication Date. Both dates are preserved in observations. Group daily records by the calendar month of SORA Value Date and select the last value-date record, not the last publication-date record and not an average. The month must end on or before as_of. Its last record&#x27;s SORA Publication Date must cross that month-end, providing conservative evidence that the last business-day record was received. Otherwise omit the month instead of substituting an earlier value. This can temporarily omit the newest month. A null final value remains null. The original daily CSV dates and row position are retained. Source publication dates are CSV labels, also described by MAS as compounded-index value dates; they do not prove when the historical three-month series was first available. No observation published_at is invented.
+
+&lt;/details&gt;
+
+## Resident Unemployment Rate, (SA)
+
+- **Series:** `M182342:2`; **Theme:** labour_market
+- **Source:** MINISTRY OF MANPOWER via [MOM official CSV](https://stats.mom.gov.sg/Pages/Unemployment-Summary-Table.aspx)
+- **Definition:** Resident unemployment rate at quarter-end, seasonally adjusted; residents are citizens and permanent residents.
+- **Coverage:** Resident labour force, not the entire resident population or non-resident workforce.
+- **Unit:** Per Cent; **Observation frequency:** Q; **Seasonal adjustment:** Seasonally Adjusted
+- **Update frequency:** Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.
+- **Latest usable observation:** 2.9 Per Cent in 2026-Q2 (evidence `M182342:2:latest`)
+- **Observation reference date:** Period end used conservatively
+- **Source table last updated:** Not supplied in the CSV; **Retrieved:** 2026-10-01T09:19:06+00:00
+
+| Comparison | Latest period | Base period | Change | Unit | Evidence |
+|---|---|---|---:|---|---|
+| previous_period | 2026-Q2 | 2026-Q1 | 0 | percentage points | M182342:2:previous_period |
+| year_on_year | 2026-Q2 | 2025-Q2 | 0.2 | percentage points | M182342:2:year_on_year |
+
+**Possible sales-market channel:** A higher unemployment rate may weaken purchasing capacity and confidence.
+
+**Possible rental-market channel:** A higher rate may weaken residents&#x27; ability to pay rents, with effects depending on household circumstances.
+
+**Possible lag:** Current labour-market stress; housing responses may follow over subsequent quarters.
+
+**Limitations:** The seasonally adjusted series is revised annually. It excludes non-residents and does not measure earnings, job security or underemployment.
+
+Referenced evidence: `M182342:2:latest`.
+- Data warning: Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.
+- Data warning: Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.
+
+&lt;details&gt;&lt;summary&gt;Trace the numbers&lt;/summary&gt;
+
+Raw response: `raw/mom_resident_unemployment_01_70f48654b5a63952.csv`; SHA-256 `832bf5774be0a6d48d85e8869d58327140c2bd04bb053064a8cbdc95ffa7ded1`.
+
+Reviewed catalogue identity: `M182342:2`. Actual source location for the latest value: `CSV row 139, column seasonally_adjusted_unemployment_rate`. The observations retain original labels, values and file locations; monthly samples also retain their source daily dates. Adapter-generated definition and transformation notes: `raw/mom_resident_unemployment_adapter_metadata.json` (SHA-256 `23bdc9e4356376e1a40fae3f49f3876ca71b3ec1d49c7660f024c3b0b61d8936`); this is not an official API metadata response. Each calculated change retains the formula and both input observations.
+
+- `M182342:2:previous_period`: `latest_value - base_value`; inputs 2.9 and 2.9.
+- `M182342:2:year_on_year`: `latest_value - base_value`; inputs 2.9 and 2.7.
+
+Source row note: Resident means Singapore citizens and permanent residents. This adapter selects quarter rows and the seasonally_adjusted_unemployment_rate column, preserving the published CSV precision. It excludes annual averages and unadjusted rates. Seasonal adjustment can be revised. The CSV does not provide observation publication dates or preliminary flags; none are inferred. Definitions and current release notes: https://stats.mom.gov.sg/Pages/Unemployment-Summary-Table.aspx
+
+&lt;/details&gt;
+
+## Mean Gross Monthly Income From Employment (Including Employer/Platform Operator CPF contributions and Excluding Bonus) of Employed Residents
+
+- **Series:** `M184101:1`; **Theme:** household_income
+- **Source:** MINISTRY OF MANPOWER via [MOM official XLSX](https://stats.mom.gov.sg/Pages/Income-Summary-Table.aspx)
+- **Definition:** Mean gross monthly employment income of employed residents, including employer/platform operator CPF contributions and excluding bonus; before employee CPF and personal income tax deductions.
+- **Coverage:** Employed citizens and permanent residents excluding full-time National Servicemen; Singapore dollars per employed person.
+- **Unit:** Dollars; **Observation frequency:** Q; **Seasonal adjustment:** Not labelled as seasonally adjusted
+- **Update frequency:** Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.
+- **Latest usable observation:** 6,605 Dollars in 2026-Q2 (evidence `M184101:1:latest`)
+- **Observation reference date:** Period end used conservatively
+- **Source table last updated:** Not supplied as a release timestamp in the workbook; **Retrieved:** 2026-10-01T09:19:06+00:00
+
+| Comparison | Latest period | Base period | Change | Unit | Evidence |
+|---|---|---|---:|---|---|
+| year_on_year | 2026-Q2 | 2025-Q2 | 3.3646 | % | M184101:1:year_on_year |
+
+**Possible sales-market channel:** Higher employment income may improve borrowing and purchasing capacity.
+
+**Possible rental-market channel:** Higher employment income may support rent affordability.
+
+**Possible lag:** Income changes may pass through to purchase and lease decisions over subsequent quarters.
+
+**Limitations:** Includes employer CPF and is not cash take-home pay. The mean can be skewed by high earners; composition changes matter. Official metadata recommends same-quarter year-on-year comparisons; history begins in 2021 Q2.
+
+Referenced evidence: `M184101:1:latest`.
+- Data warning: Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.
+- Data warning: the latest observation is marked preliminary by the official source.
+
+&lt;details&gt;&lt;summary&gt;Trace the numbers&lt;/summary&gt;
+
+Raw response: `raw/mom_mean_employment_income_02_8fc73a0c377c47e2.xlsx`; SHA-256 `dc0ab955ae76b339d1955d7f2482b80121258a957ce51896a2bf773f581c1d77`.
+
+Reviewed catalogue identity: `M184101:1`. Actual source location for the latest value: `Sheet1!U6 (period Sheet1!U5)`. The observations retain original labels, values and file locations; monthly samples also retain their source daily dates. Adapter-generated definition and transformation notes: `raw/mom_mean_employment_income_adapter_metadata.json` (SHA-256 `f832fc4b1578cf34c647e4bb9a69ce882d146a7528739bba340660e8721c9d7a`); this is not an official API metadata response. Each calculated change retains the formula and both input observations.
+
+- `M184101:1:year_on_year`: `(latest_value / base_value - 1) * 100`; inputs 6,605 and 6,390.
+
+Source row note: 1. Residents refer to Singapore Citizens and Permanent Residents. 2. Gross monthly income refers to income earned from employment. For employees, it refers to the gross monthly wages or salaries before deduction of employee CPF contributions and personal income tax. It comprises basic wages, overtime pay, commissions, tips and other allowances. For self-employed persons, gross monthly income refers to the average monthly profits from their business, trade or profession (i.e. total receipts less business expenses incurred) before deduction of income tax and platform workers’ share of CPF contributions. 3. Data are for all employed persons excluding full-time National Servicemen. 4. The change in mean gross monthly income (GMI) (change in income per worker) is a suitable statistic for comparison with the change in labour productivity (change in value-added per worker) as both are expressed on a “per worker” basis.  When studying the change in mean gross monthly income of any quarter, it would be more meaningful to compare it with the same quarter of prior years, so as to limit seasonal variations that mask the underlying actual trend in income. Also, as the mean GMI pertains to mean earnings, it can be skewed upwards by a small number of very high income earners. 5. p: preliminary.
+
+&lt;/details&gt;
+
+## Run limitations and reproducibility
+
+- SingStat Table Builder is under maintenance; remaining searches and SingStat-only candidates were skipped. Independent MOM and MAS downloads were still attempted.
+- Excluded M810001:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Excluded M810001:5 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Excluded M015661:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Excluded M016081:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Excluded M701091:1.2.1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Excluded M400841:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Excluded M400841:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Excluded M400391:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Excluded M213751:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.
+- Selected fewer candidates than requested; missing slots were not filled with ineligible series.
+- Mixed observation frequencies are preserved; annual data are not interpolated to months.
+- Private residential series retain their own coverage and are not automatically generalised to HDB housing.
+- Qualitative mechanisms are research hypotheses. A market forecast would require an explicit outcome, vintage-aware validation and held-out evaluation.
+- Regenerate the saved report with the replay command in the README. Replay verifies file hashes and reuses saved facts and narratives without data or model calls.
+- Refreshing sources creates a different run; source revisions can change results. Raw snapshots are never silently overwritten.
+</pre></body></html>

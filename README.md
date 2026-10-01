@@ -129,6 +129,7 @@ python -m housing_agent --help
 - [工程设计与局限](docs/engineering-report.md)
 - [已核验的数据源与口径](docs/source-evidence.md)
 - [测试与实际运行证据](docs/validation.md)
+- [官网直接取数样例报告](examples/independent_sources_run/report.md)（SingStat 维护期间，MOM/MAS 三项实时下载通过；规则模式）
 - [真实 SoCLaaS 样例报告](examples/soclaas_verified_run/report.md)（已保存的官方数据 + 新模型调用）
 - [规则基线样例报告](examples/sample_run/report.md)
 

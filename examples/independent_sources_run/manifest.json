@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "run_id": "independent_sources_run",
+  "created_at": "2026-10-01T09:19:06+00:00",
+  "as_of": "2026-10-01",
+  "as_of_policy": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "mode": "rules",
+  "mode_label": "Deterministic rules; reviewed qualitative templates, no model call",
+  "provider": null,
+  "model": null,
+  "source_policy": "auto",
+  "data_basis": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "package_version": "0.1.0",
+  "python_version": "3.12.14",
+  "warnings": [
+    "SingStat Table Builder is under maintenance; remaining searches and SingStat-only candidates were skipped. Independent MOM and MAS downloads were still attempted.",
+    "Excluded M810001:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M810001:5 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M015661:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M016081:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M701091:1.2.1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M400841:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M400841:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M400391:2 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Excluded M213751:1 after retrieval or validation failure: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+    "Selected fewer candidates than requested; missing slots were not filled with ineligible series."
+  ],
+  "status": "complete_with_warnings",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  },
+  "code_commit": "14b80b7d65897f695adb28192d781be6bbc98f8e",
+  "code_worktree_dirty": false,
+  "code_hashes": {
+    "__init__.py": "317887a06fbcf9959e1393d3ee1911689881a6cbbe20a8e404ca966a8db9425d",
+    "__main__.py": "3d8d9292d9e7ef023c496dfccbdf9a7c626bd41b565acf1942542b3d4feee6df",
+    "agent.py": "51447c92d6938a231cd7bb10baafae791035d51179cfdc291ff97ad8bc5955c1",
+    "engine.py": "ebad3238e3eec2614fa4c61802acc5cbb2bc7d32379f3aec4f86624324837c51",
+    "mas_sources.py": "fb147735d7ec035e2057650a3521a30eb9af347ca8381d4920b90554c79aecef",
+    "mom_sources.py": "ea94901b7ed3f6899fda887c25a9f8a642db65f2bed90b2a58ece5644125f308",
+    "official_sources.py": "39607ee459f5e07968c478bb920a8684ebf06754fa9db746c3231153c18ed308",
+    "pipeline.py": "b4aed8b9cfbbccc392b518da4f31bb115a9cead2bc4faf8ea562d51041291f3c",
+    "report.py": "5c3d3ce3093ab0ab542fdee6ecd4f649133639dfb7514b186a02a4ffd23f1a54",
+    "sources.py": "fd1ff79face05ad3795d3c3590af08e44e70e45cf63de39182f7eade4f5968b9",
+    "storage.py": "7778396b86c99c8ce251016cd009c109a5baf11657d30e1306950aa37fe72ac8"
+  },
+  "source_coverage": {
+    "candidates": 12,
+    "downloaded": 3,
+    "eligible": 3,
+    "singstat_maintenance": true,
+    "providers": [
+      "MAS direct public daily CSV; verified month-end sampling",
+      "MOM official CSV",
+      "MOM official XLSX"
+    ]
+  },
+  "selected_ids": [
+    "M700071:23",
+    "M182342:2",
+    "M184101:1"
+  ],
+  "finished_at": "2026-10-01T09:19:07+00:00",
+  "elapsed_seconds": 0.963,
+  "files": {
+    "catalogue.json": "bd16b0496dcd6559018a55835425223321f5b4337dced8820aa631247234e8e0",
+    "discovery.json": "0a919d48b601f84eefcd1451e3e79e050067bccab46cd7b94791dbd6fc81e9ab",
+    "evaluations.json": "9e93b24aba014bc5971869642898c2e36612bf28184000faed8408a6b35db10a",
+    "normalized.json": "6228ab1bb9018e93454402cf7a76360f62c6d66eb6d33d6bf4098e0c69c925ed",
+    "processed.csv": "1ad3bf697460bcd69a4aad64fddd02c861cedde9ed02927c05a2b87ca312b714",
+    "raw/mas_sora_3m_adapter_metadata.json": "a29728b251ab02c7734e0eab3531747016844a39dc473457a9f60928ff27c15e",
+    "raw/mas_sora_daily_04_78ea273ef62f7c09.csv": "53828a3f009324dce050a6a8bd0285bc071da79271bb62d4151a944d1ec257c9",
+    "raw/mas_sora_form_03_f6b6b3a888ef6703.html": "0c9c47b95930cebd0afff3461acc85382facf7f322bf3ea6d48342452d704a40",
+    "raw/mom_mean_employment_income_02_8fc73a0c377c47e2.xlsx": "dc0ab955ae76b339d1955d7f2482b80121258a957ce51896a2bf773f581c1d77",
+    "raw/mom_mean_employment_income_adapter_metadata.json": "f832fc4b1578cf34c647e4bb9a69ce882d146a7528739bba340660e8721c9d7a",
+    "raw/mom_resident_unemployment_01_70f48654b5a63952.csv": "832bf5774be0a6d48d85e8869d58327140c2bd04bb053064a8cbdc95ffa7ded1",
+    "raw/mom_resident_unemployment_adapter_metadata.json": "23bdc9e4356376e1a40fae3f49f3876ca71b3ec1d49c7660f024c3b0b61d8936",
+    "report.html": "3dc33bc8e8c14c97117583e074da81b7e46f1a7579c5c8ba01edb5a82e02a12f",
+    "report.md": "5dd1d793e43e401a3ae4fb6bd399b75822140f247fa91643e3ede6841e262709",
+    "report_context.json": "3b27fd588121456fd0b80d42c51c9a0537b6bed76db7b0fc97282f7a5b7978f7",
+    "retrievals.json": "1734ff7fc9bab5a2abe934dc2ec724a74a6e6b69f53d5bb830b78c135d4edc08",
+    "selection.json": "efe70725460a5c14083df0ef10bef04c9af8447fb04a64683d98ff3ab1c35dca"
+  }
+}

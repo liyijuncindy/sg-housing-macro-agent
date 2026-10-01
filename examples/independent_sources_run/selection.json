@@ -1,0 +1,104 @@
+{
+  "selected_ids": [
+    "M700071:23",
+    "M182342:2",
+    "M184101:1"
+  ],
+  "decisions": [
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    },
+    {
+      "id": "M182342:2",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (labour_market): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M184101:1",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (household_income): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    },
+    {
+      "id": "M400841:1",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    },
+    {
+      "id": "M400841:2",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    },
+    {
+      "id": "M700071:23",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (financing_cost): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    },
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason": "Excluded by data-quality rules: SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience."
+    }
+  ],
+  "method": "Deterministic data-quality and economic-family diversity selection. Family is metadata.selection_family when specified, otherwise metadata.theme. Exclude ineligible data; sort by quality score descending then id ascending; first select the best candidate per family, then fill remaining capacity by score. Never fill capacity with ineligible data. Scores measure usability and do not establish causal or predictive value; no target-based predictive validation is performed.",
+  "narratives": {
+    "M182342:2": {
+      "sales": "A higher unemployment rate may weaken purchasing capacity and confidence.",
+      "rents": "A higher rate may weaken residents' ability to pay rents, with effects depending on household circumstances.",
+      "lag": "Current labour-market stress; housing responses may follow over subsequent quarters.",
+      "limitations": "The seasonally adjusted series is revised annually. It excludes non-residents and does not measure earnings, job security or underemployment.",
+      "evidence_ids": [
+        "M182342:2:latest"
+      ]
+    },
+    "M184101:1": {
+      "sales": "Higher employment income may improve borrowing and purchasing capacity.",
+      "rents": "Higher employment income may support rent affordability.",
+      "lag": "Income changes may pass through to purchase and lease decisions over subsequent quarters.",
+      "limitations": "Includes employer CPF and is not cash take-home pay. The mean can be skewed by high earners; composition changes matter. Official metadata recommends same-quarter year-on-year comparisons; history begins in 2021 Q2.",
+      "evidence_ids": [
+        "M184101:1:latest"
+      ]
+    },
+    "M700071:23": {
+      "sales": "Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage rates reset.",
+      "rents": "Higher ownership financing costs may shift tenure choices and landlords' costs; the net rental effect is ambiguous.",
+      "lag": "Pass-through depends on mortgage pricing, reset dates and fixed-rate periods, often over subsequent months.",
+      "limitations": "Month-end snapshot, not a monthly average. Mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through; SORA changes alone cannot determine housing prices.",
+      "evidence_ids": [
+        "M700071:23:latest"
+      ]
+    }
+  },
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  }
+}
