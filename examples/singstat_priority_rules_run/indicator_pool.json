@@ -1,0 +1,3154 @@
+{
+  "schema_version": 1,
+  "title": "新加坡住宅市场：完整候选指标池",
+  "columns": [
+    "指标",
+    "口径与频率",
+    "纳入候选池理由",
+    "官方来源",
+    "本次数据状态",
+    "本次选择与理由",
+    "限制"
+  ],
+  "run": {
+    "run_id": "singstat_priority_rules_run",
+    "as_of": "2026-10-01",
+    "created_at": "2026-10-01T11:49:00+00:00",
+    "mode": "rules",
+    "mode_label": "Deterministic rules; reviewed qualitative templates, no model call",
+    "status": "complete_with_warnings",
+    "source_policy": "saved",
+    "data_basis": "Verified saved source snapshot from singstat_priority_verified_run, captured from 2026-10-01T11:47:03+00:00; original retrieval timestamps are preserved. No new source refresh was performed. Saved captured vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+    "source_run": {
+      "name": "singstat_priority_verified_run",
+      "manifest_sha256": "87b61d6ad72e61e267136713837032c478371508535f691050f2ca77649c85b4",
+      "original_created_at": "2026-10-01T11:45:38+00:00",
+      "retrieved_at_min": "2026-10-01T11:47:03+00:00",
+      "retrieved_at_max": "2026-10-01T11:47:07+00:00"
+    }
+  },
+  "source_run_id": "singstat_priority_verified_run",
+  "snapshot_reused": true,
+  "source_capture": {
+    "min": "2026-10-01T11:47:03+00:00",
+    "max": "2026-10-01T11:47:07+00:00",
+    "captured_series_with_timestamp": 16,
+    "captured_series_missing_timestamp": 0
+  },
+  "source_capture_note": "复用已保存的来源快照；沿用原抓取时间，本次没有重新取数。",
+  "selection_method": "Deterministic data-quality and economic-family diversity selection. Family is metadata.selection_family when specified, otherwise metadata.theme. Exclude ineligible data; sort by quality score descending then id ascending; first select the best candidate per family, then fill remaining capacity by score. Never fill capacity with ineligible data. Scores measure usability and do not establish causal or predictive value; no target-based predictive validation is performed.",
+  "rows": [
+    {
+      "id": "M810001:2",
+      "name_zh": "居民人口",
+      "name": "Resident Population",
+      "definition": "Singapore citizens and permanent residents as at end-June; from 2003 excludes residents continuously overseas for at least 12 months at the reference date.",
+      "definition_zh": "每年 6 月底的新加坡公民及永久居民人数；自 2003 年起，不包括参考日已连续在海外居住至少 12 个月的居民。",
+      "definition_origin": "actual_metadata",
+      "frequency": "A",
+      "frequency_zh": "年度",
+      "unit": "Number",
+      "unit_zh": "人",
+      "scope": "Singapore resident population, not number of households or homebuyers.",
+      "rationale_zh": "用于观察本地住房需求的潜在人口基础；若家庭形成和购买能力同步增加，人口增长可能支持购房或租房需求。",
+      "caveat_zh": "人口不等于家庭数、购房人数或住房需求预测；1990 年前的人口概念及 2003 年覆盖变化限制长期可比性。年度参考日为 6 月 30 日，不是年底。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+        "label": "SingStat Table Builder",
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+        "planned_label": "SingStat 官方表：人口与人口结构"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026",
+        "value": 4231524.0,
+        "raw_period": "2026",
+        "raw_value": "4231524",
+        "raw_index": 47,
+        "observation_date": "2026-06-30"
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.",
+          "Used source-backed observation dates within the period for 48 observations; other observations use period-end cutoffs."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 48,
+        "window_start_period": "2017",
+        "window_end_period": "2026",
+        "coverage_start_period": "2017",
+        "coverage_end_period": "2026",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026；4,231,524 人；质量分：100/100",
+      "status": "selected",
+      "status_label": "已选入本次报告",
+      "filter_group": "selected",
+      "selected": true,
+      "selection_record_selected": true,
+      "selection_summary_zh": "已选；满足本次数据门槛。在该经济类别中数据质量分最高，优先补足类别覆盖；同分按指标 ID 排序。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Selected for economic-family coverage (population_demand): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M810001:2",
+        "selected": true,
+        "reason": "Selected for economic-family coverage (population_demand): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+      },
+      "actual_metadata": {
+        "id": "M810001:2",
+        "name": "Resident Population",
+        "theme": "population_demand",
+        "selection_family": "population_demand",
+        "definition": "Singapore citizens and permanent residents as at end-June; from 2003 excludes residents continuously overseas for at least 12 months at the reference date.",
+        "unit": "Number",
+        "frequency": "A",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810001?seriesNoORrowNo=2&limit=5000",
+        "table_id": "M810001",
+        "row_id": "2",
+        "table_title": "Indicators On Population, Annual",
+        "source_agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "retrieved_at": "2026-10-01T11:47:03+00:00",
+        "source_updated_at": "25/09/2026",
+        "source_footnote": "More information available on the following: Population Trends report (https://www.singstat.gov.sg/publication-resources/population-trends-2026); Information Paper on 'Singapore Resident Population, 2003-2007' (https://www.singstat.gov.sg/publication-resources/singapore-resident-population-2003-2007);  How Singapore's Population Estimates Are Compiled (https://www.singstat.gov.sg/publication-resources/understanding-singapore-population-estimates); Rate of Natural Increase (https://www.singstat.gov.sg/publication-resources/singapores-rate-of-natural-increase-for-population); Old-Age Support Ratio (https://www.singstat.gov.sg/infographics/old-age-support-ratio); Are the Old-Age Support Ratio Trends Similar Across Different Working-Age Group (https://www.singstat.gov.sg/publication-resources/are-the-old-age-support-ratio-trends-similar-across-different-working-age-groups).",
+        "row_footnote": "Data are as at end-June.  Data prior to 1990 are based on de facto concept (i.e. the person is present in the country at the reference period), while data from 1990 onwards are based on de jure concept (i.e. the person's place of usual residence).  Data from 2003 onwards exclude residents who are overseas for a continuous period of 12 months or longer as at the reference period.",
+        "change_kind": "percent",
+        "scope": "Singapore resident population, not number of households or homebuyers.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": "06-30",
+        "provenance": {
+          "raw_file": "raw/tabledata_M810001_111a5f764bb0c97b.json",
+          "raw_sha256": "998bd3587b86d8d74e329bcc6a6a5225966482a689d42eec3a165e2f3452d6d2",
+          "metadata_file": "raw/metadata_M810001_65f2a1a53b2339e3.json",
+          "metadata_sha256": "c31ba1ad10337d2e5c530ac000904ce5a2b54420d9d6727433041b1006901807"
+        },
+        "mechanism": {
+          "sales": "A larger resident population may support owner-occupier demand when household formation and purchasing capacity also increase.",
+          "rents": "Population growth may support rental demand, conditional on household formation and tenure choices.",
+          "lag": "Annual demand context; the effect may develop over multiple quarters.",
+          "limitations": "Population is not household formation; pre-1990 population concepts and the 2003 coverage change limit long-run comparability. Historical observations may be revised."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M810001",
+        "row_id": "2",
+        "expected_name": "Resident Population",
+        "expected_unit": "Number",
+        "frequency": "A",
+        "theme": "population_demand",
+        "definition": "Singapore citizens and permanent residents as at end-June; from 2003 excludes residents continuously overseas for at least 12 months at the reference date.",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Singapore resident population, not number of households or homebuyers.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": "06-30",
+        "mechanism": {
+          "sales": "A larger resident population may support owner-occupier demand when household formation and purchasing capacity also increase.",
+          "rents": "Population growth may support rental demand, conditional on household formation and tenure choices.",
+          "lag": "Annual demand context; the effect may develop over multiple quarters.",
+          "limitations": "Population is not household formation; pre-1990 population concepts and the 2003 coverage change limit long-run comparability. Historical observations may be revised."
+        },
+        "selection_family": "population_demand"
+      },
+      "evaluation_reference": "evaluations.json#M810001:2",
+      "changes": [
+        {
+          "id": "M810001:2:year_on_year",
+          "comparison": "year_on_year",
+          "value": 0.6423808691,
+          "unit": "%",
+          "latest_period": "2026",
+          "latest_value": 4231524.0,
+          "base_period": "2025",
+          "base_value": 4204515.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026",
+              "value": 4231524.0,
+              "raw_period": "2026",
+              "raw_value": "4231524",
+              "raw_index": 47,
+              "observation_date": "2026-06-30"
+            },
+            {
+              "period": "2025",
+              "value": 4204515.0,
+              "raw_period": "2025",
+              "raw_value": "4204515",
+              "raw_index": 46,
+              "observation_date": "2025-06-30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M810001:5",
+      "name_zh": "非居民人口",
+      "name": "Non-Resident Population",
+      "definition": "Foreigners working, studying or living in Singapore without permanent residence, excluding tourists and short-term visitors, as at end-June.",
+      "definition_zh": "每年 6 月底在新加坡工作、学习或居住但无永久居民身份的外国人数，不包括游客及短期访客。",
+      "definition_origin": "actual_metadata",
+      "frequency": "A",
+      "frequency_zh": "年度",
+      "unit": "Number",
+      "unit_zh": "人",
+      "scope": "Singapore non-resident population; housing needs include arrangements beyond private residential rentals.",
+      "rationale_zh": "用于观察人口流动相关的租赁需求；其中寻求普通住宅住宿的人口增加，可能支持租房需求，并间接影响住房市场。",
+      "caveat_zh": "包含宿舍等普通住宅租赁以外的住宿安排，不能直接换算为租房人数；未区分收入、签证类别、家庭规模或住房类型。年度参考日为 6 月 30 日。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+        "label": "SingStat Table Builder",
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+        "planned_label": "SingStat 官方表：人口与人口结构"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026",
+        "value": 1976999.0,
+        "raw_period": "2026",
+        "raw_value": "1976999",
+        "raw_index": 47,
+        "observation_date": "2026-06-30"
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.",
+          "Used source-backed observation dates within the period for 48 observations; other observations use period-end cutoffs."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 48,
+        "window_start_period": "2017",
+        "window_end_period": "2026",
+        "coverage_start_period": "2017",
+        "coverage_end_period": "2026",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026；1,976,999 人；质量分：100/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: population_demand.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M810001:5",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: population_demand."
+      },
+      "actual_metadata": {
+        "id": "M810001:5",
+        "name": "Non-Resident Population",
+        "theme": "population_demand",
+        "selection_family": "population_demand",
+        "definition": "Foreigners working, studying or living in Singapore without permanent residence, excluding tourists and short-term visitors, as at end-June.",
+        "unit": "Number",
+        "frequency": "A",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810001?seriesNoORrowNo=5&limit=5000",
+        "table_id": "M810001",
+        "row_id": "5",
+        "table_title": "Indicators On Population, Annual",
+        "source_agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "retrieved_at": "2026-10-01T11:47:03+00:00",
+        "source_updated_at": "25/09/2026",
+        "source_footnote": "More information available on the following: Population Trends report (https://www.singstat.gov.sg/publication-resources/population-trends-2026); Information Paper on 'Singapore Resident Population, 2003-2007' (https://www.singstat.gov.sg/publication-resources/singapore-resident-population-2003-2007);  How Singapore's Population Estimates Are Compiled (https://www.singstat.gov.sg/publication-resources/understanding-singapore-population-estimates); Rate of Natural Increase (https://www.singstat.gov.sg/publication-resources/singapores-rate-of-natural-increase-for-population); Old-Age Support Ratio (https://www.singstat.gov.sg/infographics/old-age-support-ratio); Are the Old-Age Support Ratio Trends Similar Across Different Working-Age Group (https://www.singstat.gov.sg/publication-resources/are-the-old-age-support-ratio-trends-similar-across-different-working-age-groups).",
+        "row_footnote": "Data are as at end-June.  Non-resident population comprises foreigners who were working, studying or living in Singapore but not granted permanent residence, excluding tourists and short-term visitors.",
+        "change_kind": "percent",
+        "scope": "Singapore non-resident population; housing needs include arrangements beyond private residential rentals.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": "06-30",
+        "provenance": {
+          "raw_file": "raw/tabledata_M810001_495ed32846bcfef1.json",
+          "raw_sha256": "553d1d43645babc2d30ac1bbe939abe2c2cbde0d36a4fb5088ec1f7171e4ca4d",
+          "metadata_file": "raw/metadata_M810001_65f2a1a53b2339e3.json",
+          "metadata_sha256": "c31ba1ad10337d2e5c530ac000904ce5a2b54420d9d6727433041b1006901807"
+        },
+        "mechanism": {
+          "sales": "An increase may support housing demand indirectly, but tenure preferences and purchase restrictions affect the link to sales.",
+          "rents": "A larger non-resident population may support rental demand where residents seek ordinary residential accommodation.",
+          "lag": "Annual demand context; moves and lease renewals may transmit over subsequent quarters.",
+          "limitations": "Does not identify income, visa category, dormitory residence, household size or dwelling tenure. Population alone is not a rental-demand forecast."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M810001",
+        "row_id": "5",
+        "expected_name": "Non-Resident Population",
+        "expected_unit": "Number",
+        "frequency": "A",
+        "theme": "population_demand",
+        "definition": "Foreigners working, studying or living in Singapore without permanent residence, excluding tourists and short-term visitors, as at end-June.",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Singapore non-resident population; housing needs include arrangements beyond private residential rentals.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": "06-30",
+        "mechanism": {
+          "sales": "An increase may support housing demand indirectly, but tenure preferences and purchase restrictions affect the link to sales.",
+          "rents": "A larger non-resident population may support rental demand where residents seek ordinary residential accommodation.",
+          "lag": "Annual demand context; moves and lease renewals may transmit over subsequent quarters.",
+          "limitations": "Does not identify income, visa category, dormitory residence, household size or dwelling tenure. Population alone is not a rental-demand forecast."
+        },
+        "selection_family": "population_demand"
+      },
+      "evaluation_reference": "evaluations.json#M810001:5",
+      "changes": [
+        {
+          "id": "M810001:5:year_on_year",
+          "comparison": "year_on_year",
+          "value": 3.6891212906,
+          "unit": "%",
+          "latest_period": "2026",
+          "latest_value": 1976999.0,
+          "base_period": "2025",
+          "base_value": 1906660.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026",
+              "value": 1976999.0,
+              "raw_period": "2026",
+              "raw_value": "1976999",
+              "raw_index": 47,
+              "observation_date": "2026-06-30"
+            },
+            {
+              "period": "2025",
+              "value": 1906660.0,
+              "raw_period": "2025",
+              "raw_value": "1906660",
+              "raw_index": 46,
+              "observation_date": "2025-06-30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M015661:1",
+      "name_zh": "实际国内生产总值（GDP）",
+      "name": "GDP In Chained (2015) Dollars",
+      "definition": "Quarterly gross domestic product measured in chained 2015 Singapore dollars; a measure of real domestic economic activity.",
+      "definition_zh": "按 2015 年链式价格计量的季度国内生产总值，单位为百万新加坡元，覆盖新加坡整体经济。",
+      "definition_origin": "actual_metadata",
+      "frequency": "Q",
+      "frequency_zh": "季度",
+      "unit": "Million Dollars",
+      "unit_zh": "百万新元",
+      "scope": "Whole Singapore economy; million Singapore dollars at chained 2015 prices.",
+      "rationale_zh": "用于观察总体经济活动；经济增长可能通过就业、收入和信心影响购房能力及就业相关的租赁需求。",
+      "caveat_zh": "该序列未标注季节调整，优先比较同比；初步估计及历史值可能修订。GDP 与住房可能受共同因素影响，不能据此认定因果或预测能力。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M015661",
+        "label": "SingStat Table Builder",
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M015661",
+        "planned_label": "SingStat 官方表：季度实际 GDP"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-Q2",
+        "value": 155247.2,
+        "raw_period": "2026 2Q",
+        "raw_value": "155247.2",
+        "raw_index": 205
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 206,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-Q2；155,247.2 百万新元；质量分：95/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: economic_activity.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M015661:1",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: economic_activity."
+      },
+      "actual_metadata": {
+        "id": "M015661:1",
+        "name": "GDP In Chained (2015) Dollars",
+        "theme": "economic_activity",
+        "selection_family": "economic_activity",
+        "definition": "Quarterly gross domestic product measured in chained 2015 Singapore dollars; a measure of real domestic economic activity.",
+        "unit": "Million Dollars",
+        "frequency": "Q",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M015661",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M015661?seriesNoORrowNo=1&limit=5000",
+        "table_id": "M015661",
+        "row_id": "1",
+        "table_title": "Gross Domestic Product In Chained (2015) Dollars, By Industry (SSIC 2020), Quarterly",
+        "source_agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "retrieved_at": "2026-10-01T11:47:04+00:00",
+        "source_updated_at": "11/08/2026",
+        "source_footnote": "Disaggregated chain-linked data generally do not add up to the total.  Advance estimates for GDP in chained (2015) dollars are available at www.singstat.gov.sg/advgdp.  The advance GDP estimates are computed largely from data in the first two months of the quarter (e.g. 1st Quarter is based on Jan and Feb; 2nd Quarter is based on Apr and May).  They are intended as an early indication of the GDP growth in the quarter, and are subjected to revision when more comprehensive data become available.  For more information on national accounts methodologies, please visit Singstat website (https://www.singstat.gov.sg/find-data/explore-data-themes/economy-prices/national-accounts/related-information) to view and download related publications.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "Whole Singapore economy; million Singapore dollars at chained 2015 prices.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "comparisons": [
+          "year_on_year"
+        ],
+        "provenance": {
+          "raw_file": "raw/tabledata_M015661_98fd049aa87c5bb9.json",
+          "raw_sha256": "138acbe058be5f2b1786287fa818e0efe86cebcd6877fbb79c9e832dc1093baf",
+          "metadata_file": "raw/metadata_M015661_784158104d4175d7.json",
+          "metadata_sha256": "714a6267fd6dd5a8011502d897c8e67e8becbe5001cad9965a719ab4d5b04099"
+        },
+        "mechanism": {
+          "sales": "Stronger real activity may support jobs, incomes and confidence, which can support purchasing demand.",
+          "rents": "Stronger activity may support employment-linked rental demand.",
+          "lag": "Economic conditions may affect housing over several quarters.",
+          "limitations": "This series is not labelled seasonally adjusted: prioritise year-on-year comparisons. GDP and housing may share common causes; advance estimates and history can be revised."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M015661",
+        "row_id": "1",
+        "expected_name": "GDP In Chained (2015) Dollars",
+        "expected_unit": "Million Dollars",
+        "frequency": "Q",
+        "theme": "economic_activity",
+        "definition": "Quarterly gross domestic product measured in chained 2015 Singapore dollars; a measure of real domestic economic activity.",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Whole Singapore economy; million Singapore dollars at chained 2015 prices.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "Stronger real activity may support jobs, incomes and confidence, which can support purchasing demand.",
+          "rents": "Stronger activity may support employment-linked rental demand.",
+          "lag": "Economic conditions may affect housing over several quarters.",
+          "limitations": "This series is not labelled seasonally adjusted: prioritise year-on-year comparisons. GDP and housing may share common causes; advance estimates and history can be revised."
+        },
+        "comparisons": [
+          "year_on_year"
+        ],
+        "selection_family": "economic_activity"
+      },
+      "evaluation_reference": "evaluations.json#M015661:1",
+      "changes": [
+        {
+          "id": "M015661:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 5.9403406939,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 155247.2,
+          "base_period": "2025-Q2",
+          "base_value": 146542.1,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 155247.2,
+              "raw_period": "2026 2Q",
+              "raw_value": "155247.2",
+              "raw_index": 205
+            },
+            {
+              "period": "2025-Q2",
+              "value": 146542.1,
+              "raw_period": "2025 2Q",
+              "raw_value": "146542.1",
+              "raw_index": 201
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M182342:2",
+      "name_zh": "居民失业率（经季节调整）",
+      "name": "Resident Unemployment Rate, (SA)",
+      "definition": "Resident unemployment rate at quarter-end, seasonally adjusted; residents are citizens and permanent residents.",
+      "definition_zh": "季度末居民劳动力中的失业者比例，已经季节调整；居民指新加坡公民及永久居民，单位为百分比。",
+      "definition_origin": "actual_metadata",
+      "frequency": "Q",
+      "frequency_zh": "季度",
+      "unit": "Per Cent",
+      "unit_zh": "%",
+      "scope": "Resident labour force, not the entire resident population or non-resident workforce.",
+      "rationale_zh": "用于观察居民就业压力；失业率上升可能削弱购房信心、偿贷能力和租金承受能力。",
+      "caveat_zh": "不涵盖非居民劳动力，也不衡量工资、就业不足或岗位稳定性；季调值可修订。变化应以百分点表示，保留实际来源的公布精度。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M182342",
+        "label": "SingStat Table Builder",
+        "agency": "MINISTRY OF MANPOWER",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M182342",
+        "planned_label": "SingStat 官方表（原发布：MOM）：居民季调失业率"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-Q2",
+        "value": 2.9,
+        "raw_period": "2026 2Q",
+        "raw_value": "2.9",
+        "raw_index": 137
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 138,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-Q2；2.9 %；质量分：95/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: labour_market.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M182342:2",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: labour_market."
+      },
+      "actual_metadata": {
+        "id": "M182342:2",
+        "name": "Resident Unemployment Rate, (SA)",
+        "theme": "labour_market",
+        "selection_family": "labour_market",
+        "definition": "Resident unemployment rate at quarter-end, seasonally adjusted; residents are citizens and permanent residents.",
+        "unit": "Per Cent",
+        "frequency": "Q",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M182342",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M182342?seriesNoORrowNo=2&limit=5000",
+        "table_id": "M182342",
+        "row_id": "2",
+        "table_title": "Unemployment Rate (End Of Period), Quarterly, Seasonally Adjusted",
+        "source_agency": "MINISTRY OF MANPOWER",
+        "retrieved_at": "2026-10-01T11:47:04+00:00",
+        "source_updated_at": "22/09/2026",
+        "source_footnote": "Total population comprises residents and non residents.  Residents refer to Singapore citizens and permanent residents.  Data for June 1995, 2000 and 2005 were obtained from the General Household Survey (June 1995 and 2005) and Population Census (June 2000) conducted by the Singapore Department of Statistics, Ministry of Trade and Industry.  The Labour Force Survey was not conducted in these periods.",
+        "row_footnote": "The seasonally adjusted figures are derived using X-12 ARIMA to remove the seasonal influences in the data series.  The seasonally adjusted unemployment figures are subject to annual revisions when the latest set of seasonal factors is updated, taking into account observations for the latest available year.  Residents refer to Singapore citizens and Singapore Permanent Residents.",
+        "change_kind": "percentage_point",
+        "scope": "Resident labour force, not the entire resident population or non-resident workforce.",
+        "seasonal_adjustment": "Seasonally Adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M182342_48b7788b41cef5e4.json",
+          "raw_sha256": "84b73c77a3fa5e42e0f44d882ba2c465d8d7d8e426020c3f02578f7976904f27",
+          "metadata_file": "raw/metadata_M182342_a8645aa92a612265.json",
+          "metadata_sha256": "d61b0cdaafee2cc3ed0154e70e7a6fcfd22659f46c2fd3b359668f690e5330c4"
+        },
+        "mechanism": {
+          "sales": "A higher unemployment rate may weaken purchasing capacity and confidence.",
+          "rents": "A higher rate may weaken residents' ability to pay rents, with effects depending on household circumstances.",
+          "lag": "Current labour-market stress; housing responses may follow over subsequent quarters.",
+          "limitations": "The seasonally adjusted series is revised annually. It excludes non-residents and does not measure earnings, job security or underemployment."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M182342",
+        "row_id": "2",
+        "expected_name": "Resident Unemployment Rate, (SA)",
+        "expected_unit": "Per Cent",
+        "frequency": "Q",
+        "theme": "labour_market",
+        "definition": "Resident unemployment rate at quarter-end, seasonally adjusted; residents are citizens and permanent residents.",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Resident labour force, not the entire resident population or non-resident workforce.",
+        "seasonal_adjustment": "Seasonally Adjusted",
+        "change_kind": "percentage_point",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "A higher unemployment rate may weaken purchasing capacity and confidence.",
+          "rents": "A higher rate may weaken residents' ability to pay rents, with effects depending on household circumstances.",
+          "lag": "Current labour-market stress; housing responses may follow over subsequent quarters.",
+          "limitations": "The seasonally adjusted series is revised annually. It excludes non-residents and does not measure earnings, job security or underemployment."
+        },
+        "selection_family": "labour_market"
+      },
+      "evaluation_reference": "evaluations.json#M182342:2",
+      "changes": [
+        {
+          "id": "M182342:2:previous_period",
+          "comparison": "previous_period",
+          "value": 0.0,
+          "unit": "percentage points",
+          "latest_period": "2026-Q2",
+          "latest_value": 2.9,
+          "base_period": "2026-Q1",
+          "base_value": 2.9,
+          "formula": "latest_value - base_value",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 2.9,
+              "raw_period": "2026 2Q",
+              "raw_value": "2.9",
+              "raw_index": 137
+            },
+            {
+              "period": "2026-Q1",
+              "value": 2.9,
+              "raw_period": "2026 1Q",
+              "raw_value": "2.9",
+              "raw_index": 136
+            }
+          ]
+        },
+        {
+          "id": "M182342:2:year_on_year",
+          "comparison": "year_on_year",
+          "value": 0.2,
+          "unit": "percentage points",
+          "latest_period": "2026-Q2",
+          "latest_value": 2.9,
+          "base_period": "2025-Q2",
+          "base_value": 2.7,
+          "formula": "latest_value - base_value",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 2.9,
+              "raw_period": "2026 2Q",
+              "raw_value": "2.9",
+              "raw_index": 137
+            },
+            {
+              "period": "2025-Q2",
+              "value": 2.7,
+              "raw_period": "2025 2Q",
+              "raw_value": "2.7",
+              "raw_index": 133
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M184101:1",
+      "name_zh": "就业居民平均月度就业总收入（含公积金、不含奖金）",
+      "name": "Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents",
+      "definition": "Mean gross monthly employment income of employed residents, including employer CPF contributions and excluding bonus; employees' amounts are before employee CPF and income tax deductions.",
+      "definition_zh": "就业居民的平均月度就业总收入，含雇主公积金（CPF）缴款、不含奖金；单位为新加坡元，按季度公布。覆盖就业公民及永久居民，不包括全职国民服役人员。当前直连 MOM 口径还明确包含平台运营商 CPF 缴款。",
+      "definition_origin": "actual_metadata",
+      "frequency": "Q",
+      "frequency_zh": "季度",
+      "unit": "Dollars",
+      "unit_zh": "新元",
+      "scope": "Employed citizens and permanent residents excluding full-time National Servicemen; Singapore dollars per employed person.",
+      "rationale_zh": "用于观察每名就业居民的收入能力；收入增加可能改善购房融资能力和租金承受能力，与经济总量指标形成补充。",
+      "caveat_zh": "是个人均值，不是家庭收入中位数或到手现金；高收入者及就业人员构成变化会影响均值。优先比较同比，保留实际来源提供的初步值标记；平台运营商 CPF 的说明须结合当前直连 MOM 原文，不能替代旧快照的来源说明。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M184101",
+        "label": "SingStat Table Builder",
+        "agency": "MINISTRY OF MANPOWER",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M184101",
+        "planned_label": "SingStat 官方表（原发布：MOM）：就业居民平均月度就业总收入"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-Q2",
+        "value": 6605.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "6605",
+        "raw_index": 20
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 21,
+        "expected_count": 21,
+        "window_valid_count": 21,
+        "total_valid_count": 21,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2021-Q2",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-Q2；6,605 新元；质量分：95/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: household_income.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M184101:1",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: household_income."
+      },
+      "actual_metadata": {
+        "id": "M184101:1",
+        "name": "Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents",
+        "theme": "household_income",
+        "selection_family": "household_income",
+        "definition": "Mean gross monthly employment income of employed residents, including employer CPF contributions and excluding bonus; employees' amounts are before employee CPF and income tax deductions.",
+        "unit": "Dollars",
+        "frequency": "Q",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M184101",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M184101?seriesNoORrowNo=1&limit=5000",
+        "table_id": "M184101",
+        "row_id": "1",
+        "table_title": "Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents, Quarterly",
+        "source_agency": "MINISTRY OF MANPOWER",
+        "retrieved_at": "2026-10-01T11:47:04+00:00",
+        "source_updated_at": "31/08/2026",
+        "source_footnote": "1. Residents refer to Singapore Citizens and Permanent Residents.  2. Gross monthly income refers to income earned from employment. For employees, it refers to the gross monthly wages or salaries before deduction of employee CPF contributions and personal income tax. It comprises basic wages, overtime pay, commissions, tips and other allowances. For self-employed persons, gross monthly income refers to the average monthly profits from their business, trade or profession (i.e. total receipts less business expenses incurred) before deduction of income tax.  3. Data are for all employed persons excluding full-time National Servicemen.  4. The change in mean gross monthly income (GMI) (change in income per worker) is a suitable statistic for comparison with the change in labour productivity (change in value-added per worker) as both are expressed on a 'per worker' basis. When studying the change in mean gross monthly income of any quarter, it would be more meaningful to compare it with the same quarter of prior years, so as to limit seasonal variations that mask the underlying actual trend in income.  Also, as the mean GMI pertains to mean earnings, it can be skewed upwards by a small number of very high income earners.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "Employed citizens and permanent residents excluding full-time National Servicemen; Singapore dollars per employed person.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "comparisons": [
+          "year_on_year"
+        ],
+        "provenance": {
+          "raw_file": "raw/tabledata_M184101_fb465df65995a904.json",
+          "raw_sha256": "d8cbf8315336bd54bc69fc88739a236d44e8e9c0163deb5b497a83ea158917fe",
+          "metadata_file": "raw/metadata_M184101_a25547ab734fb98d.json",
+          "metadata_sha256": "21699f7802f141be3ca4ba78bb2c3e20d8a51a71660b533b8faa02756bef0112"
+        },
+        "mechanism": {
+          "sales": "Higher employment income may improve borrowing and purchasing capacity.",
+          "rents": "Higher employment income may support rent affordability.",
+          "lag": "Income changes may pass through to purchase and lease decisions over subsequent quarters.",
+          "limitations": "Includes employer CPF and is not cash take-home pay. The mean can be skewed by high earners; composition changes matter. Official metadata recommends same-quarter year-on-year comparisons; history begins in 2021 Q2."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M184101",
+        "row_id": "1",
+        "expected_name": "Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents",
+        "expected_unit": "Dollars",
+        "frequency": "Q",
+        "theme": "household_income",
+        "definition": "Mean gross monthly employment income of employed residents, including employer CPF contributions and excluding bonus; employees' amounts are before employee CPF and income tax deductions.",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Employed citizens and permanent residents excluding full-time National Servicemen; Singapore dollars per employed person.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "Higher employment income may improve borrowing and purchasing capacity.",
+          "rents": "Higher employment income may support rent affordability.",
+          "lag": "Income changes may pass through to purchase and lease decisions over subsequent quarters.",
+          "limitations": "Includes employer CPF and is not cash take-home pay. The mean can be skewed by high earners; composition changes matter. Official metadata recommends same-quarter year-on-year comparisons; history begins in 2021 Q2."
+        },
+        "comparisons": [
+          "year_on_year"
+        ],
+        "selection_family": "household_income"
+      },
+      "evaluation_reference": "evaluations.json#M184101:1",
+      "changes": [
+        {
+          "id": "M184101:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 3.3646322379,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 6605.0,
+          "base_period": "2025-Q2",
+          "base_value": 6390.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 6605.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "6605",
+              "raw_index": 20
+            },
+            {
+              "period": "2025-Q2",
+              "value": 6390.0,
+              "raw_period": "2025 2Q",
+              "raw_value": "6390",
+              "raw_index": 16
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M016081:1",
+      "name_zh": "个人可支配收入总额（名义）",
+      "name": "Personal Disposable Income (Nominal)",
+      "definition": "Quarterly aggregate personal disposable income at current prices.",
+      "definition_zh": "按现价计量的季度个人可支配收入总额，单位为百万新加坡元。",
+      "definition_origin": "actual_metadata",
+      "frequency": "Q",
+      "frequency_zh": "季度",
+      "unit": "Million Dollars",
+      "unit_zh": "百万新元",
+      "scope": "Singapore aggregate nominal personal disposable income; million Singapore dollars, not median household income.",
+      "rationale_zh": "用于观察可供居民部门消费和储蓄的总体收入规模；收入总额增加可能支持住房购买及租赁支出。",
+      "caveat_zh": "是名义总额，不是人均、户均或家庭收入中位数；增长也可能来自物价或人口增加。序列未标注季节调整，优先比较同比。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M016081",
+        "label": "SingStat Table Builder",
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M016081",
+        "planned_label": "SingStat 官方表：个人可支配收入"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-Q2",
+        "value": 94423.4,
+        "raw_period": "2026 2Q",
+        "raw_value": "94423.4",
+        "raw_index": 185
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 186,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-Q2；94,423.4 百万新元；质量分：95/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: household_income.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M016081:1",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: household_income."
+      },
+      "actual_metadata": {
+        "id": "M016081:1",
+        "name": "Personal Disposable Income (Nominal)",
+        "theme": "household_income",
+        "selection_family": "household_income",
+        "definition": "Quarterly aggregate personal disposable income at current prices.",
+        "unit": "Million Dollars",
+        "frequency": "Q",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M016081",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M016081?seriesNoORrowNo=1&limit=5000",
+        "table_id": "M016081",
+        "row_id": "1",
+        "table_title": "Personal Disposable Income At Current Prices, Quarterly",
+        "source_agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "retrieved_at": "2026-10-01T11:47:05+00:00",
+        "source_updated_at": "25/08/2026",
+        "source_footnote": "",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "Singapore aggregate nominal personal disposable income; million Singapore dollars, not median household income.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "comparisons": [
+          "year_on_year"
+        ],
+        "provenance": {
+          "raw_file": "raw/tabledata_M016081_3de81f4c4307fd66.json",
+          "raw_sha256": "927b20623c10c369782544e906b5387db81cbbef6b8e412ef62d0496f0804535",
+          "metadata_file": "raw/metadata_M016081_e340ae096293a0e7.json",
+          "metadata_sha256": "4b018efb861e20669317b3032079b89e53e44e3b302a7619976ffff500228ca4"
+        },
+        "mechanism": {
+          "sales": "Higher aggregate disposable income may increase the resources available for housing purchases.",
+          "rents": "Higher aggregate disposable income may support rental spending.",
+          "lag": "Quarterly affordability context; decisions may adjust with a lag.",
+          "limitations": "Nominal aggregate growth also reflects inflation and population change; it is not income per household. This series is not labelled seasonally adjusted."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M016081",
+        "row_id": "1",
+        "expected_name": "Personal Disposable Income (Nominal)",
+        "expected_unit": "Million Dollars",
+        "frequency": "Q",
+        "theme": "household_income",
+        "definition": "Quarterly aggregate personal disposable income at current prices.",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Singapore aggregate nominal personal disposable income; million Singapore dollars, not median household income.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "Higher aggregate disposable income may increase the resources available for housing purchases.",
+          "rents": "Higher aggregate disposable income may support rental spending.",
+          "lag": "Quarterly affordability context; decisions may adjust with a lag.",
+          "limitations": "Nominal aggregate growth also reflects inflation and population change; it is not income per household. This series is not labelled seasonally adjusted."
+        },
+        "comparisons": [
+          "year_on_year"
+        ],
+        "selection_family": "household_income"
+      },
+      "evaluation_reference": "evaluations.json#M016081:1",
+      "changes": [
+        {
+          "id": "M016081:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 6.8838073806,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 94423.4,
+          "base_period": "2025-Q2",
+          "base_value": 88342.1,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 94423.4,
+              "raw_period": "2026 2Q",
+              "raw_value": "94423.4",
+              "raw_index": 185
+            },
+            {
+              "period": "2025-Q2",
+              "value": 88342.1,
+              "raw_period": "2025 2Q",
+              "raw_value": "88342.1",
+              "raw_index": 181
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M700071:23",
+      "name_zh": "三个月复利 SORA（月末值）",
+      "name": "Compounded Singapore Overnight Rate Average (SORA) - 3 Month",
+      "definition": "Three-month compounded Singapore Overnight Rate Average (SORA), observed at month-end and expressed as an annual percentage rate.",
+      "definition_zh": "三个月复利新加坡隔夜平均利率的月末值，单位为年利率百分比。",
+      "definition_origin": "actual_metadata",
+      "frequency": "M",
+      "frequency_zh": "月度",
+      "unit": "Per Cent Per Annum",
+      "unit_zh": "%/年",
+      "scope": "Singapore-dollar benchmark interest rate; not an individual mortgage offer.",
+      "rationale_zh": "用于观察融资成本；基准利率上升可能随房贷重定价提高偿贷负担，并改变购房与租房选择，对租金的净影响不预设方向。",
+      "caveat_zh": "月末值不是月均值，也不是具体房贷报价；变化以基点表示，传导取决于利差及重定价安排。使用 MAS 日频路径时，按 SORA 计息日期而非公布日期归月，缺少月末完整性证据的月份暂不纳入；实际转换以该次来源元数据为准。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M700071",
+        "label": "SingStat Table Builder",
+        "agency": "MONETARY AUTHORITY OF SINGAPORE",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M700071",
+        "planned_label": "SingStat 官方表（原发布：MAS）：月末三个月复利 SORA"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-08",
+        "value": 1.1863,
+        "raw_period": "2026 Aug",
+        "raw_value": "1.1863",
+        "raw_index": 250
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 97.14,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 119,
+        "expected_count": 119,
+        "window_valid_count": 119,
+        "total_valid_count": 251,
+        "window_start_period": "2016-10",
+        "window_end_period": "2026-09",
+        "coverage_start_period": "2016-10",
+        "coverage_end_period": "2026-08",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 24,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 6
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 17.1429,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-08；1.1863 %/年；质量分：97.14/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: financing_cost.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M700071:23",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: financing_cost."
+      },
+      "actual_metadata": {
+        "id": "M700071:23",
+        "name": "Compounded Singapore Overnight Rate Average (SORA) - 3 Month",
+        "theme": "financing_cost",
+        "selection_family": "financing_cost",
+        "definition": "Three-month compounded Singapore Overnight Rate Average (SORA), observed at month-end and expressed as an annual percentage rate.",
+        "unit": "Per Cent Per Annum",
+        "frequency": "M",
+        "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M700071",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M700071?seriesNoORrowNo=23&limit=5000",
+        "table_id": "M700071",
+        "row_id": "23",
+        "table_title": "Current Banks Interest Rates (End Of Period), Monthly",
+        "source_agency": "MONETARY AUTHORITY OF SINGAPORE",
+        "retrieved_at": "2026-10-01T11:47:05+00:00",
+        "source_updated_at": "14/09/2026",
+        "source_footnote": "Interest rates at the end-period are as at the end of month.",
+        "row_footnote": "",
+        "change_kind": "basis_point",
+        "scope": "Singapore-dollar benchmark interest rate; not an individual mortgage offer.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M700071_5ec2ab86786f7bd2.json",
+          "raw_sha256": "844467d877f0fc311402be16f7fb1e606b894eb34185683c8a20f9039d4c70a2",
+          "metadata_file": "raw/metadata_M700071_92125fcf7454ccaf.json",
+          "metadata_sha256": "25c98acdf25dabfe33b3a79578901b33324a54908adfc5d83e2b78dbe6273280"
+        },
+        "mechanism": {
+          "sales": "Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage rates reset.",
+          "rents": "Higher ownership financing costs may shift tenure choices and landlords' costs; the net rental effect is ambiguous.",
+          "lag": "Pass-through depends on mortgage pricing, reset dates and fixed-rate periods, often over subsequent months.",
+          "limitations": "Month-end snapshot, not a monthly average. Mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through; SORA changes alone cannot determine housing prices."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M700071",
+        "row_id": "23",
+        "expected_name": "Compounded Singapore Overnight Rate Average (SORA) - 3 Month",
+        "expected_unit": "Per Cent Per Annum",
+        "frequency": "M",
+        "theme": "financing_cost",
+        "definition": "Three-month compounded Singapore Overnight Rate Average (SORA), observed at month-end and expressed as an annual percentage rate.",
+        "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Singapore-dollar benchmark interest rate; not an individual mortgage offer.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "basis_point",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage rates reset.",
+          "rents": "Higher ownership financing costs may shift tenure choices and landlords' costs; the net rental effect is ambiguous.",
+          "lag": "Pass-through depends on mortgage pricing, reset dates and fixed-rate periods, often over subsequent months.",
+          "limitations": "Month-end snapshot, not a monthly average. Mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through; SORA changes alone cannot determine housing prices."
+        },
+        "selection_family": "financing_cost"
+      },
+      "evaluation_reference": "evaluations.json#M700071:23",
+      "changes": [
+        {
+          "id": "M700071:23:previous_period",
+          "comparison": "previous_period",
+          "value": 5.09,
+          "unit": "basis points",
+          "latest_period": "2026-08",
+          "latest_value": 1.1863,
+          "base_period": "2026-07",
+          "base_value": 1.1354,
+          "formula": "(latest_value - base_value) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 1.1863,
+              "raw_period": "2026 Aug",
+              "raw_value": "1.1863",
+              "raw_index": 250
+            },
+            {
+              "period": "2026-07",
+              "value": 1.1354,
+              "raw_period": "2026 Jul",
+              "raw_value": "1.1354",
+              "raw_index": 249
+            }
+          ]
+        },
+        {
+          "id": "M700071:23:year_on_year",
+          "comparison": "year_on_year",
+          "value": -37.75,
+          "unit": "basis points",
+          "latest_period": "2026-08",
+          "latest_value": 1.1863,
+          "base_period": "2025-08",
+          "base_value": 1.5638,
+          "formula": "(latest_value - base_value) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 1.1863,
+              "raw_period": "2026 Aug",
+              "raw_value": "1.1863",
+              "raw_index": 250
+            },
+            {
+              "period": "2025-08",
+              "value": 1.5638,
+              "raw_period": "2025 Aug",
+              "raw_value": "1.5638",
+              "raw_index": 238
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M701091:1.2.1",
+      "name_zh": "住房与过桥贷款余额",
+      "name": "Consumer Loans - Housing And Bridging Loans",
+      "definition": "Commercial-bank consumer housing and bridging loans to residents outstanding at month-end.",
+      "definition_zh": "商业银行向居民提供的消费类住房及过桥贷款月末余额，单位为百万新加坡元。",
+      "definition_origin": "actual_metadata",
+      "frequency": "M",
+      "frequency_zh": "月度",
+      "unit": "Million Dollars",
+      "unit_zh": "百万新元",
+      "scope": "Commercial-bank lending stock to residents; million Singapore dollars, not new monthly mortgage approvals.",
+      "rationale_zh": "用于观察住房融资活动及其规模；贷款余额扩张可能与融资购房需求同步变化，也可能反映房价上涨后的借款增加。",
+      "caveat_zh": "是贷款存量，不是新增按揭、审批量或信贷可得性；还款也会改变余额。新报表口径自 2021 年 7 月开始，不能直接拼接旧口径；存在反向因果。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M701091",
+        "label": "SingStat Table Builder",
+        "agency": "MONETARY AUTHORITY OF SINGAPORE",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M701091",
+        "planned_label": "SingStat 官方表（原发布：MAS）：商业银行贷款"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-08",
+        "value": 256563.5,
+        "raw_period": "2026 Aug",
+        "raw_value": "256563.5",
+        "raw_index": 61
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 97.14,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 62,
+        "expected_count": 62,
+        "window_valid_count": 62,
+        "total_valid_count": 62,
+        "window_start_period": "2016-10",
+        "window_end_period": "2026-09",
+        "coverage_start_period": "2021-07",
+        "coverage_end_period": "2026-08",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 24,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 6
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 17.1429,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-08；256,563.5 百万新元；质量分：97.14/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_credit.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M701091:1.2.1",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_credit."
+      },
+      "actual_metadata": {
+        "id": "M701091:1.2.1",
+        "name": "Consumer Loans - Housing And Bridging Loans",
+        "theme": "housing_credit",
+        "selection_family": "housing_credit",
+        "definition": "Commercial-bank consumer housing and bridging loans to residents outstanding at month-end.",
+        "unit": "Million Dollars",
+        "frequency": "M",
+        "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M701091",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M701091?seriesNoORrowNo=1.2.1&limit=5000",
+        "table_id": "M701091",
+        "row_id": "1.2.1",
+        "table_title": "Commercial Banks: Loans And Advances To Residents By Industry (End Of Period), Monthly",
+        "source_agency": "MONETARY AUTHORITY OF SINGAPORE",
+        "retrieved_at": "2026-10-01T11:47:05+00:00",
+        "source_updated_at": "30/09/2026",
+        "source_footnote": "The industry categories are refined according to the Singapore Standard Industrial Classification adopted by the Singapore Department of Statistics.  Data have been revised from July 2021 following changes to the MAS Notices 610 and 1003.  The previous series have been discontinued and can be found on the MAS Website under the Money and Banking page of the Statistics section.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "Commercial-bank lending stock to residents; million Singapore dollars, not new monthly mortgage approvals.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M701091_11d6417c6fe41133.json",
+          "raw_sha256": "b8bc0b0d9f1fa8d7fe20072630210799fc9d32057a3ea71765b2032259933e8d",
+          "metadata_file": "raw/metadata_M701091_7210b11a5c896615.json",
+          "metadata_sha256": "a9df676d599d1f9fce49b468fae1cbeb8de8ecbc5c675ba8519c9fb560003a0f"
+        },
+        "mechanism": {
+          "sales": "Expanding housing credit may accompany financed housing demand, but it can also respond to higher prices.",
+          "rents": "Credit conditions may affect ownership-versus-renting decisions; the rental relationship is indirect.",
+          "lag": "Credit stocks adjust gradually and may lag transactions.",
+          "limitations": "This is outstanding stock, not credit availability or origination flow; repayments also affect it. Revised reporting starts July 2021 following changes to MAS Notices 610 and 1003."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M701091",
+        "row_id": "1.2.1",
+        "expected_name": "Consumer Loans - Housing And Bridging Loans",
+        "expected_unit": "Million Dollars",
+        "frequency": "M",
+        "theme": "housing_credit",
+        "definition": "Commercial-bank consumer housing and bridging loans to residents outstanding at month-end.",
+        "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Commercial-bank lending stock to residents; million Singapore dollars, not new monthly mortgage approvals.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "Expanding housing credit may accompany financed housing demand, but it can also respond to higher prices.",
+          "rents": "Credit conditions may affect ownership-versus-renting decisions; the rental relationship is indirect.",
+          "lag": "Credit stocks adjust gradually and may lag transactions.",
+          "limitations": "This is outstanding stock, not credit availability or origination flow; repayments also affect it. Revised reporting starts July 2021 following changes to MAS Notices 610 and 1003."
+        },
+        "selection_family": "housing_credit"
+      },
+      "evaluation_reference": "evaluations.json#M701091:1.2.1",
+      "changes": [
+        {
+          "id": "M701091:1.2.1:previous_period",
+          "comparison": "previous_period",
+          "value": 0.7422057986,
+          "unit": "%",
+          "latest_period": "2026-08",
+          "latest_value": 256563.5,
+          "base_period": "2026-07",
+          "base_value": 254673.3,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 256563.5,
+              "raw_period": "2026 Aug",
+              "raw_value": "256563.5",
+              "raw_index": 61
+            },
+            {
+              "period": "2026-07",
+              "value": 254673.3,
+              "raw_period": "2026 Jul",
+              "raw_value": "254673.3",
+              "raw_index": 60
+            }
+          ]
+        },
+        {
+          "id": "M701091:1.2.1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 7.2803815811,
+          "unit": "%",
+          "latest_period": "2026-08",
+          "latest_value": 256563.5,
+          "base_period": "2025-08",
+          "base_value": 239152.3,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 256563.5,
+              "raw_period": "2026 Aug",
+              "raw_value": "256563.5",
+              "raw_index": 61
+            },
+            {
+              "period": "2025-08",
+              "value": 239152.3,
+              "raw_period": "2025 Aug",
+              "raw_value": "239152.3",
+              "raw_index": 49
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M400841:1",
+      "name_zh": "已竣工私人住宅存量",
+      "name": "All Types Private Residential Properties Available",
+      "definition": "Completed private residential units at quarter-end with a Temporary Occupation Permit or Certificate of Statutory Completion; this is the housing stock labelled available by URA.",
+      "definition_zh": "季度末取得临时入伙准证（TOP）或法定竣工证书（CSC）的私人住宅总套数，包括有地及非有地住宅、已入住及空置单位。",
+      "definition_origin": "actual_metadata",
+      "frequency": "Q",
+      "frequency_zh": "季度",
+      "unit": "Number Of Units",
+      "unit_zh": "套",
+      "scope": "All landed and non-landed private residential units; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+      "rationale_zh": "用于观察当期可使用的住宅供给规模，并为人口及空置套数提供参照；新增竣工住宅可能缓解相对于需求的供给约束。",
+      "caveat_zh": "官方名称中的 available 指已竣工总存量，不是挂牌出售或出租量；不含 HDB 组屋、执行共管公寓（EC）及官方列明的其他排除项。1995—1996 年覆盖扩展影响长期可比性。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+        "label": "SingStat Table Builder",
+        "agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+        "planned_label": "SingStat 官方表（原发布：URA）：私人住宅存量与空置"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-Q2",
+        "value": 424581.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "424581",
+        "raw_index": 153
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 154,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-Q2；424,581 套；质量分：95/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M400841:1",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+      },
+      "actual_metadata": {
+        "id": "M400841:1",
+        "name": "All Types Private Residential Properties Available",
+        "theme": "completed_supply",
+        "selection_family": "housing_supply",
+        "definition": "Completed private residential units at quarter-end with a Temporary Occupation Permit or Certificate of Statutory Completion; this is the housing stock labelled available by URA.",
+        "unit": "Number Of Units",
+        "frequency": "Q",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M400841?seriesNoORrowNo=1&limit=5000",
+        "table_id": "M400841",
+        "row_id": "1",
+        "table_title": "Available And Vacant Private Residential Properties (End Of Period), Quarterly",
+        "source_agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "retrieved_at": "2026-10-01T11:47:05+00:00",
+        "source_updated_at": "24/07/2026",
+        "source_footnote": "Data cover all completed private residential units, i.e. private residential units issued with a Temporary Occupation Permit or a Certificate of Statutory Completion.  Data exclude hostels, Housing and Development Board flats, tenement houses, parsonages and Executive Condominiums.  With effect from 1st Quarter 1995, the coverage was expanded to include another 44,891 private residential units built before 1974 (comprising 7,206 detached, 10,006 semi-detached, 16,900 terrace and 10,779 apartments).  With effect from 2nd Quarter 1996, the coverage was further expanded to include 12,489 apartment units comprising HUDC units which have not been privatised, apartments above shops and privatised apartments previously under the Government Housing Schemes for employees.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "All landed and non-landed private residential units; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M400841_9cbe20a8bfdb6540.json",
+          "raw_sha256": "e6363fdf9c307229226c70f6210a01bed31099f9e2cca622a1f7faa1a8741cbd",
+          "metadata_file": "raw/metadata_M400841_1a2f023546b256ff.json",
+          "metadata_sha256": "74145d40646cc5b6381a59c580f6e8a62da91b79c75851e13e595a6cb7a36bb6"
+        },
+        "mechanism": {
+          "sales": "Growth in completed stock may ease supply constraints relative to demand.",
+          "rents": "Additional completed homes may increase potential rental supply.",
+          "lag": "Completed stock is available in the current period; absorption may take subsequent quarters.",
+          "limitations": "Available denotes total completed stock, not units actively listed for sale or rent. Coverage expanded in 1995 and 1996; private-sector results do not directly represent HDB."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M400841",
+        "row_id": "1",
+        "expected_name": "All Types Private Residential Properties Available",
+        "expected_unit": "Number Of Units",
+        "frequency": "Q",
+        "theme": "completed_supply",
+        "definition": "Completed private residential units at quarter-end with a Temporary Occupation Permit or Certificate of Statutory Completion; this is the housing stock labelled available by URA.",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "All landed and non-landed private residential units; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "Growth in completed stock may ease supply constraints relative to demand.",
+          "rents": "Additional completed homes may increase potential rental supply.",
+          "lag": "Completed stock is available in the current period; absorption may take subsequent quarters.",
+          "limitations": "Available denotes total completed stock, not units actively listed for sale or rent. Coverage expanded in 1995 and 1996; private-sector results do not directly represent HDB."
+        },
+        "selection_family": "housing_supply"
+      },
+      "evaluation_reference": "evaluations.json#M400841:1",
+      "changes": [
+        {
+          "id": "M400841:1:previous_period",
+          "comparison": "previous_period",
+          "value": 0.0980750416,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 424581.0,
+          "base_period": "2026-Q1",
+          "base_value": 424165.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 424581.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "424581",
+              "raw_index": 153
+            },
+            {
+              "period": "2026-Q1",
+              "value": 424165.0,
+              "raw_period": "2026 1Q",
+              "raw_value": "424165",
+              "raw_index": 152
+            }
+          ]
+        },
+        {
+          "id": "M400841:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 1.0565475482,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 424581.0,
+          "base_period": "2025-Q2",
+          "base_value": 420142.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 424581.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "424581",
+              "raw_index": 153
+            },
+            {
+              "period": "2025-Q2",
+              "value": 420142.0,
+              "raw_period": "2025 2Q",
+              "raw_value": "420142",
+              "raw_index": 149
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M400841:2",
+      "name_zh": "空置私人住宅套数",
+      "name": "All Types Private Residential Properties Vacant",
+      "definition": "Number of vacant completed private residential units at quarter-end, not the vacancy rate.",
+      "definition_zh": "季度末已竣工但空置的私人住宅套数；覆盖有地及非有地住宅，范围与同表已竣工存量一致。",
+      "definition_origin": "actual_metadata",
+      "frequency": "Q",
+      "frequency_zh": "季度",
+      "unit": "Number Of Units",
+      "unit_zh": "套",
+      "scope": "All landed and non-landed private residential units; same exclusions and coverage as the completed stock in table M400841 row 1.",
+      "rationale_zh": "用于观察住宅吸收情况；在总存量、区位和需求可比的条件下，空置增加可能对应较弱的价格或租金压力。",
+      "caveat_zh": "这是套数，不是空置率；必须结合同期已竣工存量，空置套数上升仍可能伴随空置率下降。不含 HDB 及 EC，与存量、供应储备同属住房供给指标组。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+        "label": "SingStat Table Builder",
+        "agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+        "planned_label": "SingStat 官方表（原发布：URA）：私人住宅存量与空置"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-Q2",
+        "value": 26961.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "26961",
+        "raw_index": 153
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 154,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-Q2；26,961 套；质量分：95/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M400841:2",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+      },
+      "actual_metadata": {
+        "id": "M400841:2",
+        "name": "All Types Private Residential Properties Vacant",
+        "theme": "vacant_supply",
+        "selection_family": "housing_supply",
+        "definition": "Number of vacant completed private residential units at quarter-end, not the vacancy rate.",
+        "unit": "Number Of Units",
+        "frequency": "Q",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M400841?seriesNoORrowNo=2&limit=5000",
+        "table_id": "M400841",
+        "row_id": "2",
+        "table_title": "Available And Vacant Private Residential Properties (End Of Period), Quarterly",
+        "source_agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "retrieved_at": "2026-10-01T11:47:05+00:00",
+        "source_updated_at": "24/07/2026",
+        "source_footnote": "Data cover all completed private residential units, i.e. private residential units issued with a Temporary Occupation Permit or a Certificate of Statutory Completion.  Data exclude hostels, Housing and Development Board flats, tenement houses, parsonages and Executive Condominiums.  With effect from 1st Quarter 1995, the coverage was expanded to include another 44,891 private residential units built before 1974 (comprising 7,206 detached, 10,006 semi-detached, 16,900 terrace and 10,779 apartments).  With effect from 2nd Quarter 1996, the coverage was further expanded to include 12,489 apartment units comprising HUDC units which have not been privatised, apartments above shops and privatised apartments previously under the Government Housing Schemes for employees.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "All landed and non-landed private residential units; same exclusions and coverage as the completed stock in table M400841 row 1.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M400841_de38dc09e41862f3.json",
+          "raw_sha256": "0104a610532cf4ac51fba4e4ee1eceed2f7960241c4bbf9e818ed72ec5ac8d54",
+          "metadata_file": "raw/metadata_M400841_1a2f023546b256ff.json",
+          "metadata_sha256": "74145d40646cc5b6381a59c580f6e8a62da91b79c75851e13e595a6cb7a36bb6"
+        },
+        "mechanism": {
+          "sales": "More vacant units may indicate weaker absorption and reduce price pressure, depending on total stock and location.",
+          "rents": "More vacant units may indicate greater rental availability and reduce rent pressure, depending on demand.",
+          "lag": "Current market slack; rent and price responses can follow over subsequent quarters.",
+          "limitations": "Interpret against completed stock: a rising count can coexist with a falling vacancy rate. Vacancy rate must be derived as row 2 divided by row 1 for matching periods; this row alone is a count."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M400841",
+        "row_id": "2",
+        "expected_name": "All Types Private Residential Properties Vacant",
+        "expected_unit": "Number Of Units",
+        "frequency": "Q",
+        "theme": "vacant_supply",
+        "definition": "Number of vacant completed private residential units at quarter-end, not the vacancy rate.",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "All landed and non-landed private residential units; same exclusions and coverage as the completed stock in table M400841 row 1.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "More vacant units may indicate weaker absorption and reduce price pressure, depending on total stock and location.",
+          "rents": "More vacant units may indicate greater rental availability and reduce rent pressure, depending on demand.",
+          "lag": "Current market slack; rent and price responses can follow over subsequent quarters.",
+          "limitations": "Interpret against completed stock: a rising count can coexist with a falling vacancy rate. Vacancy rate must be derived as row 2 divided by row 1 for matching periods; this row alone is a count."
+        },
+        "selection_family": "housing_supply"
+      },
+      "evaluation_reference": "evaluations.json#M400841:2",
+      "changes": [
+        {
+          "id": "M400841:2:previous_period",
+          "comparison": "previous_period",
+          "value": 3.0698065601,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 26961.0,
+          "base_period": "2026-Q1",
+          "base_value": 26158.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 26961.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "26961",
+              "raw_index": 153
+            },
+            {
+              "period": "2026-Q1",
+              "value": 26158.0,
+              "raw_period": "2026 1Q",
+              "raw_value": "26158",
+              "raw_index": 152
+            }
+          ]
+        },
+        {
+          "id": "M400841:2:year_on_year",
+          "comparison": "year_on_year",
+          "value": -10.2108102708,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 26961.0,
+          "base_period": "2025-Q2",
+          "base_value": 30027.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 26961.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "26961",
+              "raw_index": 153
+            },
+            {
+              "period": "2025-Q2",
+              "value": 30027.0,
+              "raw_period": "2025 2Q",
+              "raw_value": "30027",
+              "raw_index": 149
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M400391:2",
+      "name_zh": "非有地私人住宅供应储备",
+      "name": "Total Non-Landed Properties",
+      "definition": "Total non-landed private residential units in the pipeline at quarter-end across development statuses.",
+      "definition_zh": "季度末处于不同开发阶段的非有地私人住宅供应储备套数，包含规划及建设中的项目。",
+      "definition_origin": "actual_metadata",
+      "frequency": "Q",
+      "frequency_zh": "季度",
+      "unit": "Number Of Units",
+      "unit_zh": "套",
+      "scope": "Non-landed private residential pipeline; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+      "rationale_zh": "用于观察未来潜在供给及市场预期；项目陆续竣工后可能增加购买和租赁市场的住宅供给。",
+      "caveat_zh": "不是已竣工住宅，也不是确定的竣工预测；交付时间、阶段和取消情况会变化。不含有地住宅、HDB 及 EC，与存量、空置同属住房供给指标组。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M400391",
+        "label": "SingStat Table Builder",
+        "agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400391",
+        "planned_label": "SingStat 官方表（原发布：URA）：私人住宅开发供应储备"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-Q2",
+        "value": 51677.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "51677",
+        "raw_index": 132
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 133,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-Q2；51,677 套；质量分：95/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M400391:2",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+      },
+      "actual_metadata": {
+        "id": "M400391:2",
+        "name": "Total Non-Landed Properties",
+        "theme": "future_supply",
+        "selection_family": "housing_supply",
+        "definition": "Total non-landed private residential units in the pipeline at quarter-end across development statuses.",
+        "unit": "Number Of Units",
+        "frequency": "Q",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400391",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M400391?seriesNoORrowNo=2&limit=5000",
+        "table_id": "M400391",
+        "row_id": "2",
+        "table_title": "Supply Of Private Residential Properties In The Pipeline By Development Status (End Of Period), Quarterly",
+        "source_agency": "URBAN REDEVELOPMENT AUTHORITY",
+        "retrieved_at": "2026-10-01T11:47:06+00:00",
+        "source_updated_at": "24/07/2026",
+        "source_footnote": "Data exclude hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "Non-landed private residential pipeline; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M400391_fb25f7621ca819ff.json",
+          "raw_sha256": "f088bab517f48eb2861a305667fb52c24ceca6eaed2d855d6bcf6d0f8fa56a01",
+          "metadata_file": "raw/metadata_M400391_e4a98695091d7655.json",
+          "metadata_sha256": "4e3117548991605f5546c80e29d831d16563292bf79bce56c349342cc6f982d7"
+        },
+        "mechanism": {
+          "sales": "A larger prospective pipeline may ease expected future supply constraints.",
+          "rents": "Future completions may expand potential rental supply.",
+          "lag": "Medium to long term; timing varies across under-construction and planned developments.",
+          "limitations": "The pipeline is not completed housing or a completion forecast. Timing, cancellations and development stages vary; landed housing is excluded from this row."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M400391",
+        "row_id": "2",
+        "expected_name": "Total Non-Landed Properties",
+        "expected_unit": "Number Of Units",
+        "frequency": "Q",
+        "theme": "future_supply",
+        "definition": "Total non-landed private residential units in the pipeline at quarter-end across development statuses.",
+        "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Non-landed private residential pipeline; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "A larger prospective pipeline may ease expected future supply constraints.",
+          "rents": "Future completions may expand potential rental supply.",
+          "lag": "Medium to long term; timing varies across under-construction and planned developments.",
+          "limitations": "The pipeline is not completed housing or a completion forecast. Timing, cancellations and development stages vary; landed housing is excluded from this row."
+        },
+        "selection_family": "housing_supply"
+      },
+      "evaluation_reference": "evaluations.json#M400391:2",
+      "changes": [
+        {
+          "id": "M400391:2:previous_period",
+          "comparison": "previous_period",
+          "value": 7.4120263557,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 51677.0,
+          "base_period": "2026-Q1",
+          "base_value": 48111.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 51677.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "51677",
+              "raw_index": 132
+            },
+            {
+              "period": "2026-Q1",
+              "value": 48111.0,
+              "raw_period": "2026 1Q",
+              "raw_value": "48111",
+              "raw_index": 131
+            }
+          ]
+        },
+        {
+          "id": "M400391:2:year_on_year",
+          "comparison": "year_on_year",
+          "value": 6.6076659653,
+          "unit": "%",
+          "latest_period": "2026-Q2",
+          "latest_value": 51677.0,
+          "base_period": "2025-Q2",
+          "base_value": 48474.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-Q2",
+              "value": 51677.0,
+              "raw_period": "2026 2Q",
+              "raw_value": "51677",
+              "raw_index": 132
+            },
+            {
+              "period": "2025-Q2",
+              "value": 48474.0,
+              "raw_period": "2025 2Q",
+              "raw_value": "48474",
+              "raw_index": 128
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M213751:1",
+      "name_zh": "整体消费者价格指数（CPI）",
+      "name": "All Items",
+      "definition": "All-items Consumer Price Index, 2024 = 100, based on the official household expenditure weighting pattern.",
+      "definition_zh": "基于官方家庭支出权重的整体消费者价格指数，以 2024 年为 100，按月公布。",
+      "definition_origin": "actual_metadata",
+      "frequency": "M",
+      "frequency_zh": "月度",
+      "unit": "Index",
+      "unit_zh": "指数",
+      "scope": "Singapore consumer prices; index, not residential property sale prices.",
+      "rationale_zh": "用于观察生活成本和实际购买力；通胀可能影响家庭预算、持有成本及融资环境，对房价和租金的净作用不预设方向。",
+      "caveat_zh": "不是住宅售价指数或建筑成本指数；包含住房相关分项，与租金可能存在指标重叠，不能视为独立的因果或已验证预测变量。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M213751",
+        "label": "SingStat Table Builder",
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M213751",
+        "planned_label": "SingStat 官方表：消费者价格指数"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026-08",
+        "value": 103.334,
+        "raw_period": "2026 Aug",
+        "raw_value": "103.334",
+        "raw_index": 787
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 97.14,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 119,
+        "expected_count": 119,
+        "window_valid_count": 119,
+        "total_valid_count": 788,
+        "window_start_period": "2016-10",
+        "window_end_period": "2026-09",
+        "coverage_start_period": "2016-10",
+        "coverage_end_period": "2026-08",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 24,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 6
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 17.1429,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026-08；103.334 指数；质量分：97.14/100",
+      "status": "selected",
+      "status_label": "已选入本次报告",
+      "filter_group": "selected",
+      "selected": true,
+      "selection_record_selected": true,
+      "selection_summary_zh": "已选；满足本次数据门槛。在该经济类别中数据质量分最高，优先补足类别覆盖；同分按指标 ID 排序。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Selected for economic-family coverage (inflation): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M213751:1",
+        "selected": true,
+        "reason": "Selected for economic-family coverage (inflation): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+      },
+      "actual_metadata": {
+        "id": "M213751:1",
+        "name": "All Items",
+        "theme": "inflation",
+        "selection_family": "inflation",
+        "definition": "All-items Consumer Price Index, 2024 = 100, based on the official household expenditure weighting pattern.",
+        "unit": "Index",
+        "frequency": "M",
+        "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M213751",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M213751?seriesNoORrowNo=1&limit=5000",
+        "table_id": "M213751",
+        "row_id": "1",
+        "table_title": "Consumer Price Index (CPI), 2024 As Base Year, Monthly",
+        "source_agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "retrieved_at": "2026-10-01T11:47:06+00:00",
+        "source_updated_at": "23/09/2026",
+        "source_footnote": "The weighting pattern of the Consumer Price Index (CPI) was derived from the expenditure values collected from the Household Expenditure Survey (HES) 2023 and updated to 2024 values by taking into account price changes between 2023 and 2024.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "Singapore consumer prices; index, not residential property sale prices.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M213751_62f62cd25bf5df72.json",
+          "raw_sha256": "28aec21bd4c894fbc1df63dd140903d8342e8e064bd3ad8e9997aa02a58c9669",
+          "metadata_file": "raw/metadata_M213751_ffb93a81df629642.json",
+          "metadata_sha256": "fa077c6298e363d92893240514a02b2c3fb4a74854ae2e86b877bbb25e04c0c7"
+        },
+        "mechanism": {
+          "sales": "Inflation affects real purchasing power and building or financing conditions, but its net association with home values is ambiguous.",
+          "rents": "Inflation affects household budgets and landlords' costs, with an ambiguous net effect on rent growth.",
+          "lag": "Monthly cost-of-living context; effects can be contemporaneous or lagged.",
+          "limitations": "CPI includes housing-related components, so its relationship with rents can partly reflect overlap. It is not a construction-cost index, house-price index or independent causal predictor."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M213751",
+        "row_id": "1",
+        "expected_name": "All Items",
+        "expected_unit": "Index",
+        "frequency": "M",
+        "theme": "inflation",
+        "definition": "All-items Consumer Price Index, 2024 = 100, based on the official household expenditure weighting pattern.",
+        "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+        "scope": "Singapore consumer prices; index, not residential property sale prices.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "mechanism": {
+          "sales": "Inflation affects real purchasing power and building or financing conditions, but its net association with home values is ambiguous.",
+          "rents": "Inflation affects household budgets and landlords' costs, with an ambiguous net effect on rent growth.",
+          "lag": "Monthly cost-of-living context; effects can be contemporaneous or lagged.",
+          "limitations": "CPI includes housing-related components, so its relationship with rents can partly reflect overlap. It is not a construction-cost index, house-price index or independent causal predictor."
+        },
+        "selection_family": "inflation"
+      },
+      "evaluation_reference": "evaluations.json#M213751:1",
+      "changes": [
+        {
+          "id": "M213751:1:previous_period",
+          "comparison": "previous_period",
+          "value": 0.6212510711,
+          "unit": "%",
+          "latest_period": "2026-08",
+          "latest_value": 103.334,
+          "base_period": "2026-07",
+          "base_value": 102.696,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 103.334,
+              "raw_period": "2026 Aug",
+              "raw_value": "103.334",
+              "raw_index": 787
+            },
+            {
+              "period": "2026-07",
+              "value": 102.696,
+              "raw_period": "2026 Jul",
+              "raw_value": "102.696",
+              "raw_index": 786
+            }
+          ]
+        },
+        {
+          "id": "M213751:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 2.3483850519,
+          "unit": "%",
+          "latest_period": "2026-08",
+          "latest_value": 103.334,
+          "base_period": "2025-08",
+          "base_value": 100.963,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026-08",
+              "value": 103.334,
+              "raw_period": "2026 Aug",
+              "raw_value": "103.334",
+              "raw_index": 787
+            },
+            {
+              "period": "2025-08",
+              "value": 100.963,
+              "raw_period": "2025 Aug",
+              "raw_value": "100.963",
+              "raw_index": 775
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M810371:1",
+      "name_zh": "居民住户数",
+      "name": "Resident Households",
+      "definition": "Annual number of resident households; household counts are distinct from population and are not the number of newly formed households.",
+      "definition_zh": "年度居民住户总数，居民住户按住户参考人为新加坡公民或永久居民界定；这是住户存量，不是人口数或当年新成立住户数。",
+      "definition_origin": "actual_metadata",
+      "frequency": "A",
+      "frequency_zh": "年度",
+      "unit": "Number",
+      "unit_zh": "户",
+      "scope": "Resident households. Source estimates combine Census of Population, General Household Survey and Comprehensive June Labour Force Survey; sampling variability and source changes apply.",
+      "rationale_zh": "补充人口之外的居住单位数量：住户增加可能带来更多住房需求，具体取决于家庭构成、居住安排、租购选择和支付能力。",
+      "caveat_zh": "人口普查、综合住户调查及六月综合劳动力调查的来源交替，调查估计存在抽样波动；元数据未给出每年一致的确切参考日，程序采用保守年末截点，不代表数据实际在年底测量。与人口指标共用需求组。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M810371",
+        "label": "SingStat Table Builder",
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810371",
+        "planned_label": "SingStat 官方表：按住户规模划分的居民住户"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2025",
+        "value": 1487100.0,
+        "raw_period": "2025",
+        "raw_value": "1487100",
+        "raw_index": 43
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 44,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2025；1,487,100 户；质量分：100/100",
+      "status": "eligible_unselected",
+      "status_label": "数据合格，本次落选",
+      "filter_group": "eligible_unselected",
+      "selected": false,
+      "selection_record_selected": false,
+      "selection_summary_zh": "已达到数据门槛，未进入本次报告；不代表预测能力较差。按经济类别覆盖、数据质量分及同分时的指标 ID 顺序选择后，报告名额已满。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: population_demand.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M810371:1",
+        "selected": false,
+        "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: population_demand."
+      },
+      "actual_metadata": {
+        "id": "M810371:1",
+        "name": "Resident Households",
+        "theme": "population_demand",
+        "selection_family": "population_demand",
+        "definition": "Annual number of resident households; household counts are distinct from population and are not the number of newly formed households.",
+        "unit": "Number",
+        "frequency": "A",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810371",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810371?seriesNoORrowNo=1&limit=5000",
+        "table_id": "M810371",
+        "row_id": "1",
+        "table_title": "Resident Households By Household Size, Annual",
+        "source_agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "retrieved_at": "2026-10-01T11:47:06+00:00",
+        "source_updated_at": "30/06/2026",
+        "source_footnote": "Data for 1980, 1990, 2000, 2010 and 2020 are based on the Census of Population while data for 1995, 2005, 2015 and 2025 are based on the General Household Survey. Data for all other years are based on the Comprehensive June Labour Force Survey. Survey estimates are subject to sampling variability.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "Resident households. Source estimates combine Census of Population, General Household Survey and Comprehensive June Labour Force Survey; sampling variability and source changes apply.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M810371_8461ccdf2c645031.json",
+          "raw_sha256": "3b1c98d7f8191a8c4ab000444fe34c827a556ab416c85e2623154d79c458595d",
+          "metadata_file": "raw/metadata_M810371_586abac18b9b2be7.json",
+          "metadata_sha256": "5c9fecec616dbbe0c3a07860ffe1b3e2829377dd050fca26af46c81e2dfd177d"
+        },
+        "mechanism": {
+          "sales": "Household counts may better represent potential dwelling demand than population alone, subject to tenure, household composition and affordability.",
+          "rents": "More households may support rental demand depending on tenure choices.",
+          "lag": "Annual structural context; no short-term timing claim.",
+          "limitations": "Differences in household counts are not gross household formation. Census and survey years use different sources; metadata does not establish one exact reference day for every year. Period-end filtering is conservative and is not a claim that the count was measured at year-end."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M810371",
+        "row_id": "1",
+        "expected_name": "Resident Households",
+        "expected_unit": "Number",
+        "frequency": "A",
+        "theme": "population_demand",
+        "definition": "Annual number of resident households; household counts are distinct from population and are not the number of newly formed households.",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+        "scope": "Resident households. Source estimates combine Census of Population, General Household Survey and Comprehensive June Labour Force Survey; sampling variability and source changes apply.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "selection_family": "population_demand",
+        "mechanism": {
+          "sales": "Household counts may better represent potential dwelling demand than population alone, subject to tenure, household composition and affordability.",
+          "rents": "More households may support rental demand depending on tenure choices.",
+          "lag": "Annual structural context; no short-term timing claim.",
+          "limitations": "Differences in household counts are not gross household formation. Census and survey years use different sources; metadata does not establish one exact reference day for every year. Period-end filtering is conservative and is not a claim that the count was measured at year-end."
+        }
+      },
+      "evaluation_reference": "evaluations.json#M810371:1",
+      "changes": [
+        {
+          "id": "M810371:1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 1.6195161952,
+          "unit": "%",
+          "latest_period": "2025",
+          "latest_value": 1487100.0,
+          "base_period": "2024",
+          "base_value": 1463400.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2025",
+              "value": 1487100.0,
+              "raw_period": "2025",
+              "raw_value": "1487100",
+              "raw_index": 43
+            },
+            {
+              "period": "2024",
+              "value": 1463400.0,
+              "raw_period": "2024",
+              "raw_value": "1463400",
+              "raw_index": 42
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M810361:5",
+      "name_zh": "居民就业住户月度就业收入中位数",
+      "name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+      "definition": "Median nominal monthly household employment income among resident employed households, including employer CPF contributions and one-twelfth of annual bonus, before Government transfers and taxes.",
+      "definition_zh": "至少有一名就业成员、且参考人为公民或永久居民的住户，其月度就业收入中位数；单位为新加坡元，含雇主 CPF 及年度奖金的十二分之一，未计政府转移与税收。",
+      "definition_origin": "actual_metadata",
+      "frequency": "A",
+      "frequency_zh": "年度",
+      "unit": "Dollar",
+      "unit_zh": "新元",
+      "scope": "Households whose reference person is a citizen or permanent resident and with at least one employed member. Income sums employment and business income of employed household members, excluding live-in domestic workers.",
+      "rationale_zh": "补充典型就业住户的支付能力，区别于个人平均工资或全社会收入总额；可能有助于观察购房和租房负担的收入基础。",
+      "caveat_zh": "是每户中位数，不是户内人均收入或个人工资；排除没有就业者的住户及住家家政工人的收入，含 CPF、奖金，非到手现金。与既有收入指标共用收入组，不代表已验证的预测能力。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M810361",
+        "label": "SingStat Table Builder",
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810361",
+        "planned_label": "SingStat 官方表：居民就业住户就业收入主要指标"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2025",
+        "value": 12027.0,
+        "raw_period": "2025",
+        "raw_value": "12027",
+        "raw_index": 25
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 26,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2025；12,027 新元；质量分：100/100",
+      "status": "selected",
+      "status_label": "已选入本次报告",
+      "filter_group": "selected",
+      "selected": true,
+      "selection_record_selected": true,
+      "selection_summary_zh": "已选；满足本次数据门槛。在该经济类别中数据质量分最高，优先补足类别覆盖；同分按指标 ID 排序。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Selected for economic-family coverage (household_income): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M810361:5",
+        "selected": true,
+        "reason": "Selected for economic-family coverage (household_income): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+      },
+      "actual_metadata": {
+        "id": "M810361:5",
+        "name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+        "theme": "household_income",
+        "selection_family": "household_income",
+        "definition": "Median nominal monthly household employment income among resident employed households, including employer CPF contributions and one-twelfth of annual bonus, before Government transfers and taxes.",
+        "unit": "Dollar",
+        "frequency": "A",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810361",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810361?seriesNoORrowNo=5&limit=5000",
+        "table_id": "M810361",
+        "row_id": "5",
+        "table_title": "Key Indicators On Household Employment Income Among Resident Employed Households, Annual",
+        "source_agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "retrieved_at": "2026-10-01T11:47:07+00:00",
+        "source_updated_at": "09/02/2026",
+        "source_footnote": "Data refer to resident employed households. A resident employed household refers to a household where the household reference person is a resident (i.e. Singapore citizen or permanent resident), and with at least one employed person. Household employment income refers to the sum of income received by employed members of the household from employment and business, excluding the income of live-in domestic workers. Monthly household employment income includes employer Central Provident Fund (CPF) contributions and one-twelfth of annual bonus. Data on household employment income refers to household employment income before accounting for Government transfers and taxes, unless stated otherwise.",
+        "row_footnote": "",
+        "change_kind": "percent",
+        "scope": "Households whose reference person is a citizen or permanent resident and with at least one employed member. Income sums employment and business income of employed household members, excluding live-in domestic workers.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": null,
+        "provenance": {
+          "raw_file": "raw/tabledata_M810361_ace929ea782b332d.json",
+          "raw_sha256": "64b079f81758a381e25fe6bc001bf4ee5057f00f4d86c542b8fbbfa85313b231",
+          "metadata_file": "raw/metadata_M810361_fb50c1a81edc5973.json",
+          "metadata_sha256": "148b8261931177e7cf30de972656658bc73a4a1f60a01f6c8e696fe55575adb6"
+        },
+        "mechanism": {
+          "sales": "Median household employment income may describe typical household purchasing capacity more directly than mean income per employed person.",
+          "rents": "Median household income may contextualise household rent affordability.",
+          "lag": "Annual affordability context; income and financing decisions can adjust over subsequent quarters.",
+          "limitations": "Not income per household member or an individual wage. Excludes households with no employed person; includes employer CPF and annual bonus allocation, unlike the existing bonus-excluding quarterly individual mean. Nominal and not take-home income."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M810361",
+        "row_id": "5",
+        "expected_name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+        "expected_unit": "Dollar",
+        "frequency": "A",
+        "theme": "household_income",
+        "definition": "Median nominal monthly household employment income among resident employed households, including employer CPF contributions and one-twelfth of annual bonus, before Government transfers and taxes.",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+        "scope": "Households whose reference person is a citizen or permanent resident and with at least one employed member. Income sums employment and business income of employed household members, excluding live-in domestic workers.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": null,
+        "selection_family": "household_income",
+        "mechanism": {
+          "sales": "Median household employment income may describe typical household purchasing capacity more directly than mean income per employed person.",
+          "rents": "Median household income may contextualise household rent affordability.",
+          "lag": "Annual affordability context; income and financing decisions can adjust over subsequent quarters.",
+          "limitations": "Not income per household member or an individual wage. Excludes households with no employed person; includes employer CPF and annual bonus allocation, unlike the existing bonus-excluding quarterly individual mean. Nominal and not take-home income."
+        }
+      },
+      "evaluation_reference": "evaluations.json#M810361:5",
+      "changes": [
+        {
+          "id": "M810361:5:year_on_year",
+          "comparison": "year_on_year",
+          "value": 6.3019268163,
+          "unit": "%",
+          "latest_period": "2025",
+          "latest_value": 12027.0,
+          "base_period": "2024",
+          "base_value": 11314.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2025",
+              "value": 12027.0,
+              "raw_period": "2025",
+              "raw_value": "12027",
+              "raw_index": 25
+            },
+            {
+              "period": "2024",
+              "value": 11314.0,
+              "raw_period": "2024",
+              "raw_value": "11314",
+              "raw_index": 24
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M183111:7",
+      "name_zh": "年末就业总人数",
+      "name": "Employment (Persons) As At Year End",
+      "definition": "Total persons in employment as at year-end, expressed in thousands; includes migrant domestic workers and excludes persons serving two-year full-time national service.",
+      "definition_zh": "年末就业总人数，单位为千人，覆盖居民和非居民雇员及自雇人士；包括外籍家政工人，不包括履行两年全职国民服役的人员。",
+      "definition_origin": "actual_metadata",
+      "frequency": "A",
+      "frequency_zh": "年度",
+      "unit": "Thousand",
+      "unit_zh": "千人",
+      "scope": "Resident and non-resident employees plus self-employed persons. MOM administrative-record coverage excludes two-year full-time national servicemen; the current MOM summary identifies the matching total as including migrant domestic workers. SingStat row footnote confirms administrative records plus Labour Force Survey estimates for the self-employed.",
+      "rationale_zh": "补充失业率之外的就业规模；就业人数增加可能扩大收入基础，并支持与工作相关的住房需求。",
+      "caveat_zh": "不是居民就业人数、职位空缺或当年新增雇员；包含家政工人及其他不一定单独租住普通住宅的就业者。覆盖经 MOM 官方定义及总量对照核实，与居民失业率共用劳动力市场组。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M183111",
+        "label": "SingStat Table Builder",
+        "agency": "MINISTRY OF MANPOWER",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M183111",
+        "planned_label": "SingStat 官方表（原发布：MOM）：劳动力市场年度统计"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2025",
+        "value": 4117.0,
+        "raw_period": "2025",
+        "raw_value": "4117",
+        "raw_index": 31,
+        "observation_date": "2025-12-31"
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 32,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2025；4,117 千人；质量分：100/100",
+      "status": "selected",
+      "status_label": "已选入本次报告",
+      "filter_group": "selected",
+      "selected": true,
+      "selection_record_selected": true,
+      "selection_summary_zh": "已选；满足本次数据门槛。在该经济类别中数据质量分最高，优先补足类别覆盖；同分按指标 ID 排序。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Selected for economic-family coverage (labour_market): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M183111:7",
+        "selected": true,
+        "reason": "Selected for economic-family coverage (labour_market): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+      },
+      "actual_metadata": {
+        "id": "M183111:7",
+        "name": "Employment (Persons) As At Year End",
+        "theme": "employment_level",
+        "selection_family": "labour_market",
+        "definition": "Total persons in employment as at year-end, expressed in thousands; includes migrant domestic workers and excludes persons serving two-year full-time national service.",
+        "unit": "Thousand",
+        "frequency": "A",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M183111",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M183111?seriesNoORrowNo=7&limit=5000",
+        "table_id": "M183111",
+        "row_id": "7",
+        "table_title": "Labour Market Statistics, Annual",
+        "source_agency": "MINISTRY OF MANPOWER",
+        "retrieved_at": "2026-10-01T11:47:07+00:00",
+        "source_updated_at": "31/07/2026",
+        "source_footnote": "",
+        "row_footnote": "Data are compiled primarily from administrative records, wtih the self-employed component estimated from the Labour Force Survey.",
+        "change_kind": "percent",
+        "scope": "Resident and non-resident employees plus self-employed persons. MOM administrative-record coverage excludes two-year full-time national servicemen; the current MOM summary identifies the matching total as including migrant domestic workers. SingStat row footnote confirms administrative records plus Labour Force Survey estimates for the self-employed.",
+        "seasonal_adjustment": "Non-seasonally Adjusted",
+        "reference_month_day": "12-31",
+        "provenance": {
+          "raw_file": "raw/tabledata_M183111_78ebddbf3477131c.json",
+          "raw_sha256": "091816d24a8931e0b39195330d1c3b00fca60057cff5755fadcdbd6ec53487cd",
+          "metadata_file": "raw/metadata_M183111_9051b2d9ad2d5178.json",
+          "metadata_sha256": "d7f0f27f5ba85714f914688ce758d8d4efc404d3d5e43e5974cdb4b6e4bbbd29"
+        },
+        "mechanism": {
+          "sales": "A larger employment base may support aggregate earned income and housing purchasing capacity.",
+          "rents": "Employment expansion may support work-related housing and rental demand.",
+          "lag": "Annual year-end employment context; housing responses need not be simultaneous.",
+          "limitations": "Counts employed persons, not vacancies, new hires or the unemployment rate. Includes migrant domestic workers and other workers whose accommodation need is not an ordinary separate rental unit. Employment and housing may share common causes; not a residents-only series."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M183111",
+        "row_id": "7",
+        "expected_name": "Employment (Persons) As At Year End",
+        "expected_unit": "Thousand",
+        "frequency": "A",
+        "theme": "employment_level",
+        "definition": "Total persons in employment as at year-end, expressed in thousands; includes migrant domestic workers and excludes persons serving two-year full-time national service.",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+        "scope": "Resident and non-resident employees plus self-employed persons. MOM administrative-record coverage excludes two-year full-time national servicemen; the current MOM summary identifies the matching total as including migrant domestic workers. SingStat row footnote confirms administrative records plus Labour Force Survey estimates for the self-employed.",
+        "seasonal_adjustment": "Non-seasonally Adjusted",
+        "change_kind": "percent",
+        "reference_month_day": "12-31",
+        "selection_family": "labour_market",
+        "mechanism": {
+          "sales": "A larger employment base may support aggregate earned income and housing purchasing capacity.",
+          "rents": "Employment expansion may support work-related housing and rental demand.",
+          "lag": "Annual year-end employment context; housing responses need not be simultaneous.",
+          "limitations": "Counts employed persons, not vacancies, new hires or the unemployment rate. Includes migrant domestic workers and other workers whose accommodation need is not an ordinary separate rental unit. Employment and housing may share common causes; not a residents-only series."
+        }
+      },
+      "evaluation_reference": "evaluations.json#M183111:7",
+      "changes": [
+        {
+          "id": "M183111:7:year_on_year",
+          "comparison": "year_on_year",
+          "value": 1.7497899264,
+          "unit": "%",
+          "latest_period": "2025",
+          "latest_value": 4117.0,
+          "base_period": "2024",
+          "base_value": 4046.2,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2025",
+              "value": 4117.0,
+              "raw_period": "2025",
+              "raw_value": "4117",
+              "raw_index": 31,
+              "observation_date": "2025-12-31"
+            },
+            {
+              "period": "2024",
+              "value": 4046.2,
+              "raw_period": "2024",
+              "raw_value": "4046.2",
+              "raw_index": 30,
+              "observation_date": "2024-12-31"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "M400751:1.1",
+      "name_zh": "HDB 组屋存量（年中）",
+      "name": "Total HDB Flats",
+      "definition": "Total HDB flats as at end-June of each year, including non-privatised Housing and Urban Development Corporation flats.",
+      "definition_zh": "每年 6 月底的 HDB 组屋总套数，包括尚未私有化的 HUDC 住宅。",
+      "definition_origin": "actual_metadata",
+      "frequency": "A",
+      "frequency_zh": "年度",
+      "unit": "Number",
+      "unit_zh": "套",
+      "scope": "Public-housing dwelling stock; not annual completions, BTO launches, resale transactions or flats available for rent.",
+      "rationale_zh": "补足私人住宅供给之外的公共住房规模；组屋供给可能影响居住选择，并与私人住房的购买及租赁需求相互作用。",
+      "caveat_zh": "是存量，不是当年竣工、BTO 推出、转售成交或可出租套数；公共与私人住房在资格及政策上不同。参考日为 6 月 30 日，与私人住宅存量、空置和供应储备共用住房供给组。",
+      "source": {
+        "kind": "actual",
+        "url": "https://tablebuilder.singstat.gov.sg/table/TS/M400751",
+        "label": "SingStat Table Builder",
+        "agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "status_label": "本次实际来源",
+        "planned_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400751",
+        "planned_label": "SingStat 官方表：住宅单位"
+      },
+      "has_provenance": true,
+      "has_latest": true,
+      "latest": {
+        "period": "2026",
+        "value": 1177601.0,
+        "raw_period": "2026",
+        "raw_value": "1177601",
+        "raw_index": 26,
+        "observation_date": "2026-06-30"
+      },
+      "quality_assessed": true,
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.",
+          "Used source-backed observation dates within the period for 27 observations; other observations use period-end cutoffs."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 27,
+        "window_start_period": "2017",
+        "window_end_period": "2026",
+        "coverage_start_period": "2017",
+        "coverage_end_period": "2026",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "data_status_zh": "最新可用：2026；1,177,601 套；质量分：100/100",
+      "status": "selected",
+      "status_label": "已选入本次报告",
+      "filter_group": "selected",
+      "selected": true,
+      "selection_record_selected": true,
+      "selection_summary_zh": "已选；满足本次数据门槛。在该经济类别中数据质量分最高，优先补足类别覆盖；同分按指标 ID 排序。由确定性规则选择，未调用模型解释。",
+      "decision_reason": "Selected for economic-family coverage (housing_supply): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified.",
+      "decision_reason_origin": "rules",
+      "decision_origin_label": "确定性筛选规则（非模型理由）",
+      "original_decision": {
+        "id": "M400751:1.1",
+        "selected": true,
+        "reason": "Selected for economic-family coverage (housing_supply): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+      },
+      "actual_metadata": {
+        "id": "M400751:1.1",
+        "name": "Total HDB Flats",
+        "theme": "public_housing_supply",
+        "selection_family": "housing_supply",
+        "definition": "Total HDB flats as at end-June of each year, including non-privatised Housing and Urban Development Corporation flats.",
+        "unit": "Number",
+        "frequency": "A",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+        "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400751",
+        "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M400751?seriesNoORrowNo=1.1&limit=5000",
+        "table_id": "M400751",
+        "row_id": "1.1",
+        "table_title": "Residential Dwellings, Annual",
+        "source_agency": "SINGAPORE DEPARTMENT OF STATISTICS",
+        "retrieved_at": "2026-10-01T11:47:07+00:00",
+        "source_updated_at": "25/09/2026",
+        "source_footnote": "Data as at end June of each year.",
+        "row_footnote": "Includes non-privatised Housing and Urban Development Corporation flats.",
+        "change_kind": "percent",
+        "scope": "Public-housing dwelling stock; not annual completions, BTO launches, resale transactions or flats available for rent.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "reference_month_day": "06-30",
+        "provenance": {
+          "raw_file": "raw/tabledata_M400751_c10997a05cec390f.json",
+          "raw_sha256": "ae44af016d20a58cd79503fe3d95d1e18e17f10218aae45b76afe211b8c363bf",
+          "metadata_file": "raw/metadata_M400751_84d47a9a0e863650.json",
+          "metadata_sha256": "607a6fe303baf45d1771d70d26392a47b95227cb665aa6f419b278a2053abe45"
+        },
+        "mechanism": {
+          "sales": "The public-housing stock adds supply context not represented by private residential stock and may influence tenure and purchase choices.",
+          "rents": "Public-housing supply can affect tenure choices and rental alternatives subject to eligibility and rental rules.",
+          "lag": "Annual supply stock; allocations, completion and occupation timing can differ.",
+          "limitations": "Stock is not new supply or vacancies and includes non-privatised HUDC flats. Public and private markets differ in eligibility and policy; aggregate stock alone does not predict prices or rents."
+        },
+        "availability_note": "Latest downloaded vintage. Table update date is not an observation release date; historical information availability is not reconstructed."
+      },
+      "catalogue_entry": {
+        "table_id": "M400751",
+        "row_id": "1.1",
+        "expected_name": "Total HDB Flats",
+        "expected_unit": "Number",
+        "frequency": "A",
+        "theme": "public_housing_supply",
+        "definition": "Total HDB flats as at end-June of each year, including non-privatised Housing and Urban Development Corporation flats.",
+        "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+        "scope": "Public-housing dwelling stock; not annual completions, BTO launches, resale transactions or flats available for rent.",
+        "seasonal_adjustment": "Not labelled as seasonally adjusted",
+        "change_kind": "percent",
+        "reference_month_day": "06-30",
+        "selection_family": "housing_supply",
+        "mechanism": {
+          "sales": "The public-housing stock adds supply context not represented by private residential stock and may influence tenure and purchase choices.",
+          "rents": "Public-housing supply can affect tenure choices and rental alternatives subject to eligibility and rental rules.",
+          "lag": "Annual supply stock; allocations, completion and occupation timing can differ.",
+          "limitations": "Stock is not new supply or vacancies and includes non-privatised HUDC flats. Public and private markets differ in eligibility and policy; aggregate stock alone does not predict prices or rents."
+        }
+      },
+      "evaluation_reference": "evaluations.json#M400751:1.1",
+      "changes": [
+        {
+          "id": "M400751:1.1:year_on_year",
+          "comparison": "year_on_year",
+          "value": 1.4705286786,
+          "unit": "%",
+          "latest_period": "2026",
+          "latest_value": 1177601.0,
+          "base_period": "2025",
+          "base_value": 1160535.0,
+          "formula": "(latest_value / base_value - 1) * 100",
+          "reason": null,
+          "evidence": [
+            {
+              "period": "2026",
+              "value": 1177601.0,
+              "raw_period": "2026",
+              "raw_value": "1177601",
+              "raw_index": 26,
+              "observation_date": "2026-06-30"
+            },
+            {
+              "period": "2025",
+              "value": 1160535.0,
+              "raw_period": "2025",
+              "raw_value": "1160535",
+              "raw_index": 25,
+              "observation_date": "2025-06-30"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "candidates": 16,
+    "selected": 5,
+    "by_status": {
+      "selected": 5,
+      "eligible_unselected": 11
+    }
+  },
+  "notes": {
+    "M810001:2": {
+      "name_zh": "居民人口",
+      "definition_zh": "每年 6 月底的新加坡公民及永久居民人数；自 2003 年起，不包括参考日已连续在海外居住至少 12 个月的居民。",
+      "rationale_zh": "用于观察本地住房需求的潜在人口基础；若家庭形成和购买能力同步增加，人口增长可能支持购房或租房需求。",
+      "caveat_zh": "人口不等于家庭数、购房人数或住房需求预测；1990 年前的人口概念及 2003 年覆盖变化限制长期可比性。年度参考日为 6 月 30 日，不是年底。",
+      "source_agency": "新加坡统计局（DOS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+      "planned_source_label": "SingStat 官方表：人口与人口结构"
+    },
+    "M810001:5": {
+      "name_zh": "非居民人口",
+      "definition_zh": "每年 6 月底在新加坡工作、学习或居住但无永久居民身份的外国人数，不包括游客及短期访客。",
+      "rationale_zh": "用于观察人口流动相关的租赁需求；其中寻求普通住宅住宿的人口增加，可能支持租房需求，并间接影响住房市场。",
+      "caveat_zh": "包含宿舍等普通住宅租赁以外的住宿安排，不能直接换算为租房人数；未区分收入、签证类别、家庭规模或住房类型。年度参考日为 6 月 30 日。",
+      "source_agency": "新加坡统计局（DOS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+      "planned_source_label": "SingStat 官方表：人口与人口结构"
+    },
+    "M015661:1": {
+      "name_zh": "实际国内生产总值（GDP）",
+      "definition_zh": "按 2015 年链式价格计量的季度国内生产总值，单位为百万新加坡元，覆盖新加坡整体经济。",
+      "rationale_zh": "用于观察总体经济活动；经济增长可能通过就业、收入和信心影响购房能力及就业相关的租赁需求。",
+      "caveat_zh": "该序列未标注季节调整，优先比较同比；初步估计及历史值可能修订。GDP 与住房可能受共同因素影响，不能据此认定因果或预测能力。",
+      "source_agency": "新加坡统计局（DOS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M015661",
+      "planned_source_label": "SingStat 官方表：季度实际 GDP"
+    },
+    "M182342:2": {
+      "name_zh": "居民失业率（经季节调整）",
+      "definition_zh": "季度末居民劳动力中的失业者比例，已经季节调整；居民指新加坡公民及永久居民，单位为百分比。",
+      "rationale_zh": "用于观察居民就业压力；失业率上升可能削弱购房信心、偿贷能力和租金承受能力。",
+      "caveat_zh": "不涵盖非居民劳动力，也不衡量工资、就业不足或岗位稳定性；季调值可修订。变化应以百分点表示，保留实际来源的公布精度。",
+      "source_agency": "新加坡人力部（MOM）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M182342",
+      "planned_source_label": "SingStat 官方表（原发布：MOM）：居民季调失业率"
+    },
+    "M184101:1": {
+      "name_zh": "就业居民平均月度就业总收入（含公积金、不含奖金）",
+      "definition_zh": "就业居民的平均月度就业总收入，含雇主公积金（CPF）缴款、不含奖金；单位为新加坡元，按季度公布。覆盖就业公民及永久居民，不包括全职国民服役人员。当前直连 MOM 口径还明确包含平台运营商 CPF 缴款。",
+      "rationale_zh": "用于观察每名就业居民的收入能力；收入增加可能改善购房融资能力和租金承受能力，与经济总量指标形成补充。",
+      "caveat_zh": "是个人均值，不是家庭收入中位数或到手现金；高收入者及就业人员构成变化会影响均值。优先比较同比，保留实际来源提供的初步值标记；平台运营商 CPF 的说明须结合当前直连 MOM 原文，不能替代旧快照的来源说明。",
+      "source_agency": "新加坡人力部（MOM）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M184101",
+      "planned_source_label": "SingStat 官方表（原发布：MOM）：就业居民平均月度就业总收入"
+    },
+    "M016081:1": {
+      "name_zh": "个人可支配收入总额（名义）",
+      "definition_zh": "按现价计量的季度个人可支配收入总额，单位为百万新加坡元。",
+      "rationale_zh": "用于观察可供居民部门消费和储蓄的总体收入规模；收入总额增加可能支持住房购买及租赁支出。",
+      "caveat_zh": "是名义总额，不是人均、户均或家庭收入中位数；增长也可能来自物价或人口增加。序列未标注季节调整，优先比较同比。",
+      "source_agency": "新加坡统计局（DOS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M016081",
+      "planned_source_label": "SingStat 官方表：个人可支配收入"
+    },
+    "M700071:23": {
+      "name_zh": "三个月复利 SORA（月末值）",
+      "definition_zh": "三个月复利新加坡隔夜平均利率的月末值，单位为年利率百分比。",
+      "rationale_zh": "用于观察融资成本；基准利率上升可能随房贷重定价提高偿贷负担，并改变购房与租房选择，对租金的净影响不预设方向。",
+      "caveat_zh": "月末值不是月均值，也不是具体房贷报价；变化以基点表示，传导取决于利差及重定价安排。使用 MAS 日频路径时，按 SORA 计息日期而非公布日期归月，缺少月末完整性证据的月份暂不纳入；实际转换以该次来源元数据为准。",
+      "source_agency": "新加坡金融管理局（MAS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M700071",
+      "planned_source_label": "SingStat 官方表（原发布：MAS）：月末三个月复利 SORA"
+    },
+    "M701091:1.2.1": {
+      "name_zh": "住房与过桥贷款余额",
+      "definition_zh": "商业银行向居民提供的消费类住房及过桥贷款月末余额，单位为百万新加坡元。",
+      "rationale_zh": "用于观察住房融资活动及其规模；贷款余额扩张可能与融资购房需求同步变化，也可能反映房价上涨后的借款增加。",
+      "caveat_zh": "是贷款存量，不是新增按揭、审批量或信贷可得性；还款也会改变余额。新报表口径自 2021 年 7 月开始，不能直接拼接旧口径；存在反向因果。",
+      "source_agency": "新加坡金融管理局（MAS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M701091",
+      "planned_source_label": "SingStat 官方表（原发布：MAS）：商业银行贷款"
+    },
+    "M400841:1": {
+      "name_zh": "已竣工私人住宅存量",
+      "definition_zh": "季度末取得临时入伙准证（TOP）或法定竣工证书（CSC）的私人住宅总套数，包括有地及非有地住宅、已入住及空置单位。",
+      "rationale_zh": "用于观察当期可使用的住宅供给规模，并为人口及空置套数提供参照；新增竣工住宅可能缓解相对于需求的供给约束。",
+      "caveat_zh": "官方名称中的 available 指已竣工总存量，不是挂牌出售或出租量；不含 HDB 组屋、执行共管公寓（EC）及官方列明的其他排除项。1995—1996 年覆盖扩展影响长期可比性。",
+      "source_agency": "新加坡市区重建局（URA）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+      "planned_source_label": "SingStat 官方表（原发布：URA）：私人住宅存量与空置"
+    },
+    "M400841:2": {
+      "name_zh": "空置私人住宅套数",
+      "definition_zh": "季度末已竣工但空置的私人住宅套数；覆盖有地及非有地住宅，范围与同表已竣工存量一致。",
+      "rationale_zh": "用于观察住宅吸收情况；在总存量、区位和需求可比的条件下，空置增加可能对应较弱的价格或租金压力。",
+      "caveat_zh": "这是套数，不是空置率；必须结合同期已竣工存量，空置套数上升仍可能伴随空置率下降。不含 HDB 及 EC，与存量、供应储备同属住房供给指标组。",
+      "source_agency": "新加坡市区重建局（URA）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+      "planned_source_label": "SingStat 官方表（原发布：URA）：私人住宅存量与空置"
+    },
+    "M400391:2": {
+      "name_zh": "非有地私人住宅供应储备",
+      "definition_zh": "季度末处于不同开发阶段的非有地私人住宅供应储备套数，包含规划及建设中的项目。",
+      "rationale_zh": "用于观察未来潜在供给及市场预期；项目陆续竣工后可能增加购买和租赁市场的住宅供给。",
+      "caveat_zh": "不是已竣工住宅，也不是确定的竣工预测；交付时间、阶段和取消情况会变化。不含有地住宅、HDB 及 EC，与存量、空置同属住房供给指标组。",
+      "source_agency": "新加坡市区重建局（URA）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400391",
+      "planned_source_label": "SingStat 官方表（原发布：URA）：私人住宅开发供应储备"
+    },
+    "M213751:1": {
+      "name_zh": "整体消费者价格指数（CPI）",
+      "definition_zh": "基于官方家庭支出权重的整体消费者价格指数，以 2024 年为 100，按月公布。",
+      "rationale_zh": "用于观察生活成本和实际购买力；通胀可能影响家庭预算、持有成本及融资环境，对房价和租金的净作用不预设方向。",
+      "caveat_zh": "不是住宅售价指数或建筑成本指数；包含住房相关分项，与租金可能存在指标重叠，不能视为独立的因果或已验证预测变量。",
+      "source_agency": "新加坡统计局（DOS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M213751",
+      "planned_source_label": "SingStat 官方表：消费者价格指数"
+    },
+    "M810371:1": {
+      "name_zh": "居民住户数",
+      "definition_zh": "年度居民住户总数，居民住户按住户参考人为新加坡公民或永久居民界定；这是住户存量，不是人口数或当年新成立住户数。",
+      "rationale_zh": "补充人口之外的居住单位数量：住户增加可能带来更多住房需求，具体取决于家庭构成、居住安排、租购选择和支付能力。",
+      "caveat_zh": "人口普查、综合住户调查及六月综合劳动力调查的来源交替，调查估计存在抽样波动；元数据未给出每年一致的确切参考日，程序采用保守年末截点，不代表数据实际在年底测量。与人口指标共用需求组。",
+      "source_agency": "新加坡统计局（DOS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810371",
+      "planned_source_label": "SingStat 官方表：按住户规模划分的居民住户"
+    },
+    "M810361:5": {
+      "name_zh": "居民就业住户月度就业收入中位数",
+      "definition_zh": "至少有一名就业成员、且参考人为公民或永久居民的住户，其月度就业收入中位数；单位为新加坡元，含雇主 CPF 及年度奖金的十二分之一，未计政府转移与税收。",
+      "rationale_zh": "补充典型就业住户的支付能力，区别于个人平均工资或全社会收入总额；可能有助于观察购房和租房负担的收入基础。",
+      "caveat_zh": "是每户中位数，不是户内人均收入或个人工资；排除没有就业者的住户及住家家政工人的收入，含 CPF、奖金，非到手现金。与既有收入指标共用收入组，不代表已验证的预测能力。",
+      "source_agency": "新加坡统计局（DOS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810361",
+      "planned_source_label": "SingStat 官方表：居民就业住户就业收入主要指标"
+    },
+    "M183111:7": {
+      "name_zh": "年末就业总人数",
+      "definition_zh": "年末就业总人数，单位为千人，覆盖居民和非居民雇员及自雇人士；包括外籍家政工人，不包括履行两年全职国民服役的人员。",
+      "rationale_zh": "补充失业率之外的就业规模；就业人数增加可能扩大收入基础，并支持与工作相关的住房需求。",
+      "caveat_zh": "不是居民就业人数、职位空缺或当年新增雇员；包含家政工人及其他不一定单独租住普通住宅的就业者。覆盖经 MOM 官方定义及总量对照核实，与居民失业率共用劳动力市场组。",
+      "source_agency": "新加坡人力部（MOM）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M183111",
+      "planned_source_label": "SingStat 官方表（原发布：MOM）：劳动力市场年度统计"
+    },
+    "M400751:1.1": {
+      "name_zh": "HDB 组屋存量（年中）",
+      "definition_zh": "每年 6 月底的 HDB 组屋总套数，包括尚未私有化的 HUDC 住宅。",
+      "rationale_zh": "补足私人住宅供给之外的公共住房规模；组屋供给可能影响居住选择，并与私人住房的购买及租赁需求相互作用。",
+      "caveat_zh": "是存量，不是当年竣工、BTO 推出、转售成交或可出租套数；公共与私人住房在资格及政策上不同。参考日为 6 月 30 日，与私人住宅存量、空置和供应储备共用住房供给组。",
+      "source_agency": "新加坡统计局（DOS）",
+      "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400751",
+      "planned_source_label": "SingStat 官方表：住宅单位"
+    }
+  },
+  "notes_origin": "housing_agent/data/indicator_notes.json",
+  "notes_sha256": "d2247a803329a79cfe178b9cbcfe9b2579d71078178d950268f3bef4afd993b2",
+  "notes_hash_policy": "SHA-256 of UTF-8 JSON with sorted keys, ensure_ascii=False and compact separators",
+  "disclaimers": [
+    "这是完整候选池，按配置顺序保留全部指标；进入候选池不等于进入本次报告。",
+    "质量分只衡量数据可用性，未验证这些指标的预测能力，也不证明因果关系。",
+    "中文候选理由与限制是随版本保存的编辑说明；模型或规则的本次选择理由另行标注，原文完整保留。",
+    "没有原始文件来源或有效观测时，不填入旧数据，也不把失败记录中的占位零分当作真实质量评分。",
+    "报告日期按观测参考日期或期间末筛选当前捕获版本，不等于重建当时可获得的信息集合。"
+  ],
+  "warnings": []
+}

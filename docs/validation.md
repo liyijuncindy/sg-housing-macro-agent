@@ -16,6 +16,22 @@ Observed use was **152,923 input + 10,100 output = 163,023 tokens across seven m
 
 An independent audit checked **2,318 raw observation cells**, **2,318 cutoff-filtered CSV rows** and **23 calculated changes** without discrepancy. The semantic audit flags unsupported extensions in the unemployment limitation and the unreasoned loss of coverage; see [the first-trial audit](evidence/singstat-priority-audit.json). The tested provider/model remains `qwen3.6:35b`; this is an observed behavior of this prompt and run, not a benchmark of all models of that size.
 
+## Final fresh-data run and review
+
+```bash
+python -m housing_agent run --as-of 2026-10-01 --mode llm --provider soclaas --source-policy auto --limit 5 --output examples/singstat_priority_verified_run
+```
+
+The second full run used clean commit `20afc7f`, started at **19:45:38 SGT** and finished at **19:47:28 SGT**. Again, all sixteen candidates were freshly retrieved from SingStat, all forty-one logical requests succeeded, and all sixteen passed data-quality gates. No fallback or prior snapshot supplied the data. The model selected real GDP, resident unemployment, mean employment income, SORA and resident households. One wording correction removed a numeric reference period while retaining the selected set; the subsequent submission passed the unchanged numeric/evidence guards.
+
+Observed consumption was **41,113 input + 2,656 output = 43,769 tokens in four calls**, with **20.653 seconds** in the model adapter and **109.474 seconds** end to end. Across these two revised fresh-data trials, consumption was **206,792 tokens in eleven calls**. These are actual recorded uses, not cost forecasts or a controlled comparison.
+
+The final status is `complete_with_warnings`: **eleven exclusions lack model-provided individual reasons** and are explicitly labelled system explanations. There are also semantic/editorial issues in the original text: resident households remain in the configured population-demand family, their stock is not a flow of newly formed households, and the unselected household median must not be described as an included complement. The [human review](reviewed-run-notes.md) states the corrections separately without rewriting the captured model response. Source and calculation validation does not establish semantic correctness or predictive usefulness. The [final independent audit](evidence/singstat-priority-final-audit.json) records these distinctions.
+
+A separate [rules comparison](../examples/singstat_priority_rules_run/report.md) explicitly reused the newly captured, checksum-verified snapshot. It recalculated the same cutoff and selected employment, HDB stock, resident population, median household employment income and CPI under the documented quality/diversity policy. It made no new network or model calls and is labelled saved-source rules mode. Different selections demonstrate that the five-item set is not fixed; neither set is validated as an optimal predictor set.
+
+The final package was installed as a non-editable wheel in an isolated environment outside the repository, without the OpenAI SDK. All sixteen catalogue entries and Chinese notes were included, and all module/resource bytes matched the checkout. **Six** historical/current reports replayed with identical bytes, including the original three reports, both new model trials and the rules comparison. `pip check` passed. Full hashes and per-run file counts are in [the installed-package check](evidence/singstat-priority-installed-check.json).
+
 ## Automated tests
 
 ```bash
@@ -78,9 +94,9 @@ The selected baseline set is resident population, CPI, compounded SORA, housing 
 
 An independent audit followed every normalized value back to its raw table, row and column index: **2,189 original observations checked**. It also recalculated **19 available changes** with decimal arithmetic. All checks passed; see [evidence/raw-audit.json](evidence/raw-audit.json).
 
-## Replay and fresh installation
+## Historical replay and installation before catalogue expansion
 
-A new isolated environment installed the project as a non-editable wheel. The packaged catalogue contained all twelve candidates. The optional OpenAI SDK was absent from that environment, demonstrating that core data/replay functionality does not depend on it.
+Before the catalogue expansion, a new isolated environment installed the project as a non-editable wheel. That historical package contained the original twelve candidates. The optional OpenAI SDK was absent from that environment, demonstrating that core data/replay functionality does not depend on it.
 
 From outside the source checkout:
 

@@ -4,6 +4,8 @@
 
 **目前的能力边界：**候选目录包含十六个已核验的公开序列，最终选择由真实数据检查结果决定，不预设五个入选指标。`rules` 是可离线测试的确定性基线，`llm` 是调用 SoCLaaS 或 OpenAI 的工具型 Agent。规则模式的解释来自人工审阅的机制模板，不能当成一次模型运行。初版不声称已经证明这些指标的预测能力，也不训练房价模型。
 
+**最新实测：**16 项全部从 SingStat 取得并合格；35B 模型选出 5 项，完整运行约 109 秒、43,769 tokens。模型仍缺少 11 项逐项排除理由，并有分组与住户存量的措辞问题，已单独标注。查看[完整指标池](examples/singstat_priority_verified_run/indicator_pool.md)、[模型原始报告](examples/singstat_priority_verified_run/report.md)、[人工复核说明](docs/reviewed-run-notes.md)和[同数据规则对照](examples/singstat_priority_rules_run/report.md)。这些是本次观察，不是稳定耗时或模型成功率承诺。
+
 ## 开始使用
 
 需要 Python 3.11 或更新版本。以下命令均在本项目目录运行。运行下载需要联网；重现已保存的报告无需联网或 API 密钥。
@@ -77,7 +79,7 @@ python -m housing_agent run --as-of 2026-09-30 --mode llm --provider soclaas --s
 
 ## 指标怎样选
 
-每次运行自动生成十六项指标池总表：每项同时列出口径与频率、纳入候选池的经济理由、官方来源、本次数据状态、选择结果及限制。HTML 版本支持搜索与状态筛选。新增的住户数、就业住户收入中位数、就业人数和 HDB 存量，以及另两项暂缓候选，详见[候选扩展记录](docs/new-indicators.md)。
+新鲜取数使用当前十六项目录；快照分析和离线导出沿用原快照的候选目录。成功运行自动生成指标池总表：每项同时列出口径与频率、纳入候选池的经济理由、官方来源、本次数据状态、选择结果及限制。HTML 版本支持搜索与状态筛选。新增的住户数、就业住户收入中位数、就业人数和 HDB 存量，以及另两项暂缓候选，详见[候选扩展记录](docs/new-indicators.md)。
 
 [旧十二项指标池表](examples/indicator_pool/indicator_pool.md)保留原运行事实：三项来自 MOM/MAS，九项被旧版“一次维护响应即停止”策略跳过；这不证明九项都逐一请求失败。旧表是离线导出，不会被新版本追改。
 
@@ -145,6 +147,7 @@ python -m housing_agent --help
 - [工程设计与局限](docs/engineering-report.md)
 - [已核验的数据源与口径](docs/source-evidence.md)
 - [新增与暂缓指标的研究记录](docs/new-indicators.md)
+- [本轮模型输出的人工复核说明](docs/reviewed-run-notes.md)
 - [测试与实际运行证据](docs/validation.md)
 - [旧备用来源样例报告](examples/independent_sources_run/report.md)（旧策略收到维护页后跳过其余 SingStat 请求，MOM/MAS 三项实时下载通过；规则模式）
 - [真实 SoCLaaS 样例报告](examples/soclaas_verified_run/report.md)（已保存的官方数据 + 新模型调用）

@@ -1,0 +1,166 @@
+{
+  "selected_ids": [
+    "M015661:1",
+    "M182342:2",
+    "M184101:1",
+    "M700071:23",
+    "M810371:1"
+  ],
+  "decisions": [
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M015661:1",
+      "reason": "Selected as an aggregate economic activity indicator. This series provides a quarterly view of real domestic output that may influence employment, incomes and housing confidence. The series is fully eligible and covers the full recent period, though it is not seasonally adjusted.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M182342:2",
+      "reason": "Selected as a labour-market condition measure for residents. A seasonally adjusted unemployment rate offers insight into workforce stability, which affects housing demand. The series is fully eligible with good coverage. It is excluded from the household income family to maintain theme diversity.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M184101:1",
+      "reason": "Selected as a quarterly income measure for employed residents. Mean gross employment income reflects purchasing power and borrowing capacity for the resident workforce. While the mean can be skewed by high earners, it complements the household median income by offering a workforce-level perspective. The series is fully eligible.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M700071:23",
+      "reason": "Selected as a financing cost indicator. The SORA benchmark provides monthly observations of the Singapore dollar interest rate environment, which directly affects mortgage affordability. While not an individual mortgage offer, it is a key reference for floating-rate loans. The series is highly eligible with extensive history. It is excluded from the inflation family because its primary role is financing cost rather than price-level tracking.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400841:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400841:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M810371:1",
+      "reason": "Selected as a structural demand indicator measuring the number of resident households. Household counts serve as a proxy for potential housing demand and are distinct from population counts or new household formation. The series is fully eligible. It is excluded from the population demand family only in the sense of overlapping themes, but as a distinct identifier it captures a different demographic dimension. The annual frequency limits short-term timing precision.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810361:5",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M183111:7",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400751:1.1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    }
+  ],
+  "narratives": {
+    "M015661:1": {
+      "sales": "Higher real output may support jobs and incomes, potentially boosting housing purchasing capacity.",
+      "rents": "Stronger real economic activity may support employment and confidence, which could sustain rental demand.",
+      "lag": "Economic activity conditions may affect housing sales and rents over subsequent quarters.",
+      "limitations": "This series is not labelled seasonally adjusted, so year-on-year comparisons are prioritised. Advance estimates and historical data may be revised. GDP and housing may share common underlying causes.",
+      "evidence_ids": [
+        "M015661:1:latest",
+        "M015661:1:year_on_year"
+      ]
+    },
+    "M182342:2": {
+      "sales": "A higher unemployment rate may weaken purchasing capacity and confidence, reducing housing demand.",
+      "rents": "A higher unemployment rate may weaken residents' ability to pay rents, though effects can vary by household circumstance.",
+      "lag": "Labour-market conditions may influence housing decisions with a lag as individuals adjust to workforce changes.",
+      "limitations": "The seasonally adjusted series is subject to annual revisions. It excludes non-residents and does not capture underemployment or job security.",
+      "evidence_ids": [
+        "M182342:2:latest",
+        "M182342:2:year_on_year"
+      ]
+    },
+    "M184101:1": {
+      "sales": "Higher employment income may improve borrowing capacity and purchasing power for home buyers.",
+      "rents": "Higher employment income may support rent affordability for resident workers.",
+      "lag": "Income changes may pass through to purchase and lease decisions over subsequent quarters.",
+      "limitations": "The measure includes employer CPF contributions and is not cash take-home pay. The mean can be skewed by high earners; composition of the workforce matters. Historical definition and coverage changes may limit comparability.",
+      "evidence_ids": [
+        "M184101:1:latest",
+        "M184101:1:year_on_year"
+      ]
+    },
+    "M700071:23": {
+      "sales": "Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage terms reset.",
+      "rents": "Higher financing costs may shift tenure choices and affect landlord costs, though the net rental effect is ambiguous.",
+      "lag": "Pass-through to mortgage rates depends on pricing and reset dates, potentially affecting housing over subsequent months.",
+      "limitations": "This is a month-end benchmark snapshot. Individual mortgage spreads, fixed-rate loans and refinancing terms constrain pass-through. SORA changes alone cannot determine housing outcomes.",
+      "evidence_ids": [
+        "M700071:23:latest",
+        "M700071:23:year_on_year"
+      ]
+    },
+    "M810371:1": {
+      "sales": "Household counts may better represent potential dwelling demand than population alone, subject to affordability constraints.",
+      "rents": "An increase in resident households may support rental demand depending on tenure choices and affordability.",
+      "lag": "Annual household formation provides structural context; short-term timing claims are limited.",
+      "limitations": "Household counts are not gross new formation. Census and survey years use different sources; period-end filtering is conservative. The annual frequency reduces short-term precision.",
+      "evidence_ids": [
+        "M810371:1:latest",
+        "M810371:1:year_on_year"
+      ]
+    }
+  },
+  "method": "soclaas_chat_completions_constrained_agent",
+  "usage": {
+    "input_tokens": 41113,
+    "output_tokens": 2656,
+    "total_tokens": 43769,
+    "requests": 4
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "installed_as_noneditable_wheel": true,
+  "executed_outside_checkout": true,
+  "packaged_candidates": 16,
+  "packaged_notes": 16,
+  "openai_sdk_installed": false,
+  "all_packaged_module_bytes_match_checkout": true,
+  "wheel_sha256": "9dc0074c806b6e3fcf781095e8c6464314c340aeb5c48ea9584fd8b988d7e188",
+  "replay_checks": [
+    {
+      "run": "sample_run",
+      "verified_files": 40,
+      "sha256": "d76430d7eb42579694fd1bb2523683d5ed239e271148daf85d6952523c9d39d6",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "soclaas_verified_run",
+      "verified_files": 41,
+      "sha256": "5162ae5ddd22c1dc08dd79a9f2eaf8264f7c7f18b24733f5da8d10fbc9f5ae57",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "independent_sources_run",
+      "verified_files": 17,
+      "sha256": "5dd1d793e43e401a3ae4fb6bd399b75822140f247fa91643e3ede6841e262709",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "singstat_priority_agent_run",
+      "verified_files": 56,
+      "sha256": "879f367c15eab45a74eabe6f7457b8ee3f8ea1a41ff8fa6a009285ac7c8f01f8",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "singstat_priority_verified_run",
+      "verified_files": 56,
+      "sha256": "258ba9833aaf13dfd2475ad5491668d2f3aac4da78d62c0b284afc4e633644df",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "singstat_priority_rules_run",
+      "verified_files": 55,
+      "sha256": "5e64b43c94a904c14e55562f27a540fbc00bb6b53a40b59d089c1cb8d3baab34",
+      "network_calls": 0,
+      "model_calls": 0
+    }
+  ],
+  "pip_check": "No broken requirements found."
+}

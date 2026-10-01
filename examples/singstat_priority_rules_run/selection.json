@@ -1,0 +1,144 @@
+{
+  "selected_ids": [
+    "M183111:7",
+    "M400751:1.1",
+    "M810001:2",
+    "M810361:5",
+    "M213751:1"
+  ],
+  "decisions": [
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: economic_activity."
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: household_income."
+    },
+    {
+      "id": "M182342:2",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: labour_market."
+    },
+    {
+      "id": "M183111:7",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (labour_market): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: household_income."
+    },
+    {
+      "id": "M213751:1",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (inflation): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+    },
+    {
+      "id": "M400751:1.1",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (housing_supply): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M400841:1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+    },
+    {
+      "id": "M400841:2",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_supply."
+    },
+    {
+      "id": "M700071:23",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: financing_cost."
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: housing_credit."
+    },
+    {
+      "id": "M810001:2",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (population_demand): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: population_demand."
+    },
+    {
+      "id": "M810361:5",
+      "selected": true,
+      "reason": "Selected for economic-family coverage (household_income): highest data-quality score within this family, with deterministic id tie-breaking. The family defaults to the theme when not specified."
+    },
+    {
+      "id": "M810371:1",
+      "selected": false,
+      "reason": "Eligible but not selected: the requested capacity was reached after prioritizing economic-family coverage, quality score and deterministic id tie-breaking; family: population_demand."
+    }
+  ],
+  "method": "Deterministic data-quality and economic-family diversity selection. Family is metadata.selection_family when specified, otherwise metadata.theme. Exclude ineligible data; sort by quality score descending then id ascending; first select the best candidate per family, then fill remaining capacity by score. Never fill capacity with ineligible data. Scores measure usability and do not establish causal or predictive value; no target-based predictive validation is performed.",
+  "narratives": {
+    "M810001:2": {
+      "sales": "A larger resident population may support owner-occupier demand when household formation and purchasing capacity also increase.",
+      "rents": "Population growth may support rental demand, conditional on household formation and tenure choices.",
+      "lag": "Annual demand context; the effect may develop over multiple quarters.",
+      "limitations": "Population is not household formation; pre-1990 population concepts and the 2003 coverage change limit long-run comparability. Historical observations may be revised.",
+      "evidence_ids": [
+        "M810001:2:latest"
+      ]
+    },
+    "M213751:1": {
+      "sales": "Inflation affects real purchasing power and building or financing conditions, but its net association with home values is ambiguous.",
+      "rents": "Inflation affects household budgets and landlords' costs, with an ambiguous net effect on rent growth.",
+      "lag": "Monthly cost-of-living context; effects can be contemporaneous or lagged.",
+      "limitations": "CPI includes housing-related components, so its relationship with rents can partly reflect overlap. It is not a construction-cost index, house-price index or independent causal predictor.",
+      "evidence_ids": [
+        "M213751:1:latest"
+      ]
+    },
+    "M810361:5": {
+      "sales": "Median household employment income may describe typical household purchasing capacity more directly than mean income per employed person.",
+      "rents": "Median household income may contextualise household rent affordability.",
+      "lag": "Annual affordability context; income and financing decisions can adjust over subsequent quarters.",
+      "limitations": "Not income per household member or an individual wage. Excludes households with no employed person; includes employer CPF and annual bonus allocation, unlike the existing bonus-excluding quarterly individual mean. Nominal and not take-home income.",
+      "evidence_ids": [
+        "M810361:5:latest"
+      ]
+    },
+    "M183111:7": {
+      "sales": "A larger employment base may support aggregate earned income and housing purchasing capacity.",
+      "rents": "Employment expansion may support work-related housing and rental demand.",
+      "lag": "Annual year-end employment context; housing responses need not be simultaneous.",
+      "limitations": "Counts employed persons, not vacancies, new hires or the unemployment rate. Includes migrant domestic workers and other workers whose accommodation need is not an ordinary separate rental unit. Employment and housing may share common causes; not a residents-only series.",
+      "evidence_ids": [
+        "M183111:7:latest"
+      ]
+    },
+    "M400751:1.1": {
+      "sales": "The public-housing stock adds supply context not represented by private residential stock and may influence tenure and purchase choices.",
+      "rents": "Public-housing supply can affect tenure choices and rental alternatives subject to eligibility and rental rules.",
+      "lag": "Annual supply stock; allocations, completion and occupation timing can differ.",
+      "limitations": "Stock is not new supply or vacancies and includes non-privatised HUDC flats. Public and private markets differ in eligibility and policy; aggregate stock alone does not predict prices or rents.",
+      "evidence_ids": [
+        "M400751:1.1:latest"
+      ]
+    }
+  },
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  }
+}

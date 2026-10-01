@@ -1,0 +1,908 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-10-01 11:46:34 UTC",
+  "run": "examples/singstat_priority_agent_run",
+  "status": "data_and_replay_checks_passed_with_material_agent_findings",
+  "conclusion": "All captured observations, calculations and source routes passed independent checks. The accepted model submission is materially incomplete as a broad indicator analysis: one selected indicator and fifteen system-supplied exclusion placeholders despite sixteen eligible candidates. This run must not be presented as a complete high-quality multi-indicator report.",
+  "audit_scope": {
+    "local_files_only": true,
+    "network_calls": 0,
+    "model_calls": 0,
+    "environment_file_read": false,
+    "only_audit_artifact_written": true,
+    "source_and_run_artifacts_modified": false
+  },
+  "run_identity": {
+    "status": "complete_with_warnings",
+    "manifest_sha256": "f9e6e31fdc41bb3fc6684c40df9e57aeb715426dfe1fe993403ad5b0bc48fe3c",
+    "code_commit": "9cec32652cb3fd487f31ebfca29d53648d2ac201",
+    "code_worktree_dirty_at_run_start": false,
+    "verified_files": 56
+  },
+  "data_checks": {
+    "run": "examples/singstat_priority_agent_run",
+    "method": "Independent raw JSON row/column traversal, independent calendar cutoff and Decimal arithmetic; no parsing or calculation engine functions used for these checks.",
+    "network_calls": 0,
+    "model_calls": 0,
+    "issues": [],
+    "candidate_count": 16,
+    "raw_observation_columns_checked": 2318,
+    "cutoff_observations_checked": 2318,
+    "processed_csv_rows_checked": 2318,
+    "comparisons_checked": 23,
+    "series": [
+      {
+        "id": "M810001:2",
+        "source_name": "Resident Population",
+        "unit": "Number",
+        "frequency": "A",
+        "raw_columns": 48,
+        "retained_columns": 48,
+        "latest_period": "2026",
+        "latest_value": 4231524,
+        "latest_observation_date": "2026-06-30",
+        "quality_score": 100,
+        "eligible": true,
+        "source_updated_at": "25/09/2026",
+        "raw_file": "raw/tabledata_M810001_111a5f764bb0c97b.json",
+        "metadata_file": "raw/metadata_M810001_65f2a1a53b2339e3.json"
+      },
+      {
+        "id": "M810001:5",
+        "source_name": "Non-Resident Population",
+        "unit": "Number",
+        "frequency": "A",
+        "raw_columns": 48,
+        "retained_columns": 48,
+        "latest_period": "2026",
+        "latest_value": 1976999,
+        "latest_observation_date": "2026-06-30",
+        "quality_score": 100,
+        "eligible": true,
+        "source_updated_at": "25/09/2026",
+        "raw_file": "raw/tabledata_M810001_495ed32846bcfef1.json",
+        "metadata_file": "raw/metadata_M810001_65f2a1a53b2339e3.json"
+      },
+      {
+        "id": "M015661:1",
+        "source_name": "GDP In Chained (2015) Dollars",
+        "unit": "Million Dollars",
+        "frequency": "Q",
+        "raw_columns": 206,
+        "retained_columns": 206,
+        "latest_period": "2026-Q2",
+        "latest_value": 155247.2,
+        "latest_observation_date": null,
+        "quality_score": 95,
+        "eligible": true,
+        "source_updated_at": "11/08/2026",
+        "raw_file": "raw/tabledata_M015661_98fd049aa87c5bb9.json",
+        "metadata_file": "raw/metadata_M015661_784158104d4175d7.json"
+      },
+      {
+        "id": "M182342:2",
+        "source_name": "Resident Unemployment Rate, (SA)",
+        "unit": "Per Cent",
+        "frequency": "Q",
+        "raw_columns": 138,
+        "retained_columns": 138,
+        "latest_period": "2026-Q2",
+        "latest_value": 2.9,
+        "latest_observation_date": null,
+        "quality_score": 95,
+        "eligible": true,
+        "source_updated_at": "22/09/2026",
+        "raw_file": "raw/tabledata_M182342_48b7788b41cef5e4.json",
+        "metadata_file": "raw/metadata_M182342_a8645aa92a612265.json"
+      },
+      {
+        "id": "M184101:1",
+        "source_name": "Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents",
+        "unit": "Dollars",
+        "frequency": "Q",
+        "raw_columns": 21,
+        "retained_columns": 21,
+        "latest_period": "2026-Q2",
+        "latest_value": 6605,
+        "latest_observation_date": null,
+        "quality_score": 95,
+        "eligible": true,
+        "source_updated_at": "31/08/2026",
+        "raw_file": "raw/tabledata_M184101_fb465df65995a904.json",
+        "metadata_file": "raw/metadata_M184101_a25547ab734fb98d.json"
+      },
+      {
+        "id": "M016081:1",
+        "source_name": "Personal Disposable Income (Nominal)",
+        "unit": "Million Dollars",
+        "frequency": "Q",
+        "raw_columns": 186,
+        "retained_columns": 186,
+        "latest_period": "2026-Q2",
+        "latest_value": 94423.4,
+        "latest_observation_date": null,
+        "quality_score": 95,
+        "eligible": true,
+        "source_updated_at": "25/08/2026",
+        "raw_file": "raw/tabledata_M016081_3de81f4c4307fd66.json",
+        "metadata_file": "raw/metadata_M016081_e340ae096293a0e7.json"
+      },
+      {
+        "id": "M700071:23",
+        "source_name": "Compounded Singapore Overnight Rate Average (SORA) - 3 Month",
+        "unit": "Per Cent Per Annum",
+        "frequency": "M",
+        "raw_columns": 251,
+        "retained_columns": 251,
+        "latest_period": "2026-08",
+        "latest_value": 1.1863,
+        "latest_observation_date": null,
+        "quality_score": 97.14,
+        "eligible": true,
+        "source_updated_at": "14/09/2026",
+        "raw_file": "raw/tabledata_M700071_5ec2ab86786f7bd2.json",
+        "metadata_file": "raw/metadata_M700071_92125fcf7454ccaf.json"
+      },
+      {
+        "id": "M701091:1.2.1",
+        "source_name": "Consumer Loans - Housing And Bridging Loans",
+        "unit": "Million Dollars",
+        "frequency": "M",
+        "raw_columns": 62,
+        "retained_columns": 62,
+        "latest_period": "2026-08",
+        "latest_value": 256563.5,
+        "latest_observation_date": null,
+        "quality_score": 97.14,
+        "eligible": true,
+        "source_updated_at": "30/09/2026",
+        "raw_file": "raw/tabledata_M701091_11d6417c6fe41133.json",
+        "metadata_file": "raw/metadata_M701091_7210b11a5c896615.json"
+      },
+      {
+        "id": "M400841:1",
+        "source_name": "All Types Private Residential Properties Available",
+        "unit": "Number Of Units",
+        "frequency": "Q",
+        "raw_columns": 154,
+        "retained_columns": 154,
+        "latest_period": "2026-Q2",
+        "latest_value": 424581,
+        "latest_observation_date": null,
+        "quality_score": 95,
+        "eligible": true,
+        "source_updated_at": "24/07/2026",
+        "raw_file": "raw/tabledata_M400841_9cbe20a8bfdb6540.json",
+        "metadata_file": "raw/metadata_M400841_1a2f023546b256ff.json"
+      },
+      {
+        "id": "M400841:2",
+        "source_name": "All Types Private Residential Properties Vacant",
+        "unit": "Number Of Units",
+        "frequency": "Q",
+        "raw_columns": 154,
+        "retained_columns": 154,
+        "latest_period": "2026-Q2",
+        "latest_value": 26961,
+        "latest_observation_date": null,
+        "quality_score": 95,
+        "eligible": true,
+        "source_updated_at": "24/07/2026",
+        "raw_file": "raw/tabledata_M400841_de38dc09e41862f3.json",
+        "metadata_file": "raw/metadata_M400841_1a2f023546b256ff.json"
+      },
+      {
+        "id": "M400391:2",
+        "source_name": "Total Non-Landed Properties",
+        "unit": "Number Of Units",
+        "frequency": "Q",
+        "raw_columns": 133,
+        "retained_columns": 133,
+        "latest_period": "2026-Q2",
+        "latest_value": 51677,
+        "latest_observation_date": null,
+        "quality_score": 95,
+        "eligible": true,
+        "source_updated_at": "24/07/2026",
+        "raw_file": "raw/tabledata_M400391_fb25f7621ca819ff.json",
+        "metadata_file": "raw/metadata_M400391_e4a98695091d7655.json"
+      },
+      {
+        "id": "M213751:1",
+        "source_name": "All Items",
+        "unit": "Index",
+        "frequency": "M",
+        "raw_columns": 788,
+        "retained_columns": 788,
+        "latest_period": "2026-08",
+        "latest_value": 103.334,
+        "latest_observation_date": null,
+        "quality_score": 97.14,
+        "eligible": true,
+        "source_updated_at": "23/09/2026",
+        "raw_file": "raw/tabledata_M213751_62f62cd25bf5df72.json",
+        "metadata_file": "raw/metadata_M213751_ffb93a81df629642.json"
+      },
+      {
+        "id": "M810371:1",
+        "source_name": "Resident Households",
+        "unit": "Number",
+        "frequency": "A",
+        "raw_columns": 44,
+        "retained_columns": 44,
+        "latest_period": "2025",
+        "latest_value": 1487100,
+        "latest_observation_date": null,
+        "quality_score": 100,
+        "eligible": true,
+        "source_updated_at": "30/06/2026",
+        "raw_file": "raw/tabledata_M810371_8461ccdf2c645031.json",
+        "metadata_file": "raw/metadata_M810371_586abac18b9b2be7.json"
+      },
+      {
+        "id": "M810361:5",
+        "source_name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+        "unit": "Dollar",
+        "frequency": "A",
+        "raw_columns": 26,
+        "retained_columns": 26,
+        "latest_period": "2025",
+        "latest_value": 12027,
+        "latest_observation_date": null,
+        "quality_score": 100,
+        "eligible": true,
+        "source_updated_at": "09/02/2026",
+        "raw_file": "raw/tabledata_M810361_ace929ea782b332d.json",
+        "metadata_file": "raw/metadata_M810361_fb50c1a81edc5973.json"
+      },
+      {
+        "id": "M183111:7",
+        "source_name": "Employment (Persons) As At Year End",
+        "unit": "Thousand",
+        "frequency": "A",
+        "raw_columns": 32,
+        "retained_columns": 32,
+        "latest_period": "2025",
+        "latest_value": 4117,
+        "latest_observation_date": "2025-12-31",
+        "quality_score": 100,
+        "eligible": true,
+        "source_updated_at": "31/07/2026",
+        "raw_file": "raw/tabledata_M183111_78ebddbf3477131c.json",
+        "metadata_file": "raw/metadata_M183111_9051b2d9ad2d5178.json"
+      },
+      {
+        "id": "M400751:1.1",
+        "source_name": "Total HDB Flats",
+        "unit": "Number",
+        "frequency": "A",
+        "raw_columns": 27,
+        "retained_columns": 27,
+        "latest_period": "2026",
+        "latest_value": 1177601,
+        "latest_observation_date": "2026-06-30",
+        "quality_score": 100,
+        "eligible": true,
+        "source_updated_at": "25/09/2026",
+        "raw_file": "raw/tabledata_M400751_c10997a05cec390f.json",
+        "metadata_file": "raw/metadata_M400751_84d47a9a0e863650.json"
+      }
+    ],
+    "comparisons": [
+      {
+        "id": "M810001:2:year_on_year",
+        "latest_period": "2026",
+        "base_period": "2025",
+        "reported": 0.6423808691,
+        "decimal_recalculation": "0.642380869137106182282617614635695199100",
+        "absolute_difference": "3.7106182282617614635695199100E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M810001:5:year_on_year",
+        "latest_period": "2026",
+        "base_period": "2025",
+        "reported": 3.6891212906,
+        "decimal_recalculation": "3.689121290633883335256416980478952723600",
+        "absolute_difference": "3.3883335256416980478952723600E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M015661:1:year_on_year",
+        "latest_period": "2026-Q2",
+        "base_period": "2025-Q2",
+        "reported": 5.9403406939,
+        "decimal_recalculation": "5.940340693902980781632036117948357502700",
+        "absolute_difference": "2.980781632036117948357502700E-12",
+        "unit": "%"
+      },
+      {
+        "id": "M182342:2:previous_period",
+        "latest_period": "2026-Q2",
+        "base_period": "2026-Q1",
+        "reported": 0,
+        "decimal_recalculation": "0.0",
+        "absolute_difference": "0.0",
+        "unit": "percentage points"
+      },
+      {
+        "id": "M182342:2:year_on_year",
+        "latest_period": "2026-Q2",
+        "base_period": "2025-Q2",
+        "reported": 0.2,
+        "decimal_recalculation": "0.2",
+        "absolute_difference": "0.0",
+        "unit": "percentage points"
+      },
+      {
+        "id": "M184101:1:year_on_year",
+        "latest_period": "2026-Q2",
+        "base_period": "2025-Q2",
+        "reported": 3.3646322379,
+        "decimal_recalculation": "3.364632237871674491392801251956181533600",
+        "absolute_difference": "2.8325508607198748043818466400E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M016081:1:year_on_year",
+        "latest_period": "2026-Q2",
+        "base_period": "2025-Q2",
+        "reported": 6.8838073806,
+        "decimal_recalculation": "6.883807380625998249985001488531515551500",
+        "absolute_difference": "2.5998249985001488531515551500E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M700071:23:previous_period",
+        "latest_period": "2026-08",
+        "base_period": "2026-07",
+        "reported": 5.09,
+        "decimal_recalculation": "5.0900",
+        "absolute_difference": "0.0000",
+        "unit": "basis points"
+      },
+      {
+        "id": "M700071:23:year_on_year",
+        "latest_period": "2026-08",
+        "base_period": "2025-08",
+        "reported": -37.75,
+        "decimal_recalculation": "-37.7500",
+        "absolute_difference": "0.0000",
+        "unit": "basis points"
+      },
+      {
+        "id": "M701091:1.2.1:previous_period",
+        "latest_period": "2026-08",
+        "base_period": "2026-07",
+        "reported": 0.7422057986,
+        "decimal_recalculation": "0.742205798566241533761097060429970475900",
+        "absolute_difference": "3.3758466238902939570029524100E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M701091:1.2.1:year_on_year",
+        "latest_period": "2026-08",
+        "base_period": "2025-08",
+        "reported": 7.2803815811,
+        "decimal_recalculation": "7.280381581109610904850172881465074766200",
+        "absolute_difference": "9.610904850172881465074766200E-12",
+        "unit": "%"
+      },
+      {
+        "id": "M400841:1:previous_period",
+        "latest_period": "2026-Q2",
+        "base_period": "2026-Q1",
+        "reported": 0.0980750416,
+        "decimal_recalculation": "0.098075041552226138413117536807610246000",
+        "absolute_difference": "4.7773861586882463192389754000E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M400841:1:year_on_year",
+        "latest_period": "2026-Q2",
+        "base_period": "2025-Q2",
+        "reported": 1.0565475482,
+        "decimal_recalculation": "1.056547548209890941634018974537180286700",
+        "absolute_difference": "9.890941634018974537180286700E-12",
+        "unit": "%"
+      },
+      {
+        "id": "M400841:2:previous_period",
+        "latest_period": "2026-Q2",
+        "base_period": "2026-Q1",
+        "reported": 3.0698065601,
+        "decimal_recalculation": "3.069806560134566862910008410428931875500",
+        "absolute_difference": "3.4566862910008410428931875500E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M400841:2:year_on_year",
+        "latest_period": "2026-Q2",
+        "base_period": "2025-Q2",
+        "reported": -10.2108102708,
+        "decimal_recalculation": "-10.21081027075631931261864322110100909182",
+        "absolute_difference": "4.368068738135677889899090818E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M400391:2:previous_period",
+        "latest_period": "2026-Q2",
+        "base_period": "2026-Q1",
+        "reported": 7.4120263557,
+        "decimal_recalculation": "7.412026355719066325788281266238490158200",
+        "absolute_difference": "1.9066325788281266238490158200E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M400391:2:year_on_year",
+        "latest_period": "2026-Q2",
+        "base_period": "2025-Q2",
+        "reported": 6.6076659653,
+        "decimal_recalculation": "6.607665965259726863885794446507406032100",
+        "absolute_difference": "4.0273136114205553492593967900E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M213751:1:previous_period",
+        "latest_period": "2026-08",
+        "base_period": "2026-07",
+        "reported": 0.6212510711,
+        "decimal_recalculation": "0.621251071122536418166238217652099400200",
+        "absolute_difference": "2.2536418166238217652099400200E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M213751:1:year_on_year",
+        "latest_period": "2026-08",
+        "base_period": "2025-08",
+        "reported": 2.3483850519,
+        "decimal_recalculation": "2.348385051949724156374117250874082584700",
+        "absolute_difference": "4.9724156374117250874082584700E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M810371:1:year_on_year",
+        "latest_period": "2025",
+        "base_period": "2024",
+        "reported": 1.6195161952,
+        "decimal_recalculation": "1.619516195161951619516195161951619516200",
+        "absolute_difference": "3.8048380483804838048380483800E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M810361:5:year_on_year",
+        "latest_period": "2025",
+        "base_period": "2024",
+        "reported": 6.3019268163,
+        "decimal_recalculation": "6.301926816333745801661658122679865653200",
+        "absolute_difference": "3.3745801661658122679865653200E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M183111:7:year_on_year",
+        "latest_period": "2025",
+        "base_period": "2024",
+        "reported": 1.7497899264,
+        "decimal_recalculation": "1.749789926350649992585635905293855963600",
+        "absolute_difference": "4.9350007414364094706144036400E-11",
+        "unit": "%"
+      },
+      {
+        "id": "M400751:1.1:year_on_year",
+        "latest_period": "2026",
+        "base_period": "2025",
+        "reported": 1.4705286786,
+        "decimal_recalculation": "1.470528678583584295174208446966269866900",
+        "absolute_difference": "1.6415704825791553033730133100E-11",
+        "unit": "%"
+      }
+    ],
+    "source_routing": {
+      "candidates": 16,
+      "all_primary_singstat": true,
+      "fallback_count": 0,
+      "recheck_count": 0,
+      "logical_http_records": 41,
+      "http_attempts": 41,
+      "successful_discovery_queries": 11
+    },
+    "artifact_hashes": {
+      "catalogue.json": "d7ee599d0bfdc4189fe4d00ff0876d03be65111275c1e5a374e0e172ea8ee753",
+      "normalized.json": "3a6f6cde19dd1caf7f79b6c00c0297aa6867444d03c52cc3fef7635bcf2976ad",
+      "evaluations.json": "8f8d89c90db50e19458cc5d3eb594162dbae7499ac735806545f59c57a4160cb",
+      "processed.csv": "a5b757c98de7f3260bd90ce83ffc7a22607ee0df64f7b3d26d74317bf793294e",
+      "source_routes.json": "d6b3adfaf79e7ddb8a32a0b346a038d92cba5d810a4830b92b5f57779dacf930",
+      "retrievals.json": "b94a58e1ff67b9dc4040b584f4890b5c7082b26a0c71096bb95330b53eaacbcc",
+      "discovery.json": "a97e82244f5e74235a30517fe7956f4a7c7a5a1ad5c3a65b31d570b7fcdd1932"
+    }
+  },
+  "terminal_integrity_issues": [],
+  "model_audit": {
+    "trace_status": "completed",
+    "actual_models": [
+      "qwen3.6:35b"
+    ],
+    "usage_recalculated_from_responses": {
+      "input_tokens": 152923,
+      "output_tokens": 10100,
+      "total_tokens": 163023,
+      "requests": 7
+    },
+    "agent_elapsed_seconds": 84.510949,
+    "workflow_elapsed_seconds": 182.305,
+    "selected_ids": [
+      "M182342:2"
+    ],
+    "eligible_candidates": 16,
+    "candidate_count": 16,
+    "selection_limit": 5,
+    "inspected_ids": [
+      "M015661:1",
+      "M016081:1",
+      "M182342:2",
+      "M183111:7",
+      "M184101:1",
+      "M213751:1",
+      "M400391:2",
+      "M400751:1.1",
+      "M400841:1",
+      "M400841:2",
+      "M700071:23",
+      "M701091:1.2.1",
+      "M810001:2",
+      "M810001:5",
+      "M810361:5",
+      "M810371:1"
+    ],
+    "decision_origins": {
+      "system": 15,
+      "model": 1
+    },
+    "tool_calls": [
+      {
+        "turn": 1,
+        "tool": "list_candidates",
+        "finish_reason": "stop",
+        "validation": null
+      },
+      {
+        "turn": 2,
+        "tool": "inspect_candidate",
+        "finish_reason": "stop",
+        "validation": null
+      },
+      {
+        "turn": 3,
+        "tool": "submit_analysis",
+        "finish_reason": "tool_calls",
+        "validation": {
+          "accepted": false,
+          "error": "select at least a candidate when eligible data exist, and no more than limit"
+        },
+        "selected_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ],
+        "selected_count": 6,
+        "decision_count": 16,
+        "selected_decision_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ],
+        "narrative_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ]
+      },
+      {
+        "turn": 4,
+        "tool": "submit_analysis",
+        "finish_reason": "tool_calls",
+        "validation": {
+          "accepted": false,
+          "error": "select at least a candidate when eligible data exist, and no more than limit"
+        },
+        "selected_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ],
+        "selected_count": 6,
+        "decision_count": 16,
+        "selected_decision_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ],
+        "narrative_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ]
+      },
+      {
+        "turn": 5,
+        "tool": "submit_analysis",
+        "finish_reason": "tool_calls",
+        "validation": {
+          "accepted": false,
+          "error": "decision reason: numeric prose contains offending token 'two'. Rejected prose excerpt: 'Mean employment income is eligible, but the median household employment income series better captures household-level purchasing power by including two-earner dynamics and employer CPF, without skew f'. Delete all years and quantities, including spelled-out years; do not translate digits into words. For historical limitations write, for example: 'Historical definition and coverage changes may limit comparability.' Remove numeric tenor labels; the report renderer supplies all figures."
+        },
+        "selected_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1"
+        ],
+        "selected_count": 5,
+        "decision_count": 16,
+        "selected_decision_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ],
+        "narrative_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ]
+      },
+      {
+        "turn": 6,
+        "tool": "submit_analysis",
+        "finish_reason": "tool_calls",
+        "validation": {
+          "accepted": false,
+          "error": "select at least a candidate when eligible data exist, and no more than limit"
+        },
+        "selected_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ],
+        "selected_count": 6,
+        "decision_count": 16,
+        "selected_decision_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ],
+        "narrative_ids": [
+          "M182342:2",
+          "M700071:23",
+          "M400841:2",
+          "M400391:2",
+          "M810371:1",
+          "M810361:5"
+        ]
+      },
+      {
+        "turn": 7,
+        "tool": "submit_analysis",
+        "finish_reason": "tool_calls",
+        "validation": {
+          "accepted": true,
+          "checks": [
+            "eligible",
+            "unique_ids",
+            "limit",
+            "inspected_candidates",
+            "evidence_membership",
+            "nonnumeric_prose",
+            "certainty_lexicon"
+          ],
+          "limitation": "Syntactic guards do not prove semantic correctness of economic mechanisms."
+        },
+        "selected_ids": [
+          "M182342:2"
+        ],
+        "selected_count": 1,
+        "decision_count": 1,
+        "selected_decision_ids": [
+          "M182342:2"
+        ],
+        "narrative_ids": [
+          "M182342:2"
+        ]
+      }
+    ],
+    "final_warnings": [
+      "Selected fewer candidates than requested; missing slots were not filled with ineligible series."
+    ],
+    "accepted_selection_matches_tool_result": true
+  },
+  "new_indicator_scope_review": [
+    {
+      "id": "M810371:1",
+      "result": "Source and normalized definition correctly describe an annual resident-household stock, not gross household formation. Census/survey changes remain disclosed. No precise uniform reference day was inferred; the year-end cutoff is conservative.",
+      "accepted_model_explanation": "None; final exclusion reason was system-supplied."
+    },
+    {
+      "id": "M810361:5",
+      "result": "Exact raw row is the median per resident employed household, not the separate per-household-member row. Source table notes support employer CPF, annual-bonus allocation, at least one employed member, exclusion of live-in domestic-worker income and amounts before government transfers/taxes. Values are nominal, not take-home income or renter-specific income.",
+      "accepted_model_explanation": "None; final exclusion reason was system-supplied."
+    },
+    {
+      "id": "M183111:7",
+      "result": "Raw row and normalized values retain thousands of employed persons at year-end. Supplementary MOM coverage and summary captures were hash-verified: coverage includes resident/non-resident employees plus estimated self-employment and excludes two-year full-time national service; the official total of 4,117.0 thousand matches the captured latest value. This is not resident-only employment, vacancies or hires.",
+      "supplementary_evidence": [
+        {
+          "url": "https://stats.mom.gov.sg/SL/Pages/Employment-Administrative-Records-Source-and-Coverage.aspx",
+          "final_url": "https://stats.mom.gov.sg/SL/Pages/Employment-Administrative-Records-Source-and-Coverage.aspx",
+          "http_status": 200,
+          "retrieved_at": "2026-10-01T11:27:22.425673+00:00",
+          "raw_file": "raw/mom_employment_coverage.html",
+          "raw_sha256": "eb38031900222eb768aad0c7807a042ec4a45ab0162237ba4707a9aa910da6bb"
+        },
+        {
+          "url": "https://stats.mom.gov.sg/Pages/employment-Summary-Table.aspx",
+          "final_url": "https://stats.mom.gov.sg/Pages/employment-Summary-Table.aspx?PageVersion=103936",
+          "http_status": 200,
+          "retrieved_at": "2026-10-01T11:27:23.651824+00:00",
+          "raw_file": "raw/mom_employment_summary.html",
+          "raw_sha256": "b43f759664b475c7ce6bdfde68adc044852e3d27006698c80f17e2e3de2e0d2d"
+        }
+      ],
+      "accepted_model_explanation": "None; final exclusion reason was system-supplied."
+    },
+    {
+      "id": "M400751:1.1",
+      "result": "Raw table note states end-June; selected row states inclusion of non-privatised HUDC flats. The normalized latest observation is 2026-06-30, preserving the public-housing stock scope rather than completions, sales or rental availability.",
+      "accepted_model_explanation": "None; final exclusion reason was system-supplied."
+    }
+  ],
+  "findings": [
+    {
+      "id": "AGENT_COVERAGE",
+      "severity": "material",
+      "applies_to": "accepted run",
+      "summary": "Only one indicator was selected although sixteen passed eligibility and the requested limit was five.",
+      "evidence": {
+        "selected_ids": [
+          "M182342:2"
+        ],
+        "eligible_candidates": 16,
+        "selection_limit": 5,
+        "model_decisions": 1,
+        "system_exclusions": 15
+      },
+      "assessment": "The current at-most-limit contract technically permits a smaller subset, and the source/selection files disclose it honestly. However, fifteen eligible exclusions lack an individual model rationale. Broad economic-family coverage and the added household, income, employment and HDB analyses were not demonstrated.",
+      "recommendation": "Preserve this original run as a limited-result attempt; do not relabel it as sufficient coverage or reuse rejected draft reasons as accepted output."
+    },
+    {
+      "id": "REPAIR_FEEDBACK",
+      "severity": "material",
+      "applies_to": "model/tool loop",
+      "summary": "Count repair repeatedly failed, and the first prose error concealed a separate structural mismatch.",
+      "evidence": "Turns 3 and 4 selected six candidates against a limit of five. Turn 5 selected five IDs but still marked six decisions selected and supplied six narratives; validation stopped first on the numeric prose token 'two'. Turn 6 returned to six selected IDs. Turn 7 reduced to one selected ID/decision/narrative and was accepted.",
+      "assessment": "The count error says only 'no more than limit' without supplying the actual count or numeric limit. Turn 5 needed coordinated correction of selected_ids, selected flags and narratives, not just deletion of a word.",
+      "recommendation": "Return actual count and allowed limit, validate structural consistency before prose, and preserve specific mismatch feedback. This audit does not change the guard or the original output."
+    },
+    {
+      "id": "WARNING_CONTEXT",
+      "severity": "moderate",
+      "applies_to": "accepted report and manifest warning",
+      "summary": "The insufficient-selection warning does not describe this run's actual eligibility situation.",
+      "evidence": [
+        "Selected fewer candidates than requested; missing slots were not filled with ineligible series."
+      ],
+      "assessment": "The phrase about not filling slots with ineligible series is literally a valid safeguard, but is uninformative and potentially misleading here because all sixteen candidates are eligible. The shortfall came from the model submission, not a shortage of qualified data.",
+      "recommendation": "Future reports should state selected count, eligible count, limit and the number of missing model exclusion explanations separately; keep this saved warning unchanged."
+    },
+    {
+      "id": "UNSUPPORTED_NARRATIVE_EXTENSION",
+      "severity": "moderate",
+      "applies_to": "accepted unemployment limitations",
+      "summary": "The final limitation adds interpretation beyond the supplied source notes and reviewed mechanism metadata.",
+      "evidence": "The accepted text adds 'job losses among residents who remain classified as employed' and 'changes in work-from-home patterns that affect housing space requirements'. The inspected metadata supplies annual seasonal revisions, resident-only coverage, earnings/job security and underemployment limitations, but does not supply these additional claims.",
+      "assessment": "These are model-added conceptual extensions rather than measured findings from the captured series. No numerical evidence is fabricated, but the extensions are not established by the cited observations; the job-loss wording is also ambiguous. Syntactic guard success does not establish semantic grounding.",
+      "recommendation": "Describe the accepted narrative as requiring semantic review; keep subsequent explanations within supplied scope/mechanism notes or clearly identify unsupported hypotheses."
+    },
+    {
+      "id": "REJECTED_DRAFT_SCOPE",
+      "severity": "informational",
+      "applies_to": "unaccepted turn 3 draft only",
+      "summary": "Rejected draft text contains additional scope errors that must not be promoted to final findings.",
+      "evidence": [
+        "Resident-household stock was described as the 'number of households forming', while the same draft limitation correctly acknowledged that it is not gross formation.",
+        "The household-income median for resident employed households was described as the 'typical renter's affordability' without a renter-specific sample.",
+        "The employment exclusion did correctly distinguish non-resident and migrant-domestic-worker coverage. HDB and income draft reasons were never accepted in the final submission."
+      ],
+      "assessment": "The final report contains no accepted model analysis for the four newly added indicators. Raw source definitions are correct; the issue lies in the rejected model prose, not the data adapter.",
+      "recommendation": "Retain rejected responses for debugging and do not hand-edit them into a claimed model result."
+    }
+  ],
+  "replays": [
+    {
+      "run": "examples/sample_run",
+      "output_handling": "Path.write_text intercepted into memory; no replay file created",
+      "exact_report_bytes": true,
+      "verified_files": 40,
+      "sha256": "d76430d7eb42579694fd1bb2523683d5ed239e271148daf85d6952523c9d39d6",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "examples/soclaas_verified_run",
+      "output_handling": "Path.write_text intercepted into memory; no replay file created",
+      "exact_report_bytes": true,
+      "verified_files": 41,
+      "sha256": "5162ae5ddd22c1dc08dd79a9f2eaf8264f7c7f18b24733f5da8d10fbc9f5ae57",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "examples/independent_sources_run",
+      "output_handling": "Path.write_text intercepted into memory; no replay file created",
+      "exact_report_bytes": true,
+      "verified_files": 17,
+      "sha256": "5dd1d793e43e401a3ae4fb6bd399b75822140f247fa91643e3ede6841e262709",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "examples/singstat_priority_agent_run",
+      "output_handling": "Path.write_text intercepted into memory; no replay file created",
+      "exact_report_bytes": true,
+      "verified_files": 56,
+      "sha256": "879f367c15eab45a74eabe6f7457b8ee3f8ea1a41ff8fa6a009285ac7c8f01f8",
+      "network_calls": 0,
+      "model_calls": 0
+    }
+  ],
+  "artifact_hashes": {
+    "catalogue.json": "d7ee599d0bfdc4189fe4d00ff0876d03be65111275c1e5a374e0e172ea8ee753",
+    "normalized.json": "3a6f6cde19dd1caf7f79b6c00c0297aa6867444d03c52cc3fef7635bcf2976ad",
+    "evaluations.json": "8f8d89c90db50e19458cc5d3eb594162dbae7499ac735806545f59c57a4160cb",
+    "processed.csv": "a5b757c98de7f3260bd90ce83ffc7a22607ee0df64f7b3d26d74317bf793294e",
+    "source_routes.json": "d6b3adfaf79e7ddb8a32a0b346a038d92cba5d810a4830b92b5f57779dacf930",
+    "retrievals.json": "b94a58e1ff67b9dc4040b584f4890b5c7082b26a0c71096bb95330b53eaacbcc",
+    "discovery.json": "a97e82244f5e74235a30517fe7956f4a7c7a5a1ad5c3a65b31d570b7fcdd1932",
+    "manifest.json": "f9e6e31fdc41bb3fc6684c40df9e57aeb715426dfe1fe993403ad5b0bc48fe3c",
+    "agent_trace.json": "66a1b347b92ac3f93a7a9b8952d9ec96a333a23a4512368bbd6cba83312d7a36",
+    "selection.json": "9f91e43e988e9b621b8768adfcb569fa1075d9f3666266693750b88b1e34ac49",
+    "report.md": "879f367c15eab45a74eabe6f7457b8ee3f8ea1a41ff8fa6a009285ac7c8f01f8",
+    "report_context.json": "bd22660ed2ea3454c2096670bb0176ab9324e9a71f0af288ce77264e01a0b1db",
+    "indicator_pool.json": "ef4dcb1cf162c5c76219090d4a54ab2994ce88d6b79096f2c0216265fdd8117f"
+  },
+  "limitations": [
+    "This audit verifies local captured evidence and arithmetic; it does not independently refresh the public websites or establish historical data vintages.",
+    "Quality-rule agreement establishes data usability, not causal or predictive validity.",
+    "Decimal comparison tolerance is 0.000000000051, covering the engine's documented rounding to ten decimal places.",
+    "Replay invoked the actual replay API with output writes intercepted into memory; no additional report files were created."
+  ]
+}

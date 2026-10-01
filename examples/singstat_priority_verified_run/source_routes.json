@@ -1,0 +1,226 @@
+[
+  {
+    "id": "M810001:2",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:03+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M810001:5",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:03+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M015661:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:03+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M182342:2",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:04+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M184101:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:04+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M016081:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:04+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M700071:23",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:05+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M701091:1.2.1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:05+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M400841:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:05+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M400841:2",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:05+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M400391:2",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:06+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M213751:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:06+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M810371:1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:06+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M810361:5",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:07+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M183111:7",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:07+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  },
+  {
+    "id": "M400751:1.1",
+    "primary_source": "SingStat",
+    "attempts": [
+      {
+        "stage": "primary",
+        "provider": "SingStat",
+        "checked_at": "2026-10-01T11:47:07+00:00",
+        "status": "ok"
+      }
+    ],
+    "used_source": "SingStat",
+    "status": "ok"
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "run_id": "singstat_priority_rules_run",
+  "created_at": "2026-10-01T11:49:00+00:00",
+  "as_of": "2026-10-01",
+  "as_of_policy": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "mode": "rules",
+  "mode_label": "Deterministic rules; reviewed qualitative templates, no model call",
+  "provider": null,
+  "model": null,
+  "source_policy": "saved",
+  "source_routing_version": 2,
+  "selection_limit": 5,
+  "source_strategy": "Verified saved snapshot; no new retrieval",
+  "data_basis": "Verified saved source snapshot from singstat_priority_verified_run, captured from 2026-10-01T11:47:03+00:00; original retrieval timestamps are preserved. No new source refresh was performed. Saved captured vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "package_version": "0.1.0",
+  "python_version": "3.12.14",
+  "warnings": [
+    "Verified saved source snapshot from singstat_priority_verified_run, captured from 2026-10-01T11:47:03+00:00; original retrieval timestamps are preserved. No new source refresh was performed."
+  ],
+  "status": "complete_with_warnings",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0
+  },
+  "source_run": {
+    "name": "singstat_priority_verified_run",
+    "manifest_sha256": "87b61d6ad72e61e267136713837032c478371508535f691050f2ca77649c85b4",
+    "original_created_at": "2026-10-01T11:45:38+00:00",
+    "retrieved_at_min": "2026-10-01T11:47:03+00:00",
+    "retrieved_at_max": "2026-10-01T11:47:07+00:00"
+  },
+  "code_commit": "20afc7f3cee89b1f51cc577aa843ee30b1e0aecc",
+  "code_worktree_dirty": true,
+  "code_hashes": {
+    "__init__.py": "317887a06fbcf9959e1393d3ee1911689881a6cbbe20a8e404ca966a8db9425d",
+    "__main__.py": "5a8bb1bc723f85d4e60cc3d459088e75748302e1d49602ade8317427d011611c",
+    "agent.py": "6e6802e71136d2d3c5c2898d7ec3dcaee7e91652ed9ddd5a8ddd830ef743c26a",
+    "engine.py": "ebad3238e3eec2614fa4c61802acc5cbb2bc7d32379f3aec4f86624324837c51",
+    "indicator_pool.py": "5aff85a98e9c8386dd07fbcca8ebfaf132d2163c3042f6dd5528a7d947123dbc",
+    "mas_sources.py": "fb147735d7ec035e2057650a3521a30eb9af347ca8381d4920b90554c79aecef",
+    "mom_sources.py": "ea94901b7ed3f6899fda887c25a9f8a642db65f2bed90b2a58ece5644125f308",
+    "official_sources.py": "39607ee459f5e07968c478bb920a8684ebf06754fa9db746c3231153c18ed308",
+    "pipeline.py": "f36d23f2b0b18e64d5dae427a83ebb6fd521abe3ea0f7ee62d259f1b97fa5f2d",
+    "report.py": "c8d535ec1a26d1170518442f4d419ee95cd9a82049bc7577382a285b8468c9f3",
+    "sources.py": "68a136fe38b760615b4804dede69533b35cb76bf5ac4ecd9d7b0b0705f1ed01b",
+    "storage.py": "7778396b86c99c8ce251016cd009c109a5baf11657d30e1306950aa37fe72ac8"
+  },
+  "source_coverage": {
+    "candidates": 16,
+    "downloaded": 16,
+    "eligible": 16,
+    "singstat_downloaded": 0,
+    "fallback_downloaded": 0,
+    "maintenance_responses_observed": false,
+    "recovered_on_recheck": [],
+    "unavailable": [],
+    "providers": [
+      "SingStat Table Builder"
+    ]
+  },
+  "selected_ids": [
+    "M183111:7",
+    "M400751:1.1",
+    "M810001:2",
+    "M810361:5",
+    "M213751:1"
+  ],
+  "finished_at": "2026-10-01T11:49:00+00:00",
+  "elapsed_seconds": 0.06,
+  "indicator_pool_files": {
+    "markdown": "indicator_pool.md",
+    "html": "indicator_pool.html",
+    "json": "indicator_pool.json"
+  }
+}
