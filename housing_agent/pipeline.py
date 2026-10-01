@@ -13,6 +13,7 @@ from pathlib import Path
 
 from . import __version__
 from .engine import evaluate_series, select_candidates
+from .indicator_pool import build_indicator_pool, write_indicator_pool
 from .report import render_html, render_report
 from .sources import SingStatClient, SourceMaintenanceError, fetch_series
 from .official_sources import OfficialFileClient, DIRECT_IDS
@@ -276,6 +277,8 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         run["status"] = "complete_with_warnings" if run["warnings"] else "complete"
         run["finished_at"] = utc_now()
         run["elapsed_seconds"] = round(time.monotonic() - started, 3)
+        run["indicator_pool_files"] = {"markdown": "indicator_pool.md", "html": "indicator_pool.html", "json": "indicator_pool.json"}
+        write_indicator_pool(output, build_indicator_pool(run, catalogue, evaluations, selection))
         write_json(output / "report_context.json", run)
         report = render_report(run, evaluations, selection)
         (output / "report.md").write_text(report, encoding="utf-8")
@@ -300,6 +303,35 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         run["files"] = file_inventory(output)
         write_json(output / "manifest.json", run)
         raise
+
+
+def export_indicator_pool(run_dir: Path, output: Path) -> dict:
+    """Present verified saved decisions; never refresh data or reselect indicators."""
+    root, output = run_dir.resolve(), output.resolve()
+    if output.exists() or output.is_relative_to(root):
+        raise ValueError("Indicator pool output must be a new directory outside the immutable source run")
+    manifest_path = root / "manifest.json"
+    manifest = read_json(manifest_path)
+    if manifest.get("status") not in {"complete", "complete_with_warnings"}:
+        raise ValueError("Indicator pool export requires a complete source run")
+    required = {"catalogue.json", "evaluations.json", "selection.json", "report_context.json"}
+    if not required <= set(manifest.get("files", {})):
+        raise ValueError("Indicator pool inputs must be listed in the source run inventory")
+    verify_inventory(root, manifest)
+    pool = build_indicator_pool(read_json(root / "report_context.json"), read_json(root / "catalogue.json"),
+                                read_json(root / "evaluations.json"), read_json(root / "selection.json"))
+    exported = {"artifact_type": "indicator_pool_export", "schema_version": 1, "status": "complete",
+                "exported_at": utc_now(), "source_run": root.name,
+                "source_manifest_sha256": sha256_bytes(manifest_path.read_bytes()),
+                "source_input_hashes": {name: manifest["files"][name] for name in sorted(required)},
+                "network_calls": 0, "model_calls": 0,
+                "note": "Presentation of saved observations and decisions; no data refresh or new selection."}
+    pool["export_provenance"] = exported.copy()
+    output.mkdir(parents=True, exist_ok=False)
+    write_indicator_pool(output, pool)
+    exported["files"] = file_inventory(output)
+    write_json(output / "manifest.json", exported)
+    return exported
 
 
 def replay(run_dir: Path, output: Path) -> dict:

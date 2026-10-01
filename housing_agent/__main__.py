@@ -21,6 +21,9 @@ def main(argv=None):
     rep = sub.add_parser("replay", help="Verify and regenerate a saved report without network access")
     rep.add_argument("run_dir", type=Path)
     rep.add_argument("--output", type=Path, required=True)
+    pool = sub.add_parser("indicator-pool", help="Export the full indicator table from a verified saved run, without data or model calls")
+    pool.add_argument("run_dir", type=Path)
+    pool.add_argument("--output", type=Path, required=True, help="New directory outside the immutable source run")
     disc = sub.add_parser("discover", help="Search official SingStat table metadata and preserve responses")
     disc.add_argument("query")
     disc.add_argument("--output", type=Path, required=True)
@@ -33,6 +36,9 @@ def main(argv=None):
         elif args.command == "replay":
             from .pipeline import replay
             print(json.dumps(replay(args.run_dir, args.output), indent=2))
+        elif args.command == "indicator-pool":
+            from .pipeline import export_indicator_pool
+            print(json.dumps(export_indicator_pool(args.run_dir, args.output), ensure_ascii=False, indent=2))
         else:
             from .sources import SingStatClient
             from .storage import write_json

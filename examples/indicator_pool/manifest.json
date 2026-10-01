@@ -1,0 +1,22 @@
+{
+  "artifact_type": "indicator_pool_export",
+  "schema_version": 1,
+  "status": "complete",
+  "exported_at": "2026-10-01T11:13:03+00:00",
+  "source_run": "independent_sources_run",
+  "source_manifest_sha256": "82b762929708fbed26935892af3c79213c3d6104f873a5c0caa03543b57b39c9",
+  "source_input_hashes": {
+    "catalogue.json": "bd16b0496dcd6559018a55835425223321f5b4337dced8820aa631247234e8e0",
+    "evaluations.json": "9e93b24aba014bc5971869642898c2e36612bf28184000faed8408a6b35db10a",
+    "report_context.json": "3b27fd588121456fd0b80d42c51c9a0537b6bed76db7b0fc97282f7a5b7978f7",
+    "selection.json": "efe70725460a5c14083df0ef10bef04c9af8447fb04a64683d98ff3ab1c35dca"
+  },
+  "network_calls": 0,
+  "model_calls": 0,
+  "note": "Presentation of saved observations and decisions; no data refresh or new selection.",
+  "files": {
+    "indicator_pool.html": "f6bcd0fb462b60ff1b37d15c3c6442ca06e6aba4f36c564efc5ea896d236e878",
+    "indicator_pool.json": "562bf6e1feb05a52b1dc529cef1fcb78880dc843f45d9d696be30f2ccbc235cc",
+    "indicator_pool.md": "6e26d920fd75bdd88b1a06e5452cd6f6cb608dcbcfc1588a2889906ec5b21f9c"
+  }
+}

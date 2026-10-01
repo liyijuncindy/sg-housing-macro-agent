@@ -77,6 +77,8 @@ python -m housing_agent run --as-of 2026-09-30 --mode llm --provider soclaas --s
 
 ## 指标怎样选
 
+直接查看[十二项指标池总表](examples/indicator_pool/indicator_pool.md)：每项同时列出口径与频率、纳入候选池的经济理由、官方来源、本次数据状态、选择结果及限制。表格依据 `independent_sources_run` 保存的真实取数与选择记录导出：三项取得数据并入选，九项因 SingStat 维护未取得数据。导出没有重新取数、重新筛选或调用模型。HTML 版本提供搜索和状态筛选，下载后在浏览器打开 `examples/indicator_pool/indicator_pool.html` 即可。
+
 1. 在官方 SingStat 目录中搜索人口、GDP、失业、收入、利率、信贷、住宅和消费价格等主题，保存查询结果。
 2. 按已审阅的候选目录尝试下载十二条序列：核验 SingStat 的表号、行号与元数据，或核验 MOM/MAS 文件的字段、标题、单位、频率和转换规则。
 3. 以报告日期检查有效观察、近十年完整性、历史长度、时效性和比较基期。缺失的季度不能靠“往前数四行”补出来。
@@ -86,6 +88,8 @@ python -m housing_agent run --as-of 2026-09-30 --mode llm --provider soclaas --s
 **候选目录的定义仍需要人工审阅。**官方搜索结果不会自动变成任意新指标，也不会自动修改解析代码。新增候选时更新 `housing_agent/data/catalogue.json`，核验真实 API 行名、单位、定义与经济理由，再执行测试。数据质量评分不是相关系数，也不是预测准确率。
 
 完整性在最近十年窗口内、第一条到最后一条已捕获观察之间按真实日历计算；尾部缺期另外通过时效性检查。最低历史是年度三期、季度八期、月度二十四期；完整性至少四分之三。详细阈值与评分组成保存在每个候选的 `quality` 字段，属于可审阅的工程规则，不是估计得到的经济定律。
+
+中文名称、候选经济理由、口径提醒及配置来源在 `housing_agent/data/indicator_notes.json` 中维护；实际取数成功时，表格优先保留该次下载的来源、英文定义、单位与频率。配置来源不代表本次下载成功，失败候选不会借用旧快照的数值或将占位零分显示成实际质量评分。表格中的“纳入候选池理由”是人工审阅的研究假设，“本次选择理由”来自保存的规则或模型决策，两者分开保存。
 
 ## 日期口径
 
@@ -100,6 +104,7 @@ MAS 文件同时提供 SORA 所属日期和发布/指数日期。月末归属使
 | 文件 | 用途 |
 |---|---|
 | `report.md` / `report.html` | 分析报告及不依赖外部资源的文本预览 |
+| `indicator_pool.md` / `indicator_pool.html` / `indicator_pool.json` | 全部候选的来源与理由总表、可搜索表格预览、完整结构化记录；每次成功生成报告时自动更新 |
 | `discovery.json` / `catalogue.json` | 官方目录搜索结果与本次候选配置 |
 | `raw/` / `retrievals.json` | 原始官方响应、请求地址、重试记录、时间与哈希 |
 | `normalized.json` | 保留原始值、期间和位置的规范化观察，包含下载到的完整历史 |
@@ -120,6 +125,14 @@ MAS 文件同时提供 SORA 所属日期和发布/指数日期。月末归属使
 维护结束后，用普通 `run` 命令和新输出目录重新下载即可恢复其余候选的尝试。若需要基于以前保存的完整覆盖继续分析，可使用前述 `--source-run` 选项；报告会保留原始抓取时间，明确注明未刷新数据。程序不会把旧快照自动混进新下载结果。
 
 ## 其他命令与文档
+
+为已有运行补出指标池表，不修改原运行、不重新取数或选择，也不调用模型：
+
+```bash
+python -m housing_agent indicator-pool examples/independent_sources_run --output runs/indicator-pool-export
+```
+
+命令先验证原运行文件的 SHA-256，再输出三个表格文件及独立的 `manifest.json`，记录所用运行和输入文件哈希。输出必须是原运行目录之外的新目录。
 
 ```bash
 python -m housing_agent discover "residential properties" --output runs/discovery

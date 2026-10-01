@@ -8,7 +8,7 @@ Checked on **1 October 2026, Singapore time**, using Python 3.12.14. This docume
 python -m unittest discover -v
 ```
 
-**Observed: 168 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
+**Observed: 188 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
 
 - 41 engine tests: true-calendar baselines, missing quarters, zero denominators, percentage/basis-point units, date cutoffs, population reference dates, quality windows, staleness and family selection.
 - 33 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
@@ -17,6 +17,20 @@ python -m unittest discover -v
 - 12 MOM tests: quarterly resident/SA selection, CSV precision, workbook title/unit/coverage validation, preliminary markers, source locators, formula rejection and catalogue-definition drift.
 - 19 MAS tests: public form selection, repeated annual headers, value-date versus publication-date grouping, complete month boundaries, weekend endpoints, null terminal values, malformed rows and source identity.
 - 11 independent transport/integration tests: original-file auditing, public-host restrictions, bounded retries, HTTP 206 rejection, local metadata labels, maintenance isolation, one/all route failures, mixed-source saved snapshots and replay.
+- 16 indicator-pool tests: complete catalogue joins, actual-versus-configured sources and definitions, missing-data status, absence of fabricated values/zero scores, exact decision attribution, reviewed-note hashes, safe HTML/Markdown output, and saved-source/export disclosures.
+- 4 indicator-pool integration tests: immutable offline export, tampered or uninventoried input rejection, automatic table output in new runs, and byte-identical replay of all three earlier sample reports.
+
+## Unified indicator-pool table
+
+```bash
+python -m housing_agent indicator-pool examples/independent_sources_run --output examples/indicator_pool
+```
+
+The [exported table](../examples/indicator_pool/indicator_pool.md) presents all twelve candidates from the saved independent-source run. The three downloaded MOM/MAS indicators retain their observed values, quality scores and original decisions; the other nine explicitly retain maintenance-related unavailability, with no substituted old observations or displayed placeholder zero scores. Reviewed Chinese economic rationales remain separate from saved selection reasons. Actual source metadata takes precedence over configured routes, including when exporting the earlier SingStat runs.
+
+This is an offline presentation export, not another data refresh or model trial. Its manifest records the original run's manifest hash, each presentation input hash and the three generated file hashes. The original sample directories remain unchanged. Future completed workflows produce the same Markdown, searchable HTML and JSON artifacts automatically and include them in the run inventory.
+
+The HTML table was inspected in a local browser. Searching `SORA` displayed one candidate; searching `维护` displayed the nine unavailable candidates; clearing the search restored all twelve. The table retains all seven columns with horizontal scrolling on narrow windows and expandable original evidence. Final export hashes and row equality against the current table builder were verified.
 
 ## Live independent-source workflow
 

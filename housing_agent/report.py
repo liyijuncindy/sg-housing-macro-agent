@@ -39,6 +39,10 @@ def render_report(run: dict, evaluations: list[dict], selection: dict) -> str:
         "|---|---|---|---:|---|---|",
     ]
     decisions = {d["id"]: d for d in selection["decisions"]}
+    if run.get("indicator_pool_files"):
+        # Optional marker keeps every earlier immutable sample byte-replayable.
+        output[-2:-2] = ["[完整指标池表：定义、纳入理由、官方来源和本次选择](indicator_pool.md) · "
+                        "[可搜索的表格预览](indicator_pool.html)", ""]
     for item in evaluations:
         meta = item["metadata"]
         dec = decisions.get(item["id"], {"reason": "Not selected"})
@@ -117,4 +121,6 @@ def render_report(run: dict, evaluations: list[dict], selection: dict) -> str:
 
 def render_html(markdown: str) -> str:
     # A dependency-free, searchable preview of the exact report; Markdown remains canonical.
-    return '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Housing research brief</title><style>body{max-width:1100px;margin:40px auto;padding:0 24px;background:#f6f7f9;color:#172033;font:16px/1.7 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;border:1px solid #dbe1e8;padding:28px;border-radius:12px;font:inherit}</style><body><pre>' + html.escape(markdown) + '</pre></body></html>'
+    pool_link = ('<p><a href="indicator_pool.html">查看完整指标池表 · 定义、选择理由和官方来源</a></p>'
+                 if "[可搜索的表格预览](indicator_pool.html)" in markdown else "")
+    return '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Housing research brief</title><style>body{max-width:1100px;margin:40px auto;padding:0 24px;background:#f6f7f9;color:#172033;font:16px/1.7 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;border:1px solid #dbe1e8;padding:28px;border-radius:12px;font:inherit}</style><body>' + pool_link + '<pre>' + html.escape(markdown) + '</pre></body></html>'

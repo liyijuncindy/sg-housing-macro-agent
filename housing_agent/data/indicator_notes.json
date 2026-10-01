@@ -1,0 +1,110 @@
+{
+  "M810001:2": {
+    "name_zh": "居民人口",
+    "definition_zh": "每年 6 月底的新加坡公民及永久居民人数；自 2003 年起，不包括参考日已连续在海外居住至少 12 个月的居民。",
+    "rationale_zh": "用于观察本地住房需求的潜在人口基础；若家庭形成和购买能力同步增加，人口增长可能支持购房或租房需求。",
+    "caveat_zh": "人口不等于家庭数、购房人数或住房需求预测；1990 年前的人口概念及 2003 年覆盖变化限制长期可比性。年度参考日为 6 月 30 日，不是年底。",
+    "source_agency": "新加坡统计局（DOS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+    "planned_source_label": "SingStat 官方表：人口与人口结构"
+  },
+  "M810001:5": {
+    "name_zh": "非居民人口",
+    "definition_zh": "每年 6 月底在新加坡工作、学习或居住但无永久居民身份的外国人数，不包括游客及短期访客。",
+    "rationale_zh": "用于观察人口流动相关的租赁需求；其中寻求普通住宅住宿的人口增加，可能支持租房需求，并间接影响住房市场。",
+    "caveat_zh": "包含宿舍等普通住宅租赁以外的住宿安排，不能直接换算为租房人数；未区分收入、签证类别、家庭规模或住房类型。年度参考日为 6 月 30 日。",
+    "source_agency": "新加坡统计局（DOS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810001",
+    "planned_source_label": "SingStat 官方表：人口与人口结构"
+  },
+  "M015661:1": {
+    "name_zh": "实际国内生产总值（GDP）",
+    "definition_zh": "按 2015 年链式价格计量的季度国内生产总值，单位为百万新加坡元，覆盖新加坡整体经济。",
+    "rationale_zh": "用于观察总体经济活动；经济增长可能通过就业、收入和信心影响购房能力及就业相关的租赁需求。",
+    "caveat_zh": "该序列未标注季节调整，优先比较同比；初步估计及历史值可能修订。GDP 与住房可能受共同因素影响，不能据此认定因果或预测能力。",
+    "source_agency": "新加坡统计局（DOS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M015661",
+    "planned_source_label": "SingStat 官方表：季度实际 GDP"
+  },
+  "M182342:2": {
+    "name_zh": "居民失业率（经季节调整）",
+    "definition_zh": "季度末居民劳动力中的失业者比例，已经季节调整；居民指新加坡公民及永久居民，单位为百分比。",
+    "rationale_zh": "用于观察居民就业压力；失业率上升可能削弱购房信心、偿贷能力和租金承受能力。",
+    "caveat_zh": "不涵盖非居民劳动力，也不衡量工资、就业不足或岗位稳定性；季调值可修订。变化应以百分点表示，保留实际来源的公布精度。",
+    "source_agency": "新加坡人力部（MOM）",
+    "planned_source_url": "https://stats.mom.gov.sg/iMAS_Tables1/CSV/mrsd_11_Resident_unemployment_rate_n_number.csv",
+    "planned_source_label": "MOM 官方 CSV：居民失业率与失业人数"
+  },
+  "M184101:1": {
+    "name_zh": "就业居民平均月度就业总收入（含公积金、不含奖金）",
+    "definition_zh": "就业居民的平均月度就业总收入，含雇主公积金（CPF）缴款、不含奖金；单位为新加坡元，按季度公布。覆盖就业公民及永久居民，不包括全职国民服役人员。当前直连 MOM 口径还明确包含平台运营商 CPF 缴款。",
+    "rationale_zh": "用于观察每名就业居民的收入能力；收入增加可能改善购房融资能力和租金承受能力，与经济总量指标形成补充。",
+    "caveat_zh": "是个人均值，不是家庭收入中位数或到手现金；高收入者及就业人员构成变化会影响均值。优先比较同比，保留实际来源提供的初步值标记；平台运营商 CPF 的说明须结合当前直连 MOM 原文，不能替代旧快照的来源说明。",
+    "source_agency": "新加坡人力部（MOM）",
+    "planned_source_url": "https://stats.mom.gov.sg/iMAS_Tables1/Time-Series-Table/mrsd_72_Mean_GMI_Emp_Res_Quarterly.xlsx",
+    "planned_source_label": "MOM 官方 XLSX：季度就业居民平均月度就业总收入"
+  },
+  "M016081:1": {
+    "name_zh": "个人可支配收入总额（名义）",
+    "definition_zh": "按现价计量的季度个人可支配收入总额，单位为百万新加坡元。",
+    "rationale_zh": "用于观察可供居民部门消费和储蓄的总体收入规模；收入总额增加可能支持住房购买及租赁支出。",
+    "caveat_zh": "是名义总额，不是人均、户均或家庭收入中位数；增长也可能来自物价或人口增加。序列未标注季节调整，优先比较同比。",
+    "source_agency": "新加坡统计局（DOS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M016081",
+    "planned_source_label": "SingStat 官方表：个人可支配收入"
+  },
+  "M700071:23": {
+    "name_zh": "三个月复利 SORA（月末值）",
+    "definition_zh": "三个月复利新加坡隔夜平均利率的月末值，单位为年利率百分比。",
+    "rationale_zh": "用于观察融资成本；基准利率上升可能随房贷重定价提高偿贷负担，并改变购房与租房选择，对租金的净影响不预设方向。",
+    "caveat_zh": "月末值不是月均值，也不是具体房贷报价；变化以基点表示，传导取决于利差及重定价安排。使用 MAS 日频路径时，按 SORA 计息日期而非公布日期归月，缺少月末完整性证据的月份暂不纳入；实际转换以该次来源元数据为准。",
+    "source_agency": "新加坡金融管理局（MAS）",
+    "planned_source_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
+    "planned_source_label": "MAS 官方国内利率下载页：三个月复利 SORA 日频数据"
+  },
+  "M701091:1.2.1": {
+    "name_zh": "住房与过桥贷款余额",
+    "definition_zh": "商业银行向居民提供的消费类住房及过桥贷款月末余额，单位为百万新加坡元。",
+    "rationale_zh": "用于观察住房融资活动及其规模；贷款余额扩张可能与融资购房需求同步变化，也可能反映房价上涨后的借款增加。",
+    "caveat_zh": "是贷款存量，不是新增按揭、审批量或信贷可得性；还款也会改变余额。新报表口径自 2021 年 7 月开始，不能直接拼接旧口径；存在反向因果。",
+    "source_agency": "新加坡金融管理局（MAS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M701091",
+    "planned_source_label": "SingStat 官方表（原发布：MAS）：商业银行贷款"
+  },
+  "M400841:1": {
+    "name_zh": "已竣工私人住宅存量",
+    "definition_zh": "季度末取得临时入伙准证（TOP）或法定竣工证书（CSC）的私人住宅总套数，包括有地及非有地住宅、已入住及空置单位。",
+    "rationale_zh": "用于观察当期可使用的住宅供给规模，并为人口及空置套数提供参照；新增竣工住宅可能缓解相对于需求的供给约束。",
+    "caveat_zh": "官方名称中的 available 指已竣工总存量，不是挂牌出售或出租量；不含 HDB 组屋、执行共管公寓（EC）及官方列明的其他排除项。1995—1996 年覆盖扩展影响长期可比性。",
+    "source_agency": "新加坡市区重建局（URA）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+    "planned_source_label": "SingStat 官方表（原发布：URA）：私人住宅存量与空置"
+  },
+  "M400841:2": {
+    "name_zh": "空置私人住宅套数",
+    "definition_zh": "季度末已竣工但空置的私人住宅套数；覆盖有地及非有地住宅，范围与同表已竣工存量一致。",
+    "rationale_zh": "用于观察住宅吸收情况；在总存量、区位和需求可比的条件下，空置增加可能对应较弱的价格或租金压力。",
+    "caveat_zh": "这是套数，不是空置率；必须结合同期已竣工存量，空置套数上升仍可能伴随空置率下降。不含 HDB 及 EC，与存量、供应储备同属住房供给指标组。",
+    "source_agency": "新加坡市区重建局（URA）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400841",
+    "planned_source_label": "SingStat 官方表（原发布：URA）：私人住宅存量与空置"
+  },
+  "M400391:2": {
+    "name_zh": "非有地私人住宅供应储备",
+    "definition_zh": "季度末处于不同开发阶段的非有地私人住宅供应储备套数，包含规划及建设中的项目。",
+    "rationale_zh": "用于观察未来潜在供给及市场预期；项目陆续竣工后可能增加购买和租赁市场的住宅供给。",
+    "caveat_zh": "不是已竣工住宅，也不是确定的竣工预测；交付时间、阶段和取消情况会变化。不含有地住宅、HDB 及 EC，与存量、空置同属住房供给指标组。",
+    "source_agency": "新加坡市区重建局（URA）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400391",
+    "planned_source_label": "SingStat 官方表（原发布：URA）：私人住宅开发供应储备"
+  },
+  "M213751:1": {
+    "name_zh": "整体消费者价格指数（CPI）",
+    "definition_zh": "基于官方家庭支出权重的整体消费者价格指数，以 2024 年为 100，按月公布。",
+    "rationale_zh": "用于观察生活成本和实际购买力；通胀可能影响家庭预算、持有成本及融资环境，对房价和租金的净作用不预设方向。",
+    "caveat_zh": "不是住宅售价指数或建筑成本指数；包含住房相关分项，与租金可能存在指标重叠，不能视为独立的因果或已验证预测变量。",
+    "source_agency": "新加坡统计局（DOS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M213751",
+    "planned_source_label": "SingStat 官方表：消费者价格指数"
+  }
+}
