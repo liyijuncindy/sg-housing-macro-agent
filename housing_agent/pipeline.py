@@ -48,6 +48,26 @@ def failure_evaluation(spec: dict, error: str) -> dict:
             "quality": {"eligible": False, "score": 0, "reasons": [error], "warnings": [], "missing_fraction": 1, "valid_count": 0}}
 
 
+def write_research_tables(output, research):
+    correlation_rows, metric_rows = [], []
+    for comparison in research["comparisons"]:
+        shared = {k:comparison[k] for k in ("candidate_id","outcome_id","analysis_frequency","target_change")}
+        for correlation in comparison["correlations"]:
+            correlation_rows.append({**shared, **correlation})
+        walk = comparison["walk_forward"]
+        common = {**shared,"status":walk["status"],"reason":walk["reason"],"holdout_start_period":walk["holdout_start_period"],"holdout_end_period":walk["holdout_end_period"]}
+        if walk["metrics"]:
+            metric_rows += [{**common,"method":method,**metrics} for method,metrics in walk["metrics"].items()]
+        else:
+            metric_rows.append(common)
+    for name, rows, columns in (("correlations.csv",correlation_rows,["candidate_id","outcome_id","analysis_frequency","target_change","lag","lag_unit","n","pearson_r","status","reason","start_period","end_period"]),
+                                ("walk_forward_metrics.csv",metric_rows,["candidate_id","outcome_id","analysis_frequency","target_change","status","reason","holdout_start_period","holdout_end_period","method","n","mae","rmse","directional_accuracy"])):
+        with (output/name).open("w",newline="",encoding="utf-8") as stream:
+            writer=csv.DictWriter(stream,fieldnames=columns)
+            writer.writeheader()
+            writer.writerows(rows)
+
+
 def export_processed(path: Path, series_list: list[dict]) -> None:
     with path.open("w", newline="", encoding="utf-8") as fh:
         writer = csv.DictWriter(fh, fieldnames=["series_id", "period", "observation_date", "published_at", "source_value_date", "source_publication_date", "value", "unit", "raw_period", "raw_value", "raw_index", "raw_locator", "preliminary", "raw_file", "raw_sha256"])
@@ -142,6 +162,24 @@ def _saved_source(source_run: Path, output: Path) -> dict:
         if not isinstance(series, dict) or series.get("id") not in expected or series["id"] in by_id:
             raise ValueError("Saved normalized data contains an unknown or duplicate series")
         by_id[series["id"]] = series
+    outcome_catalogue, outcome_by_id = [], {}
+    outcome_files = {"outcomes_catalogue.json", "outcomes_normalized.json"}
+    present = outcome_files & set(inventory)
+    if present and present != outcome_files:
+        raise ValueError("Saved outcome catalogue and normalized history must both be inventoried")
+    if present:
+        required |= outcome_files
+        outcome_catalogue = read_json(root / "outcomes_catalogue.json")
+        outcome_series = read_json(root / "outcomes_normalized.json")
+        if not isinstance(outcome_catalogue, list) or not isinstance(outcome_series, list):
+            raise ValueError("Saved housing outcomes must contain lists")
+        expected_outcomes = [f"{s['table_id']}:{s['row_id']}" for s in outcome_catalogue]
+        if len(expected_outcomes) != len(set(expected_outcomes)):
+            raise ValueError("Saved outcome catalogue contains duplicates")
+        for series in outcome_series:
+            if not isinstance(series, dict) or series.get("id") not in expected_outcomes or series["id"] in outcome_by_id:
+                raise ValueError("Saved outcome history contains unknown or duplicate series")
+            outcome_by_id[series["id"]] = series
 
     def require_raw(relative, expected_hash):
         if (not isinstance(relative, str) or not relative.startswith("raw/")
@@ -149,7 +187,7 @@ def _saved_source(source_run: Path, output: Path) -> dict:
                 or relative not in inventory or inventory[relative] != expected_hash):
             raise ValueError("Saved source raw provenance is missing from its verified inventory")
 
-    for series in normalized:
+    for series in normalized + list(outcome_by_id.values()):
         provenance = series.get("provenance", {})
         require_raw(provenance.get("raw_file"), provenance.get("raw_sha256"))
         require_raw(provenance.get("metadata_file"), provenance.get("metadata_sha256"))
@@ -164,19 +202,25 @@ def _saved_source(source_run: Path, output: Path) -> dict:
     raw_files = {name for name in inventory if name.startswith("raw/")}
     for name in raw_files:
         require_raw(name, inventory[name])
-    captured_at = sorted({series["retrieved_at"] for series in normalized
+    captured_at = sorted({series["retrieved_at"] for series in normalized + list(outcome_by_id.values())
                           if isinstance(series.get("retrieved_at"), str) and series["retrieved_at"]})
     provenance = {"name": root.name, "manifest_sha256": sha256_bytes(manifest_path.read_bytes()),
                   "original_created_at": manifest.get("created_at"),
                   "retrieved_at_min": captured_at[0] if captured_at else None,
                   "retrieved_at_max": captured_at[-1] if captured_at else None}
     return {"root": root, "catalogue": catalogue, "by_id": by_id,
+            "outcome_catalogue": outcome_catalogue, "outcome_by_id": outcome_by_id,
             "files": sorted(required | raw_files), "provenance": provenance}
 
 
-def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, model: str | None = None, timeout: float = 20, progress=print, provider: str | None = None, source_run: Path | None = None, source_policy: str = "auto") -> dict:
+def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, model: str | None = None, timeout: float = 20, progress=print, provider: str | None = None, source_run: Path | None = None, source_policy: str = "auto", report_version: int = 1) -> dict:
     started = time.monotonic()
     date.fromisoformat(as_of)
+    if type(report_version) is not int or report_version not in {1, 2}:
+        raise ValueError("Report version must be 1 or 2")
+    if report_version == 2:
+        from .charts import require_chart_dependencies
+        require_chart_dependencies()
     if not isinstance(limit, int) or isinstance(limit, bool) or limit < 1:
         raise ValueError("Selection limit must be a positive integer")
     if timeout <= 0:
@@ -200,6 +244,8 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         provider, model = None, None
     output = output.resolve()
     saved = _saved_source(source_run, output) if source_run is not None else None
+    if report_version == 2 and saved is not None and not saved["outcome_catalogue"]:
+        raise ValueError("Report v2 requires housing outcomes in its saved snapshot. Use a v2 source run or make a fresh run; missing outcomes are never silently downloaded into a saved-source run.")
     if saved is not None:
         catalogue = saved["catalogue"]
     else:
@@ -219,6 +265,8 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
            "data_basis": AS_OF_POLICY, "package_version": __version__, "python_version": sys.version.split()[0],
            "warnings": [], "status": "running",
            "usage": {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "requests": 0}}
+    if report_version == 2:
+        run.update(report_version=2, report_language="en")
     if saved is not None:
         run["source_run"] = saved["provenance"]
         capture = saved["provenance"]["retrieved_at_min"] or saved["provenance"]["original_created_at"] or "unknown capture time"
@@ -308,12 +356,50 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
             {**item["metadata"], "id": item["id"], "observations": item["observations"]}
             for item in evaluations if "provenance" in item["metadata"]
         ])
+        research = None
+        if report_version == 2:
+            if saved is None:
+                import json
+                outcome_catalogue = json.loads(files("housing_agent").joinpath("data/outcomes.json").read_text(encoding="utf-8"))
+                progress("Retrieving private price, private rent and HDB resale outcomes")
+                outcome_series, outcome_evaluations, outcome_routes = retrieve_candidates(outcome_catalogue, client, None, as_of, progress)
+                spec_by_id = {f"{s['table_id']}:{s['row_id']}": s for s in outcome_catalogue}
+                for series in outcome_series:
+                    for key in ("role", "outcome_key", "base_period", "base_value", "methodology_change_period", "comparability_floor_period", "evaluation_note", "methodology_sources"):
+                        series[key] = spec_by_id[series["id"]][key]
+                outcome_evaluations = [evaluate_series(s, as_of) for s in outcome_series] + [e for e in outcome_evaluations if not e["quality"]["eligible"] and e["id"] not in {s["id"] for s in outcome_series}]
+                save_retrievals()
+                write_json(output / "outcomes_catalogue.json", outcome_catalogue)
+                write_json(output / "outcomes_normalized.json", outcome_series)
+            else:
+                outcome_catalogue = saved["outcome_catalogue"]
+                outcome_series, outcome_evaluations, outcome_routes = [], [], []
+                for spec in outcome_catalogue:
+                    key = f"{spec['table_id']}:{spec['row_id']}"
+                    series = saved["outcome_by_id"].get(key)
+                    if series is None:
+                        outcome_evaluations.append(failure_evaluation(spec, "Outcome absent from verified source snapshot"))
+                    else:
+                        outcome_series.append(series)
+                        outcome_evaluations.append(evaluate_series(series, as_of))
+                    outcome_routes.append({"id":key,"primary_source":"Verified saved snapshot","attempts":[],"used_source":"SingStat" if series else None,"status":"ok" if series else "failed"})
+            write_json(output / "outcomes_evaluations.json", outcome_evaluations)
+            write_json(output / "outcomes_source_routes.json", outcome_routes)
+            export_processed(output / "outcomes_processed.csv", [{**e["metadata"],"id":e["id"],"observations":e["observations"]} for e in outcome_evaluations if "provenance" in e["metadata"]])
+            run["outcome_coverage"] = {"configured":len(outcome_catalogue),"downloaded":len(outcome_series),"eligible":sum(e["quality"]["eligible"] for e in outcome_evaluations),"freshly_retrieved":saved is None}
+            for evaluation in outcome_evaluations:
+                if not evaluation["quality"]["eligible"]:
+                    run["warnings"].append(f"Housing outcome {evaluation['id']} unavailable or ineligible; no missing values or statistics fabricated.")
+            from .research import build_research
+            research = build_research(evaluations, outcome_evaluations, as_of)
+            write_json(output / "research.json", research)
         if not any(item["quality"]["eligible"] for item in evaluations):
             raise ValueError("No candidate passes data quality gates; inspect evaluations.json and retrievals.json. No report fabricated.")
         progress("Selecting indicators from actual candidate evaluations")
         if mode == "llm":
             from .agent import run_agent
-            selection = run_agent(evaluations, as_of, limit, model, output / "agent_trace.json", provider=provider)
+            options = {"require_complete_decisions":True,"research":research} if report_version == 2 else {}
+            selection = run_agent(evaluations, as_of, limit, model, output / "agent_trace.json", provider=provider, **options)
         else:
             selection = select_candidates(evaluations, limit)
             selection["narratives"] = {e["id"]: {**e["metadata"]["mechanism"], "evidence_ids": [e["id"] + ":latest"]} for e in evaluations if e["id"] in selection["selected_ids"]}
@@ -339,6 +425,13 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
             trace = read_json(output / "agent_trace.json") if (output / "agent_trace.json").exists() else {}
             run["actual_models"] = trace.get("actual_models", [])
             run["agent_elapsed_seconds"] = trace.get("elapsed_seconds")
+        if report_version == 2:
+            from .charts import write_charts
+            research["charts"] = write_charts(output, research, evaluations, selection)
+            write_json(output / "research.json", research)
+            write_research_tables(output, research)
+            run["research"] = research
+            run["research_files"] = {"research_calculations":"research.json","all_candidate_correlations":"correlations.csv","all_walk_forward_metrics":"walk_forward_metrics.csv","outcome_evidence":"outcomes_evaluations.json"}
         run["status"] = "complete_with_warnings" if run["warnings"] else "complete"
         run["finished_at"] = utc_now()
         run["elapsed_seconds"] = round(time.monotonic() - started, 3)
@@ -347,7 +440,8 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         write_json(output / "report_context.json", run)
         report = render_report(run, evaluations, selection)
         (output / "report.md").write_text(report, encoding="utf-8")
-        (output / "report.html").write_text(render_html(report), encoding="utf-8")
+        page = render_html(report, asset_root=output) if report_version == 2 else render_html(report)
+        (output / "report.html").write_text(page, encoding="utf-8")
         run["files"] = file_inventory(output)
         write_json(output / "manifest.json", run)
         progress(f"Report saved: {output / 'report.md'}")

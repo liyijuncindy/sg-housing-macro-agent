@@ -18,6 +18,7 @@ def main(argv=None):
     run.add_argument("--timeout", type=float, default=20, help="Per-source HTTP timeout in seconds")
     run.add_argument("--source-run", type=Path, help="Explicitly reuse verified official data from a saved run; LLM calls remain live")
     run.add_argument("--source-policy", choices=["auto", "singstat"], default="auto", help="auto tries SingStat first for every candidate, rechecks transient failures, then uses reviewed MOM/MAS backups; singstat never uses backups")
+    run.add_argument("--report-version", type=int, choices=[1, 2], default=2, help="2: full English report with outcomes, charts and empirical checks; 1: legacy indicator brief")
     rep = sub.add_parser("replay", help="Verify and regenerate a saved report without network access")
     rep.add_argument("run_dir", type=Path)
     rep.add_argument("--output", type=Path, required=True)
@@ -31,7 +32,7 @@ def main(argv=None):
     try:
         if args.command == "run":
             from .pipeline import run_workflow
-            result = run_workflow(args.as_of, args.output, args.mode, args.limit, args.model, args.timeout, provider=args.provider, source_run=args.source_run, source_policy=args.source_policy)
+            result = run_workflow(args.as_of, args.output, args.mode, args.limit, args.model, args.timeout, provider=args.provider, source_run=args.source_run, source_policy=args.source_policy, report_version=args.report_version)
             print(json.dumps({key: result.get(key) for key in ("status", "selected_ids", "mode", "provider", "model", "actual_models", "usage", "elapsed_seconds", "agent_elapsed_seconds")}, indent=2))
         elif args.command == "replay":
             from .pipeline import replay

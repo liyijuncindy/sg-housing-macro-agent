@@ -131,6 +131,9 @@ def build_indicator_pool(run: dict, catalogue: list[dict], evaluations: list[dic
     Optional notes make offline tests and version-pinned export straightforward.
     The used notes are embedded and canonically hashed in the returned artifact.
     """
+    if isinstance(run, dict) and run.get("report_language") == "en":
+        from .english_pool import build_english_pool
+        return build_english_pool(run, catalogue, evaluations, selection)
     if not isinstance(run, dict) or not isinstance(selection, dict) or not isinstance(catalogue, list):
         raise ValueError("run/selection must be objects and catalogue must be a list")
     note_data, note_origin, note_hash = _load_notes(notes)
@@ -408,6 +411,9 @@ search.addEventListener('input',filterRows);status.addEventListener('change',fil
 
 def write_indicator_pool(output: Path, pool: dict) -> None:
     """Save three standalone representations; render HTML as an actual table."""
+    if pool.get("language") == "en":
+        from .english_pool import write_english_pool
+        return write_english_pool(output, pool)
     output = Path(output)
     output.mkdir(parents=True, exist_ok=True)
     serialized = json.dumps(pool, ensure_ascii=False, indent=2, allow_nan=False) + "\n"

@@ -11,6 +11,7 @@ dependencies = []
 
 [project.optional-dependencies]
 llm = ["openai>=1.68,<3"]
+charts = ["matplotlib>=3.9,<4"]
 
 [project.scripts]
 housing-agent = "housing_agent.__main__:main"

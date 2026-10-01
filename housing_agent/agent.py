@@ -242,7 +242,8 @@ def _facts(evaluation: dict, notes: dict[str, str] | None = None) -> dict:
                                         if change.get("value") is None]}
 
 
-def _validate_submission(arguments: dict, candidates: dict, inspected: set[str], limit: int) -> dict:
+def _validate_submission(arguments: dict, candidates: dict, inspected: set[str], limit: int,
+                         *, require_complete_decisions: bool = False) -> dict:
     _keys(arguments, {"selected_ids", "decisions", "narratives"}, "submission")
     selected = _ids(arguments["selected_ids"], "selected_ids")
     eligible = {key for key, item in candidates.items() if item["quality"].get("eligible") is True}
@@ -260,6 +261,8 @@ def _validate_submission(arguments: dict, candidates: dict, inspected: set[str],
         raise ValueError("selected_ids includes an unknown or ineligible candidate")
     if not set(selected) <= inspected:
         raise ValueError("every selected candidate must first be queried with inspect_candidate")
+    if require_complete_decisions and not set(candidates) <= inspected:
+        raise ValueError("Every configured candidate must be inspected before a complete selection; missing IDs: " + str(sorted(set(candidates)-inspected)))
 
     decisions = {}
     if not isinstance(arguments["decisions"], list):
@@ -280,6 +283,8 @@ def _validate_submission(arguments: dict, candidates: dict, inspected: set[str],
     if not set(selected) <= set(decisions):
         missing = sorted(set(selected) - set(decisions))
         raise ValueError(f"every selected candidate requires its own model decision reason; missing IDs: {missing}. " + synchronize)
+    if require_complete_decisions and set(decisions) != set(candidates):
+        raise ValueError("Every configured candidate requires an individual model decision, including eligible exclusions and unavailable series; missing IDs: " + str(sorted(set(candidates)-set(decisions))))
 
     raw_narratives = {}
     if not isinstance(arguments["narratives"], list):
@@ -305,6 +310,10 @@ def _validate_submission(arguments: dict, candidates: dict, inspected: set[str],
                        "reason_origin": "model"} for key, decision in decisions.items()}
     narratives = {key: {**{field: _prose(narrative[field], f"{key}.{field}") for field in _TEXT_FIELDS},
                         "evidence_ids": narrative["evidence_ids"]} for key, narrative in raw_narratives.items()}
+    if require_complete_decisions:
+        prose = [d["reason"] for d in decisions.values()] + [n[field] for n in narratives.values() for field in _TEXT_FIELDS]
+        if any(re.search(r"[\u3400-\u9fff]", text) for text in prose):
+            raise ValueError("All decision and narrative prose must be in English")
     for key, item in candidates.items():
         if key not in decisions:
             reason = ("System exclusion: candidate did not pass deterministic data-quality eligibility."
@@ -393,7 +402,8 @@ def _can_repair_prose(arguments: dict, candidates: dict, inspected: set[str], li
 
 def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
               trace_path: Path, max_turns: int = 8, max_output_tokens: int = 4000,
-              provider: str = "openai") -> dict:
+              provider: str = "openai", *, require_complete_decisions: bool = False,
+              research: dict | None = None) -> dict:
     """Select and explain captured data, or raise AgentError with a saved trace.
 
     API requests have a bounded provider-specific timeout and automatic SDK
@@ -503,6 +513,29 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
             "coverage when repairing prose; do not remove candidates merely to avoid wording errors. "
             "A smaller selection is allowed for substantive reasons; filling the limit is not required."
         )
+        if require_complete_decisions:
+            if research is not None:
+                instructions = instructions.replace(
+                    "This workflow has not implemented or tested interpolation, smoothing or a forecasting model; do not present those "
+                    "methods as part of this analysis or as validated ways to align observation frequencies. ",
+                    "No interpolation or smoothing is performed. Separate retrospective single-indicator prediction checks "
+                    "exist, but they are latest-vintage exploratory benchmarks, not a validated joint forecasting model. ")
+            instructions += (" Write all output in English. Inspect every candidate and provide an individual decision "
+                             "for every configured candidate, including HDB stock; omitted exclusions will be rejected. "
+                             "Do not claim a majority rental tenure without supplied tenure-share evidence. Household "
+                             "net changes cannot identify gross formation or dissolution separately. A stock denominator "
+                             "adds interpretation within the supply family, not an additional economic family. Distinguish "
+                             "aggregate income alternatives from per-employed-person alternatives. Keep the dashboard "
+                             "mechanisms qualitative; historical associations, where supplied, are exploratory and do "
+                             "not establish causal drivers or an optimal predictor set.")
+        diagnostics = {}
+        if research is not None:
+            for comparison in research.get("comparisons", []):
+                diagnostics.setdefault(comparison["candidate_id"], []).append({
+                    "outcome_id": comparison["outcome_id"], "analysis_frequency": comparison["analysis_frequency"],
+                    "target_change": comparison["target_change"], "correlations": comparison["correlations"]})
+            trace["research_note"] = "Exploratory historical associations supplied for context; held-out forecast errors are not supplied to the selecting model. This does not create an untouched confirmatory test."
+        trace["require_complete_decisions"] = require_complete_decisions
         messages = [{"role": "user", "content": json.dumps({"as_of": as_of, "limit": limit,
                      "candidate_count": len(candidates), "task": "Select predictors and submit qualitative analysis."})}]
         tool_definitions = _tools(limit)
@@ -598,11 +631,16 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
                     ids = _ids(arguments["ids"], "ids")
                     if not ids or not set(ids) <= discovered:
                         raise ValueError("inspect only nonempty candidate IDs returned by list_candidates")
-                    result = {"candidates": [_facts(candidates[key], quality_notes) for key in ids],
+                    facts = [_facts(candidates[key], quality_notes) for key in ids]
+                    for fact in facts:
+                        if fact["id"] in diagnostics:
+                            fact["exploratory_relationships"] = diagnostics[fact["id"]]
+                    result = {"candidates": facts,
                               "quality_notes": quality_notes}
                     inspected.update(ids)
                 elif name == "submit_analysis":
-                    result = _validate_submission(arguments, candidates, inspected, limit)
+                    result = _validate_submission(arguments, candidates, inspected, limit,
+                                                  require_complete_decisions=require_complete_decisions)
                     result["method"] = f"{provider}_{api_mode}_constrained_agent"
                     result["usage"] = dict(trace["usage"])
                     event["validation"] = {"accepted": True, "checks": ["eligible", "unique_ids", "limit",
