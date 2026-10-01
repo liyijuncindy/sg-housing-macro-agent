@@ -8,12 +8,12 @@ Checked on **1 October 2026, Singapore time**, using Python 3.12.14. This docume
 python -m unittest discover -v
 ```
 
-**Observed: 82 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
+**Observed: 116 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
 
 - 41 engine tests: true-calendar baselines, missing quarters, zero denominators, percentage/basis-point units, date cutoffs, population reference dates, quality windows, staleness and family selection.
-- 17 agent tests: mocked Responses calls, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
+- 31 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
 - 15 source tests: captured official GDP/population/SORA responses, exact series requests, source identity/metadata consistency, cell-limit rejection, API errors and retry audit trails.
-- 9 pipeline tests: full workflow with explicit synthetic fixtures, partial and total failure, cutoff-filtered CSV, table rendering, immutable output, environment handling, replay and tampering.
+- 29 pipeline tests: provider routing and explicit saved-snapshot verification/reanalysis, full workflow with explicit synthetic fixtures, partial and total failure, cutoff-filtered CSV, table rendering, immutable output, environment handling, replay and tampering.
 
 ## Live official-data workflow
 
@@ -58,11 +58,17 @@ At the 2020 cutoff, employment-income and housing-credit candidates lack usable 
 3. **Real date formats and reference dates.** Captured quarterly responses use `YYYY nQ`. Population has an end-June reference date. Fixture tests ensure quarterly observations are not discarded and current-year population is not excluded until December.
 4. **Processing cutoff and report table layout.** Review identified a CSV that retained post-cutoff observations and an unavailable-comparison warning that split a Markdown table. Both were fixed and regression-tested. Full history remains in `normalized.json`; `processed.csv` follows the report cutoff.
 
-## Live model status
+## Live model integration
 
-**Not yet verified against a real OpenAI API account.** The optional SDK is installed in the development environment and the adapter passes mocked protocol tests, but the local API key was not configured at this checkpoint. The delivered sample deliberately uses `rules` mode and makes no claim of a live Agent run.
+NUS SoCLaaS is the selected provider for this integration. The service's authenticated model listing on 1 October 2026 reported `default` as an alias of `qwen3.6:35b`; the integration pins the explicit ID. See [the captured model metadata](evidence/soclaas-models.json).
 
-After local configuration, run the `--mode llm` command in the README. The application records actual tool calls, output validation and token usage. A success can then be documented separately; a failure must be investigated rather than replaced with a mock transcript.
+A fresh official-data run encountered persistent HTTP 502 responses across twenty logical source requests and sixty bounded HTTP attempts. It failed before any LLM call and did not produce a report. [The failure audit](evidence/soclaas-source-outage.json) is preserved. Subsequent integration tests explicitly reuse the earlier verified official snapshot; they are real model calls but not a successful fresh source refresh.
+
+The first live adapter probe completed in 64.938 seconds and six requests, using 149,733 input tokens and 6,554 output tokens (156,287 total). Three submissions repeated a forbidden numeric tenor label before the model corrected it. Its full original [trace](evidence/soclaas-first-probe/agent_trace.json), [selection](evidence/soclaas-first-probe/selection.json) and [semantic review](evidence/soclaas-first-probe/review.json) are preserved. Semantic review also found mistaken family equivalence, an aggregate-versus-household income distinction, and overly strong exclusion reasons. A syntactically valid submission is therefore not sufficient evidence of a sound economic interpretation.
+
+The follow-up implementation removes duplicate fact payloads, sends shared quality policy text once per result, identifies the offending numeric token in repair feedback, and clarifies exact families, aggregation, scope and cautious exclusion reasoning. Full raw data and evaluated facts remain available in the saved run.
+
+The OpenAI Responses path remains supported by offline protocol tests; it has not been verified with a real OpenAI account in this task.
 
 ## Remaining limitations
 

@@ -2,7 +2,7 @@
 
 输入报告日期，获取官方宏观数据，检查候选指标的质量，选择合适的一组指标并生成可追溯的住房市场分析报告。
 
-**目前的能力边界：**候选目录包含十二个已核验的公开序列，最终选择由真实数据检查结果决定，不预设五个入选指标。`rules` 是可离线测试的确定性基线，`llm` 是调用 OpenAI 的工具型 Agent。规则模式的解释来自人工审阅的机制模板，不能当成一次模型运行。初版不声称已经证明这些指标的预测能力，也不训练房价模型。
+**目前的能力边界：**候选目录包含十二个已核验的公开序列，最终选择由真实数据检查结果决定，不预设五个入选指标。`rules` 是可离线测试的确定性基线，`llm` 是调用 SoCLaaS 或 OpenAI 的工具型 Agent。规则模式的解释来自人工审阅的机制模板，不能当成一次模型运行。初版不声称已经证明这些指标的预测能力，也不训练房价模型。
 
 ## 开始使用
 
@@ -35,16 +35,43 @@ python -m housing_agent run --as-of 2026-09-30 --mode rules --limit 5 --output r
 
 ```bash
 python -m pip install -r requirements-llm.lock
-cp .env.example .env
+# 仅首次配置时复制；已有 .env 时直接编辑，保留现有配置。
+cp -n .env.example .env
 ```
 
-在本地编辑 `.env`，填写 `OPENAI_API_KEY`，并把 `OPENAI_MODEL` 设成你的 API 项目可访问且支持工具调用的模型 ID。示例模型不代表你的账户一定有权限。程序仅从当前项目目录的 `.env` 或环境变量读取这两个值；已有环境变量优先。不要把密钥发在聊天里。`.env` 被 Git 忽略，交付压缩包也排除它。
+在本地编辑 `.env`。使用 NUS SoCLaaS 时填写：
+
+```dotenv
+LLM_PROVIDER=soclaas
+SOCLAAS_API_KEY=你的本地密钥
+SOCLAAS_MODEL=qwen3.6:35b
+```
+
+运行完整流程：
 
 ```bash
-python -m housing_agent run --as-of 2026-09-30 --mode llm --limit 5 --output runs/live-agent
+python -m housing_agent run --as-of 2026-09-30 --mode llm --provider soclaas --limit 5 --output runs/live-soclaas
 ```
 
-这会产生真实 API 调用和相应费用。模型最多运行八轮，每轮最多生成四千 token；实际输入、输出和总用量写入 `agent_trace.json` 和 `manifest.json`。这些是调用上限，不是美元费用上限。API 缺失、拒绝访问、超时或输出校验失败会明确报错，不会暗中改用规则模板并声称是 Agent 结果。
+SoCLaaS 使用固定的 NUS 服务地址和 Chat Completions 接口。固定模型 ID 避免 `default` 别名改变时意外换模型；服务端更新同一 ID 下的权重仍可能改变结果。前两个阶段强制调用列举和检查工具，最终选择仍经过相同的数据与证据校验。
+
+如需使用 OpenAI，在 `.env` 中填写 `OPENAI_API_KEY`、`OPENAI_MODEL`，并运行：
+
+```bash
+python -m housing_agent run --as-of 2026-09-30 --mode llm --provider openai --limit 5 --output runs/live-openai
+```
+
+OpenAI 路径保留 Responses 接口。两个服务使用各自的密钥和模型设置，互不回退。`--provider` 优先于 `LLM_PROVIDER`，都未配置时默认 OpenAI；`--model` 优先于相应服务的模型环境变量。程序只加载 `.env.example` 中列出的设置，已有环境变量优先，不执行配置内容。密钥仅保存在本地；`.env` 被 Git 忽略，交付压缩包也排除它。
+
+若官方数据接口暂时不可用，可以**显式**复用附带的真实数据快照，并发起新的模型分析：
+
+```bash
+python -m housing_agent run --as-of 2026-09-30 --mode llm --provider soclaas --source-run examples/sample_run --output runs/soclaas-from-snapshot
+```
+
+`--source-run` 会核验原运行文件的校验和，以保存的完整观察重新计算报告日的数据与质量，再调用模型。新报告标明原始数据获取时间及“未刷新来源”，不会把旧快照当成刚下载的数据。它与 `replay` 不同：`replay` 只重现已保存文本，完全不调用模型。新鲜取数失败时不会自动切换快照。
+
+这会产生真实 API 调用和相应费用。模型最多运行八轮，每轮最多生成四千 token；实际输入、输出和总用量、返回模型名称与耗时写入 `agent_trace.json` 和 `manifest.json`。这些是调用上限，不是美元费用上限。API 缺失、拒绝访问、超时或输出校验失败会明确报错，不会暗中改用规则模板并声称是 Agent 结果。
 
 ## 指标怎样选
 

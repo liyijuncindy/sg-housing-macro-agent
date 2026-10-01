@@ -1,0 +1,27 @@
+{
+  "reviewer": "Codex semantic review against captured catalogue and evaluated metadata",
+  "numeric_evidence": "Selected IDs, evidence IDs and program-rendered values passed existing checks. This does not prove semantic accuracy.",
+  "findings": [
+    {
+      "topic": "family identifiers",
+      "finding": "Exclusion reasons incorrectly call GDP/PDI and housing credit/SORA the same family, while exact catalogue selection_family identifiers differ."
+    },
+    {
+      "topic": "aggregation",
+      "finding": "One exclusion reason calls aggregate nominal personal disposable income household-level income, contradicting its definition."
+    },
+    {
+      "topic": "vacancy interpretation",
+      "finding": "Vacant-unit count alone is called sufficient for supply slack, while the narrative correctly says completed-stock context is required."
+    },
+    {
+      "topic": "supply expectations",
+      "finding": "Pipeline exclusion too strongly dismisses current-market effects; future supply expectations can affect present decisions."
+    },
+    {
+      "topic": "reference period",
+      "finding": "Current quarter should mean latest available quarter; latest observation need not equal report cutoff quarter."
+    }
+  ],
+  "action": "Preserve original trace; clarify exact scope/families and cautious exclusion rationale in prompt, reduce redundant context, then run a new real model analysis. Do not edit original model output."
+}

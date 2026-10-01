@@ -1,0 +1,474 @@
+{
+  "date_singapore": "2026-10-01",
+  "mode": "fresh official-data retrieval, before LLM stage",
+  "status": "failed",
+  "elapsed_seconds": 67.449,
+  "error": "ValueError: No candidate passes data quality gates; inspect evaluations.json and retrievals.json. No report fabricated.",
+  "source_requests": 20,
+  "http_attempts": 60,
+  "model_requests": 0,
+  "model_tokens": 0,
+  "retrievals": [
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=population&searchOption=all",
+      "retrieved_at": "2026-10-01T08:28:54+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=gross+domestic+product&searchOption=all",
+      "retrieved_at": "2026-10-01T08:28:58+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=unemployment&searchOption=all",
+      "retrieved_at": "2026-10-01T08:29:01+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=income&searchOption=all",
+      "retrieved_at": "2026-10-01T08:29:04+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=interest+rates&searchOption=all",
+      "retrieved_at": "2026-10-01T08:29:08+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=loans&searchOption=all",
+      "retrieved_at": "2026-10-01T08:29:11+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=residential+properties&searchOption=all",
+      "retrieved_at": "2026-10-01T08:29:14+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=consumer+price&searchOption=all",
+      "retrieved_at": "2026-10-01T08:29:18+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "retrieved_at": "2026-10-01T08:29:21+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "retrieved_at": "2026-10-01T08:29:25+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M015661",
+      "retrieved_at": "2026-10-01T08:29:29+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M182342",
+      "retrieved_at": "2026-10-01T08:29:32+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M184101",
+      "retrieved_at": "2026-10-01T08:29:36+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M016081",
+      "retrieved_at": "2026-10-01T08:29:39+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M700071",
+      "retrieved_at": "2026-10-01T08:29:42+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M701091",
+      "retrieved_at": "2026-10-01T08:29:45+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M400841",
+      "retrieved_at": "2026-10-01T08:29:49+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M400841",
+      "retrieved_at": "2026-10-01T08:29:52+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M400391",
+      "retrieved_at": "2026-10-01T08:29:55+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    },
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M213751",
+      "retrieved_at": "2026-10-01T08:29:58+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 2,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        },
+        {
+          "attempt": 3,
+          "status": "failed",
+          "error": "HTTPError: HTTP Error 502: Bad Gateway"
+        }
+      ],
+      "status": "failed",
+      "error": "HTTPError: HTTP Error 502: Bad Gateway"
+    }
+  ],
+  "follow_up": "Use explicit --source-run with verified, previously captured real SingStat data. No automatic fallback."
+}

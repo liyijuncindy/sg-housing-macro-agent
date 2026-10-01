@@ -1,0 +1,145 @@
+{
+  "selected_ids": [
+    "M700071:23",
+    "M016081:1",
+    "M182342:2",
+    "M400841:2",
+    "M810001:5"
+  ],
+  "decisions": [
+    {
+      "id": "M810001:2",
+      "reason": "Exclude resident population to avoid overlap with non-resident population within the same selection family; both capture broad demand drivers and the non-resident series is more directly relevant to rental demand in Singapore.",
+      "selected": false,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810001:5",
+      "reason": "Select non-resident population. Annual population data provides demand-side context, particularly for rental markets where non-residents may form households.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M015661:1",
+      "reason": "Exclude aggregate GDP to avoid overlap with personal disposable income within the same family; household-level income is more directly relevant to housing affordability.",
+      "selected": false,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M182342:2",
+      "reason": "Select resident unemployment. Seasonally adjusted and quarterly; reflects labour-market stress that may influence tenure choices.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M184101:1",
+      "reason": "Exclude mean gross employment income as it overlaps with disposable income and labour-market indicators in the same selection families, and its shorter history limits independent predictive context.",
+      "selected": false,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M016081:1",
+      "reason": "Select aggregate nominal personal disposable income. It offers quarterly household-resource context with strong quality and history.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M700071:23",
+      "reason": "Select financing cost (SORA). High score, monthly frequency, and a direct mechanism linking rates to mortgage affordability.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "reason": "Exclude housing credit (outstanding loans) to avoid overlap with interest rates within the same financing-family group; credit stock changes gradually and may reflect prices rather than lead them.",
+      "selected": false,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:1",
+      "reason": "Exclude completed private residential properties available to avoid overlap with vacant units within the same housing-supply family; the vacant count alone provides sufficient current supply-slack signal.",
+      "selected": false,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:2",
+      "reason": "Select vacant private residential units. It is the core housing-supply slack measure within the same URA table as completed stock; the vacancy count may help gauge absorption and rental availability.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400391:2",
+      "reason": "Exclude future supply (Total Non-Landed Properties) due to overlap with vacant/completed supply coverage; pipeline metrics have long and variable lags and do not directly affect current market conditions.",
+      "selected": false,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M213751:1",
+      "reason": "Exclude general inflation (CPI) because it overlaps conceptually with income and housing components, and its net association with property prices is ambiguous.",
+      "selected": false,
+      "reason_origin": "model"
+    }
+  ],
+  "narratives": {
+    "M700071:23": {
+      "sales": "An increase in the benchmark rate could raise borrowing costs for floating-rate mortgages, which may reduce purchasing capacity and slow transaction activity.",
+      "rents": "Higher financing costs may shift some households toward renting, though landlord costs and asset pricing complicate the net effect.",
+      "lag": "Monthly interest-rate context; pass-through to mortgage affordability may develop over subsequent months depending on reset schedules.",
+      "limitations": "Month-end snapshot of a benchmark rate; individual mortgage pricing depends on spreads, fixed-rate terms, and policy. SORA alone cannot determine housing outcomes.",
+      "evidence_ids": [
+        "M700071:23:latest",
+        "M700071:23:previous_period",
+        "M700071:23:year_on_year"
+      ]
+    },
+    "M016081:1": {
+      "sales": "An increase in aggregate disposable income may enlarge the pool of households with resources for housing purchases.",
+      "rents": "Higher nominal disposable income could support rental spending capacity, conditional on price and cost-of-living developments.",
+      "lag": "Quarterly household-resource context; affordability adjustments and tenure decisions may unfold over several quarters.",
+      "limitations": "Nominal aggregate growth reflects inflation and population changes; it is not income per household and may mask distributional shifts.",
+      "evidence_ids": [
+        "M016081:1:latest",
+        "M016081:1:year_on_year"
+      ]
+    },
+    "M182342:2": {
+      "sales": "Elevated unemployment may reduce purchasing confidence and borrowing capacity among residents.",
+      "rents": "A higher resident unemployment rate may weaken residents' ability to sustain rental payments, increasing churn or downward pressure.",
+      "lag": "Quarterly labour-market conditions; housing responses may follow with a lag as job security expectations adjust.",
+      "limitations": "Seasonally adjusted series is subject to annual revision; it excludes non-residents and does not measure earnings or underemployment.",
+      "evidence_ids": [
+        "M182342:2:latest",
+        "M182342:2:previous_period",
+        "M182342:2:year_on_year"
+      ]
+    },
+    "M400841:2": {
+      "sales": "An increase in vacant completed units may indicate weaker absorption and could reduce price momentum if unmet by demand.",
+      "rents": "A rise in vacant units may signal greater rental availability, which could ease rent pressure if demand remains steady.",
+      "lag": "Current quarter vacancy count; absorption and pricing responses may lag as market participants adjust to available supply.",
+      "limitations": "This is an absolute count, not a rate; interpretation requires comparison with total completed stock. The series excludes HDB flats.",
+      "evidence_ids": [
+        "M400841:2:latest",
+        "M400841:2:previous_period",
+        "M400841:2:year_on_year"
+      ]
+    },
+    "M810001:5": {
+      "sales": "Non-resident population growth may indirectly affect sales demand, but purchase restrictions and tenure preferences constrain the direct link.",
+      "rents": "Growth in the non-resident population may support rental demand where non-residents seek ordinary residential accommodation.",
+      "lag": "Annual population context; housing demand shifts may materialize over subsequent quarters as leases and household formation occur.",
+      "limitations": "Population count does not capture income, household size, visa status, or tenure choice; non-residents include diverse living arrangements.",
+      "evidence_ids": [
+        "M810001:5:latest",
+        "M810001:5:year_on_year"
+      ]
+    }
+  },
+  "method": "soclaas_chat_completions_constrained_agent",
+  "usage": {
+    "input_tokens": 149733,
+    "output_tokens": 6554,
+    "total_tokens": 156287,
+    "requests": 6
+  }
+}

@@ -13,8 +13,10 @@ def main(argv=None):
     run.add_argument("--output", required=True, type=Path, help="New run directory; existing paths will not be overwritten")
     run.add_argument("--mode", choices=["rules", "llm"], default="rules", help="rules is a deterministic baseline; llm makes live model calls")
     run.add_argument("--limit", type=int, default=5, help="Maximum indicators, selected from eligible candidates")
-    run.add_argument("--model", help="Tool-capable OpenAI model available to your project; overrides OPENAI_MODEL")
+    run.add_argument("--provider", choices=["openai", "soclaas"], help="LLM provider; overrides LLM_PROVIDER (default: openai)")
+    run.add_argument("--model", help="Tool-capable model for the chosen provider; overrides OPENAI_MODEL or SOCLAAS_MODEL")
     run.add_argument("--timeout", type=float, default=20, help="Per-source HTTP timeout in seconds")
+    run.add_argument("--source-run", type=Path, help="Explicitly reuse verified official data from a saved run; LLM calls remain live")
     rep = sub.add_parser("replay", help="Verify and regenerate a saved report without network access")
     rep.add_argument("run_dir", type=Path)
     rep.add_argument("--output", type=Path, required=True)
@@ -25,8 +27,8 @@ def main(argv=None):
     try:
         if args.command == "run":
             from .pipeline import run_workflow
-            result = run_workflow(args.as_of, args.output, args.mode, args.limit, args.model, args.timeout)
-            print(json.dumps({"status": result["status"], "selected_ids": result["selected_ids"], "mode": result["mode"], "usage": result["usage"]}, indent=2))
+            result = run_workflow(args.as_of, args.output, args.mode, args.limit, args.model, args.timeout, provider=args.provider, source_run=args.source_run)
+            print(json.dumps({key: result.get(key) for key in ("status", "selected_ids", "mode", "provider", "model", "actual_models", "usage", "elapsed_seconds", "agent_elapsed_seconds")}, indent=2))
         elif args.command == "replay":
             from .pipeline import replay
             print(json.dumps(replay(args.run_dir, args.output), indent=2))

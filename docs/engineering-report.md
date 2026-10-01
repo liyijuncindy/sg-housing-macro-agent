@@ -18,7 +18,7 @@ The deterministic baseline chooses eligible candidates by quality while initiall
 
 ## Architecture and division of responsibility
 
-Python's standard library provides HTTP retrieval, parsing, validation, calendar arithmetic, JSON/CSV storage, CLI routing and report rendering. No database server or web application is required. The optional OpenAI Python SDK supplies a direct Responses API tool loop rather than a large orchestration framework. This makes the allowed actions and saved evidence easy to inspect.
+Python's standard library provides HTTP retrieval, parsing, validation, calendar arithmetic, JSON/CSV storage, CLI routing and report rendering. No database server or web application is required. The optional OpenAI Python SDK supplies direct tool loops: Responses for OpenAI and Chat Completions for NUS SoCLaaS. Provider-specific credentials and fixed endpoints prevent cross-provider credential reuse. The SoCLaaS path forces listing and inspection before selection and pins a service model ID for the delivered run. This makes the allowed actions and saved evidence easy to inspect.
 
 The LLM can list/search captured candidates, inspect their evaluated facts, and submit selected identifiers, decision reasons and qualitative interpretations. It cannot write executable code, supply arbitrary download URLs or bypass quality gates. Selected candidates must have been inspected. Evidence identifiers must belong to their selected series. Actual responses and tool calls are saved; bounded turns and per-request timeouts prevent an uncontrolled loop. API failures remain explicit, with no silent switch to a non-agent report.
 
@@ -31,6 +31,8 @@ Observation period, reference date, source-table update time and retrieval time 
 Original frequency and units are retained. GDP and the selected non-seasonally-adjusted income series use year-on-year comparisons. Population, quantities and price indices use percentage changes; unemployment uses percentage points; SORA levels are annual percentage rates and changes are basis points. Missing calendar baselines and zero denominators return unavailable results with reasons. No forward-filling, interpolation or positional substitute is used.
 
 Each change records its formula, both periods, both values and exact original observation positions. Each series references immutable raw files with SHA-256 hashes. Run records also preserve configuration, source requests, normalized data, decisions, generated text, code commit and source-file hashes. A new live request creates a new directory instead of overwriting a prior vintage.
+
+For source outages, an explicit saved-source option verifies an earlier complete run and copies only its recorded data artifacts into a new run. It recomputes quality and changes for the requested observation cutoff, retains original retrieval timestamps, and can call the model again. It never silently replaces a failed fresh download. The report identifies this saved-vintage mode; it differs from replay, which makes no model calls.
 
 Replay verifies all recorded file checksums and renders from the saved facts and narratives without network or model calls. It checks byte equality with the saved report. A changed renderer can legitimately fail exact replay; the recorded code version and hashes help restore the matching implementation. Replay does not resample a model or pretend to be a new autonomous analysis.
 

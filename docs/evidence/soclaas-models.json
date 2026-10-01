@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-01T08:27:33.268000+00:00",
+  "endpoint": "https://soclaas-api.comp.nus.edu.sg/v1/models",
+  "models": [
+    {
+      "id": "qwen3.6:35b",
+      "created": 0,
+      "object": "model",
+      "owned_by": "soclaas",
+      "context_length": 262144,
+      "context_window": 262144,
+      "max_context_length": 262144,
+      "max_model_len": 262144,
+      "soclaas": {
+        "display_name": "Qwen 3.6 35B A3B",
+        "description": "Efficient agentic workflows and advanced coding",
+        "capabilities": [
+          "chat"
+        ],
+        "input_microdollars_per_million_tokens": 450056,
+        "output_microdollars_per_million_tokens": 1515500,
+        "audio_microdollars_per_minute": 0
+      }
+    },
+    {
+      "id": "default",
+      "created": 0,
+      "object": "model",
+      "owned_by": "soclaas",
+      "context_length": 262144,
+      "context_window": 262144,
+      "max_context_length": 262144,
+      "max_model_len": 262144,
+      "soclaas": {
+        "display_name": "Qwen 3.6 35B A3B",
+        "description": "Efficient agentic workflows and advanced coding",
+        "capabilities": [
+          "chat"
+        ],
+        "input_microdollars_per_million_tokens": 450056,
+        "output_microdollars_per_million_tokens": 1515500,
+        "audio_microdollars_per_minute": 0,
+        "alias_of": "qwen3.6:35b"
+      }
+    }
+  ]
+}
