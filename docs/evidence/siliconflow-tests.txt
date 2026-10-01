@@ -1,4 +1,5 @@
 test_api_failure_is_explicit_and_secret_is_redacted (tests.test_agent.AgentTests.test_api_failure_is_explicit_and_secret_is_redacted) ... ok
+test_client_cleanup_error_is_redacted_without_masking_validated_result (tests.test_agent.AgentTests.test_client_cleanup_error_is_redacted_without_masking_validated_result) ... ok
 test_duplicate_narrative_and_missing_selected_reason_are_rejected (tests.test_agent.AgentTests.test_duplicate_narrative_and_missing_selected_reason_are_rejected) ... ok
 test_fabricated_and_other_series_evidence_is_rejected (tests.test_agent.AgentTests.test_fabricated_and_other_series_evidence_is_rejected) ... ok
 test_incomplete_or_text_only_response_fails_closed (tests.test_agent.AgentTests.test_incomplete_or_text_only_response_fails_closed) ... ok
@@ -224,6 +225,6 @@ test_recovery_preserves_failed_attempt_and_original_success_bytes (tests.test_so
 test_temporary_http_failure_has_finite_retries_and_a_failure_record (tests.test_sources.TransportFailureTests.test_temporary_http_failure_has_finite_retries_and_a_failure_record) ... ok
 
 ----------------------------------------------------------------------
-Ran 224 tests in 1.286s
+Ran 225 tests in 1.231s
 
 OK

@@ -782,6 +782,15 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(self.client.chat.completions.create.call_count, 1)
         self.assertEqual(self.read_trace()["status"], "failed")
 
+    def test_client_cleanup_error_is_redacted_without_masking_validated_result(self):
+        self.client.close.side_effect = RuntimeError("cleanup for siliconflow-test-secret failed")
+        result = self.run_siliconflow(chat_sequence())
+        self.assertEqual(result["selected_ids"], ["income"])
+        trace = self.read_trace()
+        self.assertEqual(trace["status"], "completed")
+        self.assertIn("cleanup_error", trace)
+        self.assertNotIn("siliconflow-test-secret", self.trace.read_text())
+
 
 if __name__ == "__main__":
     unittest.main()

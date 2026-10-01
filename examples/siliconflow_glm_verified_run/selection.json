@@ -1,0 +1,172 @@
+{
+  "selected_ids": [
+    "M700071:23",
+    "M701091:1.2.1",
+    "M400841:1",
+    "M400841:2",
+    "M810371:1"
+  ],
+  "decisions": [
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason": "Eligible and complete. Resident population growth is conceptually sound for sale price and rent support, but its dwelling-demand content is largely conveyed through household counts, which were retained in preference within the same population/demand family; the series remains useful and is not fully substituted.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason": "Eligible and complete, with the clearest mechanism to private rental demand among the population counts. Not retained because the same population/demand family was already represented by resident households and the count also includes residents in dormitory-style arrangements that do not translate into ordinary rental demand; this is a deliberate family-coverage and capacity judgement, not a failure of relevance.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason": "Eligible and complete, with relevant activity and confidence effects on both purchases and rents. Not retained because the selection already mixes monthly, quarterly and annual frequencies, leaving no room within the limit for a broader activity proxy; this reflects capacity and partial coverage rather than any data-quality failure.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M182342:2",
+      "selected": false,
+      "reason": "Eligible, complete and timely labour-market stress signal that may work in the opposite direction to demand. Not retained because the shortlisted channels already span financing, credit, supply and household demand, and the resident unemployment rate covers a narrower labour channel with no distinct family coverage gain; this is a capacity choice, not an irrelevance judgement.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason": "Eligible and complete with a direct affordability channel, though its useful history begins relatively late in the window and a mean per employed person can be pulled about by high earners. Not retained because no household income or earnings measure was retained and the limit was exhausted on other priority channels; exclusion is a capacity judgement and the series would be a complementary, not redundant, addition.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason": "Eligible, complete and timely. A valuable aggregate purchasing-power complemant that could substitute for a household-level income measure only with care, since it is aggregate, nominal and not per household. Not retained as the selection already includes the household-side and credit-side of capacity, and the limit was filled by multi-channel coverage; this exclusion does not imply substitution.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M700071:23",
+      "selected": true,
+      "reason": "Retained. Eligible, most complete and timely monthly series in the pool, and the only financing-cost measure: it is the benchmark to which floating-rate housing finance references, giving a direct borrowing-cost channel for sale prices and a tenure and landlord-carry channel for rents.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": true,
+      "reason": "Retained. Eligible, complete, high-quality monthly housing-specific credit stock from the banking system. It complements the benchmark rate by capturing the quantity side of housing finance that financed purchase demand depends on, and it is the only representative chosen from the housing credit family.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:1",
+      "selected": true,
+      "reason": "Retained. Eligible, complete quarterly completed private residential stock from URA. It measures the current supply base that prices and rents must be absorbed against, and it is also the documented denominator against which the vacant-unit count must be read, making it a deliberately retained complement within the supply family.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:2",
+      "selected": true,
+      "reason": "Retained. Eligible, complete quarterly count of vacant completed private units, a direct measure of market slack that is the closest supply-side lever on rents and, more weakly, on prices. It shares the supply family with the stock count, but they answer different questions (total base versus idle units) and the count must be interpreted against the stock, so retaining both is justified.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason": "Eligible and complete. The non-landed pipeline was excluded only on capacity and family-coverage grounds, and not because its completions arrive later: prospective supply can affect prices today through an expectations channel, well before completion, and would enhance forward-looking supply coverage, but the family was already represented by the completed-stock and vacant-unit measures. It remains a useful, complementary signal that is not fully substituted.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason": "Eligible, complete and timely with a small relative base period. Excluded for scope rather than availability: it is a very broad basket whose housing-related components overlap with rents, so it is not an independent causal housing driver and risks circularity, and the inflation family did not earn a slot within the limit.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810371:1",
+      "selected": true,
+      "reason": "Retained. Eligible and complete with no missing observations. Household counts are the closest demand-side analogue to occupied dwelling space, potentially better suited to purchase and rental demand than population counts, and it is the only representative retained from the population/demand family. Annual frequency is an accepted limitation rather than a block.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810361:5",
+      "selected": false,
+      "reason": "Eligible and complete with the clearest household-level affordability content among the income measures, distinct from aggregate income or income per employed person. Not retained because no income series was retained and the limit was filled by higher-frequency financing, credit and supply measures; annual cadence limited marginal model value despite excellent quality and a coherent mechanism, and exclusion does not substitute this signal for any retained series.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M183111:7",
+      "selected": false,
+      "reason": "Eligible and complete. Annual total employment captures aggregate earned income and work-related housing demand, but it counts migrant domestic workers whose accommodation does not necessarily translate into separate rental demand and it does not reflect earnings. Not retained for capacity, since resident household demand and financing channels were prioritised, and because quarterly labour-market signals were viewed as complementary rather than interchangeable.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400751:1.1",
+      "selected": false,
+      "reason": "Eligible and complete. The public-housing stock offers genuine tenure-substitution context for both sales and rents, but as an annual aggregate stock it is not new supply or availability, and its annual cadence and indirect linkage were outweighed by private-market supply measures already retained within the same supply family. This is a capacity and channel-specificity judgement, not a quality failure.",
+      "reason_origin": "model"
+    }
+  ],
+  "narratives": {
+    "M700071:23": {
+      "sales": "This is the Singapore-dollar benchmark rate to which floating-rate housing finance references. A higher reading may feed into mortgage repricing at rollover or reset, raising the user cost of ownership and tightening effective borrowing capacity, which may in turn weigh on purchase demand and transaction volumes. Falling readings may ease mortgage serviceability and support debt-financed purchase demand, subject to spreads, fixed-rate lock-in periods and refinancing terms.",
+      "rents": "Ownership financing costs may shift the relative attractiveness of owning versus renting, potentially diverting some households into the rental market, while landlords facing higher carry costs may seek rent adjustments, leaving the net direction ambiguous a priori. The yield-based discount framing also links the benchmark to how rental streams are valued. This interpretive ambiguity does not make it less useful; both directions are plausible and the series still captures an economy-wide pricing lever.",
+      "lag": "The underlying series is a month-end snapshot that reports with a short delay. Pass-through depends on mortgage pricing, reset dates and fixed-rate periods, so effects may operate rather quickly for some borrowers but spread over subsequent months or quarters as repricing occurs.",
+      "limitations": "A month-end observation rather than a monthly average; not an individual mortgage offer or a lending-spread measure. Mortgage spreads, fixed-rate loans, refinancing terms and policy settings constrain transmission, so rate movements by themselves cannot determine prices or rents. Observations are the latest captured vintage and may have been revised; retained facts are the latest available, not automatically the current period.",
+      "evidence_ids": [
+        "M700071:23:latest",
+        "M700071:23:previous_period",
+        "M700071:23:year_on_year"
+      ]
+    },
+    "M701091:1.2.1": {
+      "sales": "This is the outstanding stock, not a flow of new lending, of commercial-bank consumer housing and bridging loans to residents. Expanding housing credit may accompany financed purchase demand, easing budget constraints for buyers and supporting transactions and prices. The direction may also run the other way, with rising prices drawing out more borrowing, so the series is plausibly co-determined with the housing market rather than purely an exogenous driver.",
+      "rents": "Credit conditions may influence the choice between owning and renting, since access to housing loans shapes whether households can exit the rental market in the first place. As a demand-side context it may capture whether loan-reliant tenures are expanding, feeding into rental demand pressure.",
+      "lag": "The underlying series is reported monthly at month-end with a short delay. Stocks adjust gradually as new loans, refinancing and repayments accumulate, so movements may lag transactions and reflect lending conditions formed in earlier periods.",
+      "limitations": "It does not capture lending outside commercial banks or lending to non-residents, is not origination flow or credit availability, and repayments net against new lending. Revised reporting for the covered consumer loans series begins partway through the retained span, so levels should mostly be read thereafter; observations may also be revised, and retained values are the latest available snapshot rather than guaranteed current releases.",
+      "evidence_ids": [
+        "M701091:1.2.1:latest",
+        "M701091:1.2.1:previous_period",
+        "M701091:1.2.1:year_on_year"
+      ]
+    },
+    "M400841:1": {
+      "sales": "This series is the completed private residential stock: all landed and non-landed units with issued occupation permits, excluding public housing, hostels and comparable dwelling types. Stock growth may gradually ease supply constraints relative to demand, which could temper upward pressure on prices, subject to location and unit-type balance. Because it is a slow-moving stock, its information is largely about base and trend rather than short-term timing.",
+      "rents": "A larger completed stock raises the effective ceiling on rental supply, since additional homes may be released to the rental market, potentially widening alternatives for tenants, though the degree depends on how many completions are actually let out and how quickly they are absorbed. The series also gives the number of habitable homes from which market slack can be judged.",
+      "lag": "The underlying series is quarterly with a quarterly reporting delay. Because stock accumulates slowly, its effect may unfold over subsequent quarters, and the timing of absorption may lag completion. As a denominator and trend measure, its signal works over longer horizons.",
+      "limitations": "It counts habitable physical homes, not homes actively marketed for sale or rent, and stock alone says nothing about idleness: the vacant count, which should be divided by this stock for matching periods to judge market tightness, carries the clearest signals. Interpretation as a flow driver would be a mistake, since it is a slow-moving base rather than newly supplied homes.",
+      "evidence_ids": [
+        "M400841:1:latest",
+        "M400841:1:previous_period",
+        "M400841:1:year_on_year"
+      ]
+    },
+    "M400841:2": {
+      "sales": "This series counts vacant completed private residential homes, not a vacancy rate: it measures unutilised homes inside the habitable stock. A rising count may point to softer absorption and weaker effective demand relative to occupancy opportunities, potentially easing upward pressure on prices, though location and specific demand shifts matter. A falling count may point to strengthening take-up and tighter effective utilisation, potentially supporting pricing power.",
+      "rents": "Vacancy is arguably the most direct supply-side lever on rents in this pool: vacant homes are the portion of the stock available to let, and a rising count signals widening options and landlord competition, potentially softening rent pressure, while a falling count may point to tightening availability and pricing power for landlords, assuming no contraction of the stock itself.",
+      "lag": "The underlying series is quarterly with a quarterly reporting delay. Vacancy reflects conditions after the fact, so price and rent responses may follow over subsequent quarters rather than appear immediately. Its own cycle may also lag the lease and sale decisions that determine it.",
+      "limitations": "It is a count and idleness measure that must be divided by the completed private residential stock for matching periods to obtain a vacancy rate; a rising raw count can coexist with a falling rate when the stock is growing rapidly. It says nothing about asking rents, unit types, location mix or how occupants are housed in practice; retained observations are the latest available vintage, which could have been revised.",
+      "evidence_ids": [
+        "M400841:2:latest",
+        "M400841:2:previous_period",
+        "M400841:2:year_on_year"
+      ]
+    },
+    "M810371:1": {
+      "sales": "This is an annual count of resident households, not the number of newly formed households and not population. Because it measures the number of resident groups in the economy that could occupy a dwelling, it may better represent potential purchase demand than population alone, subject to affordability, tenure choices and existing ownership, and growth in the household base may support underlying purchase demand over time.",
+      "rents": "More resident households may support rental demand where those households rent rather than buy, so the count contributes to the tenant side of the market alongside population, conditional on how households choose between owning and renting. It cannot, by itself, indicate how many households rent or how intensively space is used.",
+      "lag": "The underlying series is annual with no claimed timing link, and, in the retained vintage, annual observations through the most recent available period. Household-driven demand context is structural, so it may be interpolated and any effects may build over multiple quarters rather than within one; use in a quarterly prediction setup should smooth the annual cadence appropriately.",
+      "limitations": "The measure is a level of households, not gross formations, and differences over time are net changes that also ignore dissolutions, splits and recombinations. It comes from statistical releases combining the census, household surveys and administrative sources, with possible discontinuities, sampling variability and revisions; it does not capture affordability, foreign tenants or tenure mixes, and retained observations are the latest available snapshot of a series that may be restated.",
+      "evidence_ids": [
+        "M810371:1:latest",
+        "M810371:1:year_on_year"
+      ]
+    }
+  },
+  "method": "siliconflow_chat_completions_constrained_agent",
+  "usage": {
+    "input_tokens": 32677,
+    "output_tokens": 11604,
+    "total_tokens": 44281,
+    "requests": 3,
+    "cached_input_tokens": 6464,
+    "reasoning_output_tokens": 8197
+  }
+}

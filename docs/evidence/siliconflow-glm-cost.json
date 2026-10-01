@@ -1,0 +1,72 @@
+{
+  "pricing_checked_date": "2026-10-01",
+  "currency": "CNY",
+  "provider": "siliconflow",
+  "model": "zai-org/GLM-5.3",
+  "price_per_million_tokens": {
+    "uncached_input": 8,
+    "cached_input": 2,
+    "output": 28
+  },
+  "price_sources": [
+    "https://www.siliconflow.cn/pricing",
+    "https://siliconflow.cn/news/is96b67809iqvyxrumd90q7x"
+  ],
+  "basis": "API usage multiplied by published prices; not an observed account debit or guaranteed future budget.",
+  "reasoning_note": "reasoning tokens are already a subset of completion_tokens and are not charged twice in this estimate.",
+  "calls": [
+    {
+      "call": "workflow_turn_1",
+      "input_tokens": 1149,
+      "cached_input_tokens": 0,
+      "output_tokens_including_reasoning": 14,
+      "reasoning_output_subset": 9,
+      "total_tokens": 1163,
+      "estimated_cny": "0.009584",
+      "cache_basis": "reported"
+    },
+    {
+      "call": "workflow_turn_2",
+      "input_tokens": 5408,
+      "cached_input_tokens": 1088,
+      "output_tokens_including_reasoning": 4220,
+      "reasoning_output_subset": 4094,
+      "total_tokens": 9628,
+      "estimated_cny": "0.154896",
+      "cache_basis": "reported"
+    },
+    {
+      "call": "workflow_turn_3",
+      "input_tokens": 26120,
+      "cached_input_tokens": 5376,
+      "output_tokens_including_reasoning": 7370,
+      "reasoning_output_subset": 4094,
+      "total_tokens": 33490,
+      "estimated_cny": "0.383064",
+      "cache_basis": "reported"
+    },
+    {
+      "call": "siliconflow-glm-probe",
+      "input_tokens": 176,
+      "cached_input_tokens": 0,
+      "output_tokens_including_reasoning": 39,
+      "reasoning_output_subset": 34,
+      "total_tokens": 215,
+      "estimated_cny": "0.0025",
+      "cache_basis": "reported"
+    },
+    {
+      "call": "siliconflow-glm-roundtrip-probe",
+      "input_tokens": 245,
+      "cached_input_tokens": 0,
+      "output_tokens_including_reasoning": 47,
+      "reasoning_output_subset": 42,
+      "total_tokens": 292,
+      "estimated_cny": "0.003276",
+      "cache_basis": "reported"
+    }
+  ],
+  "workflow_estimated_cny": "0.547544",
+  "workflow_plus_two_probes_estimated_cny": "0.553320",
+  "thirty_workflows_at_this_observed_usage_estimated_cny": "16.426320"
+}

@@ -478,6 +478,17 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
             "IDs synchronized. Explain each exclusion precisely; an eligible candidate omitted for capacity or "
             "overlap did not fail the data-quality gate. Narratives describe only possible mechanisms, timing "
             "and limitations, based on supplied metadata and mechanism notes, not observed trend claims. "
+            "Ground factual claims about source definitions, coverage, collection methods and release timing "
+            "in explicit supplied metadata; omit unknown facts rather than inventing survey or administrative "
+            "methods. Observation frequency is not publication delay: quarterly observations do not establish "
+            "a quarterly reporting delay. Distinguish a hypothetical housing-response lag from a documented "
+            "publication lag. Vacant units are not necessarily actively listed or available for letting or sale. "
+            "Household stock changes are net changes, not gross household formation. Before claiming no family "
+            "coverage gain, compare the candidate's exact selection_family identifier with the identifiers of "
+            "the actual selected set; an absent family adds family coverage even if a capacity tradeoff excludes "
+            "it. Capacity or channel-priority choices do not establish full substitution. This workflow has not "
+            "implemented or tested interpolation, smoothing or a forecasting model; do not present those "
+            "methods as part of this analysis or as validated ways to align observation frequencies. "
             "All reason and narrative prose must contain no numeric values or quantitative amounts, "
             "percent signs, dates, explicit forecasts or causal certainty. The renderer inserts all numbers. "
             "Spelled-out quantities and numeric tenor labels are also numeric prose: write 'the SORA benchmark', "
@@ -636,4 +647,10 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
         raise AgentError(_redact(str(exc), api_key)) from None
     finally:
         if client is not None:
-            client.close()
+            try:
+                client.close()
+            except Exception as exc:
+                # Cleanup must not leak credentials or replace an already
+                # validated result / original failure with an unredacted error.
+                trace["cleanup_error"] = _redact(f"{type(exc).__name__}: {exc}", api_key)
+                _write_trace(trace_path, trace, api_key)
