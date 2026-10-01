@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://stats.mom.gov.sg/SL/Pages/Employment-Administrative-Records-Source-and-Coverage.aspx",
+    "final_url": "https://stats.mom.gov.sg/SL/Pages/Employment-Administrative-Records-Source-and-Coverage.aspx",
+    "http_status": 200,
+    "retrieved_at": "2026-10-01T11:27:22.425673+00:00",
+    "raw_file": "raw/mom_employment_coverage.html",
+    "raw_sha256": "eb38031900222eb768aad0c7807a042ec4a45ab0162237ba4707a9aa910da6bb"
+  },
+  {
+    "url": "https://stats.mom.gov.sg/Pages/employment-Summary-Table.aspx",
+    "final_url": "https://stats.mom.gov.sg/Pages/employment-Summary-Table.aspx?PageVersion=103936",
+    "http_status": 200,
+    "retrieved_at": "2026-10-01T11:27:23.651824+00:00",
+    "raw_file": "raw/mom_employment_summary.html",
+    "raw_sha256": "b43f759664b475c7ce6bdfde68adc044852e3d27006698c80f17e2e3de2e0d2d"
+  }
+]

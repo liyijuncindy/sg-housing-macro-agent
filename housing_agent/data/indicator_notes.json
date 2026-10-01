@@ -32,8 +32,8 @@
     "rationale_zh": "用于观察居民就业压力；失业率上升可能削弱购房信心、偿贷能力和租金承受能力。",
     "caveat_zh": "不涵盖非居民劳动力，也不衡量工资、就业不足或岗位稳定性；季调值可修订。变化应以百分点表示，保留实际来源的公布精度。",
     "source_agency": "新加坡人力部（MOM）",
-    "planned_source_url": "https://stats.mom.gov.sg/iMAS_Tables1/CSV/mrsd_11_Resident_unemployment_rate_n_number.csv",
-    "planned_source_label": "MOM 官方 CSV：居民失业率与失业人数"
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M182342",
+    "planned_source_label": "SingStat 官方表（原发布：MOM）：居民季调失业率"
   },
   "M184101:1": {
     "name_zh": "就业居民平均月度就业总收入（含公积金、不含奖金）",
@@ -41,8 +41,8 @@
     "rationale_zh": "用于观察每名就业居民的收入能力；收入增加可能改善购房融资能力和租金承受能力，与经济总量指标形成补充。",
     "caveat_zh": "是个人均值，不是家庭收入中位数或到手现金；高收入者及就业人员构成变化会影响均值。优先比较同比，保留实际来源提供的初步值标记；平台运营商 CPF 的说明须结合当前直连 MOM 原文，不能替代旧快照的来源说明。",
     "source_agency": "新加坡人力部（MOM）",
-    "planned_source_url": "https://stats.mom.gov.sg/iMAS_Tables1/Time-Series-Table/mrsd_72_Mean_GMI_Emp_Res_Quarterly.xlsx",
-    "planned_source_label": "MOM 官方 XLSX：季度就业居民平均月度就业总收入"
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M184101",
+    "planned_source_label": "SingStat 官方表（原发布：MOM）：就业居民平均月度就业总收入"
   },
   "M016081:1": {
     "name_zh": "个人可支配收入总额（名义）",
@@ -59,8 +59,8 @@
     "rationale_zh": "用于观察融资成本；基准利率上升可能随房贷重定价提高偿贷负担，并改变购房与租房选择，对租金的净影响不预设方向。",
     "caveat_zh": "月末值不是月均值，也不是具体房贷报价；变化以基点表示，传导取决于利差及重定价安排。使用 MAS 日频路径时，按 SORA 计息日期而非公布日期归月，缺少月末完整性证据的月份暂不纳入；实际转换以该次来源元数据为准。",
     "source_agency": "新加坡金融管理局（MAS）",
-    "planned_source_url": "https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx",
-    "planned_source_label": "MAS 官方国内利率下载页：三个月复利 SORA 日频数据"
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M700071",
+    "planned_source_label": "SingStat 官方表（原发布：MAS）：月末三个月复利 SORA"
   },
   "M701091:1.2.1": {
     "name_zh": "住房与过桥贷款余额",
@@ -106,5 +106,41 @@
     "source_agency": "新加坡统计局（DOS）",
     "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M213751",
     "planned_source_label": "SingStat 官方表：消费者价格指数"
+  },
+  "M810371:1": {
+    "name_zh": "居民住户数",
+    "definition_zh": "年度居民住户总数，居民住户按住户参考人为新加坡公民或永久居民界定；这是住户存量，不是人口数或当年新成立住户数。",
+    "rationale_zh": "补充人口之外的居住单位数量：住户增加可能带来更多住房需求，具体取决于家庭构成、居住安排、租购选择和支付能力。",
+    "caveat_zh": "人口普查、综合住户调查及六月综合劳动力调查的来源交替，调查估计存在抽样波动；元数据未给出每年一致的确切参考日，程序采用保守年末截点，不代表数据实际在年底测量。与人口指标共用需求组。",
+    "source_agency": "新加坡统计局（DOS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810371",
+    "planned_source_label": "SingStat 官方表：按住户规模划分的居民住户"
+  },
+  "M810361:5": {
+    "name_zh": "居民就业住户月度就业收入中位数",
+    "definition_zh": "至少有一名就业成员、且参考人为公民或永久居民的住户，其月度就业收入中位数；单位为新加坡元，含雇主 CPF 及年度奖金的十二分之一，未计政府转移与税收。",
+    "rationale_zh": "补充典型就业住户的支付能力，区别于个人平均工资或全社会收入总额；可能有助于观察购房和租房负担的收入基础。",
+    "caveat_zh": "是每户中位数，不是户内人均收入或个人工资；排除没有就业者的住户及住家家政工人的收入，含 CPF、奖金，非到手现金。与既有收入指标共用收入组，不代表已验证的预测能力。",
+    "source_agency": "新加坡统计局（DOS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810361",
+    "planned_source_label": "SingStat 官方表：居民就业住户就业收入主要指标"
+  },
+  "M183111:7": {
+    "name_zh": "年末就业总人数",
+    "definition_zh": "年末就业总人数，单位为千人，覆盖居民和非居民雇员及自雇人士；包括外籍家政工人，不包括履行两年全职国民服役的人员。",
+    "rationale_zh": "补充失业率之外的就业规模；就业人数增加可能扩大收入基础，并支持与工作相关的住房需求。",
+    "caveat_zh": "不是居民就业人数、职位空缺或当年新增雇员；包含家政工人及其他不一定单独租住普通住宅的就业者。覆盖经 MOM 官方定义及总量对照核实，与居民失业率共用劳动力市场组。",
+    "source_agency": "新加坡人力部（MOM）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M183111",
+    "planned_source_label": "SingStat 官方表（原发布：MOM）：劳动力市场年度统计"
+  },
+  "M400751:1.1": {
+    "name_zh": "HDB 组屋存量（年中）",
+    "definition_zh": "每年 6 月底的 HDB 组屋总套数，包括尚未私有化的 HUDC 住宅。",
+    "rationale_zh": "补足私人住宅供给之外的公共住房规模；组屋供给可能影响居住选择，并与私人住房的购买及租赁需求相互作用。",
+    "caveat_zh": "是存量，不是当年竣工、BTO 推出、转售成交或可出租套数；公共与私人住房在资格及政策上不同。参考日为 6 月 30 日，与私人住宅存量、空置和供应储备共用住房供给组。",
+    "source_agency": "新加坡统计局（DOS）",
+    "planned_source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400751",
+    "planned_source_label": "SingStat 官方表：住宅单位"
   }
 }

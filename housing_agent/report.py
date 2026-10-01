@@ -39,6 +39,9 @@ def render_report(run: dict, evaluations: list[dict], selection: dict) -> str:
         "|---|---|---|---:|---|---|",
     ]
     decisions = {d["id"]: d for d in selection["decisions"]}
+    if run.get("source_routing_version"):
+        output[-2:-2] = [f"**Source strategy:** {run['source_strategy']}. "
+                        "Per-candidate attempts and actual routes are recorded in [source_routes.json](source_routes.json).", ""]
     if run.get("indicator_pool_files"):
         # Optional marker keeps every earlier immutable sample byte-replayable.
         output[-2:-2] = ["[完整指标池表：定义、纳入理由、官方来源和本次选择](indicator_pool.md) · "

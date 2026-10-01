@@ -1,0 +1,131 @@
+[
+  {
+    "table_id": "M810371",
+    "row_id": "1",
+    "expected_name": "Resident Households",
+    "expected_unit": "Number",
+    "frequency": "A",
+    "theme": "population_demand",
+    "definition": "Annual number of resident households; household counts are distinct from population and are not the number of newly formed households.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Resident households. Source estimates combine Census of Population, General Household Survey and Comprehensive June Labour Force Survey; sampling variability and source changes apply.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "selection_family": "population_demand",
+    "mechanism": {
+      "sales": "Household counts may better represent potential dwelling demand than population alone, subject to tenure, household composition and affordability.",
+      "rents": "More households may support rental demand depending on tenure choices.",
+      "lag": "Annual structural context; no short-term timing claim.",
+      "limitations": "Differences in household counts are not gross household formation. Census and survey years use different sources; metadata does not establish one exact reference day for every year. Period-end filtering is conservative and is not a claim that the count was measured at year-end."
+    }
+  },
+  {
+    "table_id": "M810361",
+    "row_id": "5",
+    "expected_name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+    "expected_unit": "Dollar",
+    "frequency": "A",
+    "theme": "household_income",
+    "definition": "Median nominal monthly household employment income among resident employed households, including employer CPF contributions and one-twelfth of annual bonus, before Government transfers and taxes.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Households whose reference person is a citizen or permanent resident and with at least one employed member. Income sums employment and business income of employed household members, excluding live-in domestic workers.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "selection_family": "household_income",
+    "mechanism": {
+      "sales": "Median household employment income may describe typical household purchasing capacity more directly than mean income per employed person.",
+      "rents": "Median household income may contextualise household rent affordability.",
+      "lag": "Annual affordability context; income and financing decisions can adjust over subsequent quarters.",
+      "limitations": "Not income per household member or an individual wage. Excludes households with no employed person; includes employer CPF and annual bonus allocation, unlike the existing bonus-excluding quarterly individual mean. Nominal and not take-home income."
+    }
+  },
+  {
+    "table_id": "M183111",
+    "row_id": "7",
+    "expected_name": "Employment (Persons) As At Year End",
+    "expected_unit": "Thousand",
+    "frequency": "A",
+    "theme": "employment_level",
+    "definition": "Total persons in employment as at year-end, expressed in thousands; includes migrant domestic workers and excludes persons serving two-year full-time national service.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Resident and non-resident employees plus self-employed persons. MOM administrative-record coverage excludes two-year full-time national servicemen; the current MOM summary identifies the matching total as including migrant domestic workers. SingStat row footnote confirms administrative records plus Labour Force Survey estimates for the self-employed.",
+    "seasonal_adjustment": "Non-seasonally Adjusted",
+    "change_kind": "percent",
+    "reference_month_day": "12-31",
+    "selection_family": "labour_market",
+    "mechanism": {
+      "sales": "A larger employment base may support aggregate earned income and housing purchasing capacity.",
+      "rents": "Employment expansion may support work-related housing and rental demand.",
+      "lag": "Annual year-end employment context; housing responses need not be simultaneous.",
+      "limitations": "Counts employed persons, not vacancies, new hires or the unemployment rate. Includes migrant domestic workers and other workers whose accommodation need is not an ordinary separate rental unit. Employment and housing may share common causes; not a residents-only series."
+    }
+  },
+  {
+    "table_id": "M400751",
+    "row_id": "1.1",
+    "expected_name": "Total HDB Flats",
+    "expected_unit": "Number",
+    "frequency": "A",
+    "theme": "public_housing_supply",
+    "definition": "Total HDB flats as at end-June of each year, including non-privatised Housing and Urban Development Corporation flats.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Public-housing dwelling stock; not annual completions, BTO launches, resale transactions or flats available for rent.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": "06-30",
+    "selection_family": "housing_supply",
+    "mechanism": {
+      "sales": "The public-housing stock adds supply context not represented by private residential stock and may influence tenure and purchase choices.",
+      "rents": "Public-housing supply can affect tenure choices and rental alternatives subject to eligibility and rental rules.",
+      "lag": "Annual supply stock; allocations, completion and occupation timing can differ.",
+      "limitations": "Stock is not new supply or vacancies and includes non-privatised HUDC flats. Public and private markets differ in eligibility and policy; aggregate stock alone does not predict prices or rents."
+    }
+  },
+  {
+    "table_id": "M810871",
+    "row_id": "1",
+    "expected_name": "Median Monthly Household Market Income",
+    "expected_unit": "Dollar",
+    "frequency": "A",
+    "theme": "household_income",
+    "definition": "Median nominal monthly household market income among resident households, before Government transfers and taxes.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Employment income including employer CPF and one-twelfth of annual bonus plus investment, rental, inter-household contributions, pension and other regular market income; includes resident households without employed members.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "selection_family": "household_income",
+    "mechanism": {
+      "sales": "Broader household resources may contextualise housing purchasing capacity.",
+      "rents": "Broader household resources may contextualise rent affordability.",
+      "lag": "Annual income context.",
+      "limitations": "Overlaps the employment-income candidate; includes rental income, which can respond to the housing outcome. Latest year preliminary. Not employment income or per-member income."
+    }
+  },
+  {
+    "table_id": "M183891",
+    "row_id": "1",
+    "expected_name": "Total Changes In Employment",
+    "expected_unit": "Number",
+    "frequency": "Q",
+    "theme": "employment_change",
+    "definition": "Net change in persons employed at quarter-end compared with the preceding quarter-end.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Total change in employment across sectors, in persons; positive and negative values are net additions and losses.",
+    "seasonal_adjustment": "Non-seasonally Adjusted",
+    "change_kind": "absolute",
+    "reference_month_day": null,
+    "selection_family": "labour_market",
+    "mechanism": {
+      "sales": "Employment gains may support aggregate earning capacity and housing demand.",
+      "rents": "Employment gains may support work-related rental demand.",
+      "lag": "Quarterly labour activity; housing responses may lag.",
+      "limitations": "Already a first difference, not employment level. Further changes measure a change in net job additions. Non-seasonally adjusted; use same-quarter comparisons. Classification changes affect industry detail."
+    },
+    "comparisons": [
+      "year_on_year"
+    ]
+  }
+]

@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 import json
-import html
+from html.parser import HTMLParser
+from http.client import HTTPException
 import math
 import re
 import time
@@ -18,19 +19,30 @@ FREQUENCIES = {"Annual": "A", "Quarterly": "Q", "Monthly": "M"}
 MISSING = {"", "na", "n.a.", "n.a", "-", "..", "...", "null", "none", "not available"}
 MONTHS = {name.lower(): i for i, name in enumerate(
     ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
+MAX_RESPONSE_BYTES = 20 * 1024 * 1024
+ERROR_PREFIX_BYTES = 16 * 1024
+TRANSIENT_HTTP = {408, 429, 500, 502, 503, 504}
 
 
 class SourceError(RuntimeError):
-    pass
+    retryable = False
+
+
+class SourceUnavailableError(SourceError):
+    """This request exhausted bounded retries for a temporary transport failure."""
+
+    retryable = True
 
 
 class SourceMaintenanceError(SourceError):
-    """The official source explicitly announced maintenance; do not retry it."""
+    """This request still returned a standalone current-maintenance notice."""
+
+    retryable = True
 
 
 def _response_details(status, headers) -> dict:
     allowed = {}
-    for name in ("Server", "Content-Type", "Retry-After"):
+    for name in ("Date", "Server", "Content-Type", "Cache-Control", "Cache-Status", "X-Cache", "Age", "Retry-After"):
         value = headers.get(name) if headers is not None else None
         if value is not None:
             allowed[name.lower()] = str(value)[:1024]
@@ -38,21 +50,47 @@ def _response_details(status, headers) -> dict:
             "content_type": allowed.get("content-type", "unknown")}
 
 
+class _VisibleHTML(HTMLParser):
+    """Extract notice text without treating scripts, metadata or comments as prose."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts = []
+        self.ignored = []
+
+    def handle_starttag(self, tag, attrs):
+        if tag in {"head", "script", "style", "template"}:
+            self.ignored.append(tag)
+
+    def handle_endtag(self, tag):
+        if tag in self.ignored:
+            self.ignored = self.ignored[:self.ignored.index(tag)]
+
+    def handle_data(self, data):
+        if not self.ignored:
+            self.parts.append(data)
+
+
 def _maintenance_notice(body: bytes) -> str | None:
-    # Only recognize the observed official notice, not generic HTML or 502s.
-    text = body[:16 * 1024].decode("utf-8", errors="replace")
-    text = re.sub(r"<(script|style)\b[^>]*>.*?</\1\s*>", " ", text, flags=re.I | re.S)
-    text = html.unescape(re.sub(r"<[^>]*>", " ", text))
-    text = " ".join(text.split())
-    match = re.search(r"SingStat Table Builder.{0,400}?undergoing maintenance", text, re.I)
-    if not match:
+    # Deliberately narrow: the whole visible page must be the observed current
+    # notice. A normal page quoting an old/future notice is not source status.
+    text = body[:ERROR_PREFIX_BYTES].decode("utf-8", errors="replace")
+    if not re.match(r"\s*(?:<!doctype\s+html\b|<html\b|<body\b)", text, re.I):
         return None
-    start = max(0, match.start() - 4)
-    return text[start:start + 600]
+    parser = _VisibleHTML()
+    parser.feed(text)
+    visible = " ".join(" ".join(parser.parts).split())
+    pattern = (r"(?:The )?SingStat Table Builder(?: and SANDRA(?:\s*\([^)]{0,140}\))?)? "
+               r"(?:is|are) currently undergoing maintenance\.?"
+               r"(?: We will work to complete the maintenance work ASAP\.)?"
+               r"(?: Thank you for your patience\.)?")
+    return visible[:600] if re.fullmatch(pattern, visible, re.I) else None
 
 
 class SingStatClient:
     def __init__(self, run_dir: Path, timeout: float = 20, retries: int = 2):
+        if not isinstance(retries, int) or isinstance(retries, bool) or not 0 <= retries <= 10:
+            raise ValueError("retries must be an integer between 0 and 10")
         self.run_dir = run_dir
         self.timeout = timeout
         self.retries = retries
@@ -64,13 +102,8 @@ class SingStatClient:
         if not re.fullmatch(r"(?:resourceid|(?:tabledata|metadata)/[A-Za-z0-9]+)", endpoint):
             raise SourceError("Unsupported source endpoint")
         url = BASE + endpoint + ("?" + urlencode(params) if params else "")
-        if self.maintenance is not None:
-            message = "SingStat Table Builder maintenance already detected; source request skipped. " + self.maintenance["notice"]
-            self.records.append({"url": url, "retrieved_at": utc_now(), "attempts": [],
-                                 "status": "skipped", "error": message,
-                                 "maintenance_notice": self.maintenance["notice"],
-                                 "maintenance_source_url": self.maintenance["url"]})
-            raise SourceMaintenanceError(message)
+        # This attribute is last-request evidence, never a global circuit breaker.
+        self.maintenance = None
         if url in self.cache:
             return self.cache[url]
         record = {"url": url, "retrieved_at": utc_now(), "attempts": [], "status": "pending"}
@@ -78,62 +111,97 @@ class SingStatClient:
         token = sha256_bytes(url.encode())[:16]
         raw_path = self.run_dir / "raw" / (endpoint.replace("/", "_") + "_" + token + ".json")
         last_error = None
+        last_exception = None
         for attempt in range(self.retries + 1):
             details = {}
+            attempt_record = {"attempt": attempt + 1, "retrieved_at": utc_now()}
+            body = b""
+            prefix_truncated = False
+            notice = None
             try:
                 req = Request(url, headers={"User-Agent": "HousingResearchAgent/0.1 (public statistical research)", "Accept": "application/json"})
                 with urlopen(req, timeout=self.timeout) as response:
                     details = _response_details(getattr(response, "status", 200), response.headers)
-                    record.update(details)
-                    body = response.read(20 * 1024 * 1024 + 1)
-                    if len(body) > 20 * 1024 * 1024:
+                    body = response.read(MAX_RESPONSE_BYTES + 1)
+                    if len(body) > MAX_RESPONSE_BYTES:
                         raise SourceError("Response exceeds the download size limit")
-                    notice = _maintenance_notice(body)
-                    if notice is not None:
-                        record.update(maintenance_notice=notice, maintenance_source_url=url,
-                                      maintenance_body_prefix_sha256=sha256_bytes(body[:16 * 1024]))
-                        raise SourceMaintenanceError("SingStat Table Builder is undergoing maintenance. " + notice)
-                    payload = json.loads(body)
+                    if details["http_status"] != 200:
+                        raise SourceError(f"Unexpected successful HTTP status: {details['http_status']}")
+                    try:
+                        payload = json.loads(body)
+                    except (ValueError, UnicodeDecodeError):
+                        notice = _maintenance_notice(body)
+                        if notice is not None:
+                            raise SourceMaintenanceError("This request returned a current maintenance notice: " + notice) from None
+                        raise SourceError("Expected a SingStat JSON response; unrecognised non-JSON content") from None
                     if not isinstance(payload, dict) or not isinstance(payload.get("Data"), dict):
                         raise SourceError("Unexpected SingStat response schema: missing Data object")
                     if payload.get("StatusCode") not in (200, "200"):
                         raise SourceError(f"SingStat API returned failure status: {payload.get('StatusCode')}")
                 raw_path.parent.mkdir(parents=True, exist_ok=True)
                 raw_path.write_bytes(body)
-                record.update(status="ok", completed_at=utc_now(), raw_file=str(raw_path.relative_to(self.run_dir)), raw_sha256=sha256_bytes(body))
-                record["attempts"].append({"attempt": attempt + 1, "status": "ok", **details})
+                record.update(status="ok", completed_at=utc_now(), raw_file=str(raw_path.relative_to(self.run_dir)), raw_sha256=sha256_bytes(body), **details)
+                record["attempts"].append({**attempt_record, "completed_at": utc_now(), "status": "ok", **details})
+                self.maintenance = None
                 self.cache[url] = (payload, record)
                 return payload, record
-            except (HTTPError, URLError, TimeoutError, OSError, ValueError, SourceError) as exc:
+            except (HTTPError, URLError, HTTPException, TimeoutError, OSError, ValueError, SourceError) as exc:
+                if isinstance(exc, HTTPException):
+                    partial = getattr(exc, "partial", None)
+                    if isinstance(partial, bytes):
+                        body = partial
+                    attempt_record["error_body_incomplete"] = True
                 if isinstance(exc, HTTPError):
                     details = _response_details(exc.code, exc.headers)
-                    record.update(details)
-                    prefix = b""
                     if exc.fp is not None:
                         try:
-                            prefix = exc.read(16 * 1024)
-                        except (OSError, ValueError, AttributeError):
-                            pass
+                            body = exc.read(ERROR_PREFIX_BYTES + 1)
+                            prefix_truncated = len(body) > ERROR_PREFIX_BYTES
+                        except (HTTPException, OSError, ValueError, AttributeError) as read_error:
+                            partial = getattr(read_error, "partial", None)
+                            if isinstance(partial, bytes):
+                                body = partial
+                            attempt_record.update(error_body_incomplete=True,
+                                                  error_body_read_error=f"{type(read_error).__name__}: {read_error}")
                         finally:
                             exc.close()
-                    notice = _maintenance_notice(prefix) if isinstance(prefix, bytes) else None
+                    notice = _maintenance_notice(body) if exc.code in TRANSIENT_HTTP else None
                     if notice is not None:
-                        record.update(maintenance_notice=notice, maintenance_source_url=url,
-                                      maintenance_body_prefix_sha256=sha256_bytes(prefix))
-                        exc = SourceMaintenanceError("SingStat Table Builder is undergoing maintenance. " + notice)
+                        exc = SourceMaintenanceError("This request returned a current maintenance notice: " + notice)
                 last_error = f"{type(exc).__name__}: {exc}"
-                record["attempts"].append({"attempt": attempt + 1, "status": "failed", "error": last_error, **details})
-                if isinstance(exc, SourceMaintenanceError):
-                    self.maintenance = {"notice": record["maintenance_notice"], "url": url}
-                    record.update(status="failed", error=last_error, completed_at=utc_now(), maintenance=True)
-                    raise exc from None
+                last_exception = exc
+                attempt_record.update(status="failed", error=last_error, completed_at=utc_now(), **details)
+                if body:
+                    prefix = body[:ERROR_PREFIX_BYTES]
+                    suffix = ".html" if prefix.lstrip().startswith(b"<") else ".bin"
+                    failure_path = self.run_dir / "raw" / f"failed_{endpoint.replace('/', '_')}_{token}_{len(self.records):03d}_{attempt + 1}{suffix}"
+                    failure_path.parent.mkdir(parents=True, exist_ok=True)
+                    failure_path.write_bytes(prefix)
+                    attempt_record.update(error_body_prefix_file=str(failure_path.relative_to(self.run_dir)),
+                                          error_body_prefix_sha256=sha256_bytes(prefix), error_body_prefix_bytes=len(prefix),
+                                          error_body_prefix_truncated=prefix_truncated or len(body) > ERROR_PREFIX_BYTES)
+                if notice is not None:
+                    attempt_record.update(maintenance_notice=notice, maintenance_source_url=url,
+                                          maintenance_body_prefix_sha256=sha256_bytes(body[:ERROR_PREFIX_BYTES]))
+                record["attempts"].append(attempt_record)
+                record.update(details)
                 # A schema error or a permanent HTTP error cannot be fixed by blind retries.
-                if isinstance(exc, (ValueError, SourceError)) or isinstance(exc, HTTPError) and exc.code not in {408, 429, 500, 502, 503, 504}:
+                if (isinstance(exc, SourceError) and not exc.retryable or isinstance(exc, ValueError)
+                        or isinstance(exc, HTTPError) and exc.code not in TRANSIENT_HTTP):
                     break
                 if attempt < self.retries:
                     time.sleep(min(2 ** attempt, 4))
-        record.update(status="failed", error=last_error)
-        raise SourceError(f"Failed to retrieve {url}: {last_error}")
+        record.update(status="failed", error=last_error, completed_at=utc_now())
+        if isinstance(last_exception, SourceMaintenanceError):
+            last_attempt = record["attempts"][-1]
+            self.maintenance = {"notice": last_attempt["maintenance_notice"], "url": url}
+            record.update(maintenance=True, maintenance_notice=last_attempt["maintenance_notice"], maintenance_source_url=url,
+                          maintenance_body_prefix_sha256=last_attempt["maintenance_body_prefix_sha256"])
+            raise SourceMaintenanceError(f"Request exhausted its retries and still returned a current maintenance notice at {url}: " + last_attempt["maintenance_notice"]) from None
+        temporary = (isinstance(last_exception, HTTPError) and last_exception.code in TRANSIENT_HTTP
+                     or isinstance(last_exception, (URLError, HTTPException, TimeoutError, OSError)) and not isinstance(last_exception, HTTPError))
+        error_type = SourceUnavailableError if temporary else SourceError
+        raise error_type(f"Failed to retrieve {url}: {last_error}") from None
 
     def discover(self, query: str) -> list[dict]:
         payload, _ = self.get("resourceid", {"keyword": query, "searchOption": "all"})

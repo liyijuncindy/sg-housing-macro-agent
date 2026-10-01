@@ -54,6 +54,63 @@ def export_processed(path: Path, series_list: list[dict]) -> None:
                 writer.writerow({"series_id": series["id"], "period": obs["period"], "observation_date": obs.get("observation_date", ""), "value": obs["value"], "unit": series["unit"], "raw_period": obs["raw_period"], "raw_value": obs["raw_value"], "raw_index": obs["raw_index"], **{k: obs.get(k, "") for k in ("published_at", "source_value_date", "source_publication_date", "raw_locator", "preliminary")}, **{k: series["provenance"][k] for k in ["raw_file", "raw_sha256"]}})
 
 
+def retrieve_candidates(catalogue, client, official_client, as_of, progress):
+    """Try every primary series, recheck transient failures, then use reviewed backups."""
+    acquired, evaluated, failures, routes = {}, {}, {}, {}
+    for spec in catalogue:
+        identifier = f"{spec['table_id']}:{spec['row_id']}"
+        routes[identifier] = {"id": identifier, "primary_source": "SingStat", "attempts": [],
+                              "used_source": None, "status": "pending"}
+
+    def attempt(spec, stage, provider):
+        identifier = f"{spec['table_id']}:{spec['row_id']}"
+        event = {"stage": stage, "provider": provider, "checked_at": utc_now()}
+        progress(f"{stage}: {spec['expected_name']} via {provider}")
+        try:
+            if provider == "SingStat":
+                series = fetch_series(client, spec)
+            elif provider == "MAS":
+                from .mas_sources import fetch_mas_series
+                series = fetch_mas_series(official_client, spec, as_of)
+            else:
+                from .mom_sources import fetch_mom_series
+                series = fetch_mom_series(official_client, spec)
+            evaluation = evaluate_series(series, as_of)
+            acquired[identifier], evaluated[identifier] = series, evaluation
+            failures.pop(identifier, None)
+            event["status"] = "ok"
+            routes[identifier].update(used_source=provider, status="ok")
+        except Exception as exc:
+            failures[identifier] = exc
+            event.update(status="failed", error=f"{type(exc).__name__}: {exc}",
+                         retryable=bool(getattr(exc, "retryable", False)),
+                         maintenance_response_observed=isinstance(exc, SourceMaintenanceError))
+            routes[identifier]["status"] = "failed"
+        routes[identifier]["attempts"].append(event)
+
+    # A failing search or table never prevents an independent primary table request.
+    for spec in catalogue:
+        attempt(spec, "primary", "SingStat")
+    for spec in catalogue:
+        identifier = f"{spec['table_id']}:{spec['row_id']}"
+        if identifier in failures and getattr(failures[identifier], "retryable", False):
+            attempt(spec, "primary_recheck", "SingStat")
+    if official_client is not None:
+        for spec in catalogue:
+            identifier = f"{spec['table_id']}:{spec['row_id']}"
+            if identifier in failures and identifier in DIRECT_IDS:
+                attempt(spec, "fallback", "MAS" if identifier == "M700071:23" else "MOM")
+    for spec in catalogue:
+        identifier = f"{spec['table_id']}:{spec['row_id']}"
+        if identifier in failures:
+            errors = "; ".join(f"{event['stage']} via {event['provider']}: {event['error']}"
+                               for event in routes[identifier]["attempts"] if event["status"] == "failed")
+            evaluated[identifier] = failure_evaluation(spec, errors)
+    ids = list(routes)
+    return ([acquired[key] for key in ids if key in acquired],
+            [evaluated[key] for key in ids], list(routes.values()))
+
+
 def _saved_source(source_run: Path, output: Path) -> dict:
     """Verify a complete capture before creating a new run or making any calls."""
     root = source_run.resolve()
@@ -98,6 +155,9 @@ def _saved_source(source_run: Path, output: Path) -> dict:
             raise ValueError("Saved retrieval records must be objects")
         if record.get("raw_file") is not None:
             require_raw(record["raw_file"], record.get("raw_sha256"))
+        for attempt in record.get("attempts", []):
+            if attempt.get("error_body_prefix_file") is not None:
+                require_raw(attempt["error_body_prefix_file"], attempt.get("error_body_prefix_sha256"))
     raw_files = {name for name in inventory if name.startswith("raw/")}
     for name in raw_files:
         require_raw(name, inventory[name])
@@ -114,8 +174,8 @@ def _saved_source(source_run: Path, output: Path) -> dict:
 def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, model: str | None = None, timeout: float = 20, progress=print, provider: str | None = None, source_run: Path | None = None, source_policy: str = "auto") -> dict:
     started = time.monotonic()
     date.fromisoformat(as_of)
-    if not 1 <= limit <= 12:
-        raise ValueError("Selection limit must be between 1 and 12")
+    if not isinstance(limit, int) or isinstance(limit, bool) or limit < 1:
+        raise ValueError("Selection limit must be a positive integer")
     if timeout <= 0:
         raise ValueError("HTTP timeout must be positive")
     if source_policy not in {"auto", "singstat"}:
@@ -137,11 +197,22 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         provider, model = None, None
     output = output.resolve()
     saved = _saved_source(source_run, output) if source_run is not None else None
+    if saved is not None:
+        catalogue = saved["catalogue"]
+    else:
+        import json
+        catalogue = json.loads(files("housing_agent").joinpath("data/catalogue.json").read_text(encoding="utf-8"))
+        if isinstance(catalogue, dict):
+            catalogue = catalogue["candidates"]
+    if limit > len(catalogue):
+        raise ValueError(f"Selection limit cannot exceed the {len(catalogue)} candidates in this run's catalogue")
     output.mkdir(parents=True, exist_ok=False)
     run = {"schema_version": 1, "run_id": output.name, "created_at": utc_now(), "as_of": as_of,
            "as_of_policy": AS_OF_POLICY, "mode": mode,
            "mode_label": "Deterministic rules; reviewed qualitative templates, no model call" if mode == "rules" else f"Live {'SoCLaaS Chat Completions' if provider == 'soclaas' else 'OpenAI Responses'} tool-calling agent ({model})",
            "provider": provider, "model": model, "source_policy": "saved" if saved else source_policy,
+           "source_routing_version": 2, "selection_limit": limit,
+           "source_strategy": "Verified saved snapshot; no new retrieval" if saved else "SingStat first for every candidate; bounded request retries, independent candidates continue, transient failures rechecked before reviewed backups",
            "data_basis": AS_OF_POLICY, "package_version": __version__, "python_version": sys.version.split()[0],
            "warnings": [], "status": "running",
            "usage": {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "requests": 0}}
@@ -164,7 +235,6 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
     write_json(output / "manifest.json", run)
     client = SingStatClient(output, timeout=timeout) if saved is None else None
     official_client = OfficialFileClient(output, timeout=timeout) if saved is None and source_policy == "auto" else None
-    maintenance_error = None
 
     def save_retrievals():
         if client is not None:
@@ -173,76 +243,62 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
 
     try:
         if saved is None:
-            import json
-            catalogue = json.loads(files("housing_agent").joinpath("data/catalogue.json").read_text(encoding="utf-8"))
-            if isinstance(catalogue, dict):
-                catalogue = catalogue["candidates"]
             write_json(output / "catalogue.json", catalogue)
             discoveries = []
-            for query in ["population", "gross domestic product", "unemployment", "income", "interest rates", "loans", "residential properties", "consumer price"]:
+            for query in ["population", "gross domestic product", "unemployment", "income", "interest rates", "loans", "residential properties", "consumer price", "households", "employment", "HDB"]:
                 progress(f"Discovering official tables: {query}")
                 try:
                     records = client.discover(query)
                     discoveries.append({"query": query, "records": records, "status": "ok"})
-                except SourceMaintenanceError as exc:
-                    discoveries.append({"query": query, "status": "maintenance", "error": str(exc)})
-                    write_json(output / "discovery.json", discoveries)
-                    if source_policy == "singstat":
-                        raise
-                    maintenance_error = str(exc)
-                    run["warnings"].append("SingStat Table Builder is under maintenance; remaining searches and SingStat-only candidates were skipped. Independent MOM and MAS downloads were still attempted.")
-                    break
                 except Exception as exc:
-                    discoveries.append({"query": query, "status": "failed", "error": str(exc)})
-                    run["warnings"].append(f"Official catalogue query failed for {query}; reviewed candidate identifiers were still attempted.")
+                    discoveries.append({"query": query, "status": "failed", "error": str(exc),
+                                        "maintenance_response_observed": isinstance(exc, SourceMaintenanceError)})
+                    run["warnings"].append(f"Official catalogue query failed for {query}; this does not establish a site-wide outage. Independent candidate requests continued.")
             write_json(output / "discovery.json", discoveries)
+            series_list, evaluations, routes = retrieve_candidates(catalogue, client, official_client, as_of, progress)
+            save_retrievals()
+            write_json(output / "normalized.json", series_list)
+            for route in routes:
+                if route["status"] == "failed":
+                    run["warnings"].append(f"Candidate {route['id']} remained unavailable after its recorded attempts; other candidates were attempted independently. See source_routes.json.")
+                elif route["used_source"] != "SingStat":
+                    run["warnings"].append(f"Candidate {route['id']} used its reviewed {route['used_source']} backup after its SingStat attempts failed. See source_routes.json for the primary failure evidence.")
         else:
             progress(f"Using verified saved source snapshot: {saved['root'].name}")
-            catalogue = saved["catalogue"]
             for relative in saved["files"]:
                 destination = output / relative
                 destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(saved["root"] / relative, destination)
-        series_list, evaluations = [], []
-        for spec in catalogue:
-            progress(f"{'Fetching and evaluating' if saved is None else 'Re-evaluating saved source'}: {spec['expected_name']}")
-            try:
-                if saved is None:
-                    identifier = f"{spec['table_id']}:{spec['row_id']}"
-                    if official_client is not None and identifier in DIRECT_IDS:
-                        if identifier == "M700071:23":
-                            from .mas_sources import fetch_mas_series
-                            series = fetch_mas_series(official_client, spec, as_of)
-                        else:
-                            from .mom_sources import fetch_mom_series
-                            series = fetch_mom_series(official_client, spec)
-                    elif maintenance_error is not None:
-                        raise ValueError("SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. " + maintenance_error)
-                    else:
-                        series = fetch_series(client, spec)
-                else:
-                    identifier = f"{spec['table_id']}:{spec['row_id']}"
+            discoveries = read_json(output / "discovery.json")
+            series_list, evaluations, routes = [], [], []
+            for spec in catalogue:
+                identifier = f"{spec['table_id']}:{spec['row_id']}"
+                route = {"id": identifier, "primary_source": "Verified saved snapshot", "attempts": [],
+                         "used_source": None, "status": "failed"}
+                try:
                     if identifier not in saved["by_id"]:
                         raise ValueError("Series is absent from the verified saved snapshot; no replacement was downloaded")
                     series = saved["by_id"][identifier]
-                evaluation = evaluate_series(series, as_of)
-                series_list.append(series)
-                evaluations.append(evaluation)
-            except SourceMaintenanceError as exc:
-                if source_policy == "singstat":
-                    raise
-                maintenance_error = str(exc)
-                evaluations.append(failure_evaluation(spec, str(exc)))
-                run["warnings"].append(f"Excluded {spec['table_id']}:{spec['row_id']}: SingStat maintenance; independent sources continue.")
-            except Exception as exc:
-                evaluations.append(failure_evaluation(spec, str(exc)))
-                run["warnings"].append(f"Excluded {spec['table_id']}:{spec['row_id']} after retrieval or validation failure: {exc}")
+                    evaluation = evaluate_series(series, as_of)
+                    series_list.append(series)
+                    evaluations.append(evaluation)
+                    route.update(status="ok", used_source=series.get("source_provider", "SingStat"))
+                except Exception as exc:
+                    evaluations.append(failure_evaluation(spec, str(exc)))
+                    run["warnings"].append(f"Excluded {identifier} from saved snapshot: {exc}")
+                routes.append(route)
+        write_json(output / "source_routes.json", routes)
+        maintenance_observed = any(item.get("maintenance_response_observed", False) for item in discoveries)
+        maintenance_observed = maintenance_observed or any(event.get("maintenance_response_observed", False) for route in routes for event in route["attempts"])
         if client is not None:
-            save_retrievals()
-            write_json(output / "normalized.json", series_list)
+            maintenance_observed = maintenance_observed or any(attempt.get("maintenance_notice") for record in client.records for attempt in record.get("attempts", []))
         run["source_coverage"] = {"candidates": len(catalogue), "downloaded": len(series_list),
                                   "eligible": sum(bool(item["quality"]["eligible"]) for item in evaluations),
-                                  "singstat_maintenance": maintenance_error is not None,
+                                  "singstat_downloaded": sum(route["used_source"] == "SingStat" for route in routes) if saved is None else 0,
+                                  "fallback_downloaded": sum(route["used_source"] in {"MOM", "MAS"} for route in routes) if saved is None else 0,
+                                  "maintenance_responses_observed": bool(maintenance_observed),
+                                  "recovered_on_recheck": [route["id"] for route in routes if any(event["stage"] == "primary_recheck" and event["status"] == "ok" for event in route["attempts"])],
+                                  "unavailable": [route["id"] for route in routes if route["status"] == "failed"],
                                   "providers": sorted({item.get("source_provider", "SingStat Table Builder") for item in series_list})}
         write_json(output / "evaluations.json", evaluations)
         export_processed(output / "processed.csv", [
@@ -292,8 +348,8 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         run.update(status="failed", error=f"{type(exc).__name__}: {exc}", finished_at=utc_now(),
                    elapsed_seconds=round(time.monotonic() - started, 3))
         if isinstance(exc, SourceMaintenanceError):
-            run["failure_category"] = "source_maintenance"
-            run["recovery"] = "Retry a new run after SingStat maintenance ends, or explicitly use --source-run with a verified saved snapshot. No source fallback was automatic."
+            run["failure_category"] = "request_maintenance_response"
+            run["recovery"] = "A request returned a maintenance response. Recheck the affected endpoint in a new run; this is not evidence of a persistent site-wide outage."
             run["usage"] = {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "requests": 0}
         if (output / "agent_trace.json").exists():
             trace = read_json(output / "agent_trace.json")

@@ -1,0 +1,321 @@
+{
+  "as_of": "2026-10-01",
+  "assessment_kind": "Data usability and economic-scope review only; no correlation, causal or predictive validation.",
+  "candidates": [
+    {
+      "id": "M810371:1",
+      "name": "Resident Households",
+      "unit": "Number",
+      "frequency": "A",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810371",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810371?seriesNoORrowNo=1&limit=5000",
+      "retrieved_at": "2026-10-01T11:26:26+00:00",
+      "raw_observation_count": 44,
+      "first_period": "1980",
+      "latest": {
+        "period": "2025",
+        "value": 1487100.0,
+        "raw_period": "2025",
+        "raw_value": "1487100",
+        "raw_index": 43
+      },
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 44,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "disposition": "added",
+      "decision_reason_zh": "补充比人口更接近居住单位的居民住户数量；与人口共享 population_demand，防止重复占据多样性名额。"
+    },
+    {
+      "id": "M810361:5",
+      "name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+      "unit": "Dollar",
+      "frequency": "A",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810361",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810361?seriesNoORrowNo=5&limit=5000",
+      "retrieved_at": "2026-10-01T11:26:26+00:00",
+      "raw_observation_count": 26,
+      "first_period": "2000",
+      "latest": {
+        "period": "2025",
+        "value": 12027.0,
+        "raw_period": "2025",
+        "raw_value": "12027",
+        "raw_index": 25
+      },
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 26,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "disposition": "added",
+      "decision_reason_zh": "补充典型就业住户的收入中位数，区别于个人平均工资与名义可支配收入总额；共享 household_income。"
+    },
+    {
+      "id": "M183111:7",
+      "name": "Employment (Persons) As At Year End",
+      "unit": "Thousand",
+      "frequency": "A",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M183111",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M183111?seriesNoORrowNo=7&limit=5000",
+      "retrieved_at": "2026-10-01T11:26:26+00:00",
+      "raw_observation_count": 32,
+      "first_period": "1994",
+      "latest": {
+        "period": "2025",
+        "value": 4117.0,
+        "raw_period": "2025",
+        "raw_value": "4117",
+        "raw_index": 31,
+        "observation_date": "2025-12-31"
+      },
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 32,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "disposition": "added",
+      "decision_reason_zh": "补充就业人数存量，与居民失业率形成数量和比例的互补；共享 labour_market，明确包括外籍家政工人、排除全职国民服役人员。"
+    },
+    {
+      "id": "M400751:1.1",
+      "name": "Total HDB Flats",
+      "unit": "Number",
+      "frequency": "A",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M400751",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M400751?seriesNoORrowNo=1.1&limit=5000",
+      "retrieved_at": "2026-10-01T11:26:26+00:00",
+      "raw_observation_count": 27,
+      "first_period": "2000",
+      "latest": {
+        "period": "2026",
+        "value": 1177601.0,
+        "raw_period": "2026",
+        "raw_value": "1177601",
+        "raw_index": 26,
+        "observation_date": "2026-06-30"
+      },
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.",
+          "Used source-backed observation dates within the period for 27 observations; other observations use period-end cutoffs."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 27,
+        "window_start_period": "2017",
+        "window_end_period": "2026",
+        "coverage_start_period": "2017",
+        "coverage_end_period": "2026",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "disposition": "added",
+      "decision_reason_zh": "补足原目录仅有私人住宅供给的覆盖缺口；HDB 年中存量与私人供给共享 housing_supply。"
+    },
+    {
+      "id": "M810871:1",
+      "name": "Median Monthly Household Market Income",
+      "unit": "Dollar",
+      "frequency": "A",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M810871",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810871?seriesNoORrowNo=1&limit=5000",
+      "retrieved_at": "2026-10-01T11:26:26+00:00",
+      "raw_observation_count": 11,
+      "first_period": "2015",
+      "latest": {
+        "period": "2025",
+        "value": 12446.0,
+        "raw_period": "2025",
+        "raw_value": "12446",
+        "raw_index": 10
+      },
+      "quality": {
+        "eligible": true,
+        "score": 100.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 10,
+        "expected_count": 10,
+        "window_valid_count": 10,
+        "total_valid_count": 11,
+        "window_start_period": "2016",
+        "window_end_period": "2025",
+        "coverage_start_period": "2016",
+        "coverage_end_period": "2025",
+        "missing_count": 0,
+        "lag_periods": 0,
+        "thresholds": {
+          "minimum_valid": 3,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 2
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 20.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "disposition": "deferred",
+      "decision_reason_zh": "数据可用，但与本次新增就业住户收入中位数重叠；覆盖非就业住户且含租金、投资收入，需另行处理内生性和最新年初步值。本轮先不继续扩张同一收入组。"
+    },
+    {
+      "id": "M183891:1",
+      "name": "Total Changes In Employment",
+      "unit": "Number",
+      "frequency": "Q",
+      "source_url": "https://tablebuilder.singstat.gov.sg/table/TS/M183891",
+      "api_url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M183891?seriesNoORrowNo=1&limit=5000",
+      "retrieved_at": "2026-10-01T11:26:26+00:00",
+      "raw_observation_count": 142,
+      "first_period": "1991-Q1",
+      "latest": {
+        "period": "2026-Q2",
+        "value": 14700.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "14700",
+        "raw_index": 141
+      },
+      "quality": {
+        "eligible": true,
+        "score": 95.0,
+        "reasons": [],
+        "warnings": [
+          "Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.",
+          "Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons."
+        ],
+        "missing_fraction": 0.0,
+        "valid_count": 39,
+        "expected_count": 39,
+        "window_valid_count": 39,
+        "total_valid_count": 142,
+        "window_start_period": "2016-Q4",
+        "window_end_period": "2026-Q3",
+        "coverage_start_period": "2016-Q4",
+        "coverage_end_period": "2026-Q2",
+        "missing_count": 0,
+        "lag_periods": 1,
+        "thresholds": {
+          "minimum_valid": 8,
+          "minimum_completeness": 0.75,
+          "maximum_lag_periods": 3
+        },
+        "score_components": {
+          "history": 30.0,
+          "completeness": 35.0,
+          "recency": 15.0,
+          "comparisons": 15.0
+        },
+        "score_definition": "Data usability only (0–100): history 30, completeness 35, recency 20, computable permitted comparisons 15. History and completeness use the most recent ten calendar years. Completeness spans the first through last retained period in that window; missing recent releases are assessed separately through recency. History saturates at twice the minimum valid count. Not predictive validation."
+      },
+      "disposition": "deferred",
+      "decision_reason_zh": "数据可用，但本身已经是就业净增量；再次计算变化属于净增量的变化，且未季调。先用定义更直接的就业人数存量，季度净增量留待独立展示设计。"
+    }
+  ]
+}

@@ -20,7 +20,8 @@ from urllib.parse import urlsplit
 
 COLUMNS = ["指标", "口径与频率", "纳入候选池理由", "官方来源", "本次数据状态", "本次选择与理由", "限制"]
 _FREQUENCIES = {"A": "年度", "Q": "季度", "M": "月度", "D": "日度"}
-_UNITS = {"Per Cent": "%", "Per Cent Per Annum": "%/年", "Million Dollars": "百万新元", "Dollars": "新元", "Number Of Units": "套", "Index": "指数", "Number": "数量"}
+_UNITS = {"Per Cent": "%", "Per Cent Per Annum": "%/年", "Million Dollars": "百万新元", "Dollars": "新元", "Dollar": "新元", "Thousand": "千", "Number Of Units": "套", "Index": "指数", "Number": "数量"}
+_TABLE_UNITS = {("M810001", "Number"): "人", ("M810371", "Number"): "户", ("M183111", "Thousand"): "千人", ("M400751", "Number"): "套"}
 _ORIGINS = {"model": "模型原始理由", "system": "系统补充说明（非模型理由）", "rules": "确定性筛选规则（非模型理由）", "unknown": "理由来源未标注", "missing": "未记录单项理由"}
 _DISCLAIMERS = [
     "这是完整候选池，按配置顺序保留全部指标；进入候选池不等于进入本次报告。",
@@ -176,7 +177,7 @@ def build_indicator_pool(run: dict, catalogue: list[dict], evaluations: list[dic
         if not has_source:
             maintenance = bool(re.search(r"maintenance|维护", " ".join(reasons + ([exact_reason] if isinstance(exact_reason, str) else [])), re.I))
             status = "maintenance_unavailable" if maintenance else "unavailable"
-            status_label = "维护期间未获取" if maintenance else "本次未获取"
+            status_label = "请求返回维护页，未获取" if maintenance else "本次未获取"
             summary = status_label + "；未进行本次质量评分，不能据此认定指标无效。"
             group = "unavailable"
         elif not has_latest:
@@ -219,7 +220,7 @@ def build_indicator_pool(run: dict, catalogue: list[dict], evaluations: list[dic
         name = _text(actual.get("name"), _text(spec.get("expected_name"), identifier))
         frequency = actual.get("frequency", spec.get("frequency")) if has_source else spec.get("frequency")
         unit = actual.get("unit", spec.get("expected_unit")) if has_source else spec.get("expected_unit")
-        unit_zh = "人" if unit == "Number" and str(spec.get("table_id")) == "M810001" else _UNITS.get(unit, str(unit or "未注明"))
+        unit_zh = _TABLE_UNITS.get((str(spec.get("table_id")), unit), _UNITS.get(unit, str(unit or "未注明")))
         planned_url = _text(note.get("planned_source_url"), f"https://tablebuilder.singstat.gov.sg/table/TS/{spec['table_id']}")
         source = {
             "kind": "actual" if has_source else "configured_only",

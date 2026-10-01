@@ -96,7 +96,7 @@ class PipelineTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "No candidate"):
                     run_workflow("2026-09-30", root, progress=lambda _: None)
             self.assertEqual(read_json(root / "manifest.json")["status"], "failed")
-            self.assertEqual(len(read_json(root / "evaluations.json")), 12)
+            self.assertEqual(len(read_json(root / "evaluations.json")), len(read_json(root / "catalogue.json")))
             self.assertFalse((root / "report.md").exists())
 
     def test_partial_failure_never_selects_failed_source(self):
@@ -120,6 +120,16 @@ class PipelineTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 run_workflow("2026-09-30", root)
             self.assertEqual(sentinel.read_text(), "keep")
+
+    def test_selection_limit_is_a_positive_integer_bounded_by_the_run_catalogue(self):
+        from importlib.resources import files
+        count = len(json.loads(files("housing_agent").joinpath("data/catalogue.json").read_text()))
+        with tempfile.TemporaryDirectory() as tmp:
+            for value in (False, True, 0, -1, 1.5, count + 1):
+                output = Path(tmp) / str(value)
+                with self.subTest(value=value), self.assertRaisesRegex(ValueError, "limit"):
+                    run_workflow("2026-10-01", output, limit=value)
+                self.assertFalse(output.exists())
 
     def test_missing_key_fails_before_downloading(self):
         with tempfile.TemporaryDirectory() as tmp, patch.dict(os.environ, {}, clear=True), patch("housing_agent.pipeline.load_local_environment"), patch("housing_agent.pipeline.fetch_series") as fetch:
@@ -244,37 +254,38 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertEqual(self.agent.call_args.kwargs["provider"], "soclaas")
         self.assertEqual(self.agent.call_args.args[3], "soclaas-test-model")
 
-    def test_maintenance_during_discovery_stops_all_remaining_sources_and_model(self):
+    def test_discovery_maintenance_does_not_prevent_working_candidate_tables_or_model(self):
         from housing_agent.sources import SourceMaintenanceError
         self.configure_both()
-        self.discover.side_effect = SourceMaintenanceError("SingStat Table Builder is undergoing maintenance")
+        self.discover.side_effect = SourceMaintenanceError("This request returned a current maintenance page")
         output = self.output_path()
-        with self.assertRaises(SourceMaintenanceError):
+        result = run_workflow("2026-09-30", output, mode="llm", provider="soclaas", progress=lambda _: None)
+        count = len(read_json(output / "catalogue.json"))
+        self.assertGreater(self.discover.call_count, 1)
+        self.assertEqual(self.fetch.call_count, count)
+        self.agent.assert_called_once()
+        self.assertTrue((output / "report.md").exists())
+        self.assertEqual(result["source_coverage"]["downloaded"], count)
+        self.assertTrue(result["source_coverage"]["maintenance_responses_observed"])
+        self.assertEqual(read_json(output / "discovery.json")[0]["status"], "failed")
+
+    def test_all_series_maintenance_rechecks_every_candidate_before_failing_without_model(self):
+        from housing_agent.sources import SourceMaintenanceError
+        self.configure_both()
+        self.fetch.side_effect = SourceMaintenanceError("This request returned a current maintenance page")
+        output = self.output_path()
+        with self.assertRaisesRegex(ValueError, "No candidate"):
             run_workflow("2026-09-30", output, mode="llm", provider="soclaas", progress=lambda _: None)
-        self.assertEqual(self.discover.call_count, 1)
-        self.fetch.assert_not_called()
+        count = len(read_json(output / "catalogue.json"))
+        self.assertEqual(self.fetch.call_count, count * 2)
         self.agent.assert_not_called()
         self.assertFalse((output / "report.md").exists())
         manifest = read_json(output / "manifest.json")
         self.assertEqual(manifest["status"], "failed")
-        self.assertEqual(manifest["failure_category"], "source_maintenance")
-        self.assertEqual(manifest["usage"]["requests"], 0)
-        self.assertIn("--source-run", manifest["recovery"])
-        self.assertEqual(read_json(output / "discovery.json")[0]["status"], "maintenance")
-
-    def test_maintenance_during_series_fetch_stops_remaining_candidates_and_model(self):
-        from housing_agent.sources import SourceMaintenanceError
-        self.configure_both()
-        self.fetch.side_effect = SourceMaintenanceError("SingStat Table Builder is undergoing maintenance")
-        output = self.output_path()
-        with self.assertRaises(SourceMaintenanceError):
-            run_workflow("2026-09-30", output, mode="llm", provider="soclaas", progress=lambda _: None)
-        self.assertEqual(self.fetch.call_count, 1)
-        self.agent.assert_not_called()
-        self.assertFalse((output / "report.md").exists())
-        manifest = read_json(output / "manifest.json")
-        self.assertEqual(manifest["failure_category"], "source_maintenance")
+        self.assertEqual(len(manifest["source_coverage"]["unavailable"]), count)
         self.assertEqual(manifest["usage"]["total_tokens"], 0)
+        routes = read_json(output / "source_routes.json")
+        self.assertTrue(all(len(route["attempts"]) == 2 for route in routes))
 
     def test_default_provider_is_openai_when_no_provider_is_supplied(self):
         self.configure_both()
@@ -515,6 +526,14 @@ class SavedSourcePipelineTests(unittest.TestCase):
         normalized = read_json(self.source / "normalized.json")
         normalized[0]["provenance"]["raw_sha256"] = "not-the-captured-hash"
         write_json(self.source / "normalized.json", normalized)
+        self.refresh_source_manifest()
+        self.assert_invalid_source("raw provenance")
+
+    def test_failed_response_prefix_hash_must_match_manifest(self):
+        retrievals = read_json(self.source / "retrievals.json")
+        retrievals[0]["attempts"] = [{"error_body_prefix_file": "raw/test.json",
+                                      "error_body_prefix_sha256": "not-the-captured-hash"}]
+        write_json(self.source / "retrievals.json", retrievals)
         self.refresh_source_manifest()
         self.assert_invalid_source("raw provenance")
 

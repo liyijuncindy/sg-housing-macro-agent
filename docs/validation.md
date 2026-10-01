@@ -8,25 +8,25 @@ Checked on **1 October 2026, Singapore time**, using Python 3.12.14. This docume
 python -m unittest discover -v
 ```
 
-**Observed: 188 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
+**Observed: 205 tests passed.** The suite was rerun for the SingStat-priority revision; complete output is saved in [evidence/tests.txt](evidence/tests.txt).
 
 - 41 engine tests: true-calendar baselines, missing quarters, zero denominators, percentage/basis-point units, date cutoffs, population reference dates, quality windows, staleness and family selection.
 - 33 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
-- 21 source tests: explicit maintenance detection, immediate stop, plain-text diagnostic capture, retained generic-gateway retry, captured official GDP/population/SORA responses, exact series requests, source identity/metadata consistency, cell-limit rejection, API errors and retry audit trails.
-- 31 original pipeline tests: explicit SingStat-only maintenance aborts, provider routing and explicit saved-snapshot verification/reanalysis, full workflow with explicit synthetic fixtures, partial and total failure, cutoff-filtered CSV, table rendering, immutable output, environment handling, replay and tampering.
+- 31 source tests cover current-notice recognition, historical/future/JSON-text non-matches, retry and recovery, incomplete response streams, independent subsequent requests, bounded diagnostic capture, official-response parsing, identity checks and truncation rejection.
+- 33 pipeline tests cover independent candidate continuation after failed discovery, two-pass transient failure handling, catalogue-dependent selection limits, saved-snapshot verification including failed-response hashes, full synthetic workflows, all-source failure before model invocation, immutable output and replay.
 - 12 MOM tests: quarterly resident/SA selection, CSV precision, workbook title/unit/coverage validation, preliminary markers, source locators, formula rejection and catalogue-definition drift.
 - 19 MAS tests: public form selection, repeated annual headers, value-date versus publication-date grouping, complete month boundaries, weekend endpoints, null terminal values, malformed rows and source identity.
-- 11 independent transport/integration tests: original-file auditing, public-host restrictions, bounded retries, HTTP 206 rejection, local metadata labels, maintenance isolation, one/all route failures, mixed-source saved snapshots and replay.
+- 16 independent transport/integration tests: original-file auditing, public-host restrictions, bounded retries, HTTP 206 rejection, SingStat-first routing, delayed rechecks, per-candidate backup selection, strict SingStat policy, failed fallback isolation, mixed-source saved snapshots and replay.
 - 16 indicator-pool tests: complete catalogue joins, actual-versus-configured sources and definitions, missing-data status, absence of fabricated values/zero scores, exact decision attribution, reviewed-note hashes, safe HTML/Markdown output, and saved-source/export disclosures.
 - 4 indicator-pool integration tests: immutable offline export, tampered or uninventoried input rejection, automatic table output in new runs, and byte-identical replay of all three earlier sample reports.
 
-## Unified indicator-pool table
+## Historical unified indicator-pool table
 
 ```bash
 python -m housing_agent indicator-pool examples/independent_sources_run --output examples/indicator_pool
 ```
 
-The [exported table](../examples/indicator_pool/indicator_pool.md) presents all twelve candidates from the saved independent-source run. The three downloaded MOM/MAS indicators retain their observed values, quality scores and original decisions; the other nine explicitly retain maintenance-related unavailability, with no substituted old observations or displayed placeholder zero scores. Reviewed Chinese economic rationales remain separate from saved selection reasons. Actual source metadata takes precedence over configured routes, including when exporting the earlier SingStat runs.
+The [exported table](../examples/indicator_pool/indicator_pool.md) presents all twelve candidates from the saved independent-source run. The three downloaded MOM/MAS indicators retain their observed values, quality scores and original decisions. The other nine were skipped by the old stop-after-maintenance policy; this is not evidence that all nine were individually requested and failed. The historical export is retained unchanged, with no substituted old observations or displayed placeholder zero scores. Reviewed Chinese economic rationales remain separate from saved selection reasons. Actual source metadata takes precedence over configured routes, including when exporting the earlier SingStat runs.
 
 This is an offline presentation export, not another data refresh or model trial. Its manifest records the original run's manifest hash, each presentation input hash and the three generated file hashes. The original sample directories remain unchanged. Future completed workflows produce the same Markdown, searchable HTML and JSON artifacts automatically and include them in the run inventory.
 
@@ -119,12 +119,12 @@ The OpenAI Responses path remains supported by offline protocol tests; it has no
 
 No held-out forecasting evaluation, historical-vintage reconstruction, automated revision comparison or semantic proof of generated market statements has been performed. Update cadence is inferred from official observation frequency where a release calendar is unavailable. These limits are stated in the report and engineering notes.
 
-## Confirmed SingStat maintenance and source-route checks
+## Historical maintenance responses and corrected source routing
 
-A follow-up on 1 October 2026 received an explicit maintenance page from both the Table Builder API and homepage; the main SingStat website returned HTTP 200. Agent and browser User-Agent strings produced the same maintenance response. [The recorded diagnosis](evidence/singstat-maintenance-diagnosis.json) confirms this specific cause, rather than inferring it solely from HTTP 502.
+A follow-up at 16:50 SGT on 1 October 2026 received an explicit maintenance page from both the Table Builder API and homepage; the main SingStat website returned HTTP 200. Agent and browser User-Agent strings produced the same maintenance response. [The recorded diagnosis](evidence/singstat-maintenance-diagnosis.json) establishes the response body at those request times; it does not establish a persistent site-wide outage or its underlying technical cause. The later 17:19 SGT discovery request also returned a maintenance page. At 19:16 SGT, a fresh check received normal HTTP 200 JSON from the population metadata and discovery endpoints, and a subsequent rules run downloaded all twelve original candidates. See [the recovery response evidence](evidence/singstat-recovery-check/diagnosis.json).
 
-The earlier single-source implementation identified that explicit notice and stopped immediately, with a maintenance category and recovery advice. Its live check made **one HTTP request**, made **zero model calls** and created no report; see [the historical check](evidence/maintenance-stop-check.json). This behaviour remains available with `--source-policy singstat`. The current default continues independent MOM/MAS downloads after stopping SingStat requests, as validated above. Generic gateway errors without a maintenance notice still receive bounded retries.
+The earlier single-source implementation identified that explicit notice and stopped immediately, with a maintenance category and recovery advice. Its live check made **one HTTP request**, made **zero model calls** and created no report; see [the historical check](evidence/maintenance-stop-check.json). This behavior is superseded in both policies. Each request now has bounded retries; independent candidates continue; retryable candidate failures receive a later second pass. Only then can the default policy use a reviewed MOM/MAS backup for that individual candidate. The `singstat` policy uses the same retries and continuation without backups. Historical announcements or maintenance text within normal JSON/page content do not activate the current-maintenance classification.
 
 The accessible main-site national-accounts page was also fetched directly and its displayed GDP rows extracted successfully; see [the independent source feasibility probe](evidence/direct-official-gdp-probe.json). These latest/previous observations are not a replacement for a complete historical dataset and that GDP route is not integrated.
 
-Independent MOM unemployment CSV and quarterly income XLSX downloads, and the MAS public daily compounded-SORA CSV export, are now integrated and live-validated in the default workflow. [Recorded routes](evidence/independent-official-source-routes.json) distinguish these integrations from the separate GDP feasibility check.
+Independent MOM unemployment CSV and quarterly income XLSX downloads, and the MAS public daily compounded-SORA CSV export, remain integrated as reviewed fallbacks. Their earlier live validation and [recorded routes](evidence/independent-official-source-routes.json) are distinct from the separate GDP feasibility check.

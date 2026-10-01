@@ -1,0 +1,123 @@
+{
+  "checked_at_utc": "20261001T111619Z",
+  "method": "Direct fresh GET from this local runtime, no-cache request header, bounded body capture; no model call",
+  "checks": [
+    {
+      "label": "singstat-home",
+      "url": "https://www.singstat.gov.sg/",
+      "checked_at": "2026-10-01T11:16:19+00:00",
+      "http_status": 200,
+      "final_url": "https://www.singstat.gov.sg/",
+      "headers": {
+        "Content-Type": "text/html",
+        "Date": "Thu, 01 Oct 2026 11:16:19 GMT",
+        "Server": "AmazonS3",
+        "Last-Modified": "Thu, 01 Oct 2026 10:09:10 GMT",
+        "Cache-Control": "public, max-age=0, s-maxage=0, must-revalidate",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 69b39b6769984cf063fcfceb47941eb6.cloudfront.net (CloudFront)"
+      },
+      "body_sha256": "724b9a59648df4d8eb7581f93f1d0aa18d16cd62ec6fc5555da57aacf3f01b6e",
+      "bytes": 454607,
+      "raw_file": "singstat-home.response",
+      "maintenance_text": null,
+      "page_text_prefix": "Singapore Department of Statistics Find Data Explore Data Themes Data Themes Economy & Prices Subjects Consumer Price Index Household Sector Economic Indicators International Accounts Labour, Employment, Wages and Productivity National Accounts Producer and International Trade Price Indices Property Price Indices Public Finance and Public Sector Supply, Use and Input-Output Tables View Economy & Prices theme page Industry Subjects Agriculture and Aquaculture Building, Real Estate, Construction a",
+      "seconds": 0.151
+    },
+    {
+      "label": "tablebuilder-home",
+      "url": "https://tablebuilder.singstat.gov.sg/",
+      "checked_at": "2026-10-01T11:16:19+00:00",
+      "http_status": 200,
+      "final_url": "https://tablebuilder.singstat.gov.sg/",
+      "headers": {
+        "Date": "Thu, 01 Oct 2026 11:16:19 GMT",
+        "Content-Type": "text/html",
+        "Cache-Control": "max-age=21600",
+        "Last-Modified": "Thu, 01 Oct 2026 06:15:04 GMT"
+      },
+      "body_sha256": "b4c38175636ef03c1806525e73f827aa5a3ce4e2eb4d7693b239963f51612d77",
+      "bytes": 1050,
+      "raw_file": "tablebuilder-home.response",
+      "maintenance_text": null,
+      "page_text_prefix": "You need to enable JavaScript to run this app.",
+      "seconds": 0.069
+    },
+    {
+      "label": "latest-updates",
+      "url": "https://tablebuilder.singstat.gov.sg/latest-updates",
+      "checked_at": "2026-10-01T11:16:19+00:00",
+      "http_status": 200,
+      "final_url": "https://tablebuilder.singstat.gov.sg/latest-updates",
+      "headers": {
+        "Date": "Thu, 01 Oct 2026 11:16:19 GMT",
+        "Content-Type": "text/html",
+        "Cache-Control": "max-age=21600",
+        "Last-Modified": "Thu, 01 Oct 2026 06:15:04 GMT"
+      },
+      "body_sha256": "b4c38175636ef03c1806525e73f827aa5a3ce4e2eb4d7693b239963f51612d77",
+      "bytes": 1050,
+      "raw_file": "latest-updates.response",
+      "maintenance_text": null,
+      "page_text_prefix": "You need to enable JavaScript to run this app.",
+      "seconds": 0.069
+    },
+    {
+      "label": "user-linked-table",
+      "url": "https://tablebuilder.singstat.gov.sg/table/CT/8189",
+      "checked_at": "2026-10-01T11:16:19+00:00",
+      "http_status": 200,
+      "final_url": "https://tablebuilder.singstat.gov.sg/table/CT/8189",
+      "headers": {
+        "Date": "Thu, 01 Oct 2026 11:16:19 GMT",
+        "Content-Type": "text/html",
+        "Cache-Control": "max-age=21600",
+        "Last-Modified": "Thu, 01 Oct 2026 06:15:04 GMT"
+      },
+      "body_sha256": "b4c38175636ef03c1806525e73f827aa5a3ce4e2eb4d7693b239963f51612d77",
+      "bytes": 1050,
+      "raw_file": "user-linked-table.response",
+      "maintenance_text": null,
+      "page_text_prefix": "You need to enable JavaScript to run this app.",
+      "seconds": 0.068
+    },
+    {
+      "label": "population-metadata",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "checked_at": "2026-10-01T11:16:19+00:00",
+      "http_status": 200,
+      "final_url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "headers": {
+        "Date": "Thu, 01 Oct 2026 11:16:19 GMT",
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "body_sha256": "c31ba1ad10337d2e5c530ac000904ce5a2b54420d9d6727433041b1006901807",
+      "bytes": 10342,
+      "raw_file": "population-metadata.response",
+      "maintenance_text": null,
+      "page_text_prefix": "{\"Data\":{\"records\":{\"theme\":\"Population\",\"subject\":\"Population and Population Structure\",\"topic\":\"Key Annual Indicators on Population\",\"id\":\"M810001\",\"groupTitle\":\"Indicators On Population\",\"title\":\"Indicators On Population, Annual\",\"frequency\":\"Annual\",\"adjustmentType\":\"\",\"dataSource\":\"SINGAPORE DEPARTMENT OF STATISTICS\",\"footnote\":\"More information available on the following: Population Trends report (https://www.singstat.gov.sg/publication-resources/population-trends-2026); Information Paper ",
+      "api_status": 200,
+      "has_data_object": true,
+      "seconds": 0.146
+    },
+    {
+      "label": "population-search",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=population&searchOption=all",
+      "checked_at": "2026-10-01T11:16:19+00:00",
+      "http_status": 200,
+      "final_url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=population&searchOption=all",
+      "headers": {
+        "Date": "Thu, 01 Oct 2026 11:16:26 GMT",
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      "body_sha256": "a0f0c41daa0c324dbf33e5a6bdb9ecec84ed31afd885fa5a8e36583f59dc566c",
+      "bytes": 104290,
+      "raw_file": "population-search.response",
+      "maintenance_text": null,
+      "page_text_prefix": "{\"Data\":{\"generatedBy\":\"SingStat Table Builder\",\"dateGenerated\":\"01/10/2026\",\"total\":365,\"records\":[{\"theme\":\"Economy & Prices\",\"subject\":\"Labour, Employment, Wages and Productivity\",\"topic\":\"Persons With Disabilities\",\"id\":\"M184221\",\"title\":\"Distribution Of Residents With Disabilities Aged 15 - 64 By Labour Force Status, Annual\",\"tableType\":\"time series\"},{\"theme\":\"Economy & Prices\",\"subject\":\"Public Sector\",\"topic\":\"Members of Parliament\",\"id\":\"M891031\",\"title\":\"Members Of Parliament, Annual\",",
+      "api_status": 200,
+      "has_data_object": true,
+      "seconds": 6.917
+    }
+  ]
+}

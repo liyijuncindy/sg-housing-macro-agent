@@ -1,0 +1,530 @@
+[
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=household&searchOption=all",
+    "retrieved_at": "2026-10-01T11:22:50+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "failed",
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      },
+      {
+        "attempt": 2,
+        "status": "failed",
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      }
+    ],
+    "status": "failed",
+    "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=employment&searchOption=all",
+    "retrieved_at": "2026-10-01T11:22:51+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "failed",
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      },
+      {
+        "attempt": 2,
+        "status": "failed",
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      }
+    ],
+    "status": "failed",
+    "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=residential+transactions&searchOption=all",
+    "retrieved_at": "2026-10-01T11:22:52+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "failed",
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      },
+      {
+        "attempt": 2,
+        "status": "failed",
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      }
+    ],
+    "status": "failed",
+    "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=HDB&searchOption=all",
+    "retrieved_at": "2026-10-01T11:22:53+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "failed",
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      },
+      {
+        "attempt": 2,
+        "status": "failed",
+        "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+      }
+    ],
+    "status": "failed",
+    "error": "URLError: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=household&searchOption=all",
+    "retrieved_at": "2026-10-01T11:23:16+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:23:22+00:00",
+    "raw_file": "raw/resourceid_fdddf21e4a5a8411.json",
+    "raw_sha256": "e9054e6c268c081a0f7d82bcb5a17e35f19b35d7a35814b640e2dc2f2ae7c6ca"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=employment&searchOption=all",
+    "retrieved_at": "2026-10-01T11:23:22+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:23:30+00:00",
+    "raw_file": "raw/resourceid_f5f5b431e617875f.json",
+    "raw_sha256": "cc8fb6bd9edb0ea8ff97b253f0dbd461bbc4d8ffb0f3c7fe619080353cb51c46"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=residential+transactions&searchOption=all",
+    "retrieved_at": "2026-10-01T11:23:30+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:23:38+00:00",
+    "raw_file": "raw/resourceid_a2a95e8ed5133e31.json",
+    "raw_sha256": "8db3c88279623c50270d38b7d9e99a7b33ddf911057805467bf2c0cd4355f137"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=HDB&searchOption=all",
+    "retrieved_at": "2026-10-01T11:23:38+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:23:45+00:00",
+    "raw_file": "raw/resourceid_4278c026df29ba47.json",
+    "raw_sha256": "82c7a0f2848e1e1baa0cf2d9d89f960d5b9f650a841beb6b3bc450efd1fe099b"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810371",
+    "retrieved_at": "2026-10-01T11:24:24+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:24:24+00:00",
+    "raw_file": "raw/metadata_M810371_586abac18b9b2be7.json",
+    "raw_sha256": "5c9fecec616dbbe0c3a07860ffe1b3e2829377dd050fca26af46c81e2dfd177d"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810361",
+    "retrieved_at": "2026-10-01T11:24:24+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:24:24+00:00",
+    "raw_file": "raw/metadata_M810361_fb50c1a81edc5973.json",
+    "raw_sha256": "148b8261931177e7cf30de972656658bc73a4a1f60a01f6c8e696fe55575adb6"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810871",
+    "retrieved_at": "2026-10-01T11:24:24+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:24:25+00:00",
+    "raw_file": "raw/metadata_M810871_8c0c206013bcc15c.json",
+    "raw_sha256": "f65c51d887d34ff3162d150183ab521e358909c6d692a2937b34ad65729d8299"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M182841",
+    "retrieved_at": "2026-10-01T11:24:25+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:24:25+00:00",
+    "raw_file": "raw/metadata_M182841_3f239e6f707dd2c9.json",
+    "raw_sha256": "b275a12b11c5588d1cf970810a0b01fea9fb72278efec1722beb45182f550f3d"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M400751",
+    "retrieved_at": "2026-10-01T11:24:25+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:24:25+00:00",
+    "raw_file": "raw/metadata_M400751_84d47a9a0e863650.json",
+    "raw_sha256": "607a6fe303baf45d1771d70d26392a47b95227cb665aa6f419b278a2053abe45"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=sales&searchOption=all",
+    "retrieved_at": "2026-10-01T11:24:25+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:24:32+00:00",
+    "raw_file": "raw/resourceid_098c88e0700827d9.json",
+    "raw_sha256": "9737a0c12289e8f16d8468565a66054e66a5f6d9d8fdb5e9b10b9d7461490912"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M183111",
+    "retrieved_at": "2026-10-01T11:24:59+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:24:59+00:00",
+    "raw_file": "raw/metadata_M183111_9051b2d9ad2d5178.json",
+    "raw_sha256": "d7f0f27f5ba85714f914688ce758d8d4efc404d3d5e43e5974cdb4b6e4bbbd29"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M183891",
+    "retrieved_at": "2026-10-01T11:24:59+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "http_status": 200,
+    "response_headers": {
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8",
+    "completed_at": "2026-10-01T11:24:59+00:00",
+    "raw_file": "raw/metadata_M183891_2956489756e9b620.json",
+    "raw_sha256": "cd3ff3287475bf30178c9e94234fe518907213291bb32628f9b296fa9809edc7"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810371?seriesNoORrowNo=1&limit=5000",
+    "retrieved_at": "2026-10-01T11:26:26+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "retrieved_at": "2026-10-01T11:26:26+00:00",
+        "completed_at": "2026-10-01T11:26:26+00:00",
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "completed_at": "2026-10-01T11:26:26+00:00",
+    "raw_file": "raw/tabledata_M810371_8461ccdf2c645031.json",
+    "raw_sha256": "3b1c98d7f8191a8c4ab000444fe34c827a556ab416c85e2623154d79c458595d",
+    "http_status": 200,
+    "response_headers": {
+      "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810361?seriesNoORrowNo=5&limit=5000",
+    "retrieved_at": "2026-10-01T11:26:26+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "retrieved_at": "2026-10-01T11:26:26+00:00",
+        "completed_at": "2026-10-01T11:26:26+00:00",
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "completed_at": "2026-10-01T11:26:26+00:00",
+    "raw_file": "raw/tabledata_M810361_ace929ea782b332d.json",
+    "raw_sha256": "64b079f81758a381e25fe6bc001bf4ee5057f00f4d86c542b8fbbfa85313b231",
+    "http_status": 200,
+    "response_headers": {
+      "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M183111?seriesNoORrowNo=7&limit=5000",
+    "retrieved_at": "2026-10-01T11:26:26+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "retrieved_at": "2026-10-01T11:26:26+00:00",
+        "completed_at": "2026-10-01T11:26:26+00:00",
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "completed_at": "2026-10-01T11:26:26+00:00",
+    "raw_file": "raw/tabledata_M183111_78ebddbf3477131c.json",
+    "raw_sha256": "091816d24a8931e0b39195330d1c3b00fca60057cff5755fadcdbd6ec53487cd",
+    "http_status": 200,
+    "response_headers": {
+      "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M400751?seriesNoORrowNo=1.1&limit=5000",
+    "retrieved_at": "2026-10-01T11:26:26+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "retrieved_at": "2026-10-01T11:26:26+00:00",
+        "completed_at": "2026-10-01T11:26:26+00:00",
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "completed_at": "2026-10-01T11:26:26+00:00",
+    "raw_file": "raw/tabledata_M400751_c10997a05cec390f.json",
+    "raw_sha256": "ae44af016d20a58cd79503fe3d95d1e18e17f10218aae45b76afe211b8c363bf",
+    "http_status": 200,
+    "response_headers": {
+      "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M810871?seriesNoORrowNo=1&limit=5000",
+    "retrieved_at": "2026-10-01T11:26:26+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "retrieved_at": "2026-10-01T11:26:26+00:00",
+        "completed_at": "2026-10-01T11:26:26+00:00",
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "completed_at": "2026-10-01T11:26:26+00:00",
+    "raw_file": "raw/tabledata_M810871_62ff7bfc86716b87.json",
+    "raw_sha256": "f437075a8aed479521806f6a997851e6f73bf0f88574ddbf3e988f191f392349",
+    "http_status": 200,
+    "response_headers": {
+      "date": "Thu, 01 Oct 2026 11:26:26 GMT",
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8"
+  },
+  {
+    "url": "https://tablebuilder.singstat.gov.sg/api/table/tabledata/M183891?seriesNoORrowNo=1&limit=5000",
+    "retrieved_at": "2026-10-01T11:26:26+00:00",
+    "attempts": [
+      {
+        "attempt": 1,
+        "retrieved_at": "2026-10-01T11:26:26+00:00",
+        "completed_at": "2026-10-01T11:26:27+00:00",
+        "status": "ok",
+        "http_status": 200,
+        "response_headers": {
+          "date": "Thu, 01 Oct 2026 11:26:27 GMT",
+          "content-type": "application/json; charset=utf-8"
+        },
+        "content_type": "application/json; charset=utf-8"
+      }
+    ],
+    "status": "ok",
+    "completed_at": "2026-10-01T11:26:27+00:00",
+    "raw_file": "raw/tabledata_M183891_440728d0119122f6.json",
+    "raw_sha256": "8d4cdac97c216013461071619cae618cd7c30b6422458ecdc3e8b408ae932ad4",
+    "http_status": 200,
+    "response_headers": {
+      "date": "Thu, 01 Oct 2026 11:26:27 GMT",
+      "content-type": "application/json; charset=utf-8"
+    },
+    "content_type": "application/json; charset=utf-8"
+  }
+]

@@ -232,7 +232,7 @@ class IndicatorPoolTests(unittest.TestCase):
         self.assertTrue(all(row["status"] == "maintenance_unavailable" for row in missing))
         self.assertTrue(all(row["latest"] is None and row["quality"]["score"] is None for row in missing))
         self.assertEqual({row["id"] for row in captured}, {"M700071:23", "M182342:2", "M184101:1"})
-        self.assertEqual(len(pool["notes"]), 12)
+        self.assertTrue({row["id"] for row in pool["rows"]} <= set(pool["notes"]))
 
     def test_duplicate_catalogue_or_evaluation_ids_rejected(self):
         with self.assertRaises(ValueError):

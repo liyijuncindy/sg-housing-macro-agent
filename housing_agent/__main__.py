@@ -17,7 +17,7 @@ def main(argv=None):
     run.add_argument("--model", help="Tool-capable model for the chosen provider; overrides OPENAI_MODEL or SOCLAAS_MODEL")
     run.add_argument("--timeout", type=float, default=20, help="Per-source HTTP timeout in seconds")
     run.add_argument("--source-run", type=Path, help="Explicitly reuse verified official data from a saved run; LLM calls remain live")
-    run.add_argument("--source-policy", choices=["auto", "singstat"], default="auto", help="auto uses independent MOM/MAS downloads for supported series; singstat uses Table Builder only")
+    run.add_argument("--source-policy", choices=["auto", "singstat"], default="auto", help="auto tries SingStat first for every candidate, rechecks transient failures, then uses reviewed MOM/MAS backups; singstat never uses backups")
     rep = sub.add_parser("replay", help="Verify and regenerate a saved report without network access")
     rep.add_argument("run_dir", type=Path)
     rep.add_argument("--output", type=Path, required=True)
