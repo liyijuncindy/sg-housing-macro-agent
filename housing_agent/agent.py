@@ -54,7 +54,7 @@ def _object(properties: dict) -> dict:
             "required": list(properties), "additionalProperties": False}
 
 
-def _tools() -> list[dict]:
+def _tools(limit: int | None = None) -> list[dict]:
     text = {"type": "string"}
     strings = {"type": "array", "items": text}
     narrative = _object({"id": text, **{key: text for key in _TEXT_FIELDS},
@@ -69,7 +69,9 @@ def _tools() -> list[dict]:
          _object({"ids": strings})),
         ("submit_analysis", "Finish with the selected IDs, decisions and qualitative narratives. "
          "Use only inspected eligible candidates and their exact evidence IDs. "
-         "Supply a reason for every candidate where possible. No numbers in prose.",
+         "Supply a reason for every candidate where possible. No numbers in prose. "
+         + (f"Select at most {limit} IDs. " if limit is not None else "")
+         + "Keep selected_ids, decisions.selected flags and narrative IDs synchronized.",
          _object({"selected_ids": strings, "decisions": {"type": "array", "items": decision},
                   "narratives": {"type": "array", "items": narrative}})),
     ]
@@ -244,8 +246,16 @@ def _validate_submission(arguments: dict, candidates: dict, inspected: set[str],
     _keys(arguments, {"selected_ids", "decisions", "narratives"}, "submission")
     selected = _ids(arguments["selected_ids"], "selected_ids")
     eligible = {key for key, item in candidates.items() if item["quality"].get("eligible") is True}
-    if len(selected) > limit or (eligible and not selected):
-        raise ValueError("select at least a candidate when eligible data exist, and no more than limit")
+    synchronize = ("Update selected_ids, decisions.selected and narratives together: exactly the selected IDs "
+                   "must have decisions.selected=true and exactly those IDs must have narratives. ")
+    if len(selected) > limit:
+        raise ValueError(f"selected_ids contains {len(selected)} IDs, but limit={limit}; remove at least "
+                         f"{len(selected) - limit} selected ID(s). " + synchronize +
+                         "Retain useful eligible coverage; explain exclusions precisely. You need not fill the limit.")
+    if eligible and not selected:
+        raise ValueError(f"selected_ids contains 0 IDs, but {len(eligible)} eligible candidate(s) exist; "
+                         f"choose from 1 to {limit} inspected eligible candidates. " + synchronize +
+                         "Do not discard useful coverage merely to repair wording; you need not fill the limit.")
     if not set(selected) <= eligible:
         raise ValueError("selected_ids includes an unknown or ineligible candidate")
     if not set(selected) <= inspected:
@@ -260,13 +270,41 @@ def _validate_submission(arguments: dict, candidates: dict, inspected: set[str],
         if not isinstance(key, str) or key not in candidates or key in decisions:
             raise ValueError("decision contains an unknown or duplicate candidate ID")
         if type(decision["selected"]) is not bool or decision["selected"] != (key in selected):
-            raise ValueError("decision selected flag conflicts with selected_ids")
+            expected = key in selected
+            raise ValueError(f"decision selected flag conflicts with selected_ids for {key!r}: "
+                             f"received {decision['selected']!r}, expected {expected}; "
+                             f"selected_ids contains {len(selected)} IDs and limit={limit}. " + synchronize)
         if decision["selected"] and key not in inspected:
             raise ValueError("a selected decision has not been inspected")
-        decisions[key] = {**decision, "reason": _prose(decision["reason"], "decision reason"),
-                          "reason_origin": "model"}
+        decisions[key] = decision
     if not set(selected) <= set(decisions):
-        raise ValueError("every selected candidate requires its own model decision reason")
+        missing = sorted(set(selected) - set(decisions))
+        raise ValueError(f"every selected candidate requires its own model decision reason; missing IDs: {missing}. " + synchronize)
+
+    raw_narratives = {}
+    if not isinstance(arguments["narratives"], list):
+        raise ValueError("narratives must be a list")
+    for narrative in arguments["narratives"]:
+        _keys(narrative, {"id", *_TEXT_FIELDS, "evidence_ids"}, "narrative")
+        key = narrative["id"]
+        if not isinstance(key, str) or key not in selected or key in raw_narratives:
+            raise ValueError(f"narrative contains an unselected, unknown or duplicate ID: {key!r}. " + synchronize)
+        evidence_ids = _ids(narrative["evidence_ids"], "evidence_ids")
+        allowed = set(_evidence(candidates[key]))
+        if not evidence_ids or not set(evidence_ids) <= allowed:
+            raise ValueError("narrative references empty, fabricated or other-series evidence IDs")
+        raw_narratives[key] = narrative
+    if set(raw_narratives) != set(selected):
+        missing = sorted(set(selected) - set(raw_narratives))
+        raise ValueError(f"provide exactly a narrative for each selected candidate; selected_ids has {len(selected)} IDs "
+                         f"but narratives has {len(raw_narratives)}; missing IDs: {missing}. " + synchronize)
+
+    # Complete every structural/evidence check before inspecting free text. A
+    # wording failure must never conceal an inconsistent selected set.
+    decisions = {key: {**decision, "reason": _prose(decision["reason"], f"{key}.decision.reason"),
+                       "reason_origin": "model"} for key, decision in decisions.items()}
+    narratives = {key: {**{field: _prose(narrative[field], f"{key}.{field}") for field in _TEXT_FIELDS},
+                        "evidence_ids": narrative["evidence_ids"]} for key, narrative in raw_narratives.items()}
     for key, item in candidates.items():
         if key not in decisions:
             reason = ("System exclusion: candidate did not pass deterministic data-quality eligibility."
@@ -274,23 +312,6 @@ def _validate_submission(arguments: dict, candidates: dict, inspected: set[str],
                       "System exclusion: eligible candidate was not selected in the model's submitted subset; "
                       "the model did not provide an individual exclusion reason.")
             decisions[key] = {"id": key, "selected": False, "reason": reason, "reason_origin": "system"}
-
-    narratives = {}
-    if not isinstance(arguments["narratives"], list):
-        raise ValueError("narratives must be a list")
-    for narrative in arguments["narratives"]:
-        _keys(narrative, {"id", *_TEXT_FIELDS, "evidence_ids"}, "narrative")
-        key = narrative["id"]
-        if not isinstance(key, str) or key not in selected or key in narratives:
-            raise ValueError("narrative contains an unselected, unknown or duplicate ID")
-        evidence_ids = _ids(narrative["evidence_ids"], "evidence_ids")
-        allowed = set(_evidence(candidates[key]))
-        if not evidence_ids or not set(evidence_ids) <= allowed:
-            raise ValueError("narrative references empty, fabricated or other-series evidence IDs")
-        narratives[key] = {field: _prose(narrative[field], f"{key}.{field}") for field in _TEXT_FIELDS}
-        narratives[key]["evidence_ids"] = evidence_ids
-    if set(narratives) != set(selected):
-        raise ValueError("provide exactly a narrative for each selected candidate")
     return {"selected_ids": selected, "decisions": [decisions[key] for key in candidates],
             "narratives": narratives, "method": "openai_responses_constrained_agent"}
 
@@ -405,14 +426,18 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
             "candidates sharing a family can overlap even when their names or themes differ. "
             "selection_family is the exact supplied identifier: overlapping economic channels do not make "
             "different identifiers the same family. Preserve definition and scope distinctions: aggregate "
-            "income is not income per household or per person. Describe retained facts as latest available, "
+            "income is not income per household or per person. Resident household stock is not newly formed "
+            "households, and total HDB dwelling stock is not newly completed dwellings. "
+            "Describe retained facts as latest available, "
             "not automatically the current quarter. An excluded useful signal is not inherently irrelevant "
             "or fully substituted by a selected signal. Respect denominator requirements when interpreting "
             "counts, and do not dismiss future supply's expectations channel merely because completion is later. "
             "This is a preference, not a mandatory family quota; justify useful complementary choices. "
             "Do not pretend this is tested predictive performance. Do not fill the limit with ineligible data. "
             "Finish by calling submit_analysis, supplying selected_ids, decision reasons (including exclusions) "
-            "and a narrative for every selected series. Narratives describe only possible mechanisms, timing "
+            "and a narrative for every selected series. Keep selected_ids, decisions.selected flags and narrative "
+            "IDs synchronized. Explain each exclusion precisely; an eligible candidate omitted for capacity or "
+            "overlap did not fail the data-quality gate. Narratives describe only possible mechanisms, timing "
             "and limitations, based on supplied metadata and mechanism notes, not observed trend claims. "
             "All reason and narrative prose must contain no numeric values or quantitative amounts, "
             "percent signs, dates, explicit forecasts or causal certainty. The renderer inserts all numbers. "
@@ -424,11 +449,13 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
             "date when supplied, otherwise the observation period end. A supplied observation_date is not "
             "a publication date. "
             "Do not claim the observations were published or available historically at that date. "
-            "If a tool returns a validation error, correct it within the remaining turns."
+            "If a tool returns a validation error, correct it within the remaining turns. Preserve useful eligible "
+            "coverage when repairing prose; do not remove candidates merely to avoid wording errors. "
+            "A smaller selection is allowed for substantive reasons; filling the limit is not required."
         )
         messages = [{"role": "user", "content": json.dumps({"as_of": as_of, "limit": limit,
                      "candidate_count": len(candidates), "task": "Select predictors and submit qualitative analysis."})}]
-        tool_definitions = _tools()
+        tool_definitions = _tools(limit)
         if provider == "soclaas":
             messages.insert(0, {"role": "system", "content": instructions})
             tool_definitions = [{"type": "function", "function": {
@@ -549,7 +576,9 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
                         "The selected candidates and evidence references have passed structural checks. "
                         "Repair wording now and call submit_analysis next; do not inspect data again for this error. "
                         "Delete ALL years and quantities from prose rather than spelling them out. "
-                        "Keep qualitative mechanisms and limitations. The exact validation feedback is: " + str(exc))
+                        "Keep the structurally valid selected IDs and evidence references while repairing wording; "
+                        "do not drop useful coverage to avoid this prose error. Keep qualitative mechanisms and "
+                        "limitations. The exact validation feedback is: " + str(exc))
                     event["repair_instruction"] = repair_reminder
             event["tool_results"].append({"call_id": call["call_id"], "output": result})
             serialized = json.dumps(result, ensure_ascii=False, allow_nan=False)

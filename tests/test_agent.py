@@ -10,7 +10,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import Mock, patch
 
-from housing_agent.agent import AgentError, _facts, _quality_notes, run_agent
+from housing_agent.agent import AgentError, _facts, _quality_notes, _validate_submission, run_agent
 
 
 def candidate(series_id="income", eligible=True):
@@ -35,6 +35,14 @@ def submission():
                         "lag": "Housing responses may follow changes in household resources with a delay.",
                         "limitations": "Association does not establish causality or predictive accuracy.",
                         "evidence_ids": ["income:latest", "income:year_on_year"]}]}
+
+
+def multi_submission(ids):
+    single = submission()
+    return {"selected_ids": list(ids),
+            "decisions": [{**single["decisions"][0], "id": key} for key in ids],
+            "narratives": [{**single["narratives"][0], "id": key, "evidence_ids": [key + ":latest"]}
+                           for key in ids]}
 
 
 def response(name, arguments, turn=1):
@@ -291,8 +299,7 @@ class AgentTests(unittest.TestCase):
 
     def test_numeric_error_does_not_force_wording_repair_when_evidence_needs_lookup(self):
         invalid = submission()
-        # Decision prose is checked before narrative evidence; the repair gate
-        # must still notice that the evidence is invalid instead of forcing submit.
+        # Narrative evidence must be checked before an earlier decision's prose.
         invalid["decisions"][0]["reason"] = "The 2003 definition may limit comparability."
         invalid["narratives"][0]["evidence_ids"] = ["income:invented"]
         captured = []
@@ -302,6 +309,7 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(captured[3]["tool_choice"], "required")
         self.assertEqual(captured[3]["messages"][-1]["role"], "tool")
         self.assertNotIn("repair_instruction", self.read_trace()["events"][2])
+        self.assertIn("evidence IDs", self.read_trace()["events"][2]["validation"]["error"])
 
     def test_fabricated_and_other_series_evidence_is_rejected(self):
         for evidence in ([], ["invented:latest"], ["vacancy:latest"], ["income:unprovided"],
@@ -327,6 +335,100 @@ class AgentTests(unittest.TestCase):
         with self.assertRaisesRegex(AgentError, "turn budget"):
             self.run_mock(sequence(invalid), [candidate(), candidate("vacancy")], limit=1)
         self.assertIn("limit", self.read_trace()["events"][-1]["validation"]["error"])
+
+    def test_selection_count_feedback_gives_actual_count_limit_and_synchronized_repair(self):
+        ids = [f"signal_{letter}" for letter in "abcdef"]
+        candidates = {key: candidate(key) for key in ids}
+        for chosen, fragments in ((ids, ("contains 6 IDs", "limit=5", "remove at least 1")),
+                                  ([], ("contains 0 IDs", "6 eligible", "1 to 5"))):
+            with self.subTest(chosen=chosen):
+                with self.assertRaises(ValueError) as raised:
+                    _validate_submission(multi_submission(chosen), candidates, set(ids), 5)
+                error = str(raised.exception)
+                for fragment in (*fragments, "selected_ids", "decisions.selected", "narratives", "need not fill the limit"):
+                    self.assertIn(fragment, error)
+
+    def test_later_decision_structure_precedes_earlier_numeric_reason(self):
+        candidates = {key: candidate(key) for key in ("income", "vacancy")}
+        base = multi_submission(["income"])
+        base["decisions"][0]["reason"] = "These two signals may overlap."
+        cases = [({"id": "vacancy", "selected": True, "reason": "May complement demand."}, "flag conflicts"),
+                 ({"id": "unknown", "selected": False, "reason": "May complement demand."}, "unknown or duplicate"),
+                 ({"id": "income", "selected": True, "reason": "May complement demand."}, "unknown or duplicate")]
+        for decision, expected in cases:
+            with self.subTest(decision=decision):
+                invalid = deepcopy(base)
+                invalid["decisions"].append(decision)
+                with self.assertRaises(ValueError) as raised:
+                    _validate_submission(invalid, candidates, set(candidates), 5)
+                self.assertIn(expected, str(raised.exception))
+                self.assertNotIn("numeric prose", str(raised.exception))
+
+    def test_narrative_ids_shape_and_evidence_precede_all_free_text_checks(self):
+        candidates = {key: candidate(key) for key in ("income", "vacancy")}
+        base = multi_submission(list(candidates))
+        base["decisions"][0]["reason"] = "These two signals may overlap."
+        cases = []
+        missing = deepcopy(base)
+        missing["narratives"].pop()
+        cases.append((missing, "missing IDs"))
+        duplicate = deepcopy(base)
+        duplicate["narratives"][1]["id"] = "income"
+        cases.append((duplicate, "duplicate ID"))
+        malformed = deepcopy(base)
+        del malformed["narratives"][1]["limitations"]
+        cases.append((malformed, "narrative must contain exactly"))
+        evidence = deepcopy(base)
+        evidence["narratives"][1]["evidence_ids"] = ["income:latest"]
+        cases.append((evidence, "other-series evidence IDs"))
+        for invalid, expected in cases:
+            with self.subTest(expected=expected):
+                with self.assertRaises(ValueError) as raised:
+                    _validate_submission(invalid, candidates, set(candidates), 5)
+                self.assertIn(expected, str(raised.exception))
+                self.assertNotIn("numeric prose", str(raised.exception))
+        with self.assertRaisesRegex(ValueError, "numeric prose"):
+            _validate_submission(base, candidates, set(candidates), 5)
+
+    def test_smaller_valid_selection_is_allowed_and_input_is_not_rewritten(self):
+        candidates = {key: candidate(key) for key in ("income", "vacancy", "loans")}
+        submitted = multi_submission(["income", "vacancy"])
+        original = deepcopy(submitted)
+        result = _validate_submission(submitted, candidates, set(candidates), 5)
+        self.assertEqual(result["selected_ids"], ["income", "vacancy"])
+        self.assertEqual(submitted, original)
+        self.assertEqual(result["decisions"][-1]["reason_origin"], "system")
+        self.assertFalse(result["decisions"][-1]["selected"])
+
+    def test_loop_repairs_count_then_flags_then_wording_without_losing_coverage(self):
+        ids = [f"signal_{letter}" for letter in "abcdef"]
+        oversized = multi_submission(ids)
+        inconsistent = multi_submission(ids[:5])
+        inconsistent["decisions"].append(oversized["decisions"][-1])
+        inconsistent["decisions"][0]["reason"] = "These two signals may overlap."
+        bad_wording = multi_submission(ids[:5])
+        bad_wording["decisions"][0]["reason"] = inconsistent["decisions"][0]["reason"]
+        repaired = multi_submission(ids[:5])
+        responses = [response("list_candidates", {"query": ""}),
+                     response("inspect_candidate", {"ids": ids}, 2),
+                     response("submit_analysis", oversized, 3),
+                     response("submit_analysis", inconsistent, 4),
+                     response("submit_analysis", bad_wording, 5),
+                     response("submit_analysis", repaired, 6)]
+        result = self.run_mock(responses, [candidate(key) for key in ids], limit=5)
+        self.assertEqual(result["selected_ids"], ids[:5])
+        trace = self.read_trace()
+        self.assertIn("contains 6 IDs", trace["events"][2]["validation"]["error"])
+        self.assertIn("flag conflicts", trace["events"][3]["validation"]["error"])
+        self.assertNotIn("repair_instruction", trace["events"][3])
+        self.assertIn("numeric prose", trace["events"][4]["validation"]["error"])
+        self.assertIn("Keep the structurally valid selected IDs", trace["events"][4]["repair_instruction"])
+        self.assertTrue(trace["events"][5]["validation"]["accepted"])
+        self.assertIn("Resident household stock is not newly formed", trace["instructions"])
+        self.assertIn("total HDB dwelling stock is not newly completed", trace["instructions"])
+        self.assertIn("omitted for capacity or overlap did not fail", trace["instructions"])
+        submit_tool = next(tool for tool in trace["tools"] if tool["name"] == "submit_analysis")
+        self.assertIn("at most 5 IDs", submit_tool["description"])
 
     def test_duplicate_narrative_and_missing_selected_reason_are_rejected(self):
         duplicate = submission()

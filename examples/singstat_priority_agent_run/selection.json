@@ -1,0 +1,123 @@
+{
+  "selected_ids": [
+    "M182342:2"
+  ],
+  "decisions": [
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M182342:2",
+      "reason": "The seasonally adjusted resident unemployment rate is eligible and timely. Unemployment directly reflects current labour-market stress, which may weaken resident purchasing capacity and rental affordability. Its seasonally adjusted nature and high completeness justify selection.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M700071:23",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400841:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400841:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M810371:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M810361:5",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M183111:7",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400751:1.1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    }
+  ],
+  "narratives": {
+    "M182342:2": {
+      "sales": "Elevated resident unemployment may constrain purchasing capacity and buyer confidence, potentially slowing sales transactions or reducing sales price growth.",
+      "rents": "A higher resident unemployment rate may weaken residents' ability to pay rents, potentially reducing rental demand and dampening rent growth.",
+      "lag": "Current labour-market conditions may transmit to housing over subsequent quarters as tenants and buyers adjust to employment security.",
+      "limitations": "The seasonally adjusted series is revised annually. It excludes non-residents and does not capture job losses among residents who remain classified as employed, underemployment, or changes in work-from-home patterns that affect housing space requirements.",
+      "evidence_ids": [
+        "M182342:2:latest",
+        "M182342:2:previous_period",
+        "M182342:2:year_on_year"
+      ]
+    }
+  },
+  "method": "soclaas_chat_completions_constrained_agent",
+  "usage": {
+    "input_tokens": 152923,
+    "output_tokens": 10100,
+    "total_tokens": 163023,
+    "requests": 7
+  }
+}

@@ -212,7 +212,7 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
            "mode_label": "Deterministic rules; reviewed qualitative templates, no model call" if mode == "rules" else f"Live {'SoCLaaS Chat Completions' if provider == 'soclaas' else 'OpenAI Responses'} tool-calling agent ({model})",
            "provider": provider, "model": model, "source_policy": "saved" if saved else source_policy,
            "source_routing_version": 2, "selection_limit": limit,
-           "source_strategy": "Verified saved snapshot; no new retrieval" if saved else "SingStat first for every candidate; bounded request retries, independent candidates continue, transient failures rechecked before reviewed backups",
+           "source_strategy": "Verified saved snapshot; no new retrieval" if saved else "SingStat first for every candidate; bounded request retries, independent candidates continue, transient failures rechecked; " + ("reviewed per-candidate backups enabled" if source_policy == "auto" else "no backup sources enabled"),
            "data_basis": AS_OF_POLICY, "package_version": __version__, "python_version": sys.version.split()[0],
            "warnings": [], "status": "running",
            "usage": {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "requests": 0}}
@@ -322,7 +322,13 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         if len(selected_ids) != len(set(selected_ids)) or not set(selected_ids) <= eligible or len(selected_ids) > limit:
             raise ValueError("Selection violates candidate eligibility, uniqueness or size constraints")
         if len(selected_ids) < limit:
-            run["warnings"].append("Selected fewer candidates than requested; missing slots were not filled with ineligible series.")
+            run["warnings"].append(f"Selected {len(selected_ids)} of {len(eligible)} eligible candidates, below the maximum of {limit}. "
+                                   "See individual decisions; unused capacity does not by itself imply unavailable or ineligible data.")
+        if mode == "llm":
+            missing_reasons = sum(item.get("reason_origin") == "system" for item in selection.get("decisions", []))
+            if missing_reasons:
+                run["warnings"].append(f"The model omitted {missing_reasons} individual decision reasons; "
+                                       "these exclusions are labelled as system explanations, not model reasoning.")
         write_json(output / "selection.json", selection)
         run["selected_ids"] = selected_ids
         run["usage"] = selection.get("usage", {})

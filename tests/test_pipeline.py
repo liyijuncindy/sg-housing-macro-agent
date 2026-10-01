@@ -99,6 +99,18 @@ class PipelineTests(unittest.TestCase):
             self.assertEqual(len(read_json(root / "evaluations.json")), len(read_json(root / "catalogue.json")))
             self.assertFalse((root / "report.md").exists())
 
+    def test_unused_capacity_reports_actual_eligible_count_without_blame_on_data(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "run"
+            with patch("housing_agent.pipeline.SingStatClient.discover", return_value=[]), patch("housing_agent.pipeline.fetch_series", side_effect=lambda client, spec: specimen(spec)), patch("housing_agent.pipeline.select_candidates", side_effect=lambda evaluations, limit: select_candidates(evaluations, 1)):
+                result = run_workflow("2026-10-01", root, limit=5, progress=lambda _: None)
+            self.assertEqual(result["status"], "complete_with_warnings")
+            count = result["source_coverage"]["eligible"]
+            self.assertGreater(count, 5)
+            self.assertIn(f"Selected 1 of {count} eligible candidates", result["warnings"][0])
+            self.assertIn("does not by itself imply", result["warnings"][0])
+            self.assertIn("no backup sources enabled", result["source_strategy"])
+
     def test_partial_failure_never_selects_failed_source(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp) / "partial"

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "run_id": "singstat_priority_agent_run",
+  "created_at": "2026-10-01T11:37:39+00:00",
+  "as_of": "2026-10-01",
+  "as_of_policy": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "mode": "llm",
+  "mode_label": "Live SoCLaaS Chat Completions tool-calling agent (qwen3.6:35b)",
+  "provider": "soclaas",
+  "model": "qwen3.6:35b",
+  "source_policy": "auto",
+  "source_routing_version": 2,
+  "selection_limit": 5,
+  "source_strategy": "SingStat first for every candidate; bounded request retries, independent candidates continue, transient failures rechecked before reviewed backups",
+  "data_basis": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "package_version": "0.1.0",
+  "python_version": "3.12.14",
+  "warnings": [
+    "Selected fewer candidates than requested; missing slots were not filled with ineligible series."
+  ],
+  "status": "complete_with_warnings",
+  "usage": {
+    "input_tokens": 152923,
+    "output_tokens": 10100,
+    "total_tokens": 163023,
+    "requests": 7
+  },
+  "code_commit": "9cec32652cb3fd487f31ebfca29d53648d2ac201",
+  "code_worktree_dirty": false,
+  "code_hashes": {
+    "__init__.py": "317887a06fbcf9959e1393d3ee1911689881a6cbbe20a8e404ca966a8db9425d",
+    "__main__.py": "5a8bb1bc723f85d4e60cc3d459088e75748302e1d49602ade8317427d011611c",
+    "agent.py": "51447c92d6938a231cd7bb10baafae791035d51179cfdc291ff97ad8bc5955c1",
+    "engine.py": "ebad3238e3eec2614fa4c61802acc5cbb2bc7d32379f3aec4f86624324837c51",
+    "indicator_pool.py": "5aff85a98e9c8386dd07fbcca8ebfaf132d2163c3042f6dd5528a7d947123dbc",
+    "mas_sources.py": "fb147735d7ec035e2057650a3521a30eb9af347ca8381d4920b90554c79aecef",
+    "mom_sources.py": "ea94901b7ed3f6899fda887c25a9f8a642db65f2bed90b2a58ece5644125f308",
+    "official_sources.py": "39607ee459f5e07968c478bb920a8684ebf06754fa9db746c3231153c18ed308",
+    "pipeline.py": "8c270905eaa7d22ec5318c463b00d3b3d13a41c0b6bbf4666dddc8d6827b71e7",
+    "report.py": "c8d535ec1a26d1170518442f4d419ee95cd9a82049bc7577382a285b8468c9f3",
+    "sources.py": "68a136fe38b760615b4804dede69533b35cb76bf5ac4ecd9d7b0b0705f1ed01b",
+    "storage.py": "7778396b86c99c8ce251016cd009c109a5baf11657d30e1306950aa37fe72ac8"
+  },
+  "source_coverage": {
+    "candidates": 16,
+    "downloaded": 16,
+    "eligible": 16,
+    "singstat_downloaded": 16,
+    "fallback_downloaded": 0,
+    "maintenance_responses_observed": false,
+    "recovered_on_recheck": [],
+    "unavailable": [],
+    "providers": [
+      "SingStat Table Builder"
+    ]
+  },
+  "selected_ids": [
+    "M182342:2"
+  ],
+  "actual_models": [
+    "qwen3.6:35b"
+  ],
+  "agent_elapsed_seconds": 84.510949,
+  "finished_at": "2026-10-01T11:40:41+00:00",
+  "elapsed_seconds": 182.305,
+  "indicator_pool_files": {
+    "markdown": "indicator_pool.md",
+    "html": "indicator_pool.html",
+    "json": "indicator_pool.json"
+  }
+}

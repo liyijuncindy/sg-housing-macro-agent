@@ -2,18 +2,32 @@
 
 Checked on **1 October 2026, Singapore time**, using Python 3.12.14. This document distinguishes observed results from planned or unverified behaviour.
 
+## SingStat-priority fresh-data model trial
+
+```bash
+python -m housing_agent run --as-of 2026-10-01 --mode llm --provider soclaas --source-policy auto --limit 5 --output examples/singstat_priority_agent_run
+```
+
+The first revised full workflow ran from clean commit `9cec326` at 19:37:39–19:40:41 SGT. All **sixteen** candidates downloaded successfully through SingStat and passed quality gates. All **forty-one** logical requests succeeded; no maintenance response, candidate recheck, fallback or saved snapshot was used. This live success complements the offline failure/recovery tests; it does not demonstrate live retries during an actual outage.
+
+The source work succeeded, but this model trial is **not a satisfactory broad housing brief**. The first two submissions selected six candidates against the maximum of five. Another submission listed five selected IDs but retained six selected decision flags and six narratives; an earlier wording error obscured that structural mismatch. After another over-limit submission, the model reduced the final selection to resident unemployment alone and omitted fifteen individual exclusion reasons. These are explicitly labelled system explanations. The original report and trace remain unchanged for review.
+
+Observed use was **152,923 input + 10,100 output = 163,023 tokens across seven model requests**, with 84.511 seconds in the model adapter and 182.305 seconds end to end. Completion with warnings indicates protocol acceptance, not strong coverage or semantic quality. The earlier generic unused-capacity warning must not be read as evidence that the other fifteen series failed quality; all sixteen were eligible. Follow-up code reports actual selected/eligible counts, flags system-supplied reasons, and gives precise cardinality/structural feedback before checking prose.
+
+An independent audit checked **2,318 raw observation cells**, **2,318 cutoff-filtered CSV rows** and **23 calculated changes** without discrepancy. The semantic audit flags unsupported extensions in the unemployment limitation and the unreasoned loss of coverage; see [the first-trial audit](evidence/singstat-priority-audit.json). The tested provider/model remains `qwen3.6:35b`; this is an observed behavior of this prompt and run, not a benchmark of all models of that size.
+
 ## Automated tests
 
 ```bash
 python -m unittest discover -v
 ```
 
-**Observed: 205 tests passed.** The suite was rerun for the SingStat-priority revision; complete output is saved in [evidence/tests.txt](evidence/tests.txt).
+**Observed: 211 tests passed.** The suite was rerun for the SingStat-priority revision; complete output is saved in [evidence/tests.txt](evidence/tests.txt).
 
 - 41 engine tests: true-calendar baselines, missing quarters, zero denominators, percentage/basis-point units, date cutoffs, population reference dates, quality windows, staleness and family selection.
-- 33 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
+- 38 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
 - 31 source tests cover current-notice recognition, historical/future/JSON-text non-matches, retry and recovery, incomplete response streams, independent subsequent requests, bounded diagnostic capture, official-response parsing, identity checks and truncation rejection.
-- 33 pipeline tests cover independent candidate continuation after failed discovery, two-pass transient failure handling, catalogue-dependent selection limits, saved-snapshot verification including failed-response hashes, full synthetic workflows, all-source failure before model invocation, immutable output and replay.
+- 34 pipeline tests cover independent candidate continuation after failed discovery, two-pass transient failure handling, catalogue-dependent selection limits, saved-snapshot verification including failed-response hashes, full synthetic workflows, all-source failure before model invocation, immutable output and replay.
 - 12 MOM tests: quarterly resident/SA selection, CSV precision, workbook title/unit/coverage validation, preliminary markers, source locators, formula rejection and catalogue-definition drift.
 - 19 MAS tests: public form selection, repeated annual headers, value-date versus publication-date grouping, complete month boundaries, weekend endpoints, null terminal values, malformed rows and source identity.
 - 16 independent transport/integration tests: original-file auditing, public-host restrictions, bounded retries, HTTP 206 rejection, SingStat-first routing, delayed rechecks, per-candidate backup selection, strict SingStat policy, failed fallback isolation, mixed-source saved snapshots and replay.

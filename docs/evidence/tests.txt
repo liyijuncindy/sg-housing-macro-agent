@@ -4,7 +4,10 @@ test_fabricated_and_other_series_evidence_is_rejected (tests.test_agent.AgentTes
 test_incomplete_or_text_only_response_fails_closed (tests.test_agent.AgentTests.test_incomplete_or_text_only_response_fails_closed) ... ok
 test_inspect_requires_actual_discovery (tests.test_agent.AgentTests.test_inspect_requires_actual_discovery) ... ok
 test_inspection_projection_preserves_analysis_facts_without_raw_payload_duplication (tests.test_agent.AgentTests.test_inspection_projection_preserves_analysis_facts_without_raw_payload_duplication) ... ok
+test_later_decision_structure_precedes_earlier_numeric_reason (tests.test_agent.AgentTests.test_later_decision_structure_precedes_earlier_numeric_reason) ... ok
+test_loop_repairs_count_then_flags_then_wording_without_losing_coverage (tests.test_agent.AgentTests.test_loop_repairs_count_then_flags_then_wording_without_losing_coverage) ... ok
 test_metadata_text_bounds_are_explicit_and_do_not_modify_evidence (tests.test_agent.AgentTests.test_metadata_text_bounds_are_explicit_and_do_not_modify_evidence) ... ok
+test_narrative_ids_shape_and_evidence_precede_all_free_text_checks (tests.test_agent.AgentTests.test_narrative_ids_shape_and_evidence_precede_all_free_text_checks) ... ok
 test_no_key_fails_without_import_or_request_and_records_failure (tests.test_agent.AgentTests.test_no_key_fails_without_import_or_request_and_records_failure) ... ok
 test_numeric_and_certainty_and_link_prose_is_rejected (tests.test_agent.AgentTests.test_numeric_and_certainty_and_link_prose_is_rejected) ... ok
 test_numeric_error_does_not_force_wording_repair_when_evidence_needs_lookup (tests.test_agent.AgentTests.test_numeric_error_does_not_force_wording_repair_when_evidence_needs_lookup) ... ok
@@ -17,8 +20,10 @@ test_real_tool_loop_is_evidence_constrained_and_audited (tests.test_agent.AgentT
 test_reasoning_and_function_outputs_are_carried_to_next_request (tests.test_agent.AgentTests.test_reasoning_and_function_outputs_are_carried_to_next_request) ... ok
 test_search_filters_without_inventing_candidates (tests.test_agent.AgentTests.test_search_filters_without_inventing_candidates) ... ok
 test_selected_candidate_must_have_been_inspected (tests.test_agent.AgentTests.test_selected_candidate_must_have_been_inspected) ... ok
+test_selection_count_feedback_gives_actual_count_limit_and_synchronized_repair (tests.test_agent.AgentTests.test_selection_count_feedback_gives_actual_count_limit_and_synchronized_repair) ... ok
 test_selection_limit_enforced (tests.test_agent.AgentTests.test_selection_limit_enforced) ... ok
 test_shared_quality_policy_is_returned_once_and_scoring_metrics_are_preserved (tests.test_agent.AgentTests.test_shared_quality_policy_is_returned_once_and_scoring_metrics_are_preserved) ... ok
+test_smaller_valid_selection_is_allowed_and_input_is_not_rewritten (tests.test_agent.AgentTests.test_smaller_valid_selection_is_allowed_and_input_is_not_rewritten) ... ok
 test_soclaas_chat_loop_forces_safe_phases_and_uses_chat_wire_format (tests.test_agent.AgentTests.test_soclaas_chat_loop_forces_safe_phases_and_uses_chat_wire_format) ... ok
 test_soclaas_errors_redact_both_provider_key_formats (tests.test_agent.AgentTests.test_soclaas_errors_redact_both_provider_key_formats) ... ok
 test_soclaas_invalid_final_submission_exhausts_budget_without_fallback (tests.test_agent.AgentTests.test_soclaas_invalid_final_submission_exhausts_budget_without_fallback) ... ok
@@ -149,6 +154,7 @@ test_missing_key_fails_before_downloading (tests.test_pipeline.PipelineTests.tes
 test_partial_failure_never_selects_failed_source (tests.test_pipeline.PipelineTests.test_partial_failure_never_selects_failed_source) ... ok
 test_processed_export_respects_report_date (tests.test_pipeline.PipelineTests.test_processed_export_respects_report_date) ... ok
 test_selection_limit_is_a_positive_integer_bounded_by_the_run_catalogue (tests.test_pipeline.PipelineTests.test_selection_limit_is_a_positive_integer_bounded_by_the_run_catalogue) ... ok
+test_unused_capacity_reports_actual_eligible_count_without_blame_on_data (tests.test_pipeline.PipelineTests.test_unused_capacity_reports_actual_eligible_count_without_blame_on_data) ... ok
 test_all_series_maintenance_rechecks_every_candidate_before_failing_without_model (tests.test_pipeline.ProviderPipelineTests.test_all_series_maintenance_rechecks_every_candidate_before_failing_without_model) ... ok
 test_default_provider_is_openai_when_no_provider_is_supplied (tests.test_pipeline.ProviderPipelineTests.test_default_provider_is_openai_when_no_provider_is_supplied) ... ok
 test_discovery_maintenance_does_not_prevent_working_candidate_tables_or_model (tests.test_pipeline.ProviderPipelineTests.test_discovery_maintenance_does_not_prevent_working_candidate_tables_or_model) ... ok
@@ -205,6 +211,6 @@ test_recovery_preserves_failed_attempt_and_original_success_bytes (tests.test_so
 test_temporary_http_failure_has_finite_retries_and_a_failure_record (tests.test_sources.TransportFailureTests.test_temporary_http_failure_has_finite_retries_and_a_failure_record) ... ok
 
 ----------------------------------------------------------------------
-Ran 205 tests in 1.119s
+Ran 211 tests in 1.043s
 
 OK

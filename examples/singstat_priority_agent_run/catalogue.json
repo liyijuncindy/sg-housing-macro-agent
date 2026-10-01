@@ -1,0 +1,347 @@
+[
+  {
+    "table_id": "M810001",
+    "row_id": "2",
+    "expected_name": "Resident Population",
+    "expected_unit": "Number",
+    "frequency": "A",
+    "theme": "population_demand",
+    "definition": "Singapore citizens and permanent residents as at end-June; from 2003 excludes residents continuously overseas for at least 12 months at the reference date.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Singapore resident population, not number of households or homebuyers.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": "06-30",
+    "mechanism": {
+      "sales": "A larger resident population may support owner-occupier demand when household formation and purchasing capacity also increase.",
+      "rents": "Population growth may support rental demand, conditional on household formation and tenure choices.",
+      "lag": "Annual demand context; the effect may develop over multiple quarters.",
+      "limitations": "Population is not household formation; pre-1990 population concepts and the 2003 coverage change limit long-run comparability. Historical observations may be revised."
+    },
+    "selection_family": "population_demand"
+  },
+  {
+    "table_id": "M810001",
+    "row_id": "5",
+    "expected_name": "Non-Resident Population",
+    "expected_unit": "Number",
+    "frequency": "A",
+    "theme": "population_demand",
+    "definition": "Foreigners working, studying or living in Singapore without permanent residence, excluding tourists and short-term visitors, as at end-June.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Singapore non-resident population; housing needs include arrangements beyond private residential rentals.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": "06-30",
+    "mechanism": {
+      "sales": "An increase may support housing demand indirectly, but tenure preferences and purchase restrictions affect the link to sales.",
+      "rents": "A larger non-resident population may support rental demand where residents seek ordinary residential accommodation.",
+      "lag": "Annual demand context; moves and lease renewals may transmit over subsequent quarters.",
+      "limitations": "Does not identify income, visa category, dormitory residence, household size or dwelling tenure. Population alone is not a rental-demand forecast."
+    },
+    "selection_family": "population_demand"
+  },
+  {
+    "table_id": "M015661",
+    "row_id": "1",
+    "expected_name": "GDP In Chained (2015) Dollars",
+    "expected_unit": "Million Dollars",
+    "frequency": "Q",
+    "theme": "economic_activity",
+    "definition": "Quarterly gross domestic product measured in chained 2015 Singapore dollars; a measure of real domestic economic activity.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Whole Singapore economy; million Singapore dollars at chained 2015 prices.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "Stronger real activity may support jobs, incomes and confidence, which can support purchasing demand.",
+      "rents": "Stronger activity may support employment-linked rental demand.",
+      "lag": "Economic conditions may affect housing over several quarters.",
+      "limitations": "This series is not labelled seasonally adjusted: prioritise year-on-year comparisons. GDP and housing may share common causes; advance estimates and history can be revised."
+    },
+    "comparisons": [
+      "year_on_year"
+    ],
+    "selection_family": "economic_activity"
+  },
+  {
+    "table_id": "M182342",
+    "row_id": "2",
+    "expected_name": "Resident Unemployment Rate, (SA)",
+    "expected_unit": "Per Cent",
+    "frequency": "Q",
+    "theme": "labour_market",
+    "definition": "Resident unemployment rate at quarter-end, seasonally adjusted; residents are citizens and permanent residents.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Resident labour force, not the entire resident population or non-resident workforce.",
+    "seasonal_adjustment": "Seasonally Adjusted",
+    "change_kind": "percentage_point",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "A higher unemployment rate may weaken purchasing capacity and confidence.",
+      "rents": "A higher rate may weaken residents' ability to pay rents, with effects depending on household circumstances.",
+      "lag": "Current labour-market stress; housing responses may follow over subsequent quarters.",
+      "limitations": "The seasonally adjusted series is revised annually. It excludes non-residents and does not measure earnings, job security or underemployment."
+    },
+    "selection_family": "labour_market"
+  },
+  {
+    "table_id": "M184101",
+    "row_id": "1",
+    "expected_name": "Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents",
+    "expected_unit": "Dollars",
+    "frequency": "Q",
+    "theme": "household_income",
+    "definition": "Mean gross monthly employment income of employed residents, including employer CPF contributions and excluding bonus; employees' amounts are before employee CPF and income tax deductions.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Employed citizens and permanent residents excluding full-time National Servicemen; Singapore dollars per employed person.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "Higher employment income may improve borrowing and purchasing capacity.",
+      "rents": "Higher employment income may support rent affordability.",
+      "lag": "Income changes may pass through to purchase and lease decisions over subsequent quarters.",
+      "limitations": "Includes employer CPF and is not cash take-home pay. The mean can be skewed by high earners; composition changes matter. Official metadata recommends same-quarter year-on-year comparisons; history begins in 2021 Q2."
+    },
+    "comparisons": [
+      "year_on_year"
+    ],
+    "selection_family": "household_income"
+  },
+  {
+    "table_id": "M016081",
+    "row_id": "1",
+    "expected_name": "Personal Disposable Income (Nominal)",
+    "expected_unit": "Million Dollars",
+    "frequency": "Q",
+    "theme": "household_income",
+    "definition": "Quarterly aggregate personal disposable income at current prices.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Singapore aggregate nominal personal disposable income; million Singapore dollars, not median household income.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "Higher aggregate disposable income may increase the resources available for housing purchases.",
+      "rents": "Higher aggregate disposable income may support rental spending.",
+      "lag": "Quarterly affordability context; decisions may adjust with a lag.",
+      "limitations": "Nominal aggregate growth also reflects inflation and population change; it is not income per household. This series is not labelled seasonally adjusted."
+    },
+    "comparisons": [
+      "year_on_year"
+    ],
+    "selection_family": "household_income"
+  },
+  {
+    "table_id": "M700071",
+    "row_id": "23",
+    "expected_name": "Compounded Singapore Overnight Rate Average (SORA) - 3 Month",
+    "expected_unit": "Per Cent Per Annum",
+    "frequency": "M",
+    "theme": "financing_cost",
+    "definition": "Three-month compounded Singapore Overnight Rate Average (SORA), observed at month-end and expressed as an annual percentage rate.",
+    "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Singapore-dollar benchmark interest rate; not an individual mortgage offer.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "basis_point",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage rates reset.",
+      "rents": "Higher ownership financing costs may shift tenure choices and landlords' costs; the net rental effect is ambiguous.",
+      "lag": "Pass-through depends on mortgage pricing, reset dates and fixed-rate periods, often over subsequent months.",
+      "limitations": "Month-end snapshot, not a monthly average. Mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through; SORA changes alone cannot determine housing prices."
+    },
+    "selection_family": "financing_cost"
+  },
+  {
+    "table_id": "M701091",
+    "row_id": "1.2.1",
+    "expected_name": "Consumer Loans - Housing And Bridging Loans",
+    "expected_unit": "Million Dollars",
+    "frequency": "M",
+    "theme": "housing_credit",
+    "definition": "Commercial-bank consumer housing and bridging loans to residents outstanding at month-end.",
+    "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Commercial-bank lending stock to residents; million Singapore dollars, not new monthly mortgage approvals.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "Expanding housing credit may accompany financed housing demand, but it can also respond to higher prices.",
+      "rents": "Credit conditions may affect ownership-versus-renting decisions; the rental relationship is indirect.",
+      "lag": "Credit stocks adjust gradually and may lag transactions.",
+      "limitations": "This is outstanding stock, not credit availability or origination flow; repayments also affect it. Revised reporting starts July 2021 following changes to MAS Notices 610 and 1003."
+    },
+    "selection_family": "housing_credit"
+  },
+  {
+    "table_id": "M400841",
+    "row_id": "1",
+    "expected_name": "All Types Private Residential Properties Available",
+    "expected_unit": "Number Of Units",
+    "frequency": "Q",
+    "theme": "completed_supply",
+    "definition": "Completed private residential units at quarter-end with a Temporary Occupation Permit or Certificate of Statutory Completion; this is the housing stock labelled available by URA.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "All landed and non-landed private residential units; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "Growth in completed stock may ease supply constraints relative to demand.",
+      "rents": "Additional completed homes may increase potential rental supply.",
+      "lag": "Completed stock is available in the current period; absorption may take subsequent quarters.",
+      "limitations": "Available denotes total completed stock, not units actively listed for sale or rent. Coverage expanded in 1995 and 1996; private-sector results do not directly represent HDB."
+    },
+    "selection_family": "housing_supply"
+  },
+  {
+    "table_id": "M400841",
+    "row_id": "2",
+    "expected_name": "All Types Private Residential Properties Vacant",
+    "expected_unit": "Number Of Units",
+    "frequency": "Q",
+    "theme": "vacant_supply",
+    "definition": "Number of vacant completed private residential units at quarter-end, not the vacancy rate.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "All landed and non-landed private residential units; same exclusions and coverage as the completed stock in table M400841 row 1.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "More vacant units may indicate weaker absorption and reduce price pressure, depending on total stock and location.",
+      "rents": "More vacant units may indicate greater rental availability and reduce rent pressure, depending on demand.",
+      "lag": "Current market slack; rent and price responses can follow over subsequent quarters.",
+      "limitations": "Interpret against completed stock: a rising count can coexist with a falling vacancy rate. Vacancy rate must be derived as row 2 divided by row 1 for matching periods; this row alone is a count."
+    },
+    "selection_family": "housing_supply"
+  },
+  {
+    "table_id": "M400391",
+    "row_id": "2",
+    "expected_name": "Total Non-Landed Properties",
+    "expected_unit": "Number Of Units",
+    "frequency": "Q",
+    "theme": "future_supply",
+    "definition": "Total non-landed private residential units in the pipeline at quarter-end across development statuses.",
+    "update_frequency": "Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Non-landed private residential pipeline; excludes hostels, HDB flats, tenement houses, parsonages and Executive Condominiums.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "A larger prospective pipeline may ease expected future supply constraints.",
+      "rents": "Future completions may expand potential rental supply.",
+      "lag": "Medium to long term; timing varies across under-construction and planned developments.",
+      "limitations": "The pipeline is not completed housing or a completion forecast. Timing, cancellations and development stages vary; landed housing is excluded from this row."
+    },
+    "selection_family": "housing_supply"
+  },
+  {
+    "table_id": "M213751",
+    "row_id": "1",
+    "expected_name": "All Items",
+    "expected_unit": "Index",
+    "frequency": "M",
+    "theme": "inflation",
+    "definition": "All-items Consumer Price Index, 2024 = 100, based on the official household expenditure weighting pattern.",
+    "update_frequency": "Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.",
+    "scope": "Singapore consumer prices; index, not residential property sale prices.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "mechanism": {
+      "sales": "Inflation affects real purchasing power and building or financing conditions, but its net association with home values is ambiguous.",
+      "rents": "Inflation affects household budgets and landlords' costs, with an ambiguous net effect on rent growth.",
+      "lag": "Monthly cost-of-living context; effects can be contemporaneous or lagged.",
+      "limitations": "CPI includes housing-related components, so its relationship with rents can partly reflect overlap. It is not a construction-cost index, house-price index or independent causal predictor."
+    },
+    "selection_family": "inflation"
+  },
+  {
+    "table_id": "M810371",
+    "row_id": "1",
+    "expected_name": "Resident Households",
+    "expected_unit": "Number",
+    "frequency": "A",
+    "theme": "population_demand",
+    "definition": "Annual number of resident households; household counts are distinct from population and are not the number of newly formed households.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Resident households. Source estimates combine Census of Population, General Household Survey and Comprehensive June Labour Force Survey; sampling variability and source changes apply.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "selection_family": "population_demand",
+    "mechanism": {
+      "sales": "Household counts may better represent potential dwelling demand than population alone, subject to tenure, household composition and affordability.",
+      "rents": "More households may support rental demand depending on tenure choices.",
+      "lag": "Annual structural context; no short-term timing claim.",
+      "limitations": "Differences in household counts are not gross household formation. Census and survey years use different sources; metadata does not establish one exact reference day for every year. Period-end filtering is conservative and is not a claim that the count was measured at year-end."
+    }
+  },
+  {
+    "table_id": "M810361",
+    "row_id": "5",
+    "expected_name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+    "expected_unit": "Dollar",
+    "frequency": "A",
+    "theme": "household_income",
+    "definition": "Median nominal monthly household employment income among resident employed households, including employer CPF contributions and one-twelfth of annual bonus, before Government transfers and taxes.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Households whose reference person is a citizen or permanent resident and with at least one employed member. Income sums employment and business income of employed household members, excluding live-in domestic workers.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": null,
+    "selection_family": "household_income",
+    "mechanism": {
+      "sales": "Median household employment income may describe typical household purchasing capacity more directly than mean income per employed person.",
+      "rents": "Median household income may contextualise household rent affordability.",
+      "lag": "Annual affordability context; income and financing decisions can adjust over subsequent quarters.",
+      "limitations": "Not income per household member or an individual wage. Excludes households with no employed person; includes employer CPF and annual bonus allocation, unlike the existing bonus-excluding quarterly individual mean. Nominal and not take-home income."
+    }
+  },
+  {
+    "table_id": "M183111",
+    "row_id": "7",
+    "expected_name": "Employment (Persons) As At Year End",
+    "expected_unit": "Thousand",
+    "frequency": "A",
+    "theme": "employment_level",
+    "definition": "Total persons in employment as at year-end, expressed in thousands; includes migrant domestic workers and excludes persons serving two-year full-time national service.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Resident and non-resident employees plus self-employed persons. MOM administrative-record coverage excludes two-year full-time national servicemen; the current MOM summary identifies the matching total as including migrant domestic workers. SingStat row footnote confirms administrative records plus Labour Force Survey estimates for the self-employed.",
+    "seasonal_adjustment": "Non-seasonally Adjusted",
+    "change_kind": "percent",
+    "reference_month_day": "12-31",
+    "selection_family": "labour_market",
+    "mechanism": {
+      "sales": "A larger employment base may support aggregate earned income and housing purchasing capacity.",
+      "rents": "Employment expansion may support work-related housing and rental demand.",
+      "lag": "Annual year-end employment context; housing responses need not be simultaneous.",
+      "limitations": "Counts employed persons, not vacancies, new hires or the unemployment rate. Includes migrant domestic workers and other workers whose accommodation need is not an ordinary separate rental unit. Employment and housing may share common causes; not a residents-only series."
+    }
+  },
+  {
+    "table_id": "M400751",
+    "row_id": "1.1",
+    "expected_name": "Total HDB Flats",
+    "expected_unit": "Number",
+    "frequency": "A",
+    "theme": "public_housing_supply",
+    "definition": "Total HDB flats as at end-June of each year, including non-privatised Housing and Urban Development Corporation flats.",
+    "update_frequency": "Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.",
+    "scope": "Public-housing dwelling stock; not annual completions, BTO launches, resale transactions or flats available for rent.",
+    "seasonal_adjustment": "Not labelled as seasonally adjusted",
+    "change_kind": "percent",
+    "reference_month_day": "06-30",
+    "selection_family": "housing_supply",
+    "mechanism": {
+      "sales": "The public-housing stock adds supply context not represented by private residential stock and may influence tenure and purchase choices.",
+      "rents": "Public-housing supply can affect tenure choices and rental alternatives subject to eligibility and rental rules.",
+      "lag": "Annual supply stock; allocations, completion and occupation timing can differ.",
+      "limitations": "Stock is not new supply or vacancies and includes non-privatised HUDC flats. Public and private markets differ in eligibility and policy; aggregate stock alone does not predict prices or rents."
+    }
+  }
+]
