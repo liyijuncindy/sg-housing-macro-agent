@@ -1,0 +1,75 @@
+{
+  "date_singapore": "2026-10-01",
+  "provider": "soclaas",
+  "source_basis": "Explicitly reused actual previously captured SingStat data; fresh retrieval returned HTTP 502.",
+  "trials": [
+    {
+      "name": "first_adapter_probe",
+      "trace": "docs/evidence/soclaas-first-probe/agent_trace.json",
+      "trace_sha256": "347b9003fe4c08f88d8ad176cf20bfd528a0dfa30a69ec91d89d93cc443cc0dc",
+      "status": "completed",
+      "actual_models": [
+        "qwen3.6:35b"
+      ],
+      "requests": 6,
+      "usage": {
+        "input_tokens": 149733,
+        "output_tokens": 6554,
+        "total_tokens": 156287,
+        "requests": 6
+      },
+      "agent_elapsed_seconds": 64.937561,
+      "rejected_submissions": 3
+    },
+    {
+      "name": "compact_payload_failure",
+      "trace": "docs/evidence/soclaas-repair-failure/agent_trace.json",
+      "trace_sha256": "e243280371e0c8cfcdf9521e927d0c4d06a88ffd773a7a6983be39df7a456174",
+      "status": "failed",
+      "actual_models": [
+        "qwen3.6:35b"
+      ],
+      "requests": 8,
+      "usage": {
+        "input_tokens": 141527,
+        "output_tokens": 7021,
+        "total_tokens": 148548,
+        "requests": 8
+      },
+      "agent_elapsed_seconds": 66.408559,
+      "rejected_submissions": 4
+    },
+    {
+      "name": "targeted_repair_workflow",
+      "trace": "examples/soclaas_verified_run/agent_trace.json",
+      "trace_sha256": "184f39841aa9af5dca595a02fcbd9815c4f122917833495868fe64a434bf33b5",
+      "status": "completed",
+      "actual_models": [
+        "qwen3.6:35b"
+      ],
+      "requests": 4,
+      "usage": {
+        "input_tokens": 45423,
+        "output_tokens": 2233,
+        "total_tokens": 47656,
+        "requests": 4
+      },
+      "agent_elapsed_seconds": 21.603105,
+      "rejected_submissions": 1
+    }
+  ],
+  "aggregate_usage": {
+    "input_tokens": 336683,
+    "output_tokens": 15808,
+    "total_tokens": 352491,
+    "requests": 18
+  },
+  "final_report_sha256": "5162ae5ddd22c1dc08dd79a9f2eaf8264f7c7f18b24733f5da8d10fbc9f5ae57",
+  "final_replay": {
+    "verified_files": 41,
+    "byte_identical": true,
+    "network_calls": 0,
+    "model_calls": 0
+  },
+  "limits": "Development trials used changing prompts and repair handling, not a controlled model benchmark or an estimate of production success rate. Runtime token counts exclude Codex development usage."
+}

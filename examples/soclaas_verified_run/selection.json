@@ -1,0 +1,145 @@
+{
+  "selected_ids": [
+    "M016081:1",
+    "M400391:2",
+    "M700071:23",
+    "M810001:5",
+    "M400841:1"
+  ],
+  "decisions": [
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M810001:5",
+      "reason": "Rental demand from non-resident population, capturing tenant-side dynamics.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M182342:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M016081:1",
+      "reason": "Aggregatemean purchasing resources and affordability conditions.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M700071:23",
+      "reason": "Financing costs and borrowing capacity for purchasers.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400841:1",
+      "reason": "Current completed supply and its interaction with absorption.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:2",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    },
+    {
+      "id": "M400391:2",
+      "reason": "Future supply expectations and medium-term balance between demand and completions.",
+      "selected": true,
+      "reason_origin": "model"
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    }
+  ],
+  "narratives": {
+    "M016081:1": {
+      "sales": "Higher aggregate disposable income may increase the resources available for housing purchases.",
+      "rents": "Higher aggregate disposable income may support rental spending.",
+      "lag": "Quarterly affordability context; decisions may adjust with a lag.",
+      "limitations": "Nominal aggregate growth also reflects inflation and population change; it is not income per household. This series is not labelled seasonally adjusted.",
+      "evidence_ids": [
+        "M016081:1:latest",
+        "M016081:1:year_on_year"
+      ]
+    },
+    "M400391:2": {
+      "sales": "A larger prospective pipeline may ease expected future supply constraints.",
+      "rents": "Future completions may expand potential rental supply.",
+      "lag": "Medium to long term; timing varies across under-construction and planned developments.",
+      "limitations": "The pipeline is not completed housing or a completion forecast. Timing, cancellations and development stages vary; landed housing is excluded from this row.",
+      "evidence_ids": [
+        "M400391:2:latest",
+        "M400391:2:previous_period",
+        "M400391:2:year_on_year"
+      ]
+    },
+    "M700071:23": {
+      "sales": "Higher benchmark rates may raise floating-rate financing costs and reduce borrowing capacity as mortgage rates reset.",
+      "rents": "Higher ownership financing costs may shift tenure choices and landlords' costs; the net rental effect is ambiguous.",
+      "lag": "Pass-through depends on mortgage pricing, reset dates and fixed-rate periods, often over subsequent months.",
+      "limitations": "Month-end snapshot, not a monthly average. Mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through; SORA changes alone cannot determine housing prices.",
+      "evidence_ids": [
+        "M700071:23:latest",
+        "M700071:23:previous_period",
+        "M700071:23:year_on_year"
+      ]
+    },
+    "M810001:5": {
+      "sales": "An increase may support housing demand indirectly, but tenure preferences and purchase restrictions affect the link to sales.",
+      "rents": "A larger non-resident population may support rental demand where residents seek ordinary residential accommodation.",
+      "lag": "Annual demand context; moves and lease renewals may transmit over subsequent quarters.",
+      "limitations": "Does not identify income, visa category, dormitory residence, household size or dwelling tenure. Population alone is not a rental-demand forecast.",
+      "evidence_ids": [
+        "M810001:5:latest",
+        "M810001:5:year_on_year"
+      ]
+    },
+    "M400841:1": {
+      "sales": "Growth in completed stock may ease supply constraints relative to demand.",
+      "rents": "Additional completed homes may increase potential rental supply.",
+      "lag": "Completed stock is available in the current period; absorption may take subsequent quarters.",
+      "limitations": "Available denotes total completed stock, not units actively listed for sale or rent. Historical definition and coverage changes may limit comparability.",
+      "evidence_ids": [
+        "M400841:1:latest",
+        "M400841:1:previous_period",
+        "M400841:1:year_on_year"
+      ]
+    }
+  },
+  "method": "soclaas_chat_completions_constrained_agent",
+  "usage": {
+    "input_tokens": 45423,
+    "output_tokens": 2233,
+    "total_tokens": 47656,
+    "requests": 4
+  }
+}

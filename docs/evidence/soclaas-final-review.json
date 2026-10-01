@@ -1,0 +1,40 @@
+{
+  "reviewer": "Codex semantic review against captured official definitions and reviewed mechanism notes",
+  "reviewed_run": "examples/soclaas_verified_run",
+  "reviewed_items": {
+    "selected_narratives": 5,
+    "candidate_decisions": 12
+  },
+  "status": "Core selected narratives and numerical evidence pass review; completeness and editorial caveats remain.",
+  "findings": [
+    {
+      "severity": "limitation",
+      "topic": "exclusion explanations",
+      "finding": "Seven excluded candidates have explicitly labelled system-provided reasons; the model did not supply individual exclusion rationales. Do not claim all twelve candidates have model reasoning."
+    },
+    {
+      "severity": "editorial",
+      "topic": "income definition",
+      "finding": "The short selected reason contains the exact word Aggregatemean. This is unclear wording: the series is aggregate nominal personal disposable income, not a mean. The report definition and narrative limitations correctly state aggregate and not per household. Original output is preserved."
+    },
+    {
+      "severity": "capability limit",
+      "topic": "mechanism originality",
+      "finding": "Four selected narratives reuse all four supplied reviewed mechanism fields verbatim; the remaining narrative changes its limitations after validation. This demonstrates real tool-based selection and evidence organization, not independent discovery of economic mechanisms."
+    }
+  ],
+  "checks": [
+    "PDI remains nominal aggregate, not per-household",
+    "Pipeline remains non-landed and neither completions nor completion forecast",
+    "Completed private stock is not active for-sale/for-rent listings",
+    "SORA is a month-end benchmark, not a mortgage quote or monthly average",
+    "Non-resident population retains tenure/dormitory limitations",
+    "No major new unsupported causal assertion or contradictory source scope found"
+  ],
+  "not_established": [
+    "out-of-sample predictive usefulness",
+    "unattended production reliability",
+    "complete model-generated exclusion reasoning"
+  ],
+  "output_edited": false
+}

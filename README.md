@@ -79,7 +79,7 @@ python -m housing_agent run --as-of 2026-09-30 --mode llm --provider soclaas --s
 2. 从已审阅的候选目录精确下载十二条序列，核验表号、行号、名称、单位、频率及元数据一致性。
 3. 以报告日期检查有效观察、近十年完整性、历史长度、时效性和比较基期。缺失的季度不能靠“往前数四行”补出来。
 4. `rules` 根据数据可用性评分和经济类别多样性选择；`llm` 先调用查询与检查工具，再结合质量结果和经济机制提出选择与解释。两个模式都不能选入不合格数据。
-5. 报告包含所有候选的入选/排除原因。被排除不一定表示数据很差，也可能是名额限制或同类指标重复。
+5. 报告列出所有候选的入选/排除状态与说明。模型缺少逐项排除理由时明确标为系统补齐，不能当成模型解释。被排除不一定表示数据很差，也可能是名额限制或同类指标重复。
 
 **候选目录的定义仍需要人工审阅。**官方搜索结果不会自动变成任意新指标，也不会自动修改解析代码。新增候选时更新 `housing_agent/data/catalogue.json`，核验真实 API 行名、单位、定义与经济理由，再执行测试。数据质量评分不是相关系数，也不是预测准确率。
 
@@ -117,6 +117,7 @@ python -m housing_agent --help
 - [工程设计与局限](docs/engineering-report.md)
 - [已核验的数据源与口径](docs/source-evidence.md)
 - [测试与实际运行证据](docs/validation.md)
-- [样例报告](examples/sample_run/report.md)
+- [真实 SoCLaaS 样例报告](examples/soclaas_verified_run/report.md)（已保存的官方数据 + 新模型调用）
+- [规则基线样例报告](examples/sample_run/report.md)
 
 此仓库保留实际开发提交历史。准备正式提交时，请按题目要求将压缩包改为 `Firstname Lastname Engineering Task.zip`，包含 `.git`；排除 `.env`、虚拟环境和无关运行目录。是否已完成真实模型联调，以 `docs/validation.md` 记录为准。

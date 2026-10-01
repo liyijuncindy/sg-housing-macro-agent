@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "run_id": "soclaas_verified_run",
+  "created_at": "2026-10-01T08:43:30+00:00",
+  "as_of": "2026-09-30",
+  "as_of_policy": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "mode": "llm",
+  "mode_label": "Live SoCLaaS Chat Completions tool-calling agent (qwen3.6:35b)",
+  "provider": "soclaas",
+  "model": "qwen3.6:35b",
+  "data_basis": "Verified saved source snapshot from sample_run, captured from 2026-09-30T16:49:33+00:00; original retrieval timestamps are preserved. No new source refresh was performed. Saved captured vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "package_version": "0.1.0",
+  "python_version": "3.12.14",
+  "warnings": [
+    "Verified saved source snapshot from sample_run, captured from 2026-09-30T16:49:33+00:00; original retrieval timestamps are preserved. No new source refresh was performed."
+  ],
+  "status": "complete_with_warnings",
+  "source_run": {
+    "name": "sample_run",
+    "manifest_sha256": "b4301cc8c8ddf7c6b3dc3d89045cfe4a5bfee9636da939370edfe94de4c8ced0",
+    "original_created_at": "2026-09-30T16:48:33+00:00",
+    "retrieved_at_min": "2026-09-30T16:49:33+00:00",
+    "retrieved_at_max": "2026-09-30T16:49:36+00:00"
+  },
+  "code_commit": "e639a4add0dc5608ce6835f2da4b89e6fcd071e0",
+  "code_worktree_dirty": false,
+  "code_hashes": {
+    "__init__.py": "317887a06fbcf9959e1393d3ee1911689881a6cbbe20a8e404ca966a8db9425d",
+    "__main__.py": "5a5aec28c3ddd7457f44bb2a745f0bb4ad4fc55bfd53ab23293e6c11d5f65d53",
+    "agent.py": "754db2170729ec5de933fe0954523e7c4748af5a67a379f9dfdfc2f09e9f4ee6",
+    "engine.py": "ebad3238e3eec2614fa4c61802acc5cbb2bc7d32379f3aec4f86624324837c51",
+    "pipeline.py": "19e55b8d4484527de7e83a21a614c77fae61bd50287fdbf6c484a8e0bd7ac887",
+    "report.py": "e2b4d34831cab79ad22aacb3a4b271f4d0f1909b967e78b00c858be5e0884831",
+    "sources.py": "06732c2c9f5bb4874dd16af129259388c00321e8129f501437c5485dab147635",
+    "storage.py": "7778396b86c99c8ce251016cd009c109a5baf11657d30e1306950aa37fe72ac8"
+  },
+  "selected_ids": [
+    "M016081:1",
+    "M400391:2",
+    "M700071:23",
+    "M810001:5",
+    "M400841:1"
+  ],
+  "usage": {
+    "input_tokens": 45423,
+    "output_tokens": 2233,
+    "total_tokens": 47656,
+    "requests": 4
+  },
+  "actual_models": [
+    "qwen3.6:35b"
+  ],
+  "agent_elapsed_seconds": 21.603105,
+  "finished_at": "2026-10-01T08:43:51+00:00",
+  "elapsed_seconds": 21.666
+}
