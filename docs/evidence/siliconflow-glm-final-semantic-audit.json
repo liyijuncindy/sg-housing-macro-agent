@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-10-01T12:26:10.748729+00:00",
+  "run": "examples/siliconflow_glm_reviewed_run",
+  "status": "structural_and_evidence_checks_passed_with_remaining_semantic_cautions",
+  "scope": "Independent read-only semantic review of all sixteen final decisions and five narratives against saved catalogue, evaluations and actual tool facts, with comparison to the seven earlier GLM semantic findings. No network, paid call, secret-file access or modification of either original run.",
+  "inputs_sha256": {
+    "manifest.json": "db9b27bf54324509b1450d1a4f5c052b511df146b59fbbde27a8bc32aa34adeb",
+    "selection.json": "79d0c242f88758dc27557d98159157748550e2f801f4ea78469a387e3322348a",
+    "agent_trace.json": "be3accba437ad88d8238d5f694548a6e194bf8f36097d2c06577971506698383",
+    "catalogue.json": "d7ee599d0bfdc4189fe4d00ff0876d03be65111275c1e5a374e0e172ea8ee753",
+    "evaluations.json": "b3db9f7de76e15653d9a73581886d0f6e9aa71976fa3f76e7a95bb8f434d2275",
+    "normalized.json": "4ca4f407a058cd43c76e11ac507862a65f5a3c9580eb7034ae7e393e982f0ac9",
+    "report.md": "f9da1fb8acde5fb510abeab2ff9e0e36a270a907c08a85da69e414404d2668a6"
+  },
+  "run_identity": {
+    "code_commit": "0cdb5a48aeb139a454227ca6c192c797fbe814bf",
+    "code_worktree_dirty": false,
+    "provider": "siliconflow",
+    "model": "zai-org/GLM-5.3",
+    "actual_models": [
+      "zai-org/GLM-5.3"
+    ],
+    "status": "complete_with_warnings",
+    "source_policy": "saved",
+    "source_run": {
+      "name": "siliconflow_glm_verified_run",
+      "manifest_sha256": "1945b6ef5d88e3d43bfa0713dfb66c8de95926acd90c2f9ce3d7a899862fcf58",
+      "original_created_at": "2026-10-01T12:13:55+00:00",
+      "retrieved_at_min": "2026-10-01T12:15:27+00:00",
+      "retrieved_at_max": "2026-10-01T12:15:30+00:00"
+    },
+    "usage": {
+      "input_tokens": 30125,
+      "output_tokens": 7788,
+      "total_tokens": 37913,
+      "requests": 3,
+      "cached_input_tokens": 6848,
+      "reasoning_output_tokens": 5126
+    },
+    "agent_elapsed_seconds": 95.272011,
+    "elapsed_seconds": 95.345
+  },
+  "warnings": [
+    "Verified saved source snapshot from siliconflow_glm_verified_run, captured from 2026-10-01T12:15:27+00:00; original retrieval timestamps are preserved. No new source refresh was performed.",
+    "The model omitted 1 individual decision reasons; these exclusions are labelled as system explanations, not model reasoning."
+  ],
+  "snapshot_checks": {
+    "parent_manifest_hash_matches": true,
+    "catalogue_identical_to_parent": true,
+    "normalized_identical_to_parent": true,
+    "new_source_refresh": false,
+    "interpretation": "This is a new paid model-selection run on the verified previously captured source snapshot; it is not a second fresh data download."
+  },
+  "structure_and_evidence": {
+    "catalogue": 16,
+    "downloaded_snapshot_candidates": 16,
+    "eligible": 16,
+    "listed_and_inspected": 16,
+    "selected": 5,
+    "decisions": 16,
+    "model_reason_count": 15,
+    "system_reason_count": 1,
+    "system_reason_ids": [
+      "M400751:1.1"
+    ],
+    "referenced_evidence_ids_checked": 13,
+    "selected_evidence_exactly_matches_evaluations": true,
+    "all_selected_eligible_and_inspected": true,
+    "tool_sequence": [
+      "list_candidates",
+      "inspect_candidate",
+      "submit_analysis"
+    ],
+    "validation_retries": 0,
+    "reported_usage_sums_match": true,
+    "reasoning_and_cached_tokens_are_subsets_not_added_twice": true
+  },
+  "coverage": {
+    "selected_ids": [
+      "M700071:23",
+      "M810371:1",
+      "M810361:5",
+      "M182342:2",
+      "M400841:2"
+    ],
+    "selected_family_counts": {
+      "financing_cost": 1,
+      "population_demand": 1,
+      "household_income": 1,
+      "labour_market": 1,
+      "housing_supply": 1
+    },
+    "omitted_families": [
+      "economic_activity",
+      "housing_credit",
+      "inflation"
+    ],
+    "assessment": "Five distinct families are covered. The maximum-five contract does not require five different families, and this set is a model judgement rather than a statistical optimum. GDP/activity, housing credit and CPI/inflation are omitted. Private vacant count is retained without the available completed-stock denominator, and no vacancy rate was calculated."
+  },
+  "previous_findings_review": [
+    {
+      "id": "SF-SEM-01",
+      "status": "resolved",
+      "evidence": "Resident unemployment is selected with the correct labour_market family; no false claim that it adds no distinct family remains."
+    },
+    {
+      "id": "SF-SEM-02",
+      "status": "resolved",
+      "evidence": "Vacancy rents explicitly says vacant units are not necessarily actively listed for letting or sale."
+    },
+    {
+      "id": "SF-SEM-03",
+      "status": "resolved",
+      "evidence": "No fixed quarterly publication-delay claim remains; quarterly observation dates and possible economic response lags are distinguished."
+    },
+    {
+      "id": "SF-SEM-04",
+      "status": "partly_resolved",
+      "evidence": "Unsupported administrative-source wording was removed and census/GHS/LFS correctly named. Net-change wording improved, but a new universal-understatement claim remains; see SF-FINAL-02."
+    },
+    {
+      "id": "SF-SEM-05",
+      "status": "resolved",
+      "evidence": "The report explicitly says no interpolation or alignment has been implemented or validated and quality is not predictive performance; the previous smoothing recommendation and annual marginal-model-value claim were removed."
+    },
+    {
+      "id": "SF-SEM-06",
+      "status": "not_repeated",
+      "evidence": "Housing credit is excluded; its reason contains no erroneous chronology of the reporting-regime boundary."
+    },
+    {
+      "id": "SF-SEM-07",
+      "status": "resolved",
+      "evidence": "CPI exclusion retains component-overlap caution and removes the undefined small-relative-base-period phrase."
+    }
+  ],
+  "findings": [
+    {
+      "id": "SF-FINAL-01",
+      "severity": "moderate",
+      "type": "unsupported_population_tenure_claim",
+      "location": "selection.json decisions[id=M810001:5].reason",
+      "quote": "non-residents are largely renters facing purchase restrictions",
+      "evidence": "The supplied non-resident population definition provides a population count and explicitly does not identify visa category, dormitory residence or dwelling tenure. It supports heterogeneity and purchase-restriction caveats, not the assertion that most are renters.",
+      "clarification": "Non-residents may support rental demand, subject to tenure, accommodation and purchase restrictions; this evidence does not establish a rental share.",
+      "blocks_numeric_pipeline": false
+    },
+    {
+      "id": "SF-FINAL-02",
+      "severity": "caution",
+      "type": "unsupported_gross_flow_inference",
+      "location": "selection.json narratives.M810371:1.limitations",
+      "quote": "Changes in the household stock are net changes, not gross household formation, so they understate new household creation.",
+      "evidence": "Metadata says household-stock differences are not gross formation and warns about census/survey changes. The series has no gross creation or dissolution counts, and sampling, coverage or source changes may affect differences.",
+      "clarification": "Net stock changes cannot separately identify gross household creation and dissolution; do not assert an observed or universal amount/direction of undercount from this series alone.",
+      "blocks_numeric_pipeline": false
+    },
+    {
+      "id": "SF-FINAL-03",
+      "severity": "caution",
+      "type": "denominator_and_selection_tradeoff",
+      "locations": [
+        "selection.json decisions[id=M400841:1].reason",
+        "selection.json narratives.M400841:2.limitations"
+      ],
+      "quotes": [
+        "adding little incremental within-family signal given capacity limits",
+        "The denominator series from the same table was not selected alongside it, family coverage would improve with it"
+      ],
+      "evidence": "Vacant count and completed stock share housing_supply. The source metadata requires matching stock to interpret a vacancy rate. The denominator was available and inspected but not retained, and no vacancy-rate calculation was produced.",
+      "clarification": "The count is correctly labelled and warns that it can rise while the rate falls. The little-incremental-information claim is an untested priority judgement; the denominator would improve interpretation within the same family, not add another distinct family. Do not treat raw-count movement alone as normalized tightness.",
+      "blocks_numeric_pipeline": false
+    },
+    {
+      "id": "SF-FINAL-04",
+      "severity": "limitation",
+      "type": "missing_model_reason_transparently_completed",
+      "location": "selection.json decisions[id=M400751:1.1]",
+      "quote": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "evidence": "The submit_analysis call contains fifteen decisions and omits HDB stock. Final decisions contain sixteen entries with exactly this one reason_origin=system. The manifest warning explicitly reports the omission.",
+      "clarification": "This run did not supply model-authored reasoning for all sixteen candidates. HDB stock was eligible and inspected, and the system explanation is not a model judgement that public housing has no value.",
+      "blocks_numeric_pipeline": false
+    },
+    {
+      "id": "SF-FINAL-05",
+      "severity": "caution",
+      "type": "ambiguous_scope_phrase",
+      "location": "selection.json decisions[id=M810361:5].reason",
+      "quote": "Selected over the aggregate per-person alternatives",
+      "evidence": "M016081:1 is an aggregate national disposable-income measure; M184101:1 is mean income per employed person. No candidate is simultaneously the aggregate and a per-person alternative. Other decisions and the selected-income limitations correctly distinguish these scopes.",
+      "clarification": "Read as aggregate-income and per-employed-person alternatives; retain the separate scopes. This is a wording ambiguity rather than a demonstrated numerical transformation error.",
+      "blocks_numeric_pipeline": false
+    }
+  ],
+  "decision_review": [
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "population_demand",
+      "assessment": "Same-family household preference is supported, and selected income provides a separate affordability context. Population is explicitly useful despite exclusion."
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "population_demand",
+      "assessment": "Shared family and diverse accommodation caveats are supported; SF-FINAL-01 covers the unsupported majority-renter assertion."
+    },
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "economic_activity",
+      "assessment": "Correct separate economic_activity family and honest qualitative channel-priority tradeoff; explicitly not performance-tested redundancy."
+    },
+    {
+      "id": "M182342:2",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "labour_market",
+      "assessment": "Correct resident seasonally adjusted unemployment scope, labour_market family, annual-revision caution and distinction from income or direct mortgage distress."
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "household_income",
+      "assessment": "Correct individual mean versus selected household median, bonus exclusion and same household_income family. Higher frequency is established; no individual release-lag estimate is established."
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "household_income",
+      "assessment": "Correct nominal aggregate, not per-household income; population and inflation composition caveats preserved."
+    },
+    {
+      "id": "M700071:23",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "financing_cost",
+      "assessment": "Correct financing_cost family, month-end benchmark versus mortgage offer, ambiguous rent response and reset-dependent lag; no predictive validation claim."
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "housing_credit",
+      "assessment": "Correct separate housing_credit family, outstanding stock versus originations/availability and repayments caveat. Directional priority is model judgement; stock alone is not a leverage ratio."
+    },
+    {
+      "id": "M400841:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "housing_supply",
+      "assessment": "Correct shared housing_supply family and denominator identity; SF-FINAL-03 records untested incremental-information and missing-normalizer limitation."
+    },
+    {
+      "id": "M400841:2",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "housing_supply",
+      "assessment": "Count/rate, completed-stock denominator, potential-not-listed availability and private-housing coverage distinctions are explicit. SF-FINAL-03 records the unselected denominator and family-coverage wording."
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "housing_supply",
+      "assessment": "Correct pipeline expectations channel despite later completion; within-family choice is qualitative. Its selection in the last sentence is pronoun ambiguity referring to the selected vacancy gauge, not an actual pipeline selection."
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "inflation",
+      "assessment": "Correct inflation family and housing-component overlap/ambiguous association; no unsupported base-period claim."
+    },
+    {
+      "id": "M810371:1",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "population_demand",
+      "assessment": "Correct household stock, population_demand family, annual structural context and census/survey sources. SF-FINAL-02 qualifies the new gross-formation understatement claim."
+    },
+    {
+      "id": "M810361:5",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "household_income",
+      "assessment": "Correct household_income family, resident employed-household median, CPF/bonus, nominal-not-take-home and exclusions; SF-FINAL-05 is a reason-wording ambiguity."
+    },
+    {
+      "id": "M183111:7",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "labour_market",
+      "assessment": "Correct labour_market family, resident plus non-resident total employment and migrant-domestic-worker accommodation caveat; not confused with resident unemployment."
+    },
+    {
+      "id": "M400751:1.1",
+      "selected": false,
+      "reason_origin": "system",
+      "selection_family": "housing_supply",
+      "assessment": "Eligible and inspected but no model-authored reason; transparently labelled system exclusion, see SF-FINAL-04."
+    }
+  ],
+  "overall_assessment": "The follow-up removes most important first-run semantic errors and explicitly avoids claiming implemented forecasting, interpolation or validated predictor performance. Core selected-indicator definitions and evidence identities are sound. Remaining qualitative assertions and the missing HDB model reason should be disclosed in a separate human review. No critical source-value or evidence-identity issue requiring another paid run was found in this semantic review; independent numerical verification remains a separate audit.",
+  "original_runs_preserved": true
+}

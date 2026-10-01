@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-10-01T12:21:31.289368+00:00",
+  "run": "examples/siliconflow_glm_verified_run",
+  "status": "structural_checks_passed_with_semantic_findings",
+  "scope": "Independent read-only semantic review of every selection decision and retained narrative against this saved run metadata and actual tool evidence. Raw-number/Decimal audit is a separate review. No network, model call, secret-file access or original-run mutation.",
+  "run_identity": {
+    "code_commit": "94e477b79147d5fa5e748d891b4abe4455545adc",
+    "code_worktree_dirty": false,
+    "provider": "siliconflow",
+    "model": "zai-org/GLM-5.3",
+    "actual_models": [
+      "zai-org/GLM-5.3"
+    ],
+    "status": "complete",
+    "usage": {
+      "input_tokens": 32677,
+      "output_tokens": 11604,
+      "total_tokens": 44281,
+      "requests": 3,
+      "cached_input_tokens": 6464,
+      "reasoning_output_tokens": 8197
+    },
+    "agent_elapsed_seconds": 158.237899,
+    "full_run_elapsed_seconds": 253.796
+  },
+  "inputs_sha256": {
+    "manifest.json": "1945b6ef5d88e3d43bfa0713dfb66c8de95926acd90c2f9ce3d7a899862fcf58",
+    "selection.json": "41ecb7625250884ae251cdd26f6bce84f8c540eeddfb083d17c5127a56ecf05c",
+    "agent_trace.json": "470c1415542679be28e9aaebcfdda66e87b8ccea67f857f1cb789d9481bce78f",
+    "catalogue.json": "d7ee599d0bfdc4189fe4d00ff0876d03be65111275c1e5a374e0e172ea8ee753",
+    "evaluations.json": "b3db9f7de76e15653d9a73581886d0f6e9aa71976fa3f76e7a95bb8f434d2275",
+    "report.md": "1eca85879501d250dc50f2103274fe99f1e22a36d67f5dd48fe873f74d7722e1"
+  },
+  "structure_and_evidence": {
+    "catalogue": 16,
+    "downloaded": 16,
+    "eligible": 16,
+    "listed_and_inspected": 16,
+    "selected": 5,
+    "decision_count": 16,
+    "model_reason_count": 16,
+    "system_reason_count": 0,
+    "referenced_evidence_ids_checked": 14,
+    "selected_evidence_exactly_matches_evaluations": true,
+    "all_selected_ids_eligible_and_inspected": true,
+    "tool_sequence": [
+      "list_candidates",
+      "inspect_candidate",
+      "submit_analysis"
+    ],
+    "validation_retries": 0,
+    "manifest_warnings": []
+  },
+  "coverage": {
+    "selected_ids": [
+      "M700071:23",
+      "M701091:1.2.1",
+      "M400841:1",
+      "M400841:2",
+      "M810371:1"
+    ],
+    "selected_family_counts": {
+      "financing_cost": 1,
+      "housing_credit": 1,
+      "housing_supply": 2,
+      "population_demand": 1
+    },
+    "omitted_families": [
+      "economic_activity",
+      "household_income",
+      "inflation",
+      "labour_market"
+    ],
+    "assessment": "The limit is five, not a mandatory five-family rule. Keeping both private completed stock and vacant count is defensible because of their denominator relationship. This is a selective set with four distinct families; income, labour, broad economic activity and inflation remain uncovered. It is not a statistically optimal or validated predictor set. No derived vacancy-rate series was produced."
+  },
+  "findings": [
+    {
+      "id": "SF-SEM-01",
+      "severity": "moderate",
+      "type": "contradicted_by_metadata",
+      "location": "selection.json decisions[id=M182342:2].reason",
+      "quote": "no distinct family coverage gain",
+      "evidence": "M182342:2 has selection_family=labour_market; none of the five retained indicators has that family.",
+      "implication": "Excluding the series is permitted, but the stated family-coverage justification is false.",
+      "clarification": "Labour-market coverage was omitted as a capacity or prioritisation choice; it would add a distinct family."
+    },
+    {
+      "id": "SF-SEM-02",
+      "severity": "moderate",
+      "type": "unsupported_equivalence",
+      "location": "selection.json narratives.M400841:2.rents",
+      "quote": "vacant homes are the portion of the stock available to let",
+      "evidence": "The supplied definition is the count of vacant completed private residential units; it does not identify rental listings, rental availability or owner intentions.",
+      "implication": "The paragraph overstates direct rental availability despite correctly retaining the count/rate distinction elsewhere.",
+      "clarification": "Vacancy may indicate unused capacity and softer absorption; vacant units are not necessarily offered for rent."
+    },
+    {
+      "id": "SF-SEM-03",
+      "severity": "moderate",
+      "type": "unsupported_publication_lag",
+      "locations": [
+        "selection.json narratives.M400841:1.lag",
+        "selection.json narratives.M400841:2.lag"
+      ],
+      "quote": "quarterly with a quarterly reporting delay",
+      "evidence": "Both update_frequency fields say quarterly observation frequency and explicitly state release calendar and individual observation publication dates are not confirmed. quality.lag_periods=1 measures retained-data staleness against as_of, not a fixed publication delay. source_updated_at=24/07/2026 is the table update date, not a per-observation release calendar.",
+      "implication": "Observation frequency and the current snapshot gap are incorrectly promoted to a known release delay.",
+      "clarification": "State quarterly observations and latest available period; do not claim an established quarterly reporting delay."
+    },
+    {
+      "id": "SF-SEM-04",
+      "severity": "moderate",
+      "type": "unsupported_source_scope_and_stock_flow_wording",
+      "location": "selection.json narratives.M810371:1.limitations",
+      "quotes": [
+        "combining the census, household surveys and administrative sources",
+        "differences over time are net changes that also ignore dissolutions, splits and recombinations"
+      ],
+      "evidence": "metadata.scope and source_footnote name Census of Population, General Household Survey and Comprehensive June Labour Force Survey. They do not establish an administrative-data component. Differences in household stock reflect net effects of formations, dissolutions and other changes; they cannot separately identify those gross flows.",
+      "implication": "Administrative sources are an unsupported extension, not proven impossible. Saying net changes ignore dissolutions is misleading.",
+      "clarification": "Use the named census/survey sources and explain that net stock changes cannot decompose gross formation and dissolution."
+    },
+    {
+      "id": "SF-SEM-05",
+      "severity": "caution",
+      "type": "unvalidated_modelling_recommendation",
+      "locations": [
+        "selection.json narratives.M810371:1.lag",
+        "selection.json decisions[id=M810361:5].reason"
+      ],
+      "quotes": [
+        "it may be interpolated",
+        "use in a quarterly prediction setup should smooth the annual cadence appropriately",
+        "annual cadence limited marginal model value"
+      ],
+      "evidence": "This project computes quality and calendar comparisons and selects research indicators; this run performs no interpolation, fitted forecasting model, feature-importance test or predictive validation. The supplied household mechanism says annual structural context with no short-term timing claim.",
+      "implication": "These are model opinions or suggested future modelling steps, not implemented workflow or measured predictive performance. No optimal predictor set has been demonstrated. Interpolation would need a separate release-aware design and validation.",
+      "clarification": "Treat annual cadence as a qualitative selection tradeoff and avoid implying empirically established marginal predictive value."
+    },
+    {
+      "id": "SF-SEM-06",
+      "severity": "caution",
+      "type": "unsupported_chronology",
+      "location": "selection.json narratives.M701091:1.2.1.limitations",
+      "quote": "Revised reporting for the covered consumer loans series begins partway through the retained span",
+      "evidence": "The actual retained series begins at 2021-07, the same July 2021 revised-reporting boundary described in metadata; the observed retained span is not split across that boundary.",
+      "implication": "A genuine reporting-regime warning is expressed with the wrong placement relative to the retained data.",
+      "clarification": "The retained series starts under the revised reporting regime; do not imply a known break partway through these observations."
+    },
+    {
+      "id": "SF-SEM-07",
+      "severity": "caution",
+      "type": "unsupported_selection_phrase",
+      "location": "selection.json decisions[id=M213751:1].reason",
+      "quote": "a small relative base period",
+      "evidence": "Metadata defines CPI with 2024=100 and its weighting basis; neither evaluation nor metadata defines a quality property called a small relative base period.",
+      "implication": "This phrase is unclear and unsupported. The separate caution about CPI/rent component overlap is supported.",
+      "clarification": "Explain broad consumer-price coverage and housing-component overlap without the undefined base-period claim."
+    }
+  ],
+  "decision_review": [
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "population_demand",
+      "assessment": "Supported qualitative preference for households within population_demand; acknowledges population is not fully substituted."
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "population_demand",
+      "assessment": "Correct shared population_demand family and heterogeneous accommodation caution; wording residents in dormitory-style arrangements should be understood as non-resident persons, not a change to resident-population coverage."
+    },
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "economic_activity",
+      "assessment": "Capacity/frequency preference is subjective but explicitly preserves economic relevance and eligibility; it is not evidence of superior predictive coverage."
+    },
+    {
+      "id": "M182342:2",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "labour_market",
+      "assessment": "SF-SEM-01: falsely denies distinct labour_market family coverage."
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "household_income",
+      "assessment": "Correct individual mean and high-earner/composition caveats; no assertion that the series is household median or fully substituted."
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "household_income",
+      "assessment": "Correctly identifies nominal aggregate and not per-household income. Household-side capacity wording is loose: resident household count is demand scale, not measured purchasing power."
+    },
+    {
+      "id": "M700071:23",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "financing_cost",
+      "assessment": "Unique financing_cost family is correct. Complete/timely is tied with other monthly series; not a uniquely proven best predictor."
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "housing_credit",
+      "assessment": "Correct distinct housing_credit family and stock definition. Quantity/availability language is interpretive and must retain the explicit stock-is-not-credit-availability limitation."
+    },
+    {
+      "id": "M400841:1",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "housing_supply",
+      "assessment": "Correctly retains completed-stock denominator with vacant count; both share housing_supply. Not an active-listings or completions-flow measure."
+    },
+    {
+      "id": "M400841:2",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "housing_supply",
+      "assessment": "Correct count, not rate, and correctly requests matching completed-stock denominator. SF-SEM-02 affects rental-availability phrasing; no vacancy rate was computed in this run."
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "housing_supply",
+      "assessment": "Correctly preserves pipeline expectations channel and recognises completed stock/vacancy do not fully substitute future supply."
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "inflation",
+      "assessment": "CPI housing-component overlap caveat supported; SF-SEM-07 covers undefined base-period phrase."
+    },
+    {
+      "id": "M810371:1",
+      "selected": true,
+      "reason_origin": "model",
+      "selection_family": "population_demand",
+      "assessment": "Correct population_demand family and household-stock/nonformation distinction in main sales paragraph. SF-SEM-04/05 qualify limitations and modelling advice."
+    },
+    {
+      "id": "M810361:5",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "household_income",
+      "assessment": "Correct household median versus individual mean/aggregate distinction; SF-SEM-05 qualifies untested marginal-model-value wording."
+    },
+    {
+      "id": "M183111:7",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "labour_market",
+      "assessment": "Correct total-employment accommodation caution and no earnings measure. Employment captures aggregate earned income should be understood as a possible support channel, not measured income."
+    },
+    {
+      "id": "M400751:1.1",
+      "selected": false,
+      "reason_origin": "model",
+      "selection_family": "housing_supply",
+      "assessment": "Correct housing_supply family, annual public-housing stock and distinction from new supply/availability; no claim it is private housing or actual rental listings."
+    }
+  ],
+  "overall_assessment": "Operationally complete: all indicators inspected, all decisions model-authored, all selected evidence references valid, no correction retry required. Definitions and denominator awareness are often sound. Syntactic acceptance does not certify all prose: the recorded errors and unsupported extensions require a separate human note before describing this as a fully reviewed research narrative. Preserve the original model output.",
+  "original_run_preserved": true
+}

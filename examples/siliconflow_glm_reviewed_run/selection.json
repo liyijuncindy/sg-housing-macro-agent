@@ -1,0 +1,171 @@
+{
+  "selected_ids": [
+    "M700071:23",
+    "M810371:1",
+    "M810361:5",
+    "M182342:2",
+    "M400841:2"
+  ],
+  "decisions": [
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason": "Eligible with strong quality, but excluded for family overlap: the resident population and resident households belong to the same selection_family, and household counts sit closer to dwelling demand than population size. Population is not household formation, and purchase capacity is captured by the selected income series. An omitted useful signal that did not fail any data-quality gate.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason": "Eligible with strong quality, but excluded for family overlap: non-residents are largely renters facing purchase restrictions, so the series does not substitute for the residential purchase channel, while its private rental demand signal is partly offset by dormitory residence and other housing arrangements not in ordinary residential stock. Overlap rather than irrelevance.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason": "Eligible and of high quality, but the housing channel runs through jobs, incomes and confidence, which the income and unemployment selections represent more directly. A separate economic_activity family identifier would add breadth, yet within a tight selection the broader, less housing-specific proxy is outranked on channel priority. Not tested as redundant by performance.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M182342:2",
+      "selected": true,
+      "reason": "Selected for labour_market family coverage: the seasonally adjusted resident unemployment rate is a direct income-risk and confidence channel bearing on both mortgage repayment capacity and rent affordability, with a solid quarterly history and timely observations. Level and stress are distinct aspects of the labour market, making it complementary rather than redundant with income.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason": "Eligible with a complete quarterly window, but excluded as a capacity tradeoff within household_income: it measures mean income per employed person, which can be skewed by high earners and composition, whereas the selected household-level median better matches per-dwelling affordability. It is not fully substituted, since it is timelier and excludes bonuses, but family coverage is preserved with one representative.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason": "Eligible with a complete quarterly window, but excluded as a capacity tradeoff within household_income: this is a national income-accounting aggregate rather than income per household, blurring population growth and inflation with household purchasing capacity, so the household-level median was preferred. Its earlier start is an advantage lost to overlap capacity, not a quality failure.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M700071:23",
+      "selected": true,
+      "reason": "Selected as the sole financing_cost family representative: the SORA benchmark is the clearest captured signal of Singapore-dollar mortgage financing costs, with monthly observations, full completeness and recent observations. It complements income, labour, population and supply demand channels, and its sales and rent mechanisms are distinct from every other selected family.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": false,
+      "reason": "Eligible, but its housing_credit family was deprioritised versus financing_cost: this is an outstanding loan stock rather than availability of credit or new approvals, repayments and amortisation also move it, and because it rises with realised purchases it can largely respond to prices. It remains a useful indicator of realised leverage, but is weaker on directional priority.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:1",
+      "selected": false,
+      "reason": "Eligible with a complete quarterly history, but excluded within the housing_supply family on channel priority: total completed stock is the slow-moving denominator that gives context for the selected vacancy count, adding little incremental within-family signal given capacity limits. Not a data-quality failure.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:2",
+      "selected": true,
+      "reason": "Selected to cover the housing_supply family: vacant completed private units measure current market slack relevant to both sale price pressure and rental availability. Preferred within the family on channel priority, and the tradeoff does not establish that the other supply series would fail to help.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason": "Eligible with strong quality, excluded as a within-family capacity tradeoff: the pipeline conveys future supply, and later completion does not neutralise its expectations channel, yet the vacancy slack gauge appeared closer to near-term sale prices and rents. Its selection as the supply representative does not make the expectations signal irrelevant.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason": "Eligible, but its inflation family was deprioritised: the all-items CPI includes housing-related components, so its correlation with rents may partly reflect overlapping measurement rather than a causal channel, and its own metadata flags an ambiguous net association with home values. Retaining it was less valuable than covering the income and supply channels.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810371:1",
+      "selected": true,
+      "reason": "Selected for population_demand family coverage: household counts may better represent potential dwelling demand than population alone, spanning both owner-occupier purchase and rental tenures. Fully complete in the retained window, though the latest available annual observation slightly predates the as-of reference.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810361:5",
+      "selected": true,
+      "reason": "Selected for household_income family coverage: the median household employment income describes typical household purchasing capacity more directly than mean income per employed person, since the median is less skewed by high earners. Selected over the aggregate per-person alternatives to preserve scope distinctions; the aggregate series remains useful and its exclusion is not substitution.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M183111:7",
+      "selected": false,
+      "reason": "Eligible with strong quality, but excluded for family overlap: the annual employment level counts all persons in employment including migrant domestic workers, some of whom do not demand ordinary separate housing, so the quarterly resident unemployment rate better isolates the labour channel for residents. An omitted useful signal that did not fail the data-quality gate.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400751:1.1",
+      "selected": false,
+      "reason": "System exclusion: eligible candidate was not selected in the model's submitted subset; the model did not provide an individual exclusion reason.",
+      "reason_origin": "system"
+    }
+  ],
+  "narratives": {
+    "M700071:23": {
+      "sales": "A rise in the SORA benchmark may lift floating-rate mortgage servicing costs and reduce borrowing capacity as loan resets flow through, which could restrain demand for home purchases; an easing in the benchmark could work in the opposite direction.",
+      "rents": "Higher ownership financing costs may shift some households toward renting while also raising landlords' holding costs, so the net effect on rents could be in either direction.",
+      "lag": "Pass-through may unfold over subsequent months depending on mortgage pricing, reset timing, fixed-rate periods and refinancing terms, so housing responses could lag movements in the benchmark.",
+      "limitations": "The series is a month-end snapshot rather than a monthly average and is a benchmark rate, not an individual mortgage offer; mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through, so the benchmark alone cannot determine prices. Observations arrive monthly, finer than quarterly housing indicators, and no interpolation or frequency alignment has been implemented or validated here; nor should the quality score be read as tested predictive performance.",
+      "evidence_ids": [
+        "M700071:23:latest",
+        "M700071:23:previous_period",
+        "M700071:23:year_on_year"
+      ]
+    },
+    "M810371:1": {
+      "sales": "A larger stock of resident households may enlarge potential owner-occupier demand for dwellings, supporting purchase activity when household composition and purchasing capacity allow.",
+      "rents": "More resident households may support rental demand, with outcomes depending on tenure choices between owning and renting.",
+      "lag": "This is an annual structural context series, and any demand influence may develop gradually; no short-term timing claim is made, and the mechanics could vary.",
+      "limitations": "Changes in the household stock are net changes, not gross household formation, so they understate new household creation. Estimates combine census, general household survey and labour force survey sources with sampling variability, and the annual cadence is slower than quarterly housing indicators; the latest available annual observation also predates the as-of reference. These are possible mechanisms only, not tested relationships.",
+      "evidence_ids": [
+        "M810371:1:latest",
+        "M810371:1:year_on_year"
+      ]
+    },
+    "M810361:5": {
+      "sales": "A higher median household employment income may strengthen typical household purchasing and borrowing capacity, which could support demand for home purchases; it may describe typical capacity better than a mean per employed person.",
+      "rents": "Median household income may contextualise household rent affordability, supporting rental demand when it holds up and potentially restraining it when it slips.",
+      "lag": "The series provides an annual affordability context, and income shifts may pass through to purchase and lease decisions over subsequent quarters.",
+      "limitations": "The measure is nominal and not take-home income: it includes employer CPF contributions and an allocated share of the annual bonus. It is income for resident households with at least one employed member, not income per person, not an aggregate economy-wide total, and households with no employed member are excluded. Its annual cadence is slower than quarterly housing indicators, and the latest available observation predates the as-of reference; only untested mechanisms are described.",
+      "evidence_ids": [
+        "M810361:5:latest",
+        "M810361:5:year_on_year"
+      ]
+    },
+    "M182342:2": {
+      "sales": "A higher unemployment rate among residents may weaken purchasing capacity and confidence, potentially restraining demand for home purchases; a lower rate could support them.",
+      "rents": "Higher unemployment may weaken residents' ability to meet rent payments, with effects depending on household circumstances and savings.",
+      "lag": "The reading reflects current labour-market stress at each quarter end, while housing purchase and lease responses may follow over subsequent quarters rather than appear immediately.",
+      "limitations": "The seasonally adjusted series is subject to annual revisions when seasonal factors are updated. It covers the resident labour force only, excluding non-residents, and does not measure earnings, job security, underemployment or mortgage distress directly. Income level is measured separately by the selected household income series, so this channel covers stress rather than income itself; these are possible mechanisms, not tested performance.",
+      "evidence_ids": [
+        "M182342:2:latest",
+        "M182342:2:previous_period",
+        "M182342:2:year_on_year"
+      ]
+    },
+    "M400841:2": {
+      "sales": "A larger count of vacant completed private homes may indicate weaker absorption and could reduce upward pressure on sale prices, depending on total completed stock and location; a smaller count could signal tightening.",
+      "rents": "More vacant units may indicate greater potential rental availability and could ease rent pressure, depending on demand; vacant units are not necessarily actively listed for letting or sale.",
+      "lag": "The count reflects market slack at each quarter end; rent and price responses may follow over subsequent quarters as absorption proceeds.",
+      "limitations": "This is a count, not a vacancy rate: it must be interpreted against the completed private stock as a denominator, and a rising count can coexist with a falling vacancy rate, so any implied rate declines require caution. Coverage is completed private residential units, excluding HDB flats, Executive Condominiums, hostels and tenement houses, and stock is not new completions or actively marketed units. The denominator series from the same table was not selected alongside it, family coverage would improve with it, and no model, smoothing or frequency alignment has been implemented or validated here.",
+      "evidence_ids": [
+        "M400841:2:latest",
+        "M400841:2:previous_period",
+        "M400841:2:year_on_year"
+      ]
+    }
+  },
+  "method": "siliconflow_chat_completions_constrained_agent",
+  "usage": {
+    "input_tokens": 30125,
+    "output_tokens": 7788,
+    "total_tokens": 37913,
+    "requests": 3,
+    "cached_input_tokens": 6848,
+    "reasoning_output_tokens": 5126
+  }
+}

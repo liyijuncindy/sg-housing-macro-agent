@@ -1,0 +1,247 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Housing research brief</title><style>body{max-width:1100px;margin:40px auto;padding:0 24px;background:#f6f7f9;color:#172033;font:16px/1.7 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:white;border:1px solid #dbe1e8;padding:28px;border-radius:12px;font:inherit}</style><body><p><a href="indicator_pool.html">查看完整指标池表 · 定义、选择理由和官方来源</a></p><pre># Singapore housing: macroeconomic research brief
+
+**Reporting date:** 2026-10-01  
+**Run:** `siliconflow_glm_reviewed_run`  
+**Generated at:** 2026-10-01T12:21:04+00:00  
+**Analysis mode:** Live SiliconFlow Chat Completions tool-calling agent (zai-org/GLM-5.3)  
+**Data basis:** Verified saved source snapshot from siliconflow_glm_verified_run, captured from 2026-10-01T12:15:27+00:00; original retrieval timestamps are preserved. No new source refresh was performed. Saved captured vintage filtered by observation reference date (or period end); not a historical point-in-time information set.
+
+&gt; This is a study of possible indicators, not a price forecast or evidence of causation. The reporting date filters observation dates; the values are from the latest downloaded vintage. Observation-level release dates and historical revisions are generally unavailable. This report does not recreate the information set known on the reporting date.
+
+## Candidate selection
+
+Evaluated 16 candidates and selected 5. siliconflow_chat_completions_constrained_agent
+
+Quality scores describe data usability, not predictive strength. The candidate universe is bounded by a reviewed catalogue; live official catalogue search is saved separately. Final inclusion changes with actual data quality and the reporting date. Predictive validation against housing outcomes is not performed in this first version.
+
+**Source strategy:** Verified saved snapshot; no new retrieval. Per-candidate attempts and actual routes are recorded in [source_routes.json](source_routes.json).
+
+[完整指标池表：定义、纳入理由、官方来源和本次选择](indicator_pool.md) · [可搜索的表格预览](indicator_pool.html)
+
+| Candidate | Theme | Latest usable period | Quality score | Decision | Reason |
+|---|---|---|---:|---|---|
+| Resident Population (M810001:2) | population_demand | 2026 | 100 | Excluded | Eligible with strong quality, but excluded for family overlap: the resident population and resident households belong to the same selection_family, and household counts sit closer to dwelling demand than population size. Population is not household formation, and purchase capacity is captured by the selected income series. An omitted useful signal that did not fail any data-quality gate. |
+| Non-Resident Population (M810001:5) | population_demand | 2026 | 100 | Excluded | Eligible with strong quality, but excluded for family overlap: non-residents are largely renters facing purchase restrictions, so the series does not substitute for the residential purchase channel, while its private rental demand signal is partly offset by dormitory residence and other housing arrangements not in ordinary residential stock. Overlap rather than irrelevance. |
+| GDP In Chained (2015) Dollars (M015661:1) | economic_activity | 2026-Q2 | 95 | Excluded | Eligible and of high quality, but the housing channel runs through jobs, incomes and confidence, which the income and unemployment selections represent more directly. A separate economic_activity family identifier would add breadth, yet within a tight selection the broader, less housing-specific proxy is outranked on channel priority. Not tested as redundant by performance. |
+| Resident Unemployment Rate, (SA) (M182342:2) | labour_market | 2026-Q2 | 95 | Selected | Selected for labour_market family coverage: the seasonally adjusted resident unemployment rate is a direct income-risk and confidence channel bearing on both mortgage repayment capacity and rent affordability, with a solid quarterly history and timely observations. Level and stress are distinct aspects of the labour market, making it complementary rather than redundant with income. |
+| Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents (M184101:1) | household_income | 2026-Q2 | 95 | Excluded | Eligible with a complete quarterly window, but excluded as a capacity tradeoff within household_income: it measures mean income per employed person, which can be skewed by high earners and composition, whereas the selected household-level median better matches per-dwelling affordability. It is not fully substituted, since it is timelier and excludes bonuses, but family coverage is preserved with one representative. |
+| Personal Disposable Income (Nominal) (M016081:1) | household_income | 2026-Q2 | 95 | Excluded | Eligible with a complete quarterly window, but excluded as a capacity tradeoff within household_income: this is a national income-accounting aggregate rather than income per household, blurring population growth and inflation with household purchasing capacity, so the household-level median was preferred. Its earlier start is an advantage lost to overlap capacity, not a quality failure. |
+| Compounded Singapore Overnight Rate Average (SORA) - 3 Month (M700071:23) | financing_cost | 2026-08 | 97.14 | Selected | Selected as the sole financing_cost family representative: the SORA benchmark is the clearest captured signal of Singapore-dollar mortgage financing costs, with monthly observations, full completeness and recent observations. It complements income, labour, population and supply demand channels, and its sales and rent mechanisms are distinct from every other selected family. |
+| Consumer Loans - Housing And Bridging Loans (M701091:1.2.1) | housing_credit | 2026-08 | 97.14 | Excluded | Eligible, but its housing_credit family was deprioritised versus financing_cost: this is an outstanding loan stock rather than availability of credit or new approvals, repayments and amortisation also move it, and because it rises with realised purchases it can largely respond to prices. It remains a useful indicator of realised leverage, but is weaker on directional priority. |
+| All Types Private Residential Properties Available (M400841:1) | completed_supply | 2026-Q2 | 95 | Excluded | Eligible with a complete quarterly history, but excluded within the housing_supply family on channel priority: total completed stock is the slow-moving denominator that gives context for the selected vacancy count, adding little incremental within-family signal given capacity limits. Not a data-quality failure. |
+| All Types Private Residential Properties Vacant (M400841:2) | vacant_supply | 2026-Q2 | 95 | Selected | Selected to cover the housing_supply family: vacant completed private units measure current market slack relevant to both sale price pressure and rental availability. Preferred within the family on channel priority, and the tradeoff does not establish that the other supply series would fail to help. |
+| Total Non-Landed Properties (M400391:2) | future_supply | 2026-Q2 | 95 | Excluded | Eligible with strong quality, excluded as a within-family capacity tradeoff: the pipeline conveys future supply, and later completion does not neutralise its expectations channel, yet the vacancy slack gauge appeared closer to near-term sale prices and rents. Its selection as the supply representative does not make the expectations signal irrelevant. |
+| All Items (M213751:1) | inflation | 2026-08 | 97.14 | Excluded | Eligible, but its inflation family was deprioritised: the all-items CPI includes housing-related components, so its correlation with rents may partly reflect overlapping measurement rather than a causal channel, and its own metadata flags an ambiguous net association with home values. Retaining it was less valuable than covering the income and supply channels. |
+| Resident Households (M810371:1) | population_demand | 2025 | 100 | Selected | Selected for population_demand family coverage: household counts may better represent potential dwelling demand than population alone, spanning both owner-occupier purchase and rental tenures. Fully complete in the retained window, though the latest available annual observation slightly predates the as-of reference. |
+| Median Monthly Household Employment Income Including Employer CPF Contributions (M810361:5) | household_income | 2025 | 100 | Selected | Selected for household_income family coverage: the median household employment income describes typical household purchasing capacity more directly than mean income per employed person, since the median is less skewed by high earners. Selected over the aggregate per-person alternatives to preserve scope distinctions; the aggregate series remains useful and its exclusion is not substitution. |
+| Employment (Persons) As At Year End (M183111:7) | employment_level | 2025 | 100 | Excluded | Eligible with strong quality, but excluded for family overlap: the annual employment level counts all persons in employment including migrant domestic workers, some of whom do not demand ordinary separate housing, so the quarterly resident unemployment rate better isolates the labour channel for residents. An omitted useful signal that did not fail the data-quality gate. |
+| Total HDB Flats (M400751:1.1) | public_housing_supply | 2026 | 100 | Excluded | System exclusion: eligible candidate was not selected in the model&#x27;s submitted subset; the model did not provide an individual exclusion reason. |
+
+## Compounded Singapore Overnight Rate Average (SORA) - 3 Month
+
+- **Series:** `M700071:23`; **Theme:** financing_cost
+- **Source:** MONETARY AUTHORITY OF SINGAPORE via [SingStat Table Builder](https://tablebuilder.singstat.gov.sg/table/TS/M700071)
+- **Definition:** Three-month compounded Singapore Overnight Rate Average (SORA), observed at month-end and expressed as an annual percentage rate.
+- **Coverage:** Singapore-dollar benchmark interest rate; not an individual mortgage offer.
+- **Unit:** Per Cent Per Annum; **Observation frequency:** M; **Seasonal adjustment:** Not labelled as seasonally adjusted
+- **Update frequency:** Monthly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.
+- **Latest usable observation:** 1.1863 Per Cent Per Annum in 2026-08 (evidence `M700071:23:latest`)
+- **Observation reference date:** Period end used conservatively
+- **Source table last updated:** 14/09/2026; **Retrieved:** 2026-10-01T12:15:28+00:00
+
+| Comparison | Latest period | Base period | Change | Unit | Evidence |
+|---|---|---|---:|---|---|
+| previous_period | 2026-08 | 2026-07 | 5.09 | basis points | M700071:23:previous_period |
+| year_on_year | 2026-08 | 2025-08 | -37.75 | basis points | M700071:23:year_on_year |
+
+**Possible sales-market channel:** A rise in the SORA benchmark may lift floating-rate mortgage servicing costs and reduce borrowing capacity as loan resets flow through, which could restrain demand for home purchases; an easing in the benchmark could work in the opposite direction.
+
+**Possible rental-market channel:** Higher ownership financing costs may shift some households toward renting while also raising landlords&#x27; holding costs, so the net effect on rents could be in either direction.
+
+**Possible lag:** Pass-through may unfold over subsequent months depending on mortgage pricing, reset timing, fixed-rate periods and refinancing terms, so housing responses could lag movements in the benchmark.
+
+**Limitations:** The series is a month-end snapshot rather than a monthly average and is a benchmark rate, not an individual mortgage offer; mortgage spreads, fixed-rate loans, refinancing terms and policy constrain pass-through, so the benchmark alone cannot determine prices. Observations arrive monthly, finer than quarterly housing indicators, and no interpolation or frequency alignment has been implemented or validated here; nor should the quality score be read as tested predictive performance.
+
+Referenced evidence: `M700071:23:latest`, `M700071:23:previous_period`, `M700071:23:year_on_year`.
+- Data warning: Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.
+- Data warning: Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.
+
+&lt;details&gt;&lt;summary&gt;Trace the numbers&lt;/summary&gt;
+
+Raw response: `raw/tabledata_M700071_5ec2ab86786f7bd2.json`; SHA-256 `844467d877f0fc311402be16f7fb1e606b894eb34185683c8a20f9039d4c70a2`.
+
+Exact source row: `23` in table `M700071`. The observations in `evaluations.json` retain original period, value and raw column index. Each calculated change retains the formula and both input observations.
+
+- `M700071:23:previous_period`: `(latest_value - base_value) * 100`; inputs 1.1863 and 1.1354.
+- `M700071:23:year_on_year`: `(latest_value - base_value) * 100`; inputs 1.1863 and 1.5638.
+
+&lt;/details&gt;
+
+## Resident Households
+
+- **Series:** `M810371:1`; **Theme:** population_demand
+- **Source:** SINGAPORE DEPARTMENT OF STATISTICS via [SingStat Table Builder](https://tablebuilder.singstat.gov.sg/table/TS/M810371)
+- **Definition:** Annual number of resident households; household counts are distinct from population and are not the number of newly formed households.
+- **Coverage:** Resident households. Source estimates combine Census of Population, General Household Survey and Comprehensive June Labour Force Survey; sampling variability and source changes apply.
+- **Unit:** Number; **Observation frequency:** A; **Seasonal adjustment:** Not labelled as seasonally adjusted
+- **Update frequency:** Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.
+- **Latest usable observation:** 1,487,100 Number in 2025 (evidence `M810371:1:latest`)
+- **Observation reference date:** Period end used conservatively
+- **Source table last updated:** 30/06/2026; **Retrieved:** 2026-10-01T12:15:30+00:00
+
+| Comparison | Latest period | Base period | Change | Unit | Evidence |
+|---|---|---|---:|---|---|
+| year_on_year | 2025 | 2024 | 1.6195 | % | M810371:1:year_on_year |
+
+**Possible sales-market channel:** A larger stock of resident households may enlarge potential owner-occupier demand for dwellings, supporting purchase activity when household composition and purchasing capacity allow.
+
+**Possible rental-market channel:** More resident households may support rental demand, with outcomes depending on tenure choices between owning and renting.
+
+**Possible lag:** This is an annual structural context series, and any demand influence may develop gradually; no short-term timing claim is made, and the mechanics could vary.
+
+**Limitations:** Changes in the household stock are net changes, not gross household formation, so they understate new household creation. Estimates combine census, general household survey and labour force survey sources with sampling variability, and the annual cadence is slower than quarterly housing indicators; the latest available annual observation also predates the as-of reference. These are possible mechanisms only, not tested relationships.
+
+Referenced evidence: `M810371:1:latest`, `M810371:1:year_on_year`.
+- Data warning: Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.
+- Data warning: Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.
+
+&lt;details&gt;&lt;summary&gt;Trace the numbers&lt;/summary&gt;
+
+Raw response: `raw/tabledata_M810371_8461ccdf2c645031.json`; SHA-256 `3b1c98d7f8191a8c4ab000444fe34c827a556ab416c85e2623154d79c458595d`.
+
+Exact source row: `1` in table `M810371`. The observations in `evaluations.json` retain original period, value and raw column index. Each calculated change retains the formula and both input observations.
+
+- `M810371:1:year_on_year`: `(latest_value / base_value - 1) * 100`; inputs 1,487,100 and 1,463,400.
+
+&lt;/details&gt;
+
+## Median Monthly Household Employment Income Including Employer CPF Contributions
+
+- **Series:** `M810361:5`; **Theme:** household_income
+- **Source:** SINGAPORE DEPARTMENT OF STATISTICS via [SingStat Table Builder](https://tablebuilder.singstat.gov.sg/table/TS/M810361)
+- **Definition:** Median nominal monthly household employment income among resident employed households, including employer CPF contributions and one-twelfth of annual bonus, before Government transfers and taxes.
+- **Coverage:** Households whose reference person is a citizen or permanent resident and with at least one employed member. Income sums employment and business income of employed household members, excluding live-in domestic workers.
+- **Unit:** Dollar; **Observation frequency:** A; **Seasonal adjustment:** Not labelled as seasonally adjusted
+- **Update frequency:** Annual observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Individual observation publication dates are not confirmed.
+- **Latest usable observation:** 12,027 Dollar in 2025 (evidence `M810361:5:latest`)
+- **Observation reference date:** Period end used conservatively
+- **Source table last updated:** 09/02/2026; **Retrieved:** 2026-10-01T12:15:30+00:00
+
+| Comparison | Latest period | Base period | Change | Unit | Evidence |
+|---|---|---|---:|---|---|
+| year_on_year | 2025 | 2024 | 6.3019 | % | M810361:5:year_on_year |
+
+**Possible sales-market channel:** A higher median household employment income may strengthen typical household purchasing and borrowing capacity, which could support demand for home purchases; it may describe typical capacity better than a mean per employed person.
+
+**Possible rental-market channel:** Median household income may contextualise household rent affordability, supporting rental demand when it holds up and potentially restraining it when it slips.
+
+**Possible lag:** The series provides an annual affordability context, and income shifts may pass through to purchase and lease decisions over subsequent quarters.
+
+**Limitations:** The measure is nominal and not take-home income: it includes employer CPF contributions and an allocated share of the annual bonus. It is income for resident households with at least one employed member, not income per person, not an aggregate economy-wide total, and households with no employed member are excluded. Its annual cadence is slower than quarterly housing indicators, and the latest available observation predates the as-of reference; only untested mechanisms are described.
+
+Referenced evidence: `M810361:5:latest`, `M810361:5:year_on_year`.
+- Data warning: Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.
+- Data warning: Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.
+
+&lt;details&gt;&lt;summary&gt;Trace the numbers&lt;/summary&gt;
+
+Raw response: `raw/tabledata_M810361_ace929ea782b332d.json`; SHA-256 `64b079f81758a381e25fe6bc001bf4ee5057f00f4d86c542b8fbbfa85313b231`.
+
+Exact source row: `5` in table `M810361`. The observations in `evaluations.json` retain original period, value and raw column index. Each calculated change retains the formula and both input observations.
+
+- `M810361:5:year_on_year`: `(latest_value / base_value - 1) * 100`; inputs 12,027 and 11,314.
+
+&lt;/details&gt;
+
+## Resident Unemployment Rate, (SA)
+
+- **Series:** `M182342:2`; **Theme:** labour_market
+- **Source:** MINISTRY OF MANPOWER via [SingStat Table Builder](https://tablebuilder.singstat.gov.sg/table/TS/M182342)
+- **Definition:** Resident unemployment rate at quarter-end, seasonally adjusted; residents are citizens and permanent residents.
+- **Coverage:** Resident labour force, not the entire resident population or non-resident workforce.
+- **Unit:** Per Cent; **Observation frequency:** Q; **Seasonal adjustment:** Seasonally Adjusted
+- **Update frequency:** Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.
+- **Latest usable observation:** 2.9 Per Cent in 2026-Q2 (evidence `M182342:2:latest`)
+- **Observation reference date:** Period end used conservatively
+- **Source table last updated:** 22/09/2026; **Retrieved:** 2026-10-01T12:15:27+00:00
+
+| Comparison | Latest period | Base period | Change | Unit | Evidence |
+|---|---|---|---:|---|---|
+| previous_period | 2026-Q2 | 2026-Q1 | 0 | percentage points | M182342:2:previous_period |
+| year_on_year | 2026-Q2 | 2025-Q2 | 0.2 | percentage points | M182342:2:year_on_year |
+
+**Possible sales-market channel:** A higher unemployment rate among residents may weaken purchasing capacity and confidence, potentially restraining demand for home purchases; a lower rate could support them.
+
+**Possible rental-market channel:** Higher unemployment may weaken residents&#x27; ability to meet rent payments, with effects depending on household circumstances and savings.
+
+**Possible lag:** The reading reflects current labour-market stress at each quarter end, while housing purchase and lease responses may follow over subsequent quarters rather than appear immediately.
+
+**Limitations:** The seasonally adjusted series is subject to annual revisions when seasonal factors are updated. It covers the resident labour force only, excluding non-residents, and does not measure earnings, job security, underemployment or mortgage distress directly. Income level is measured separately by the selected household income series, so this channel covers stress rather than income itself; these are possible mechanisms, not tested performance.
+
+Referenced evidence: `M182342:2:latest`, `M182342:2:previous_period`, `M182342:2:year_on_year`.
+- Data warning: Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.
+- Data warning: Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.
+
+&lt;details&gt;&lt;summary&gt;Trace the numbers&lt;/summary&gt;
+
+Raw response: `raw/tabledata_M182342_48b7788b41cef5e4.json`; SHA-256 `84b73c77a3fa5e42e0f44d882ba2c465d8d7d8e426020c3f02578f7976904f27`.
+
+Exact source row: `2` in table `M182342`. The observations in `evaluations.json` retain original period, value and raw column index. Each calculated change retains the formula and both input observations.
+
+- `M182342:2:previous_period`: `latest_value - base_value`; inputs 2.9 and 2.9.
+- `M182342:2:year_on_year`: `latest_value - base_value`; inputs 2.9 and 2.7.
+
+Source row note: The seasonally adjusted figures are derived using X-12 ARIMA to remove the seasonal influences in the data series.  The seasonally adjusted unemployment figures are subject to annual revisions when the latest set of seasonal factors is updated, taking into account observations for the latest available year.  Residents refer to Singapore citizens and Singapore Permanent Residents.
+
+&lt;/details&gt;
+
+## All Types Private Residential Properties Vacant
+
+- **Series:** `M400841:2`; **Theme:** vacant_supply
+- **Source:** URBAN REDEVELOPMENT AUTHORITY via [SingStat Table Builder](https://tablebuilder.singstat.gov.sg/table/TS/M400841)
+- **Definition:** Number of vacant completed private residential units at quarter-end, not the vacancy rate.
+- **Coverage:** All landed and non-landed private residential units; same exclusions and coverage as the completed stock in table M400841 row 1.
+- **Unit:** Number Of Units; **Observation frequency:** Q; **Seasonal adjustment:** Not labelled as seasonally adjusted
+- **Update frequency:** Quarterly observation frequency in official metadata; expected update cadence is inferred, not guaranteed. Release calendar and individual observation publication dates are not confirmed.
+- **Latest usable observation:** 26,961 Number Of Units in 2026-Q2 (evidence `M400841:2:latest`)
+- **Observation reference date:** Period end used conservatively
+- **Source table last updated:** 24/07/2026; **Retrieved:** 2026-10-01T12:15:29+00:00
+
+| Comparison | Latest period | Base period | Change | Unit | Evidence |
+|---|---|---|---:|---|---|
+| previous_period | 2026-Q2 | 2026-Q1 | 3.0698 | % | M400841:2:previous_period |
+| year_on_year | 2026-Q2 | 2025-Q2 | -10.2108 | % | M400841:2:year_on_year |
+
+**Possible sales-market channel:** A larger count of vacant completed private homes may indicate weaker absorption and could reduce upward pressure on sale prices, depending on total completed stock and location; a smaller count could signal tightening.
+
+**Possible rental-market channel:** More vacant units may indicate greater potential rental availability and could ease rent pressure, depending on demand; vacant units are not necessarily actively listed for letting or sale.
+
+**Possible lag:** The count reflects market slack at each quarter end; rent and price responses may follow over subsequent quarters as absorption proceeds.
+
+**Limitations:** This is a count, not a vacancy rate: it must be interpreted against the completed private stock as a denominator, and a rising count can coexist with a falling vacancy rate, so any implied rate declines require caution. Coverage is completed private residential units, excluding HDB flats, Executive Condominiums, hostels and tenement houses, and stock is not new completions or actively marketed units. The denominator series from the same table was not selected alongside it, family coverage would improve with it, and no model, smoothing or frequency alignment has been implemented or validated here.
+
+Referenced evidence: `M400841:2:latest`, `M400841:2:previous_period`, `M400841:2:year_on_year`.
+- Data warning: Latest-vintage snapshot: period/reference-date filtering does not establish what was historically available or exclude later revisions. Known publication dates are respected; unknown publication dates are not inferred.
+- Data warning: Quality history and completeness use only the most recent ten calendar years; older observations remain available for audit and calendar comparisons.
+
+&lt;details&gt;&lt;summary&gt;Trace the numbers&lt;/summary&gt;
+
+Raw response: `raw/tabledata_M400841_de38dc09e41862f3.json`; SHA-256 `0104a610532cf4ac51fba4e4ee1eceed2f7960241c4bbf9e818ed72ec5ac8d54`.
+
+Exact source row: `2` in table `M400841`. The observations in `evaluations.json` retain original period, value and raw column index. Each calculated change retains the formula and both input observations.
+
+- `M400841:2:previous_period`: `(latest_value / base_value - 1) * 100`; inputs 26,961 and 26,158.
+- `M400841:2:year_on_year`: `(latest_value / base_value - 1) * 100`; inputs 26,961 and 30,027.
+
+&lt;/details&gt;
+
+## Run limitations and reproducibility
+
+- Verified saved source snapshot from siliconflow_glm_verified_run, captured from 2026-10-01T12:15:27+00:00; original retrieval timestamps are preserved. No new source refresh was performed.
+- The model omitted 1 individual decision reasons; these exclusions are labelled as system explanations, not model reasoning.
+- Mixed observation frequencies are preserved; annual data are not interpolated to months.
+- Private residential series retain their own coverage and are not automatically generalised to HDB housing.
+- Qualitative mechanisms are research hypotheses. A market forecast would require an explicit outcome, vintage-aware validation and held-out evaluation.
+- Regenerate the saved report with the replay command in the README. Replay verifies file hashes and reuses saved facts and narratives without data or model calls.
+- Refreshing sources creates a different run; source revisions can change results. Raw snapshots are never silently overwritten.
+</pre></body></html>

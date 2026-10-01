@@ -4,7 +4,9 @@
 
 **目前的能力边界：**候选目录包含十六个已核验的公开序列，最终选择由真实数据检查结果决定，不预设五个入选指标。`rules` 是可离线测试的确定性基线，`llm` 是调用硅基流动 GLM、SoCLaaS 或 OpenAI 的工具型 Agent。规则模式的解释来自人工审阅的机制模板，不能当成一次模型运行。初版不声称已经证明这些指标的预测能力，也不训练房价模型。
 
-**最新实测：**16 项全部从 SingStat 取得并合格；35B 模型选出 5 项，完整运行约 109 秒、43,769 tokens。模型仍缺少 11 项逐项排除理由，并有分组与住户存量的措辞问题，已单独标注。查看[完整指标池](examples/singstat_priority_verified_run/indicator_pool.md)、[模型原始报告](examples/singstat_priority_verified_run/report.md)、[人工复核说明](docs/reviewed-run-notes.md)和[同数据规则对照](examples/singstat_priority_rules_run/report.md)。这些是本次观察，不是稳定耗时或模型成功率承诺。
+**最新实测：**已接入硅基流动 `zai-org/GLM-5.3`，本地默认配置使用它。首轮从 SingStat 新鲜获取全部 16 项并通过数据检查；随后用同一份已验证快照复跑，3 次调用、37,913 tokens、约 95 秒，选入 5 项。最终 15 项有模型理由，HDB 排除理由缺失并明确标为系统补充；自由文字仍有需要人工修正的口径表述。请结合[GLM 人工复核](docs/glm-run-review.md)阅读[最新指标池](examples/siliconflow_glm_reviewed_run/indicator_pool.md)和[原始报告](examples/siliconflow_glm_reviewed_run/report.md)。两轮及两次小探测按官网单价和实际返回用量合计估算 **¥0.971296**，详见[接入与费用](docs/siliconflow-glm.md)。这些是本次观察，不是稳定耗时、成功率或账单承诺。
+
+此前的 [35B 实测报告](examples/singstat_priority_verified_run/report.md)、[对应人工复核](docs/reviewed-run-notes.md)及[规则对照](examples/singstat_priority_rules_run/report.md)继续保留，不改写历史结果。
 
 ## 开始使用
 

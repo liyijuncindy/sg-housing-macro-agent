@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "run_id": "siliconflow_glm_reviewed_run",
+  "created_at": "2026-10-01T12:21:04+00:00",
+  "as_of": "2026-10-01",
+  "as_of_policy": "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "mode": "llm",
+  "mode_label": "Live SiliconFlow Chat Completions tool-calling agent (zai-org/GLM-5.3)",
+  "provider": "siliconflow",
+  "model": "zai-org/GLM-5.3",
+  "source_policy": "saved",
+  "source_routing_version": 2,
+  "selection_limit": 5,
+  "source_strategy": "Verified saved snapshot; no new retrieval",
+  "data_basis": "Verified saved source snapshot from siliconflow_glm_verified_run, captured from 2026-10-01T12:15:27+00:00; original retrieval timestamps are preserved. No new source refresh was performed. Saved captured vintage filtered by observation reference date (or period end); not a historical point-in-time information set.",
+  "package_version": "0.1.0",
+  "python_version": "3.12.14",
+  "warnings": [
+    "Verified saved source snapshot from siliconflow_glm_verified_run, captured from 2026-10-01T12:15:27+00:00; original retrieval timestamps are preserved. No new source refresh was performed.",
+    "The model omitted 1 individual decision reasons; these exclusions are labelled as system explanations, not model reasoning."
+  ],
+  "status": "complete_with_warnings",
+  "usage": {
+    "input_tokens": 30125,
+    "output_tokens": 7788,
+    "total_tokens": 37913,
+    "requests": 3,
+    "cached_input_tokens": 6848,
+    "reasoning_output_tokens": 5126
+  },
+  "source_run": {
+    "name": "siliconflow_glm_verified_run",
+    "manifest_sha256": "1945b6ef5d88e3d43bfa0713dfb66c8de95926acd90c2f9ce3d7a899862fcf58",
+    "original_created_at": "2026-10-01T12:13:55+00:00",
+    "retrieved_at_min": "2026-10-01T12:15:27+00:00",
+    "retrieved_at_max": "2026-10-01T12:15:30+00:00"
+  },
+  "code_commit": "0cdb5a48aeb139a454227ca6c192c797fbe814bf",
+  "code_worktree_dirty": false,
+  "code_hashes": {
+    "__init__.py": "317887a06fbcf9959e1393d3ee1911689881a6cbbe20a8e404ca966a8db9425d",
+    "__main__.py": "4d18f1f165b4df39fc0d29dbbe65fcfd37950214ed2a46cbb23f4000046d174e",
+    "agent.py": "d4c2237b80335672af5481f1a9c304878ea77ce46259047e7571c6348b5b4b6d",
+    "engine.py": "ebad3238e3eec2614fa4c61802acc5cbb2bc7d32379f3aec4f86624324837c51",
+    "indicator_pool.py": "5aff85a98e9c8386dd07fbcca8ebfaf132d2163c3042f6dd5528a7d947123dbc",
+    "mas_sources.py": "fb147735d7ec035e2057650a3521a30eb9af347ca8381d4920b90554c79aecef",
+    "mom_sources.py": "ea94901b7ed3f6899fda887c25a9f8a642db65f2bed90b2a58ece5644125f308",
+    "official_sources.py": "39607ee459f5e07968c478bb920a8684ebf06754fa9db746c3231153c18ed308",
+    "pipeline.py": "d3df07bc85cb06214e486062bfe535bddb3cca5401b3727f70361e0de1702e63",
+    "report.py": "c8d535ec1a26d1170518442f4d419ee95cd9a82049bc7577382a285b8468c9f3",
+    "sources.py": "68a136fe38b760615b4804dede69533b35cb76bf5ac4ecd9d7b0b0705f1ed01b",
+    "storage.py": "7778396b86c99c8ce251016cd009c109a5baf11657d30e1306950aa37fe72ac8"
+  },
+  "source_coverage": {
+    "candidates": 16,
+    "downloaded": 16,
+    "eligible": 16,
+    "singstat_downloaded": 0,
+    "fallback_downloaded": 0,
+    "maintenance_responses_observed": false,
+    "recovered_on_recheck": [],
+    "unavailable": [],
+    "providers": [
+      "SingStat Table Builder"
+    ]
+  },
+  "selected_ids": [
+    "M700071:23",
+    "M810371:1",
+    "M810361:5",
+    "M182342:2",
+    "M400841:2"
+  ],
+  "actual_models": [
+    "zai-org/GLM-5.3"
+  ],
+  "agent_elapsed_seconds": 95.272011,
+  "finished_at": "2026-10-01T12:22:39+00:00",
+  "elapsed_seconds": 95.345,
+  "indicator_pool_files": {
+    "markdown": "indicator_pool.md",
+    "html": "indicator_pool.html",
+    "json": "indicator_pool.json"
+  }
+}

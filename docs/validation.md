@@ -2,6 +2,20 @@
 
 Checked on **1 October 2026, Singapore time**, using Python 3.12.14. This document distinguishes observed results from planned or unverified behaviour.
 
+## SiliconFlow GLM integration and live validation
+
+The new provider uses `zai-org/GLM-5.3` at SiliconFlow's fixed official endpoint, isolated credentials, Chat Completions tools and reasoning-content continuity. Explicit tool-choice/strict-schema requests and a reasoning-enabled continuation were accepted in two small live probes. Acceptance does not prove server-enforced strict schemas or hard thinking caps; local output validation remains active.
+
+The first live run from clean `94e477b` freshly retrieved all sixteen candidates from SingStat in forty-one requests. Independent raw-cell, calendar-baseline and Decimal checks validated 2,318 observations and twenty-three changes. It completed in 253.796 seconds, using 44,281 tokens over three model requests. All sixteen decisions had model reasons, but human review found factual and semantic problems; the immutable output remains diagnostic evidence, not a fully approved narrative.
+
+After explicit metadata/family/frequency/vacancy constraints were added, clean `0cdb5a4` reused the verified fresh snapshot without new source requests. The follow-up used 37,913 tokens over three calls in 95.345 seconds and selected SORA, resident households, median employed-household income, resident unemployment and vacant private homes. Fifteen decisions have model reasons; the missing HDB exclusion is labelled system supplied. This run correctly warns about saved-source reuse and the missing reason. Some wording still requires human qualification; see the [full human review](glm-run-review.md), [first semantic audit](evidence/siliconflow-glm-semantic-audit.json) and [follow-up semantic audit](evidence/siliconflow-glm-final-semantic-audit.json). No further paid retry was used to conceal these limitations.
+
+Both independent data audits passed ([fresh](evidence/siliconflow-glm-data-audit.json), [saved-source](evidence/siliconflow-glm-final-data-audit.json)). In the latter, forty-five source artifacts match the first run exactly, and the forty-one retrieval entries retain their original timestamps: they are copied historical records, not fresh calls. Both immutable inventories and code hashes match their recorded commits.
+
+**225 automated tests passed**, including 46 agent and 40 pipeline tests; [complete output](evidence/siliconflow-tests.txt). A non-editable wheel installed outside the checkout, without the OpenAI SDK, reproduced all eight saved reports byte for byte; packaged source/resources matched the checkout and `pip check` passed ([installed check](evidence/siliconflow-installed-check.json)). Live model calls were separate from these offline tests.
+
+Across two probes and two model workflows, reported usage totals 82,701 tokens in eight calls. Published prices and reported cache splits imply **CNY 0.971296**, including reasoning already contained in completion tokens. This is an estimate, not an observed account debit; [itemized calculation](evidence/siliconflow-glm-total-cost.json).
+
 ## SingStat-priority fresh-data model trial
 
 ```bash
@@ -32,13 +46,13 @@ A separate [rules comparison](../examples/singstat_priority_rules_run/report.md)
 
 The final package was installed as a non-editable wheel in an isolated environment outside the repository, without the OpenAI SDK. All sixteen catalogue entries and Chinese notes were included, and all module/resource bytes matched the checkout. **Six** historical/current reports replayed with identical bytes, including the original three reports, both new model trials and the rules comparison. `pip check` passed. Full hashes and per-run file counts are in [the installed-package check](evidence/singstat-priority-installed-check.json).
 
-## Automated tests
+## Earlier SingStat-priority automated tests
 
 ```bash
 python -m unittest discover -v
 ```
 
-**Observed: 211 tests passed.** The suite was rerun for the SingStat-priority revision; complete output is saved in [evidence/tests.txt](evidence/tests.txt).
+**At the earlier SingStat-priority revision: 211 tests passed.** The suite was rerun for the SingStat-priority revision; complete output is saved in [evidence/tests.txt](evidence/tests.txt).
 
 - 41 engine tests: true-calendar baselines, missing quarters, zero denominators, percentage/basis-point units, date cutoffs, population reference dates, quality windows, staleness and family selection.
 - 38 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.

@@ -1,0 +1,800 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-10-01T12:24:39+00:00",
+  "run": "examples/siliconflow_glm_reviewed_run",
+  "status": "passed",
+  "audit_scope": {
+    "local_files_only": true,
+    "network_calls": 0,
+    "model_calls": 0,
+    "environment_file_read": false,
+    "run_files_modified": false,
+    "numeric_method": "Independent raw JSON traversal, Decimal arithmetic and calendar reconstruction; no production parser/engine functions imported.",
+    "report_method": "Verified selected latest/change rows and evidence identifiers against independently audited values; no semantic endorsement of model prose."
+  },
+  "saved_source_provenance": {
+    "source_run": "siliconflow_glm_verified_run",
+    "source_manifest_sha256": "1945b6ef5d88e3d43bfa0713dfb66c8de95926acd90c2f9ce3d7a899862fcf58",
+    "original_created_at": "2026-10-01T12:13:55+00:00",
+    "original_series_capture_min": "2026-10-01T12:15:27+00:00",
+    "original_series_capture_max": "2026-10-01T12:15:30+00:00",
+    "new_analysis_created_at": "2026-10-01T12:21:04+00:00",
+    "byte_identical_source_artifacts": [
+      "catalogue.json",
+      "discovery.json",
+      "normalized.json",
+      "raw/metadata_M015661_784158104d4175d7.json",
+      "raw/metadata_M016081_e340ae096293a0e7.json",
+      "raw/metadata_M182342_a8645aa92a612265.json",
+      "raw/metadata_M183111_9051b2d9ad2d5178.json",
+      "raw/metadata_M184101_a25547ab734fb98d.json",
+      "raw/metadata_M213751_ffb93a81df629642.json",
+      "raw/metadata_M400391_e4a98695091d7655.json",
+      "raw/metadata_M400751_84d47a9a0e863650.json",
+      "raw/metadata_M400841_1a2f023546b256ff.json",
+      "raw/metadata_M700071_92125fcf7454ccaf.json",
+      "raw/metadata_M701091_7210b11a5c896615.json",
+      "raw/metadata_M810001_65f2a1a53b2339e3.json",
+      "raw/metadata_M810361_fb50c1a81edc5973.json",
+      "raw/metadata_M810371_586abac18b9b2be7.json",
+      "raw/resourceid_4278c026df29ba47.json",
+      "raw/resourceid_43389e9d842696ff.json",
+      "raw/resourceid_4983863b405eca99.json",
+      "raw/resourceid_7fd8b228a600bfbd.json",
+      "raw/resourceid_80b5b1d2737d131b.json",
+      "raw/resourceid_95aee35a2d9789de.json",
+      "raw/resourceid_95fe0a4e14a77110.json",
+      "raw/resourceid_9bf9f72fc3822776.json",
+      "raw/resourceid_a019d93162c2fbd0.json",
+      "raw/resourceid_f5f5b431e617875f.json",
+      "raw/resourceid_fb1742d41fb2a5e3.json",
+      "raw/tabledata_M015661_98fd049aa87c5bb9.json",
+      "raw/tabledata_M016081_3de81f4c4307fd66.json",
+      "raw/tabledata_M182342_48b7788b41cef5e4.json",
+      "raw/tabledata_M183111_78ebddbf3477131c.json",
+      "raw/tabledata_M184101_fb465df65995a904.json",
+      "raw/tabledata_M213751_62f62cd25bf5df72.json",
+      "raw/tabledata_M400391_fb25f7621ca819ff.json",
+      "raw/tabledata_M400751_c10997a05cec390f.json",
+      "raw/tabledata_M400841_9cbe20a8bfdb6540.json",
+      "raw/tabledata_M400841_de38dc09e41862f3.json",
+      "raw/tabledata_M700071_5ec2ab86786f7bd2.json",
+      "raw/tabledata_M701091_11d6417c6fe41133.json",
+      "raw/tabledata_M810001_111a5f764bb0c97b.json",
+      "raw/tabledata_M810001_495ed32846bcfef1.json",
+      "raw/tabledata_M810361_ace929ea782b332d.json",
+      "raw/tabledata_M810371_8461ccdf2c645031.json",
+      "retrievals.json"
+    ],
+    "byte_identical_source_artifact_count": 45,
+    "original_inventory_files_verified": 56,
+    "preserved_retrieval_records": 41,
+    "new_source_attempts_in_routes": 0,
+    "new_singstat_downloads": 0,
+    "new_fallback_downloads": 0,
+    "interpretation": "The retrieval log and raw artifacts are copied source evidence, not new source requests. The live model analysis is new, while source values, provenance and capture timestamps retain the original snapshot."
+  },
+  "run_identity": {
+    "status": "complete_with_warnings",
+    "provider": "siliconflow",
+    "model": "zai-org/GLM-5.3",
+    "manifest_sha256": "db9b27bf54324509b1450d1a4f5c052b511df146b59fbbde27a8bc32aa34adeb",
+    "code_commit": "0cdb5a48aeb139a454227ca6c192c797fbe814bf",
+    "code_worktree_dirty_at_run_start": false,
+    "verified_files": 56
+  },
+  "code_provenance": {
+    "comparison_basis": "git show of recorded run commit, not current worktree",
+    "checked_files": [
+      {
+        "path": "housing_agent/__init__.py",
+        "sha256": "317887a06fbcf9959e1393d3ee1911689881a6cbbe20a8e404ca966a8db9425d",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/__main__.py",
+        "sha256": "4d18f1f165b4df39fc0d29dbbe65fcfd37950214ed2a46cbb23f4000046d174e",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/agent.py",
+        "sha256": "d4c2237b80335672af5481f1a9c304878ea77ce46259047e7571c6348b5b4b6d",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/engine.py",
+        "sha256": "ebad3238e3eec2614fa4c61802acc5cbb2bc7d32379f3aec4f86624324837c51",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/indicator_pool.py",
+        "sha256": "5aff85a98e9c8386dd07fbcca8ebfaf132d2163c3042f6dd5528a7d947123dbc",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/mas_sources.py",
+        "sha256": "fb147735d7ec035e2057650a3521a30eb9af347ca8381d4920b90554c79aecef",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/mom_sources.py",
+        "sha256": "ea94901b7ed3f6899fda887c25a9f8a642db65f2bed90b2a58ece5644125f308",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/official_sources.py",
+        "sha256": "39607ee459f5e07968c478bb920a8684ebf06754fa9db746c3231153c18ed308",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/pipeline.py",
+        "sha256": "d3df07bc85cb06214e486062bfe535bddb3cca5401b3727f70361e0de1702e63",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/report.py",
+        "sha256": "c8d535ec1a26d1170518442f4d419ee95cd9a82049bc7577382a285b8468c9f3",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/sources.py",
+        "sha256": "68a136fe38b760615b4804dede69533b35cb76bf5ac4ecd9d7b0b0705f1ed01b",
+        "matches_recorded": true
+      },
+      {
+        "path": "housing_agent/storage.py",
+        "sha256": "7778396b86c99c8ce251016cd009c109a5baf11657d30e1306950aa37fe72ac8",
+        "matches_recorded": true
+      }
+    ]
+  },
+  "candidate_count": 16,
+  "raw_observation_columns_checked": 2318,
+  "cutoff_observations_checked": 2318,
+  "processed_csv_rows_checked": 2318,
+  "comparisons_checked": 23,
+  "source_reference_dates_checked": 155,
+  "retrieval_records_checked": 41,
+  "tool_evidence_objects_checked": 39,
+  "selected_ids": [
+    "M700071:23",
+    "M810371:1",
+    "M810361:5",
+    "M182342:2",
+    "M400841:2"
+  ],
+  "inspected_ids": [
+    "M015661:1",
+    "M016081:1",
+    "M182342:2",
+    "M183111:7",
+    "M184101:1",
+    "M213751:1",
+    "M400391:2",
+    "M400751:1.1",
+    "M400841:1",
+    "M400841:2",
+    "M700071:23",
+    "M701091:1.2.1",
+    "M810001:2",
+    "M810001:5",
+    "M810361:5",
+    "M810371:1"
+  ],
+  "decision_origins": {
+    "model": 15,
+    "system": 1
+  },
+  "series": [
+    {
+      "id": "M810001:2",
+      "source_name": "Resident Population",
+      "unit": "Number",
+      "frequency": "A",
+      "raw_columns": 48,
+      "retained_columns": 48,
+      "latest_period": "2026",
+      "latest_value": 4231524.0,
+      "latest_observation_date": "2026-06-30",
+      "quality_score": 100.0,
+      "eligible": true,
+      "reference_date_evidence": "Data are as at end-June.  Data prior to 1990 are based on de facto concept (i.e. the person is present in the country at the reference period), while data from 1990 onwards are based on de jure concept (i.e. the person's place of usual residence).  Data from 2003 onwards exclude residents who are overseas for a continuous period of 12 months or longer as at the reference period. More information available on the following: Population Trends report (https://www.singstat.gov.sg/publication-resources/population-trends-2026); Information Paper on 'Singapore Resident Population, 2003-2007' (https://www.singstat.gov.sg/publication-resources/singapore-resident-population-2003-2007);  How Singapore's Population Estimates Are Compiled (https://www.singstat.gov.sg/publication-resources/understanding-singapore-population-estimates); Rate of Natural Increase (https://www.singstat.gov.sg/publication-resources/singapores-rate-of-natural-increase-for-population); Old-Age Support Ratio (https://www.singstat.gov.sg/infographics/old-age-support-ratio); Are the Old-Age Support Ratio Trends Similar Across Different Working-Age Group (https://www.singstat.gov.sg/publication-resources/are-the-old-age-support-ratio-trends-similar-across-different-working-age-groups).",
+      "raw_file": "raw/tabledata_M810001_111a5f764bb0c97b.json",
+      "raw_sha256": "998bd3587b86d8d74e329bcc6a6a5225966482a689d42eec3a165e2f3452d6d2",
+      "metadata_file": "raw/metadata_M810001_65f2a1a53b2339e3.json",
+      "metadata_sha256": "c31ba1ad10337d2e5c530ac000904ce5a2b54420d9d6727433041b1006901807"
+    },
+    {
+      "id": "M810001:5",
+      "source_name": "Non-Resident Population",
+      "unit": "Number",
+      "frequency": "A",
+      "raw_columns": 48,
+      "retained_columns": 48,
+      "latest_period": "2026",
+      "latest_value": 1976999.0,
+      "latest_observation_date": "2026-06-30",
+      "quality_score": 100.0,
+      "eligible": true,
+      "reference_date_evidence": "Data are as at end-June.  Non-resident population comprises foreigners who were working, studying or living in Singapore but not granted permanent residence, excluding tourists and short-term visitors. More information available on the following: Population Trends report (https://www.singstat.gov.sg/publication-resources/population-trends-2026); Information Paper on 'Singapore Resident Population, 2003-2007' (https://www.singstat.gov.sg/publication-resources/singapore-resident-population-2003-2007);  How Singapore's Population Estimates Are Compiled (https://www.singstat.gov.sg/publication-resources/understanding-singapore-population-estimates); Rate of Natural Increase (https://www.singstat.gov.sg/publication-resources/singapores-rate-of-natural-increase-for-population); Old-Age Support Ratio (https://www.singstat.gov.sg/infographics/old-age-support-ratio); Are the Old-Age Support Ratio Trends Similar Across Different Working-Age Group (https://www.singstat.gov.sg/publication-resources/are-the-old-age-support-ratio-trends-similar-across-different-working-age-groups).",
+      "raw_file": "raw/tabledata_M810001_495ed32846bcfef1.json",
+      "raw_sha256": "553d1d43645babc2d30ac1bbe939abe2c2cbde0d36a4fb5088ec1f7171e4ca4d",
+      "metadata_file": "raw/metadata_M810001_65f2a1a53b2339e3.json",
+      "metadata_sha256": "c31ba1ad10337d2e5c530ac000904ce5a2b54420d9d6727433041b1006901807"
+    },
+    {
+      "id": "M015661:1",
+      "source_name": "GDP In Chained (2015) Dollars",
+      "unit": "Million Dollars",
+      "frequency": "Q",
+      "raw_columns": 206,
+      "retained_columns": 206,
+      "latest_period": "2026-Q2",
+      "latest_value": 155247.2,
+      "latest_observation_date": null,
+      "quality_score": 95.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M015661_98fd049aa87c5bb9.json",
+      "raw_sha256": "138acbe058be5f2b1786287fa818e0efe86cebcd6877fbb79c9e832dc1093baf",
+      "metadata_file": "raw/metadata_M015661_784158104d4175d7.json",
+      "metadata_sha256": "714a6267fd6dd5a8011502d897c8e67e8becbe5001cad9965a719ab4d5b04099"
+    },
+    {
+      "id": "M182342:2",
+      "source_name": "Resident Unemployment Rate, (SA)",
+      "unit": "Per Cent",
+      "frequency": "Q",
+      "raw_columns": 138,
+      "retained_columns": 138,
+      "latest_period": "2026-Q2",
+      "latest_value": 2.9,
+      "latest_observation_date": null,
+      "quality_score": 95.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M182342_48b7788b41cef5e4.json",
+      "raw_sha256": "84b73c77a3fa5e42e0f44d882ba2c465d8d7d8e426020c3f02578f7976904f27",
+      "metadata_file": "raw/metadata_M182342_a8645aa92a612265.json",
+      "metadata_sha256": "d61b0cdaafee2cc3ed0154e70e7a6fcfd22659f46c2fd3b359668f690e5330c4"
+    },
+    {
+      "id": "M184101:1",
+      "source_name": "Mean Gross Monthly Income From Employment (Including Employer CPF And Excluding Bonus) Of Employed Residents",
+      "unit": "Dollars",
+      "frequency": "Q",
+      "raw_columns": 21,
+      "retained_columns": 21,
+      "latest_period": "2026-Q2",
+      "latest_value": 6605.0,
+      "latest_observation_date": null,
+      "quality_score": 95.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M184101_fb465df65995a904.json",
+      "raw_sha256": "d8cbf8315336bd54bc69fc88739a236d44e8e9c0163deb5b497a83ea158917fe",
+      "metadata_file": "raw/metadata_M184101_a25547ab734fb98d.json",
+      "metadata_sha256": "21699f7802f141be3ca4ba78bb2c3e20d8a51a71660b533b8faa02756bef0112"
+    },
+    {
+      "id": "M016081:1",
+      "source_name": "Personal Disposable Income (Nominal)",
+      "unit": "Million Dollars",
+      "frequency": "Q",
+      "raw_columns": 186,
+      "retained_columns": 186,
+      "latest_period": "2026-Q2",
+      "latest_value": 94423.4,
+      "latest_observation_date": null,
+      "quality_score": 95.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M016081_3de81f4c4307fd66.json",
+      "raw_sha256": "927b20623c10c369782544e906b5387db81cbbef6b8e412ef62d0496f0804535",
+      "metadata_file": "raw/metadata_M016081_e340ae096293a0e7.json",
+      "metadata_sha256": "4b018efb861e20669317b3032079b89e53e44e3b302a7619976ffff500228ca4"
+    },
+    {
+      "id": "M700071:23",
+      "source_name": "Compounded Singapore Overnight Rate Average (SORA) - 3 Month",
+      "unit": "Per Cent Per Annum",
+      "frequency": "M",
+      "raw_columns": 251,
+      "retained_columns": 251,
+      "latest_period": "2026-08",
+      "latest_value": 1.1863,
+      "latest_observation_date": null,
+      "quality_score": 97.14,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M700071_5ec2ab86786f7bd2.json",
+      "raw_sha256": "844467d877f0fc311402be16f7fb1e606b894eb34185683c8a20f9039d4c70a2",
+      "metadata_file": "raw/metadata_M700071_92125fcf7454ccaf.json",
+      "metadata_sha256": "25c98acdf25dabfe33b3a79578901b33324a54908adfc5d83e2b78dbe6273280"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "source_name": "Consumer Loans - Housing And Bridging Loans",
+      "unit": "Million Dollars",
+      "frequency": "M",
+      "raw_columns": 62,
+      "retained_columns": 62,
+      "latest_period": "2026-08",
+      "latest_value": 256563.5,
+      "latest_observation_date": null,
+      "quality_score": 97.14,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M701091_11d6417c6fe41133.json",
+      "raw_sha256": "b8bc0b0d9f1fa8d7fe20072630210799fc9d32057a3ea71765b2032259933e8d",
+      "metadata_file": "raw/metadata_M701091_7210b11a5c896615.json",
+      "metadata_sha256": "a9df676d599d1f9fce49b468fae1cbeb8de8ecbc5c675ba8519c9fb560003a0f"
+    },
+    {
+      "id": "M400841:1",
+      "source_name": "All Types Private Residential Properties Available",
+      "unit": "Number Of Units",
+      "frequency": "Q",
+      "raw_columns": 154,
+      "retained_columns": 154,
+      "latest_period": "2026-Q2",
+      "latest_value": 424581.0,
+      "latest_observation_date": null,
+      "quality_score": 95.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M400841_9cbe20a8bfdb6540.json",
+      "raw_sha256": "e6363fdf9c307229226c70f6210a01bed31099f9e2cca622a1f7faa1a8741cbd",
+      "metadata_file": "raw/metadata_M400841_1a2f023546b256ff.json",
+      "metadata_sha256": "74145d40646cc5b6381a59c580f6e8a62da91b79c75851e13e595a6cb7a36bb6"
+    },
+    {
+      "id": "M400841:2",
+      "source_name": "All Types Private Residential Properties Vacant",
+      "unit": "Number Of Units",
+      "frequency": "Q",
+      "raw_columns": 154,
+      "retained_columns": 154,
+      "latest_period": "2026-Q2",
+      "latest_value": 26961.0,
+      "latest_observation_date": null,
+      "quality_score": 95.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M400841_de38dc09e41862f3.json",
+      "raw_sha256": "0104a610532cf4ac51fba4e4ee1eceed2f7960241c4bbf9e818ed72ec5ac8d54",
+      "metadata_file": "raw/metadata_M400841_1a2f023546b256ff.json",
+      "metadata_sha256": "74145d40646cc5b6381a59c580f6e8a62da91b79c75851e13e595a6cb7a36bb6"
+    },
+    {
+      "id": "M400391:2",
+      "source_name": "Total Non-Landed Properties",
+      "unit": "Number Of Units",
+      "frequency": "Q",
+      "raw_columns": 133,
+      "retained_columns": 133,
+      "latest_period": "2026-Q2",
+      "latest_value": 51677.0,
+      "latest_observation_date": null,
+      "quality_score": 95.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M400391_fb25f7621ca819ff.json",
+      "raw_sha256": "f088bab517f48eb2861a305667fb52c24ceca6eaed2d855d6bcf6d0f8fa56a01",
+      "metadata_file": "raw/metadata_M400391_e4a98695091d7655.json",
+      "metadata_sha256": "4e3117548991605f5546c80e29d831d16563292bf79bce56c349342cc6f982d7"
+    },
+    {
+      "id": "M213751:1",
+      "source_name": "All Items",
+      "unit": "Index",
+      "frequency": "M",
+      "raw_columns": 788,
+      "retained_columns": 788,
+      "latest_period": "2026-08",
+      "latest_value": 103.334,
+      "latest_observation_date": null,
+      "quality_score": 97.14,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M213751_62f62cd25bf5df72.json",
+      "raw_sha256": "28aec21bd4c894fbc1df63dd140903d8342e8e064bd3ad8e9997aa02a58c9669",
+      "metadata_file": "raw/metadata_M213751_ffb93a81df629642.json",
+      "metadata_sha256": "fa077c6298e363d92893240514a02b2c3fb4a74854ae2e86b877bbb25e04c0c7"
+    },
+    {
+      "id": "M810371:1",
+      "source_name": "Resident Households",
+      "unit": "Number",
+      "frequency": "A",
+      "raw_columns": 44,
+      "retained_columns": 44,
+      "latest_period": "2025",
+      "latest_value": 1487100.0,
+      "latest_observation_date": null,
+      "quality_score": 100.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M810371_8461ccdf2c645031.json",
+      "raw_sha256": "3b1c98d7f8191a8c4ab000444fe34c827a556ab416c85e2623154d79c458595d",
+      "metadata_file": "raw/metadata_M810371_586abac18b9b2be7.json",
+      "metadata_sha256": "5c9fecec616dbbe0c3a07860ffe1b3e2829377dd050fca26af46c81e2dfd177d"
+    },
+    {
+      "id": "M810361:5",
+      "source_name": "Median Monthly Household Employment Income Including Employer CPF Contributions",
+      "unit": "Dollar",
+      "frequency": "A",
+      "raw_columns": 26,
+      "retained_columns": 26,
+      "latest_period": "2025",
+      "latest_value": 12027.0,
+      "latest_observation_date": null,
+      "quality_score": 100.0,
+      "eligible": true,
+      "reference_date_evidence": "Period-end filter; no reference-day override.",
+      "raw_file": "raw/tabledata_M810361_ace929ea782b332d.json",
+      "raw_sha256": "64b079f81758a381e25fe6bc001bf4ee5057f00f4d86c542b8fbbfa85313b231",
+      "metadata_file": "raw/metadata_M810361_fb50c1a81edc5973.json",
+      "metadata_sha256": "148b8261931177e7cf30de972656658bc73a4a1f60a01f6c8e696fe55575adb6"
+    },
+    {
+      "id": "M183111:7",
+      "source_name": "Employment (Persons) As At Year End",
+      "unit": "Thousand",
+      "frequency": "A",
+      "raw_columns": 32,
+      "retained_columns": 32,
+      "latest_period": "2025",
+      "latest_value": 4117.0,
+      "latest_observation_date": "2025-12-31",
+      "quality_score": 100.0,
+      "eligible": true,
+      "reference_date_evidence": "Data are compiled primarily from administrative records, wtih the self-employed component estimated from the Labour Force Survey. ",
+      "raw_file": "raw/tabledata_M183111_78ebddbf3477131c.json",
+      "raw_sha256": "091816d24a8931e0b39195330d1c3b00fca60057cff5755fadcdbd6ec53487cd",
+      "metadata_file": "raw/metadata_M183111_9051b2d9ad2d5178.json",
+      "metadata_sha256": "d7f0f27f5ba85714f914688ce758d8d4efc404d3d5e43e5974cdb4b6e4bbbd29"
+    },
+    {
+      "id": "M400751:1.1",
+      "source_name": "Total HDB Flats",
+      "unit": "Number",
+      "frequency": "A",
+      "raw_columns": 27,
+      "retained_columns": 27,
+      "latest_period": "2026",
+      "latest_value": 1177601.0,
+      "latest_observation_date": "2026-06-30",
+      "quality_score": 100.0,
+      "eligible": true,
+      "reference_date_evidence": "Includes non-privatised Housing and Urban Development Corporation flats. Data as at end June of each year.",
+      "raw_file": "raw/tabledata_M400751_c10997a05cec390f.json",
+      "raw_sha256": "ae44af016d20a58cd79503fe3d95d1e18e17f10218aae45b76afe211b8c363bf",
+      "metadata_file": "raw/metadata_M400751_84d47a9a0e863650.json",
+      "metadata_sha256": "607a6fe303baf45d1771d70d26392a47b95227cb665aa6f419b278a2053abe45"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "M810001:2:year_on_year",
+      "latest_period": "2026",
+      "base_period": "2025",
+      "unit": "%",
+      "reported": 0.6423808691,
+      "decimal_recalculation": "0.642380869137106182282617614635695199100",
+      "absolute_difference": "3.7106182282617614635695199100E-11"
+    },
+    {
+      "id": "M810001:5:year_on_year",
+      "latest_period": "2026",
+      "base_period": "2025",
+      "unit": "%",
+      "reported": 3.6891212906,
+      "decimal_recalculation": "3.689121290633883335256416980478952723600",
+      "absolute_difference": "3.3883335256416980478952723600E-11"
+    },
+    {
+      "id": "M015661:1:year_on_year",
+      "latest_period": "2026-Q2",
+      "base_period": "2025-Q2",
+      "unit": "%",
+      "reported": 5.9403406939,
+      "decimal_recalculation": "5.940340693902980781632036117948357502700",
+      "absolute_difference": "2.980781632036117948357502700E-12"
+    },
+    {
+      "id": "M182342:2:previous_period",
+      "latest_period": "2026-Q2",
+      "base_period": "2026-Q1",
+      "unit": "percentage points",
+      "reported": 0.0,
+      "decimal_recalculation": "0.0",
+      "absolute_difference": "0.0"
+    },
+    {
+      "id": "M182342:2:year_on_year",
+      "latest_period": "2026-Q2",
+      "base_period": "2025-Q2",
+      "unit": "percentage points",
+      "reported": 0.2,
+      "decimal_recalculation": "0.2",
+      "absolute_difference": "0.0"
+    },
+    {
+      "id": "M184101:1:year_on_year",
+      "latest_period": "2026-Q2",
+      "base_period": "2025-Q2",
+      "unit": "%",
+      "reported": 3.3646322379,
+      "decimal_recalculation": "3.364632237871674491392801251956181533600",
+      "absolute_difference": "2.8325508607198748043818466400E-11"
+    },
+    {
+      "id": "M016081:1:year_on_year",
+      "latest_period": "2026-Q2",
+      "base_period": "2025-Q2",
+      "unit": "%",
+      "reported": 6.8838073806,
+      "decimal_recalculation": "6.883807380625998249985001488531515551500",
+      "absolute_difference": "2.5998249985001488531515551500E-11"
+    },
+    {
+      "id": "M700071:23:previous_period",
+      "latest_period": "2026-08",
+      "base_period": "2026-07",
+      "unit": "basis points",
+      "reported": 5.09,
+      "decimal_recalculation": "5.0900",
+      "absolute_difference": "0.0000"
+    },
+    {
+      "id": "M700071:23:year_on_year",
+      "latest_period": "2026-08",
+      "base_period": "2025-08",
+      "unit": "basis points",
+      "reported": -37.75,
+      "decimal_recalculation": "-37.7500",
+      "absolute_difference": "0.0000"
+    },
+    {
+      "id": "M701091:1.2.1:previous_period",
+      "latest_period": "2026-08",
+      "base_period": "2026-07",
+      "unit": "%",
+      "reported": 0.7422057986,
+      "decimal_recalculation": "0.742205798566241533761097060429970475900",
+      "absolute_difference": "3.3758466238902939570029524100E-11"
+    },
+    {
+      "id": "M701091:1.2.1:year_on_year",
+      "latest_period": "2026-08",
+      "base_period": "2025-08",
+      "unit": "%",
+      "reported": 7.2803815811,
+      "decimal_recalculation": "7.280381581109610904850172881465074766200",
+      "absolute_difference": "9.610904850172881465074766200E-12"
+    },
+    {
+      "id": "M400841:1:previous_period",
+      "latest_period": "2026-Q2",
+      "base_period": "2026-Q1",
+      "unit": "%",
+      "reported": 0.0980750416,
+      "decimal_recalculation": "0.098075041552226138413117536807610246000",
+      "absolute_difference": "4.7773861586882463192389754000E-11"
+    },
+    {
+      "id": "M400841:1:year_on_year",
+      "latest_period": "2026-Q2",
+      "base_period": "2025-Q2",
+      "unit": "%",
+      "reported": 1.0565475482,
+      "decimal_recalculation": "1.056547548209890941634018974537180286700",
+      "absolute_difference": "9.890941634018974537180286700E-12"
+    },
+    {
+      "id": "M400841:2:previous_period",
+      "latest_period": "2026-Q2",
+      "base_period": "2026-Q1",
+      "unit": "%",
+      "reported": 3.0698065601,
+      "decimal_recalculation": "3.069806560134566862910008410428931875500",
+      "absolute_difference": "3.4566862910008410428931875500E-11"
+    },
+    {
+      "id": "M400841:2:year_on_year",
+      "latest_period": "2026-Q2",
+      "base_period": "2025-Q2",
+      "unit": "%",
+      "reported": -10.2108102708,
+      "decimal_recalculation": "-10.21081027075631931261864322110100909182",
+      "absolute_difference": "4.368068738135677889899090818E-11"
+    },
+    {
+      "id": "M400391:2:previous_period",
+      "latest_period": "2026-Q2",
+      "base_period": "2026-Q1",
+      "unit": "%",
+      "reported": 7.4120263557,
+      "decimal_recalculation": "7.412026355719066325788281266238490158200",
+      "absolute_difference": "1.9066325788281266238490158200E-11"
+    },
+    {
+      "id": "M400391:2:year_on_year",
+      "latest_period": "2026-Q2",
+      "base_period": "2025-Q2",
+      "unit": "%",
+      "reported": 6.6076659653,
+      "decimal_recalculation": "6.607665965259726863885794446507406032100",
+      "absolute_difference": "4.0273136114205553492593967900E-11"
+    },
+    {
+      "id": "M213751:1:previous_period",
+      "latest_period": "2026-08",
+      "base_period": "2026-07",
+      "unit": "%",
+      "reported": 0.6212510711,
+      "decimal_recalculation": "0.621251071122536418166238217652099400200",
+      "absolute_difference": "2.2536418166238217652099400200E-11"
+    },
+    {
+      "id": "M213751:1:year_on_year",
+      "latest_period": "2026-08",
+      "base_period": "2025-08",
+      "unit": "%",
+      "reported": 2.3483850519,
+      "decimal_recalculation": "2.348385051949724156374117250874082584700",
+      "absolute_difference": "4.9724156374117250874082584700E-11"
+    },
+    {
+      "id": "M810371:1:year_on_year",
+      "latest_period": "2025",
+      "base_period": "2024",
+      "unit": "%",
+      "reported": 1.6195161952,
+      "decimal_recalculation": "1.619516195161951619516195161951619516200",
+      "absolute_difference": "3.8048380483804838048380483800E-11"
+    },
+    {
+      "id": "M810361:5:year_on_year",
+      "latest_period": "2025",
+      "base_period": "2024",
+      "unit": "%",
+      "reported": 6.3019268163,
+      "decimal_recalculation": "6.301926816333745801661658122679865653200",
+      "absolute_difference": "3.3745801661658122679865653200E-11"
+    },
+    {
+      "id": "M183111:7:year_on_year",
+      "latest_period": "2025",
+      "base_period": "2024",
+      "unit": "%",
+      "reported": 1.7497899264,
+      "decimal_recalculation": "1.749789926350649992585635905293855963600",
+      "absolute_difference": "4.9350007414364094706144036400E-11"
+    },
+    {
+      "id": "M400751:1.1:year_on_year",
+      "latest_period": "2026",
+      "base_period": "2025",
+      "unit": "%",
+      "reported": 1.4705286786,
+      "decimal_recalculation": "1.470528678583584295174208446966269866900",
+      "absolute_difference": "1.6415704825791553033730133100E-11"
+    }
+  ],
+  "selected_evidence": [
+    {
+      "id": "M700071:23",
+      "latest": {
+        "period": "2026-08",
+        "value": 1.1863,
+        "raw_period": "2026 Aug",
+        "raw_value": "1.1863",
+        "raw_index": 250
+      },
+      "evidence_ids": [
+        "M700071:23:latest",
+        "M700071:23:previous_period",
+        "M700071:23:year_on_year"
+      ],
+      "change_ids": [
+        "M700071:23:previous_period",
+        "M700071:23:year_on_year"
+      ]
+    },
+    {
+      "id": "M810371:1",
+      "latest": {
+        "period": "2025",
+        "value": 1487100.0,
+        "raw_period": "2025",
+        "raw_value": "1487100",
+        "raw_index": 43
+      },
+      "evidence_ids": [
+        "M810371:1:latest",
+        "M810371:1:year_on_year"
+      ],
+      "change_ids": [
+        "M810371:1:year_on_year"
+      ]
+    },
+    {
+      "id": "M810361:5",
+      "latest": {
+        "period": "2025",
+        "value": 12027.0,
+        "raw_period": "2025",
+        "raw_value": "12027",
+        "raw_index": 25
+      },
+      "evidence_ids": [
+        "M810361:5:latest",
+        "M810361:5:year_on_year"
+      ],
+      "change_ids": [
+        "M810361:5:year_on_year"
+      ]
+    },
+    {
+      "id": "M182342:2",
+      "latest": {
+        "period": "2026-Q2",
+        "value": 2.9,
+        "raw_period": "2026 2Q",
+        "raw_value": "2.9",
+        "raw_index": 137
+      },
+      "evidence_ids": [
+        "M182342:2:latest",
+        "M182342:2:previous_period",
+        "M182342:2:year_on_year"
+      ],
+      "change_ids": [
+        "M182342:2:previous_period",
+        "M182342:2:year_on_year"
+      ]
+    },
+    {
+      "id": "M400841:2",
+      "latest": {
+        "period": "2026-Q2",
+        "value": 26961.0,
+        "raw_period": "2026 2Q",
+        "raw_value": "26961",
+        "raw_index": 153
+      },
+      "evidence_ids": [
+        "M400841:2:latest",
+        "M400841:2:previous_period",
+        "M400841:2:year_on_year"
+      ],
+      "change_ids": [
+        "M400841:2:previous_period",
+        "M400841:2:year_on_year"
+      ]
+    }
+  ],
+  "issues": [],
+  "artifact_hashes": {
+    "manifest.json": "db9b27bf54324509b1450d1a4f5c052b511df146b59fbbde27a8bc32aa34adeb",
+    "catalogue.json": "d7ee599d0bfdc4189fe4d00ff0876d03be65111275c1e5a374e0e172ea8ee753",
+    "normalized.json": "4ca4f407a058cd43c76e11ac507862a65f5a3c9580eb7034ae7e393e982f0ac9",
+    "evaluations.json": "b3db9f7de76e15653d9a73581886d0f6e9aa71976fa3f76e7a95bb8f434d2275",
+    "processed.csv": "a5b757c98de7f3260bd90ce83ffc7a22607ee0df64f7b3d26d74317bf793294e",
+    "source_routes.json": "5fca9d41151d3e07b64794a030bd6ea79ea3bb83523670be22d95a3328e0a3ca",
+    "retrievals.json": "a2e1d2b16365def62c32d47a0814c8aa416d36d290b1f42e2f18b060c5a42652",
+    "selection.json": "79d0c242f88758dc27557d98159157748550e2f801f4ea78469a387e3322348a",
+    "agent_trace.json": "be3accba437ad88d8238d5f694548a6e194bf8f36097d2c06577971506698383",
+    "report.md": "f9da1fb8acde5fb510abeab2ff9e0e36a270a907c08a85da69e414404d2668a6",
+    "indicator_pool.json": "785ba231cbce3d31a61a8edfe620cfdf4f25b632a4ae98b86003c8f3485415aa"
+  },
+  "limitations": [
+    "The saved capture is latest-vintage data, not a reconstruction of historical publication vintages.",
+    "The Decimal tolerance is 0.000000000051, covering reported ten-decimal change rounding.",
+    "This numeric audit does not establish causal or predictive value, nor certify every qualitative model sentence.",
+    "Reference-day overrides were checked against captured row/table descriptions: population and HDB at end-June; employment labelled as at year end."
+  ]
+}
