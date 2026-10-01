@@ -7,9 +7,11 @@ test_inspection_projection_preserves_analysis_facts_without_raw_payload_duplicat
 test_metadata_text_bounds_are_explicit_and_do_not_modify_evidence (tests.test_agent.AgentTests.test_metadata_text_bounds_are_explicit_and_do_not_modify_evidence) ... ok
 test_no_key_fails_without_import_or_request_and_records_failure (tests.test_agent.AgentTests.test_no_key_fails_without_import_or_request_and_records_failure) ... ok
 test_numeric_and_certainty_and_link_prose_is_rejected (tests.test_agent.AgentTests.test_numeric_and_certainty_and_link_prose_is_rejected) ... ok
+test_numeric_error_does_not_force_wording_repair_when_evidence_needs_lookup (tests.test_agent.AgentTests.test_numeric_error_does_not_force_wording_repair_when_evidence_needs_lookup) ... ok
 test_numeric_tenor_feedback_identifies_token_and_provides_concrete_repair (tests.test_agent.AgentTests.test_numeric_tenor_feedback_identifies_token_and_provides_concrete_repair) ... ok
 test_openai_records_returned_model_and_timing_without_chat_path (tests.test_agent.AgentTests.test_openai_records_returned_model_and_timing_without_chat_path) ... ok
 test_ordinary_qualitative_language_does_not_trigger_false_rejections (tests.test_agent.AgentTests.test_ordinary_qualitative_language_does_not_trigger_false_rejections) ... ok
+test_population_year_failure_forces_submit_with_explicit_trusted_wording_repair (tests.test_agent.AgentTests.test_population_year_failure_forces_submit_with_explicit_trusted_wording_repair) ... ok
 test_provider_credentials_never_fall_back_to_each_other (tests.test_agent.AgentTests.test_provider_credentials_never_fall_back_to_each_other) ... ok
 test_real_tool_loop_is_evidence_constrained_and_audited (tests.test_agent.AgentTests.test_real_tool_loop_is_evidence_constrained_and_audited) ... ok
 test_reasoning_and_function_outputs_are_carried_to_next_request (tests.test_agent.AgentTests.test_reasoning_and_function_outputs_are_carried_to_next_request) ... ok
@@ -116,6 +118,6 @@ test_recovery_preserves_failed_attempt_and_original_success_bytes (tests.test_so
 test_temporary_http_failure_has_finite_retries_and_a_failure_record (tests.test_sources.TransportFailureTests.test_temporary_http_failure_has_finite_retries_and_a_failure_record) ... ok
 
 ----------------------------------------------------------------------
-Ran 116 tests in 0.391s
+Ran 118 tests in 0.399s
 
 OK

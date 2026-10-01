@@ -21,6 +21,10 @@ class AgentError(RuntimeError):
     """The live agent failed; callers must not silently substitute rule results."""
 
 
+class _NumericProseError(ValueError):
+    """A wording-only failure that may be repaired without another data lookup."""
+
+
 _TEXT_FIELDS = ("sales", "rents", "lag", "limitations")
 _NUMBER_WORDS = re.compile(
     r"\b(?:zero|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|"
@@ -119,14 +123,26 @@ def _ids(value: Any, label: str) -> list[str]:
 def _prose(value: Any, label: str) -> str:
     if not isinstance(value, str) or not value.strip() or len(value) > 1800:
         raise ValueError(f"{label} must be nonempty prose of at most 1800 characters")
-    number_word = _NUMBER_WORDS.search(value)
-    numeric_character = next((character for character in value if character.isnumeric()), None)
-    offending = (number_word.group() if number_word else numeric_character or ("%" if "%" in value else None))
+    spans = [(match.start(), match.end()) for match in _NUMBER_WORDS.finditer(value)]
+    spans.extend((match.start(), match.end()) for match in re.finditer(r"\S+", value)
+                 if any(character.isnumeric() for character in match.group()) or "%" in match.group())
+    merged = []
+    for start, end in sorted(spans):
+        if merged and (start <= merged[-1][1] or re.fullmatch(r"[\s-]+(?:and[\s-]+)?", value[merged[-1][1]:start])):
+            merged[-1] = (merged[-1][0], max(end, merged[-1][1]))
+        else:
+            merged.append((start, end))
+    offending = [value[start:end].strip(".,;:()[]") for start, end in merged[:6]]
     if offending:
-        raise ValueError(f"{label}: numeric prose contains offending token {offending!r}. "
-                         "Remove numeric values, spelled-out quantities and numeric tenor labels. "
-                         "Rewrite 'three-month SORA' as 'the SORA benchmark'; "
-                         "the report renderer supplies all figures.")
+        fragments = (f"offending token {offending[0]!r}" if len(offending) == 1
+                     else f"offending fragments {offending!r}")
+        tenor_hint = " Rewrite 'three-month SORA' as 'the SORA benchmark'." if "sora" in value.casefold() else ""
+        raise _NumericProseError(f"{label}: numeric prose contains {fragments}. "
+            f"Rejected prose excerpt: {value[:200]!r}. "
+            "Delete all years and quantities, including spelled-out years; do not translate digits into words. "
+            "For historical limitations write, for example: 'Historical definition and coverage changes may "
+            "limit comparability.' Remove numeric tenor labels; the report renderer supplies all figures."
+            + tenor_hint)
     # Check assertion patterns, not isolated words: "common causes", "a later
     # quarter" and "does not predict prices" are valid qualitative limitations.
     # These remain heuristic checks, not a substitute for semantic review.
@@ -305,6 +321,21 @@ def _chat_call(raw_response: dict, messages: list[dict]) -> dict:
     return {"call_id": call["id"], "name": function["name"], "arguments": function["arguments"]}
 
 
+def _can_repair_prose(arguments: dict, candidates: dict, inspected: set[str], limit: int) -> bool:
+    """Only force wording repair when IDs, inspection, eligibility and evidence pass."""
+    try:
+        projected = {**arguments,
+            "decisions": [{**decision, "reason": "Qualitative selection reason."}
+                          for decision in arguments["decisions"]],
+            "narratives": [{**narrative, **{field: "Qualitative mechanism or limitation."
+                                           for field in _TEXT_FIELDS}}
+                           for narrative in arguments["narratives"]]}
+        _validate_submission(projected, candidates, inspected, limit)
+        return True
+    except (ValueError, KeyError, TypeError):
+        return False
+
+
 def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
               trace_path: Path, max_turns: int = 8, max_output_tokens: int = 4000,
               provider: str = "openai") -> dict:
@@ -404,15 +435,16 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
         discovered, inspected = set(), set()
         quality_notes = _quality_notes(list(candidates.values()))
         listed = False
+        numeric_repair = False
         for turn in range(1, max_turns + 1):
-            forced_tool = None
-            if provider == "soclaas":
+            forced_tool = "submit_analysis" if numeric_repair else None
+            if provider == "soclaas" and not forced_tool:
                 if not listed or (candidates and not discovered):
                     forced_tool = "list_candidates"
                 elif discovered and not inspected:
                     forced_tool = "inspect_candidate"
-            tool_choice = ({"type": "function", "function": {"name": forced_tool}}
-                           if forced_tool else "required")
+            tool_choice = (({"type": "function", "function": {"name": forced_tool}} if provider == "soclaas"
+                            else {"type": "function", "name": forced_tool}) if forced_tool else "required")
             event = {"turn": turn, "request": {"model": model, "tool_choice": tool_choice},
                      "tool_results": []}
             trace["events"].append(event)
@@ -425,7 +457,7 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
                         reasoning_effort="none", max_tokens=max_output_tokens)
                 else:
                     response = client.responses.create(model=model, instructions=instructions, input=messages,
-                        tools=tool_definitions, tool_choice="required", parallel_tool_calls=False,
+                        tools=tool_definitions, tool_choice=tool_choice, parallel_tool_calls=False,
                         max_output_tokens=max_output_tokens, store=False)
             except Exception as exc:
                 message = _redact(str(exc), api_key)[:800]
@@ -455,6 +487,8 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
                 if len(calls) != 1:
                     raise AgentError("Expected exactly one function call per turn; no unvalidated text is accepted")
                 call = calls[0]
+            numeric_repair = False
+            repair_reminder = None
             try:
                 arguments = json.loads(call["arguments"])
                 name = call["name"]
@@ -506,12 +540,23 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
             except (ValueError, KeyError, TypeError) as exc:
                 result = {"error": str(exc), "instruction": "Correct the tool arguments; no selection was accepted."}
                 event["validation"] = {"accepted": False, "error": str(exc)}
+                if (isinstance(exc, _NumericProseError) and call["name"] == "submit_analysis"
+                        and _can_repair_prose(arguments, candidates, inspected, limit)):
+                    numeric_repair = True
+                    repair_reminder = (
+                        "The selected candidates and evidence references have passed structural checks. "
+                        "Repair wording now and call submit_analysis next; do not inspect data again for this error. "
+                        "Delete ALL years and quantities from prose rather than spelling them out. "
+                        "Keep qualitative mechanisms and limitations. The exact validation feedback is: " + str(exc))
+                    event["repair_instruction"] = repair_reminder
             event["tool_results"].append({"call_id": call["call_id"], "output": result})
             serialized = json.dumps(result, ensure_ascii=False, allow_nan=False)
             if provider == "soclaas":
                 messages.append({"role": "tool", "tool_call_id": call["call_id"], "content": serialized})
             else:
                 messages.append({"type": "function_call_output", "call_id": call["call_id"], "output": serialized})
+            if repair_reminder:
+                messages.append({"role": "user", "content": repair_reminder})
         raise AgentError("Agent exhausted its turn budget without a valid submitted analysis; no fallback was used")
     except Exception as exc:
         trace.update({"status": "failed", "error_type": type(exc).__name__, "error": str(exc),

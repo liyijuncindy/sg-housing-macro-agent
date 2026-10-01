@@ -259,6 +259,50 @@ class AgentTests(unittest.TestCase):
         self.assertIn("'the SORA benchmark'", error)
         self.assertIn("numeric tenor labels", self.read_trace()["instructions"])
 
+    def test_population_year_failure_forces_submit_with_explicit_trusted_wording_repair(self):
+        examples = [
+            ("Population is not household formation; pre-1990 concepts and the 2003 coverage change "
+             "may limit comparability.", ["pre-1990", "2003"]),
+            ("The twenty03 coverage change may limit comparability.", ["twenty03"]),
+            ("The two thousand three coverage change may limit comparability.", ["two thousand three"]),
+        ]
+        for wording, fragments in examples:
+            with self.subTest(wording=wording):
+                invalid = submission()
+                invalid["narratives"][0]["limitations"] = wording
+                repaired = submission()
+                repaired["narratives"][0]["limitations"] = (
+                    "Historical definition and coverage changes may limit comparability.")
+                captured = []
+                self.run_soclaas(chat_sequence(invalid) + [chat_response("submit_analysis", repaired, 4)], captured)
+                event = self.read_trace()["events"][2]
+                error = event["validation"]["error"]
+                for fragment in fragments:
+                    self.assertIn(fragment, error)
+                self.assertIn("do not translate digits into words", error)
+                self.assertNotIn("SORA", error)
+                self.assertEqual(captured[3]["tool_choice"],
+                                 {"type": "function", "function": {"name": "submit_analysis"}})
+                self.assertEqual(captured[3]["messages"][-2]["role"], "tool")
+                self.assertEqual(captured[3]["messages"][-1]["role"], "user")
+                self.assertEqual(captured[3]["messages"][-1]["content"], event["repair_instruction"])
+                self.assertIn("income.limitations", event["repair_instruction"])
+                self.assertEqual(self.read_trace()["usage"]["requests"], 4)
+
+    def test_numeric_error_does_not_force_wording_repair_when_evidence_needs_lookup(self):
+        invalid = submission()
+        # Decision prose is checked before narrative evidence; the repair gate
+        # must still notice that the evidence is invalid instead of forcing submit.
+        invalid["decisions"][0]["reason"] = "The 2003 definition may limit comparability."
+        invalid["narratives"][0]["evidence_ids"] = ["income:invented"]
+        captured = []
+        self.run_soclaas(chat_sequence(invalid) + [
+            chat_response("inspect_candidate", {"ids": ["income"]}, 4),
+            chat_response("submit_analysis", submission(), 5)], captured)
+        self.assertEqual(captured[3]["tool_choice"], "required")
+        self.assertEqual(captured[3]["messages"][-1]["role"], "tool")
+        self.assertNotIn("repair_instruction", self.read_trace()["events"][2])
+
     def test_fabricated_and_other_series_evidence_is_rejected(self):
         for evidence in ([], ["invented:latest"], ["vacancy:latest"], ["income:unprovided"],
                          ["income:latest", "income:latest"]):
@@ -304,6 +348,8 @@ class AgentTests(unittest.TestCase):
         self.assertFalse(events[2]["validation"]["accepted"])
         self.assertTrue(events[3]["validation"]["accepted"])
         self.assertEqual(result["usage"]["requests"], 4)
+        self.assertEqual(self.client.responses.create.call_args.kwargs["tool_choice"],
+                         {"type": "function", "name": "submit_analysis"})
 
     def test_reasoning_and_function_outputs_are_carried_to_next_request(self):
         responses = sequence()

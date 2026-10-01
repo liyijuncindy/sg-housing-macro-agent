@@ -8,10 +8,10 @@ Checked on **1 October 2026, Singapore time**, using Python 3.12.14. This docume
 python -m unittest discover -v
 ```
 
-**Observed: 116 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
+**Observed: 118 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
 
 - 41 engine tests: true-calendar baselines, missing quarters, zero denominators, percentage/basis-point units, date cutoffs, population reference dates, quality windows, staleness and family selection.
-- 31 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
+- 33 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
 - 15 source tests: captured official GDP/population/SORA responses, exact series requests, source identity/metadata consistency, cell-limit rejection, API errors and retry audit trails.
 - 29 pipeline tests: provider routing and explicit saved-snapshot verification/reanalysis, full workflow with explicit synthetic fixtures, partial and total failure, cutoff-filtered CSV, table rendering, immutable output, environment handling, replay and tampering.
 
@@ -67,6 +67,8 @@ A fresh official-data run encountered persistent HTTP 502 responses across twent
 The first live adapter probe completed in 64.938 seconds and six requests, using 149,733 input tokens and 6,554 output tokens (156,287 total). Three submissions repeated a forbidden numeric tenor label before the model corrected it. Its full original [trace](evidence/soclaas-first-probe/agent_trace.json), [selection](evidence/soclaas-first-probe/selection.json) and [semantic review](evidence/soclaas-first-probe/review.json) are preserved. Semantic review also found mistaken family equivalence, an aggregate-versus-household income distinction, and overly strong exclusion reasons. A syntactically valid submission is therefore not sufficient evidence of a sound economic interpretation.
 
 The follow-up implementation removes duplicate fact payloads, sends shared quality policy text once per result, identifies the offending numeric token in repair feedback, and clarifies exact families, aggregation, scope and cautious exclusion reasoning. Full raw data and evaluated facts remain available in the saved run.
+
+The next full saved-source workflow still exhausted its eight-call budget on numeric population-definition years, despite a smaller payload. It used 141,527 input and 7,021 output tokens (148,548 total) in 66.409 seconds. No report was produced. The complete failed run is preserved in [evidence/soclaas-repair-failure](evidence/soclaas-repair-failure/manifest.json). This failure demonstrates a real instruction-following limitation of the tested model/prompt combination, not a network error. A targeted follow-up gives full numeric fragments and explicit semantic rewriting feedback without relaxing the numeric/evidence checks.
 
 The OpenAI Responses path remains supported by offline protocol tests; it has not been verified with a real OpenAI account in this task.
 
