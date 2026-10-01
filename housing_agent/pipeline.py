@@ -15,6 +15,7 @@ from . import __version__
 from .engine import evaluate_series, select_candidates
 from .report import render_html, render_report
 from .sources import SingStatClient, SourceMaintenanceError, fetch_series
+from .official_sources import OfficialFileClient, DIRECT_IDS
 from .storage import file_inventory, read_json, sha256_bytes, utc_now, verify_inventory, write_json
 
 AS_OF_POLICY = "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set."
@@ -45,11 +46,11 @@ def failure_evaluation(spec: dict, error: str) -> dict:
 
 def export_processed(path: Path, series_list: list[dict]) -> None:
     with path.open("w", newline="", encoding="utf-8") as fh:
-        writer = csv.DictWriter(fh, fieldnames=["series_id", "period", "observation_date", "value", "unit", "raw_period", "raw_value", "raw_index", "raw_file", "raw_sha256"])
+        writer = csv.DictWriter(fh, fieldnames=["series_id", "period", "observation_date", "published_at", "source_value_date", "source_publication_date", "value", "unit", "raw_period", "raw_value", "raw_index", "raw_locator", "preliminary", "raw_file", "raw_sha256"])
         writer.writeheader()
         for series in series_list:
             for obs in series["observations"]:
-                writer.writerow({"series_id": series["id"], "period": obs["period"], "observation_date": obs.get("observation_date", ""), "value": obs["value"], "unit": series["unit"], "raw_period": obs["raw_period"], "raw_value": obs["raw_value"], "raw_index": obs["raw_index"], **{k: series["provenance"][k] for k in ["raw_file", "raw_sha256"]}})
+                writer.writerow({"series_id": series["id"], "period": obs["period"], "observation_date": obs.get("observation_date", ""), "value": obs["value"], "unit": series["unit"], "raw_period": obs["raw_period"], "raw_value": obs["raw_value"], "raw_index": obs["raw_index"], **{k: obs.get(k, "") for k in ("published_at", "source_value_date", "source_publication_date", "raw_locator", "preliminary")}, **{k: series["provenance"][k] for k in ["raw_file", "raw_sha256"]}})
 
 
 def _saved_source(source_run: Path, output: Path) -> dict:
@@ -109,13 +110,15 @@ def _saved_source(source_run: Path, output: Path) -> dict:
             "files": sorted(required | raw_files), "provenance": provenance}
 
 
-def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, model: str | None = None, timeout: float = 20, progress=print, provider: str | None = None, source_run: Path | None = None) -> dict:
+def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, model: str | None = None, timeout: float = 20, progress=print, provider: str | None = None, source_run: Path | None = None, source_policy: str = "auto") -> dict:
     started = time.monotonic()
     date.fromisoformat(as_of)
     if not 1 <= limit <= 12:
         raise ValueError("Selection limit must be between 1 and 12")
     if timeout <= 0:
         raise ValueError("HTTP timeout must be positive")
+    if source_policy not in {"auto", "singstat"}:
+        raise ValueError("Unknown source policy; choose auto or singstat")
     load_local_environment()
     if mode not in {"rules", "llm"}:
         raise ValueError("Unknown analysis mode")
@@ -137,9 +140,10 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
     run = {"schema_version": 1, "run_id": output.name, "created_at": utc_now(), "as_of": as_of,
            "as_of_policy": AS_OF_POLICY, "mode": mode,
            "mode_label": "Deterministic rules; reviewed qualitative templates, no model call" if mode == "rules" else f"Live {'SoCLaaS Chat Completions' if provider == 'soclaas' else 'OpenAI Responses'} tool-calling agent ({model})",
-           "provider": provider, "model": model,
+           "provider": provider, "model": model, "source_policy": "saved" if saved else source_policy,
            "data_basis": AS_OF_POLICY, "package_version": __version__, "python_version": sys.version.split()[0],
-           "warnings": [], "status": "running"}
+           "warnings": [], "status": "running",
+           "usage": {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "requests": 0}}
     if saved is not None:
         run["source_run"] = saved["provenance"]
         capture = saved["provenance"]["retrieved_at_min"] or saved["provenance"]["original_created_at"] or "unknown capture time"
@@ -158,6 +162,14 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
     run["code_hashes"] = {str(p.relative_to(source_dir)): sha256_bytes(p.read_bytes()) for p in sorted(source_dir.glob("*.py"))}
     write_json(output / "manifest.json", run)
     client = SingStatClient(output, timeout=timeout) if saved is None else None
+    official_client = OfficialFileClient(output, timeout=timeout) if saved is None and source_policy == "auto" else None
+    maintenance_error = None
+
+    def save_retrievals():
+        if client is not None:
+            records = client.records + (official_client.records if official_client is not None else [])
+            write_json(output / "retrievals.json", sorted(records, key=lambda item: item["retrieved_at"]))
+
     try:
         if saved is None:
             import json
@@ -174,7 +186,11 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
                 except SourceMaintenanceError as exc:
                     discoveries.append({"query": query, "status": "maintenance", "error": str(exc)})
                     write_json(output / "discovery.json", discoveries)
-                    raise
+                    if source_policy == "singstat":
+                        raise
+                    maintenance_error = str(exc)
+                    run["warnings"].append("SingStat Table Builder is under maintenance; remaining searches and SingStat-only candidates were skipped. Independent MOM and MAS downloads were still attempted.")
+                    break
                 except Exception as exc:
                     discoveries.append({"query": query, "status": "failed", "error": str(exc)})
                     run["warnings"].append(f"Official catalogue query failed for {query}; reviewed candidate identifiers were still attempted.")
@@ -191,7 +207,18 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
             progress(f"{'Fetching and evaluating' if saved is None else 'Re-evaluating saved source'}: {spec['expected_name']}")
             try:
                 if saved is None:
-                    series = fetch_series(client, spec)
+                    identifier = f"{spec['table_id']}:{spec['row_id']}"
+                    if official_client is not None and identifier in DIRECT_IDS:
+                        if identifier == "M700071:23":
+                            from .mas_sources import fetch_mas_series
+                            series = fetch_mas_series(official_client, spec, as_of)
+                        else:
+                            from .mom_sources import fetch_mom_series
+                            series = fetch_mom_series(official_client, spec)
+                    elif maintenance_error is not None:
+                        raise ValueError("SingStat source skipped after confirmed maintenance; no supported independent route for this candidate. " + maintenance_error)
+                    else:
+                        series = fetch_series(client, spec)
                 else:
                     identifier = f"{spec['table_id']}:{spec['row_id']}"
                     if identifier not in saved["by_id"]:
@@ -200,14 +227,22 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
                 evaluation = evaluate_series(series, as_of)
                 series_list.append(series)
                 evaluations.append(evaluation)
-            except SourceMaintenanceError:
-                raise
+            except SourceMaintenanceError as exc:
+                if source_policy == "singstat":
+                    raise
+                maintenance_error = str(exc)
+                evaluations.append(failure_evaluation(spec, str(exc)))
+                run["warnings"].append(f"Excluded {spec['table_id']}:{spec['row_id']}: SingStat maintenance; independent sources continue.")
             except Exception as exc:
                 evaluations.append(failure_evaluation(spec, str(exc)))
                 run["warnings"].append(f"Excluded {spec['table_id']}:{spec['row_id']} after retrieval or validation failure: {exc}")
         if client is not None:
-            client.save_records()
+            save_retrievals()
             write_json(output / "normalized.json", series_list)
+        run["source_coverage"] = {"candidates": len(catalogue), "downloaded": len(series_list),
+                                  "eligible": sum(bool(item["quality"]["eligible"]) for item in evaluations),
+                                  "singstat_maintenance": maintenance_error is not None,
+                                  "providers": sorted({item.get("source_provider", "SingStat Table Builder") for item in series_list})}
         write_json(output / "evaluations.json", evaluations)
         export_processed(output / "processed.csv", [
             {**item["metadata"], "id": item["id"], "observations": item["observations"]}
@@ -250,8 +285,7 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         progress(f"Report saved: {output / 'report.md'}")
         return run
     except Exception as exc:
-        if client is not None:
-            client.save_records()
+        save_retrievals()
         run.update(status="failed", error=f"{type(exc).__name__}: {exc}", finished_at=utc_now(),
                    elapsed_seconds=round(time.monotonic() - started, 3))
         if isinstance(exc, SourceMaintenanceError):

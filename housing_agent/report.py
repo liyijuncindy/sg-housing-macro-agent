@@ -51,13 +51,13 @@ def render_report(run: dict, evaluations: list[dict], selection: dict) -> str:
         meta, latest = item["metadata"], item["latest"]
         output += ["", f"## {meta['name']}", "",
             f"- **Series:** `{item['id']}`; **Theme:** {meta['theme']}",
-            f"- **Source:** {meta['source_agency']} via [SingStat Table Builder]({meta['source_url']})",
+            f"- **Source:** {meta['source_agency']} via [{meta.get('source_provider', 'SingStat Table Builder')}]({meta['source_url']})",
             f"- **Definition:** {meta['definition']}", f"- **Coverage:** {meta.get('scope', 'See source')}",
             f"- **Unit:** {meta['unit']}; **Observation frequency:** {meta['frequency']}; **Seasonal adjustment:** {meta.get('seasonal_adjustment', 'Not established')}",
             f"- **Update frequency:** {meta['update_frequency']}",
             f"- **Latest usable observation:** {fmt(latest['value'])} {meta['unit']} in {latest['period']} (evidence `{item['id']}:latest`)",
             f"- **Observation reference date:** {latest.get('observation_date', 'Period end used conservatively')}",
-            f"- **Source table last updated:** {meta.get('source_updated_at', 'Not supplied')}; **Retrieved:** {meta['retrieved_at']}",
+            f"- **Source table last updated:** {meta.get('source_updated_at') or 'Not supplied'}; **Retrieved:** {meta['retrieved_at']}",
             "", "| Comparison | Latest period | Base period | Change | Unit | Evidence |",
             "|---|---|---|---:|---|---|",
         ]
@@ -74,17 +74,33 @@ def render_report(run: dict, evaluations: list[dict], selection: dict) -> str:
             output.append("Referenced evidence: " + ", ".join(f"`{x}`" for x in narrative["evidence_ids"]) + ".")
         for warning in item["quality"].get("warnings", []):
             output.append(f"- Data warning: {warning}")
+        if meta.get("transformation_note"):
+            output.append(f"- Source transformation: {meta['transformation_note']}")
+        if latest.get("preliminary"):
+            output.append("- Data warning: the latest observation is marked preliminary by the official source.")
         provenance = meta["provenance"]
+        if meta.get("source_provider"):
+            trace_note = (f"Reviewed catalogue identity: `{item['id']}`. Actual source location for the latest value: "
+                          f"`{latest.get('raw_locator', latest.get('raw_index'))}`. "
+                          "The observations retain original labels, values and file locations; "
+                          "monthly samples also retain their source daily dates. "
+                          f"Adapter-generated definition and transformation notes: `{provenance['metadata_file']}` "
+                          f"(SHA-256 `{provenance['metadata_sha256']}`); this is not an official API metadata response. "
+                          "Each calculated change retains the formula and both input observations.")
+        else:
+            trace_note = (f"Exact source row: `{meta['row_id']}` in table `{meta['table_id']}`. "
+                          "The observations in `evaluations.json` retain original period, value and raw column index. "
+                          "Each calculated change retains the formula and both input observations.")
         output += ["", "<details><summary>Trace the numbers</summary>", "",
             f"Raw response: `{provenance['raw_file']}`; SHA-256 `{provenance['raw_sha256']}`.", "",
-            f"Exact source row: `{meta['row_id']}` in table `{meta['table_id']}`. "
-            "The observations in `evaluations.json` retain original period, value and raw column index. "
-            "Each calculated change retains the formula and both input observations.", "",
+            trace_note, "",
         ]
         for change in item["changes"]:
             output.append(f"- `{change['id']}`: `{change['formula']}`; inputs {fmt(change['latest_value'])} and {fmt(change['base_value'])}.")
         if meta.get("row_footnote"):
             output += ["", "Source row note: " + meta["row_footnote"]]
+        if meta.get("source_provider") and meta.get("source_footnote") and meta["source_footnote"] != meta.get("row_footnote"):
+            output += ["", "Source file notes: " + meta["source_footnote"]]
         output += ["", "</details>"]
     output += ["", "## Run limitations and reproducibility", ""]
     for warning in run.get("warnings", []):

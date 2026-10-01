@@ -42,3 +42,21 @@ An unfiltered CPI request was observed to stop at exactly **5,000 observation ce
 The metadata supplies observation frequency, but not a guaranteed release schedule, individual publication timestamps or historical vintages. Consequently, this version filters the latest captured vintage by observation reference date and explicitly does not reconstruct what was known historically. Quality scores establish data usability, not causality or predictive performance.
 
 Completed stock, vacancies and pipeline all belong to the broad **housing supply** selection family. They describe different aspects of supply but should share a first-pass diversity slot. This limits redundant selection without imposing a fixed number of families or preventing complementary supply measures when capacity permits.
+
+## Independent official downloads
+
+The default workflow uses three reviewed publisher routes that do not depend on Table Builder:
+
+| Catalogue identity | Direct source | Mapping and checks |
+|---|---|---|
+| `M182342:2` | [MOM unemployment CSV](https://stats.mom.gov.sg/iMAS_Tables1/CSV/mrsd_11_Resident_unemployment_rate_n_number.csv) | Keep `quarter_annual=quarter`, `residential_status=resident`, and `seasonally_adjusted_unemployment_rate`. Do not include annual averages or substitute extra precision from another file. |
+| `M184101:1` | [MOM quarterly mean-income XLSX](https://stats.mom.gov.sg/iMAS_Tables1/Time-Series-Table/mrsd_72_Mean_GMI_Emp_Res_Quarterly.xlsx) | Verify the official title, Dollars unit, quarterly columns, source attribution and definition notes. Preserve the employer/platform-operator CPF scope, bonus exclusion and preliminary markers. It is a mean per employed resident, not median income or aggregate disposable income. |
+| `M700071:23` | [MAS public domestic-interest-rate export](https://eservices.mas.gov.sg/statistics/dir/DomesticInterestRates.aspx) | Submit the public download form for three-month compounded SORA. Sample the final **SORA Value Date** in each verified closed month. Publication-date grouping is incorrect; no monthly average or further compounding is used. |
+
+The independent routes retain original CSV/XLSX bytes, form-response bytes, retrieval timestamps, SHA-256 hashes and exact row/cell locators. Adapter-generated metadata is clearly marked as local interpretation of the official file. A changed label, unit, workbook layout or unsupported response fails explicitly. HTTP partial-content responses are not accepted as complete histories.
+
+MOM data overlapped the original SingStat snapshot exactly across 138 unemployment quarters and 21 income quarters. MAS value-date month-end sampling matched all 251 available overlapping months. These are observed cross-source checks of the captured vintages, not a promise that future revisions or definitions will remain identical. Current workflow results and precise validation evidence are recorded in [validation.md](validation.md).
+
+The MAS CSV's publication/index date is retained separately. It does not establish when back-calculated historical compounded rates were first available. Months whose final daily record lacks a publication/index date crossing month-end are conservatively omitted. Missing terminal values remain missing; an earlier valid quote is not substituted.
+
+The main SingStat GDP page supplies current/previous observations but has not been connected as a replacement historical series. The other nine candidates still require SingStat in a fresh run; unavailable candidates are reported rather than silently filled from an older snapshot.

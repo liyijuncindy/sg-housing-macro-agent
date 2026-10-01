@@ -8,9 +8,16 @@ import unittest
 from unittest.mock import patch
 
 from housing_agent.engine import evaluate_series, select_candidates
-from housing_agent.pipeline import load_local_environment, replay, run_workflow
+from housing_agent.pipeline import load_local_environment, replay, run_workflow as _run_workflow
 from housing_agent.report import render_report
 from housing_agent.storage import file_inventory, read_json, sha256_bytes, write_json
+
+
+def run_workflow(*args, **kwargs):
+    # These original tests exercise the single-source protocol with synthetic fixtures.
+    # The independent-source default and failure isolation have their own integration tests.
+    kwargs.setdefault("source_policy", "singstat")
+    return _run_workflow(*args, **kwargs)
 
 
 def specimen(spec):

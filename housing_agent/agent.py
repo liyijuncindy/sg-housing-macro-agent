@@ -201,7 +201,9 @@ def _metadata(metadata: dict) -> dict:
     fields = ("name", "theme", "selection_family", "definition", "scope", "unit", "frequency",
               "seasonal_adjustment", "change_kind", "update_frequency", "availability_note",
               "source_agency", "source_url", "table_id", "row_id", "row_footnote", "reference_month_day",
-              "retrieved_at", "source_updated_at", "mechanism")
+              "retrieved_at", "source_updated_at", "source_provider", "transformation_note", "mechanism")
+    if metadata.get("source_provider"):
+        fields += ("source_footnote",)
     compact = {}
     truncated = []
     for field in fields:

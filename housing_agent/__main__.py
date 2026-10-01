@@ -17,6 +17,7 @@ def main(argv=None):
     run.add_argument("--model", help="Tool-capable model for the chosen provider; overrides OPENAI_MODEL or SOCLAAS_MODEL")
     run.add_argument("--timeout", type=float, default=20, help="Per-source HTTP timeout in seconds")
     run.add_argument("--source-run", type=Path, help="Explicitly reuse verified official data from a saved run; LLM calls remain live")
+    run.add_argument("--source-policy", choices=["auto", "singstat"], default="auto", help="auto uses independent MOM/MAS downloads for supported series; singstat uses Table Builder only")
     rep = sub.add_parser("replay", help="Verify and regenerate a saved report without network access")
     rep.add_argument("run_dir", type=Path)
     rep.add_argument("--output", type=Path, required=True)
@@ -27,7 +28,7 @@ def main(argv=None):
     try:
         if args.command == "run":
             from .pipeline import run_workflow
-            result = run_workflow(args.as_of, args.output, args.mode, args.limit, args.model, args.timeout, provider=args.provider, source_run=args.source_run)
+            result = run_workflow(args.as_of, args.output, args.mode, args.limit, args.model, args.timeout, provider=args.provider, source_run=args.source_run, source_policy=args.source_policy)
             print(json.dumps({key: result.get(key) for key in ("status", "selected_ids", "mode", "provider", "model", "actual_models", "usage", "elapsed_seconds", "agent_elapsed_seconds")}, indent=2))
         elif args.command == "replay":
             from .pipeline import replay
