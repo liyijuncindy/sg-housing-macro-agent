@@ -1,5 +1,6 @@
 """End-to-end failure, reproducibility and immutable-artifact contracts."""
 from copy import deepcopy
+import io
 import json
 import os
 from pathlib import Path
@@ -151,6 +152,21 @@ class PipelineTests(unittest.TestCase):
             fetch.assert_not_called()
             self.assertFalse(output.exists())
 
+    def test_historical_reports_still_replay_without_provider_configuration(self):
+        examples = Path(__file__).resolve().parents[1] / "examples"
+        names = ("sample_run", "soclaas_verified_run", "independent_sources_run",
+                 "singstat_priority_agent_run", "singstat_priority_verified_run", "singstat_priority_rules_run")
+        with tempfile.TemporaryDirectory() as tmp, \
+                patch("housing_agent.agent.run_agent", side_effect=AssertionError("Replay must not call a provider")), \
+                patch("housing_agent.sources.urlopen", side_effect=AssertionError("Replay must not fetch sources")):
+            for name in names:
+                with self.subTest(run=name):
+                    output = Path(tmp) / (name + ".md")
+                    result = replay(examples / name, output)
+                    self.assertEqual(output.read_bytes(), (examples / name / "report.md").read_bytes())
+                    self.assertEqual(result["network_calls"], 0)
+                    self.assertEqual(result["model_calls"], 0)
+
     def test_manifest_path_traversal_is_rejected(self):
         from housing_agent.storage import verify_inventory
         with tempfile.TemporaryDirectory() as tmp:
@@ -201,7 +217,8 @@ class ProviderPipelineTests(unittest.TestCase):
         selection["usage"] = {"input_tokens": 50, "output_tokens": 30, "total_tokens": 80, "requests": 1}
         # A replay must preserve the provider trace just like other captured files.
         write_json(trace_path, {"status": "completed", "provider": kwargs.get("provider"),
-                                "model": model, "usage": selection["usage"]})
+                                "model": model, "actual_models": [model], "elapsed_seconds": 0.25,
+                                "usage": selection["usage"]})
         return selection
 
     def output_path(self):
@@ -213,11 +230,13 @@ class ProviderPipelineTests(unittest.TestCase):
         result = run_workflow("2026-09-30", output, mode="llm", progress=lambda _: None, **kwargs)
         return result, output
 
-    def configure_both(self):
+    def configure_providers(self):
         os.environ.update({"OPENAI_API_KEY": "synthetic-openai-key",
                            "OPENAI_MODEL": "openai-test-model",
                            "SOCLAAS_API_KEY": "synthetic-soclaas-key",
-                           "SOCLAAS_MODEL": "soclaas-test-model"})
+                           "SOCLAAS_MODEL": "soclaas-test-model",
+                           "SILICONFLOW_API_KEY": "synthetic-siliconflow-key",
+                           "SILICONFLOW_MODEL": "zai-org/GLM-5.3"})
 
     def assert_preflight_failure(self, required_message, **kwargs):
         output = self.output_path()
@@ -232,7 +251,7 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertFalse(output.exists())
 
     def test_explicit_provider_and_model_override_environment_and_are_recorded(self):
-        self.configure_both()
+        self.configure_providers()
         os.environ["LLM_PROVIDER"] = "openai"
         result, output = self.run_llm(provider="soclaas", model="explicit-test-model")
         self.assertEqual(result["provider"], "soclaas")
@@ -258,7 +277,7 @@ class ProviderPipelineTests(unittest.TestCase):
                 self.assertNotIn("synthetic-soclaas-key", body)
 
     def test_environment_selects_soclaas_and_uses_only_its_model(self):
-        self.configure_both()
+        self.configure_providers()
         os.environ["LLM_PROVIDER"] = "soclaas"
         result, _ = self.run_llm()
         self.assertEqual(result["provider"], "soclaas")
@@ -266,9 +285,52 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertEqual(self.agent.call_args.kwargs["provider"], "soclaas")
         self.assertEqual(self.agent.call_args.args[3], "soclaas-test-model")
 
+    def test_siliconflow_provider_model_and_mode_are_recorded_without_credential_leakage(self):
+        self.configure_providers()
+        os.environ["LLM_PROVIDER"] = "openai"
+        result, output = self.run_llm(provider="siliconflow", model="zai-org/GLM-5.3")
+        expected_label = "Live SiliconFlow Chat Completions tool-calling agent (zai-org/GLM-5.3)"
+        self.assertEqual(self.agent.call_args.kwargs["provider"], "siliconflow")
+        self.assertEqual(self.agent.call_args.args[3], "zai-org/GLM-5.3")
+        for artifact in (result, read_json(output / "manifest.json"), read_json(output / "report_context.json")):
+            self.assertEqual(artifact["provider"], "siliconflow")
+            self.assertEqual(artifact["model"], "zai-org/GLM-5.3")
+            self.assertEqual(artifact["actual_models"], ["zai-org/GLM-5.3"])
+            self.assertEqual(artifact["mode_label"], expected_label)
+            self.assertEqual(artifact["agent_elapsed_seconds"], 0.25)
+        self.assertIn(expected_label, (output / "report.md").read_text())
+        self.assertEqual(read_json(output / "agent_trace.json")["provider"], "siliconflow")
+        for path in output.rglob("*"):
+            if path.is_file():
+                body = path.read_text(encoding="utf-8")
+                for secret in ("synthetic-openai-key", "synthetic-soclaas-key", "synthetic-siliconflow-key"):
+                    self.assertNotIn(secret, body)
+
+    def test_environment_selects_siliconflow_and_uses_only_its_model(self):
+        self.configure_providers()
+        os.environ["LLM_PROVIDER"] = "siliconflow"
+        result, _ = self.run_llm()
+        self.assertEqual(result["provider"], "siliconflow")
+        self.assertEqual(result["model"], "zai-org/GLM-5.3")
+        self.assertEqual(self.agent.call_args.kwargs["provider"], "siliconflow")
+
+    def test_cli_accepts_siliconflow_and_forwards_explicit_model(self):
+        from housing_agent.__main__ import main
+        output = self.output_path()
+        summary = {"status": "complete", "provider": "siliconflow", "model": "zai-org/GLM-5.3"}
+        with patch("housing_agent.pipeline.run_workflow", return_value=summary) as workflow, \
+                patch("sys.stdout", new_callable=io.StringIO) as stdout:
+            code = main(["run", "--as-of", "2026-10-01", "--output", str(output),
+                         "--mode", "llm", "--provider", "siliconflow", "--model", "zai-org/GLM-5.3"])
+        self.assertEqual(code, 0)
+        self.assertEqual(workflow.call_args.kwargs["provider"], "siliconflow")
+        self.assertEqual(workflow.call_args.args[4], "zai-org/GLM-5.3")
+        self.assertEqual(json.loads(stdout.getvalue())["provider"], "siliconflow")
+        self.agent.assert_not_called()
+
     def test_discovery_maintenance_does_not_prevent_working_candidate_tables_or_model(self):
         from housing_agent.sources import SourceMaintenanceError
-        self.configure_both()
+        self.configure_providers()
         self.discover.side_effect = SourceMaintenanceError("This request returned a current maintenance page")
         output = self.output_path()
         result = run_workflow("2026-09-30", output, mode="llm", provider="soclaas", progress=lambda _: None)
@@ -283,7 +345,7 @@ class ProviderPipelineTests(unittest.TestCase):
 
     def test_all_series_maintenance_rechecks_every_candidate_before_failing_without_model(self):
         from housing_agent.sources import SourceMaintenanceError
-        self.configure_both()
+        self.configure_providers()
         self.fetch.side_effect = SourceMaintenanceError("This request returned a current maintenance page")
         output = self.output_path()
         with self.assertRaisesRegex(ValueError, "No candidate"):
@@ -300,14 +362,14 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertTrue(all(len(route["attempts"]) == 2 for route in routes))
 
     def test_default_provider_is_openai_when_no_provider_is_supplied(self):
-        self.configure_both()
+        self.configure_providers()
         result, _ = self.run_llm()
         self.assertEqual(result["provider"], "openai")
         self.assertEqual(result["model"], "openai-test-model")
         self.assertEqual(self.agent.call_args.kwargs["provider"], "openai")
 
     def test_explicit_openai_overrides_soclaas_environment(self):
-        self.configure_both()
+        self.configure_providers()
         os.environ["LLM_PROVIDER"] = "soclaas"
         result, _ = self.run_llm(provider="openai")
         self.assertEqual(result["provider"], "openai")
@@ -315,16 +377,16 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertEqual(self.agent.call_args.kwargs["provider"], "openai")
 
     def test_other_provider_key_is_never_a_fallback(self):
-        for provider, prefix in [("openai", "OPENAI"), ("soclaas", "SOCLAAS")]:
+        for provider, prefix in [("openai", "OPENAI"), ("soclaas", "SOCLAAS"), ("siliconflow", "SILICONFLOW")]:
             with self.subTest(provider=provider):
-                self.configure_both()
+                self.configure_providers()
                 del os.environ[prefix + "_API_KEY"]
                 self.assert_preflight_failure(prefix + "_API_KEY", provider=provider)
 
     def test_other_provider_model_is_never_a_fallback(self):
-        for provider, prefix in [("openai", "OPENAI"), ("soclaas", "SOCLAAS")]:
+        for provider, prefix in [("openai", "OPENAI"), ("soclaas", "SOCLAAS"), ("siliconflow", "SILICONFLOW")]:
             with self.subTest(provider=provider):
-                self.configure_both()
+                self.configure_providers()
                 del os.environ[prefix + "_MODEL"]
                 self.assert_preflight_failure(prefix + "_MODEL", provider=provider)
 
@@ -336,19 +398,23 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertEqual(self.agent.call_args.args[3], "command-model")
 
     def test_invalid_provider_fails_before_data_or_output(self):
-        self.configure_both()
+        self.configure_providers()
         self.assert_preflight_failure("(?i)provider", provider="untrusted-proxy")
         os.environ["LLM_PROVIDER"] = "unknown-provider"
         self.assert_preflight_failure("(?i)provider")
 
     def test_local_file_only_loads_supported_keys_and_environment_wins(self):
-        os.environ.update({"LLM_PROVIDER": "openai", "SOCLAAS_MODEL": "shell-model"})
+        os.environ.update({"LLM_PROVIDER": "openai", "SOCLAAS_MODEL": "shell-model",
+                           "SILICONFLOW_MODEL": "shell-siliconflow-model"})
         (self.root / ".env").write_text(
             'LLM_PROVIDER=soclaas\nSOCLAAS_API_KEY="local-test-key"\n'
             "SOCLAAS_MODEL=file-model\nOPENAI_API_KEY='local-openai-test-key'\n"
             "OPENAI_MODEL=file-openai-model\n"
+            "SILICONFLOW_API_KEY=local-siliconflow-test-key\n"
+            "SILICONFLOW_MODEL=zai-org/GLM-5.3\n"
             "SOCLAAS_BASE_URL=https://untrusted.invalid\n"
             "OPENAI_BASE_URL=https://untrusted.invalid\n"
+            "SILICONFLOW_BASE_URL=https://untrusted.invalid\n"
             "UNRELATED_SECRET=must-not-load\n")
         load_local_environment()
         self.assertEqual(os.environ["LLM_PROVIDER"], "openai")
@@ -356,7 +422,9 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertEqual(os.environ["SOCLAAS_API_KEY"], "local-test-key")
         self.assertEqual(os.environ["OPENAI_API_KEY"], "local-openai-test-key")
         self.assertEqual(os.environ["OPENAI_MODEL"], "file-openai-model")
-        for name in ["SOCLAAS_BASE_URL", "OPENAI_BASE_URL", "UNRELATED_SECRET"]:
+        self.assertEqual(os.environ["SILICONFLOW_API_KEY"], "local-siliconflow-test-key")
+        self.assertEqual(os.environ["SILICONFLOW_MODEL"], "shell-siliconflow-model")
+        for name in ["SOCLAAS_BASE_URL", "OPENAI_BASE_URL", "SILICONFLOW_BASE_URL", "UNRELATED_SECRET"]:
             self.assertNotIn(name, os.environ)
 
     def test_provider_from_local_file_is_used_by_workflow(self):
@@ -366,6 +434,23 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertEqual(result["provider"], "soclaas")
         self.assertEqual(result["model"], "local-test-model")
         self.assertEqual(self.agent.call_args.kwargs["provider"], "soclaas")
+
+    def test_siliconflow_configuration_from_local_file_is_used_by_workflow(self):
+        (self.root / ".env").write_text(
+            "LLM_PROVIDER=siliconflow\nSILICONFLOW_API_KEY=local-synthetic-key\nSILICONFLOW_MODEL=zai-org/GLM-5.3\n")
+        result, _ = self.run_llm()
+        self.assertEqual(result["provider"], "siliconflow")
+        self.assertEqual(result["model"], "zai-org/GLM-5.3")
+        self.assertEqual(self.agent.call_args.kwargs["provider"], "siliconflow")
+
+    def test_environment_template_recommends_siliconflow_without_removing_other_providers(self):
+        text = (Path(__file__).resolve().parents[1] / ".env.example").read_text()
+        values = dict(line.split("=", 1) for line in text.splitlines() if line and not line.startswith("#"))
+        self.assertEqual(values["LLM_PROVIDER"], "siliconflow")
+        self.assertEqual(values["SILICONFLOW_MODEL"], "zai-org/GLM-5.3")
+        for provider in ("OPENAI", "SOCLAAS", "SILICONFLOW"):
+            self.assertEqual(values[provider + "_API_KEY"], "")
+            self.assertTrue(values[provider + "_MODEL"])
 
     def test_rules_mode_needs_no_provider_credentials_or_model_call(self):
         os.environ["LLM_PROVIDER"] = "soclaas"
@@ -377,23 +462,25 @@ class ProviderPipelineTests(unittest.TestCase):
         self.agent.assert_not_called()
         self.assertTrue((output / "report.md").is_file())
 
-    def test_soclaas_run_replays_without_credentials_or_provider_calls(self):
-        os.environ.update({"LLM_PROVIDER": "soclaas", "SOCLAAS_API_KEY": "synthetic-soclaas-key",
-                           "SOCLAAS_MODEL": "soclaas-test-model"})
-        result, source = self.run_llm()
-        self.assertEqual(result["provider"], "soclaas")
-        os.environ.clear()
-        self.agent.reset_mock()
-        self.discover.reset_mock()
-        self.fetch.reset_mock()
-        destination = self.root / "offline-replayed.md"
-        information = replay(source, destination)
-        self.assertEqual(information["network_calls"], 0)
-        self.assertEqual(information["model_calls"], 0)
-        self.assertEqual(destination.read_bytes(), (source / "report.md").read_bytes())
-        self.agent.assert_not_called()
-        self.discover.assert_not_called()
-        self.fetch.assert_not_called()
+    def test_provider_runs_replay_without_credentials_or_provider_calls(self):
+        for provider in ("openai", "soclaas", "siliconflow"):
+            with self.subTest(provider=provider):
+                self.configure_providers()
+                os.environ["LLM_PROVIDER"] = provider
+                result, source = self.run_llm()
+                self.assertEqual(result["provider"], provider)
+                os.environ.clear()
+                self.agent.reset_mock()
+                self.discover.reset_mock()
+                self.fetch.reset_mock()
+                destination = self.root / (provider + "-offline-replayed.md")
+                information = replay(source, destination)
+                self.assertEqual(information["network_calls"], 0)
+                self.assertEqual(information["model_calls"], 0)
+                self.assertEqual(destination.read_bytes(), (source / "report.md").read_bytes())
+                self.agent.assert_not_called()
+                self.discover.assert_not_called()
+                self.fetch.assert_not_called()
 
 
 class SavedSourcePipelineTests(unittest.TestCase):

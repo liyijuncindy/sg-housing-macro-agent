@@ -20,6 +20,8 @@ from .official_sources import OfficialFileClient, DIRECT_IDS
 from .storage import file_inventory, read_json, sha256_bytes, utc_now, verify_inventory, write_json
 
 AS_OF_POLICY = "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set."
+LLM_PROVIDER_LABELS = {"openai": "OpenAI Responses", "soclaas": "SoCLaaS Chat Completions",
+                       "siliconflow": "SiliconFlow Chat Completions"}
 
 
 def load_local_environment() -> None:
@@ -31,7 +33,8 @@ def load_local_environment() -> None:
         if not line or line.startswith("#"):
             continue
         key, sep, value = line.partition("=")
-        if sep and key.strip() in {"OPENAI_API_KEY", "OPENAI_MODEL", "LLM_PROVIDER", "SOCLAAS_API_KEY", "SOCLAAS_MODEL"}:
+        if sep and key.strip() in {"OPENAI_API_KEY", "OPENAI_MODEL", "LLM_PROVIDER", "SOCLAAS_API_KEY", "SOCLAAS_MODEL",
+                                  "SILICONFLOW_API_KEY", "SILICONFLOW_MODEL"}:
             value = value.strip()
             if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
                 value = value[1:-1]
@@ -185,8 +188,8 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
         raise ValueError("Unknown analysis mode")
     if mode == "llm":
         provider = provider or os.environ.get("LLM_PROVIDER", "openai")
-        if provider not in {"openai", "soclaas"}:
-            raise ValueError("Unknown LLM provider; choose openai or soclaas")
+        if provider not in LLM_PROVIDER_LABELS:
+            raise ValueError("Unknown LLM provider; choose openai, soclaas or siliconflow")
         prefix = provider.upper()
         if not os.environ.get(f"{prefix}_API_KEY", "").strip():
             raise ValueError(f"{prefix}_API_KEY is not configured. Fill local .env or explicitly use --mode rules.")
@@ -209,7 +212,7 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
     output.mkdir(parents=True, exist_ok=False)
     run = {"schema_version": 1, "run_id": output.name, "created_at": utc_now(), "as_of": as_of,
            "as_of_policy": AS_OF_POLICY, "mode": mode,
-           "mode_label": "Deterministic rules; reviewed qualitative templates, no model call" if mode == "rules" else f"Live {'SoCLaaS Chat Completions' if provider == 'soclaas' else 'OpenAI Responses'} tool-calling agent ({model})",
+           "mode_label": "Deterministic rules; reviewed qualitative templates, no model call" if mode == "rules" else f"Live {LLM_PROVIDER_LABELS[provider]} tool-calling agent ({model})",
            "provider": provider, "model": model, "source_policy": "saved" if saved else source_policy,
            "source_routing_version": 2, "selection_limit": limit,
            "source_strategy": "Verified saved snapshot; no new retrieval" if saved else "SingStat first for every candidate; bounded request retries, independent candidates continue, transient failures rechecked; " + ("reviewed per-candidate backups enabled" if source_policy == "auto" else "no backup sources enabled"),

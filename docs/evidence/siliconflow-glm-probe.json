@@ -1,0 +1,101 @@
+{
+  "endpoint": "https://api.siliconflow.cn/v1/chat/completions",
+  "request": {
+    "model": "zai-org/GLM-5.3",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Verify that two plus two equals four. Call record_check with the result."
+      }
+    ],
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "record_check",
+          "description": "Record whether the supplied arithmetic is correct.",
+          "strict": true,
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "correct": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "correct"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    ],
+    "tool_choice": {
+      "type": "function",
+      "function": {
+        "name": "record_check"
+      }
+    },
+    "parallel_tool_calls": false,
+    "max_tokens": 256,
+    "extra_body": {
+      "enable_thinking": false
+    }
+  },
+  "response": {
+    "id": "01a0f75eeaee04eef2a5baf043313953",
+    "choices": [
+      {
+        "finish_reason": "tool_calls",
+        "index": 0,
+        "logprobs": null,
+        "message": {
+          "content": "",
+          "refusal": null,
+          "role": "assistant",
+          "annotations": null,
+          "audio": null,
+          "function_call": null,
+          "tool_calls": [
+            {
+              "id": "01a0f75eef7fe9362d026f0eb25b2504",
+              "function": {
+                "arguments": "{\"correct\": true}",
+                "name": "record_check"
+              },
+              "type": "function",
+              "index": 0
+            }
+          ],
+          "reasoning_content": "The user wants me to verify that 2 + 2 = 4. This is correct arithmetic. Let me call the record_check function with correct: true."
+        }
+      }
+    ],
+    "created": 1790856588,
+    "model": "zai-org/GLM-5.3",
+    "object": "chat.completion",
+    "moderation": null,
+    "service_tier": null,
+    "system_fingerprint": "",
+    "usage": {
+      "completion_tokens": 39,
+      "prompt_tokens": 176,
+      "total_tokens": 215,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": null,
+        "reasoning_tokens": 34,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": null,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 176
+    }
+  },
+  "status": "ok",
+  "elapsed_seconds": 2.513
+}

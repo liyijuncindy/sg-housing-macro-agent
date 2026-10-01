@@ -113,6 +113,22 @@ class AgentTests(unittest.TestCase):
                              "qwen3.6:35b", self.trace, max_turns=len(responses),
                              max_output_tokens=1200, provider="soclaas")
 
+    def run_siliconflow(self, responses, captured=None):
+        remaining = iter(responses)
+
+        def create(**kwargs):
+            if captured is not None:
+                captured.append(deepcopy(kwargs))
+            value = next(remaining)
+            if isinstance(value, Exception):
+                raise value
+            return value
+
+        self.client.chat.completions.create.side_effect = create
+        with patch.dict(os.environ, {"SILICONFLOW_API_KEY": "siliconflow-test-secret"}):
+            return run_agent([candidate(), candidate("vacancy", False)], "2026-10-01", 2,
+                             "zai-org/GLM-5.3", self.trace, provider="siliconflow")
+
     def test_real_tool_loop_is_evidence_constrained_and_audited(self):
         result = self.run_mock(sequence())
         self.assertEqual(result["selected_ids"], ["income"])
@@ -662,6 +678,109 @@ class AgentTests(unittest.TestCase):
         self.assertEqual(trace["actual_model"], "actual-openai-snapshot")
         self.assertIn("ended_at", trace)
         self.assertGreaterEqual(trace["elapsed_seconds"], 0)
+
+    def test_siliconflow_uses_isolated_credentials_fixed_endpoint_and_chat_path(self):
+        captured = []
+        responses = chat_sequence()
+        for item in responses:
+            item["model"] = "zai-org/GLM-5.3"
+        with patch.dict(os.environ, {"SOCLAAS_API_KEY": "clsk_unrelated-account", "OPENAI_BASE_URL": "https://wrong.example.test",
+                                     "OPENAI_ORGANIZATION": "unrelated-org", "OPENAI_PROJECT_ID": "unrelated-project"}):
+            result = self.run_siliconflow(responses, captured)
+        self.client.responses.create.assert_not_called()
+        options = self.constructor.call_args.kwargs
+        self.assertEqual(options["api_key"], "siliconflow-test-secret")
+        self.assertEqual(options["base_url"], "https://api.siliconflow.cn/v1")
+        self.assertEqual((options["organization"], options["project"]), ("", ""))
+        self.assertEqual(options["timeout"], 120.0)
+        self.assertEqual(options["max_retries"], 0)
+        self.assertEqual(captured[0]["tool_choice"], {"type": "function", "function": {"name": "list_candidates"}})
+        self.assertEqual(captured[1]["tool_choice"], {"type": "function", "function": {"name": "inspect_candidate"}})
+        for call in captured:
+            self.assertNotIn("reasoning_effort", call)
+            self.assertEqual(call["extra_body"], {"enable_thinking": True, "thinking_budget": 4096})
+            self.assertEqual(call["max_tokens"], 4000)
+            self.assertEqual(call["model"], "zai-org/GLM-5.3")
+            self.assertFalse(call["parallel_tool_calls"])
+            self.assertTrue(all(tool["function"]["strict"] for tool in call["tools"]))
+        self.assertEqual(result["method"], "siliconflow_chat_completions_constrained_agent")
+        self.assertEqual(result["usage"], {"input_tokens": 33, "output_tokens": 21, "total_tokens": 54, "requests": 3})
+        trace = self.read_trace()
+        self.assertEqual(trace["max_turns"], 8)
+        self.assertEqual(trace["request_timeout_seconds"], 120.0)
+        self.assertEqual(trace["actual_models"], ["zai-org/GLM-5.3"])
+        self.assertEqual(trace["provider_request_options"], {"enable_thinking": True, "thinking_budget": 4096})
+        self.assertIn("not a locally enforced or guaranteed hard cap", trace["token_limit_note"])
+        self.assertIn("excluding reasoning", trace["token_limit_note"])
+        self.assertEqual(trace["events"][0]["request"]["extra_body"], trace["provider_request_options"])
+        self.assertNotIn("siliconflow-test-secret", self.trace.read_text())
+
+    def test_siliconflow_preserves_reasoning_content_in_tool_roundtrip(self):
+        responses = chat_sequence()
+        for index, item in enumerate(responses):
+            item["choices"][0]["message"]["reasoning_content"] = f"Provider reasoning for turn {index}."
+            item["choices"][0]["message"]["unsupported_private_field"] = "Do not forward arbitrary extras."
+        captured = []
+        self.run_siliconflow(responses, captured)
+        for index in (1, 2):
+            previous = [message for message in captured[index]["messages"] if message["role"] == "assistant"][-1]
+            self.assertEqual(previous["reasoning_content"], responses[index - 1]["choices"][0]["message"]["reasoning_content"])
+            self.assertEqual(previous["tool_calls"], responses[index - 1]["choices"][0]["message"]["tool_calls"])
+            self.assertNotIn("unsupported_private_field", previous)
+        self.assertIn("reasoning_content", self.read_trace()["events"][0]["response"]["choices"][0]["message"])
+
+    def test_soclaas_keeps_existing_reasoning_field_omission(self):
+        responses = chat_sequence()
+        responses[0]["choices"][0]["message"]["reasoning_content"] = "Provider-only field."
+        captured = []
+        self.run_soclaas(responses, captured)
+        previous = [message for message in captured[1]["messages"] if message["role"] == "assistant"][-1]
+        self.assertNotIn("reasoning_content", previous)
+        self.assertEqual(captured[0]["reasoning_effort"], "none")
+
+    def test_siliconflow_usage_details_are_subsets_not_added_again_to_total(self):
+        responses = chat_sequence()
+        responses[0]["usage"].update(prompt_tokens_details={"cached_tokens": 5}, completion_tokens_details={"reasoning_tokens": 4})
+        responses[1]["usage"].update(prompt_tokens_details={"cached_tokens": 2}, completion_tokens_details={"reasoning_tokens": 0})
+        result = self.run_siliconflow(responses)
+        self.assertEqual(result["usage"], {"input_tokens": 33, "output_tokens": 21, "total_tokens": 54,
+                                          "requests": 3, "cached_input_tokens": 7, "reasoning_output_tokens": 4})
+        trace = self.read_trace()
+        self.assertEqual(trace["events"][0]["usage_details"], {"cached_input_tokens": 5, "reasoning_output_tokens": 4})
+        self.assertNotIn("usage_details", trace["events"][2])
+        self.assertIn("not additional tokens", trace["usage_detail_note"])
+
+    def test_siliconflow_requires_own_key_and_rejects_inherited_custom_headers(self):
+        with patch.dict(os.environ, {"OPENAI_API_KEY": "sk_other-key", "SOCLAAS_API_KEY": "clsk_other-key"}, clear=True):
+            with self.assertRaisesRegex(AgentError, "SILICONFLOW_API_KEY is missing"):
+                run_agent([candidate()], "2026-10-01", 1, "zai-org/GLM-5.3", self.trace, provider="siliconflow")
+        self.constructor.assert_not_called()
+        with patch.dict(os.environ, {"OPENAI_CUSTOM_HEADERS": '{"Authorization":"Bearer private-header-value"}'}):
+            with self.assertRaisesRegex(AgentError, "Unset OPENAI_CUSTOM_HEADERS before using siliconflow"):
+                self.run_siliconflow(chat_sequence())
+        self.constructor.assert_not_called()
+        self.client.chat.completions.create.assert_not_called()
+        self.assertNotIn("private-header-value", self.trace.read_text())
+
+    def test_siliconflow_request_and_constructor_errors_redact_exact_key(self):
+        with self.assertRaises(AgentError) as raised:
+            self.run_siliconflow([RuntimeError("failure with siliconflow-test-secret sk-another-key")])
+        self.assertNotIn("siliconflow-test-secret", str(raised.exception))
+        self.assertNotIn("sk-another-key", str(raised.exception))
+        self.assertNotIn("siliconflow-test-secret", self.trace.read_text())
+        self.constructor.side_effect = RuntimeError("constructor rejected siliconflow-test-secret")
+        with self.assertRaises(AgentError) as raised:
+            self.run_siliconflow(chat_sequence())
+        self.assertNotIn("siliconflow-test-secret", str(raised.exception))
+        self.assertNotIn("siliconflow-test-secret", self.trace.read_text())
+
+    def test_siliconflow_malformed_reasoning_fails_closed(self):
+        responses = chat_sequence()
+        responses[0]["choices"][0]["message"]["reasoning_content"] = {"unexpected": "object"}
+        with self.assertRaisesRegex(AgentError, "malformed reasoning_content"):
+            self.run_siliconflow(responses)
+        self.assertEqual(self.client.chat.completions.create.call_count, 1)
+        self.assertEqual(self.read_trace()["status"], "failed")
 
 
 if __name__ == "__main__":

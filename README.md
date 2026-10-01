@@ -2,7 +2,7 @@
 
 输入报告日期，获取官方宏观数据，检查候选指标的质量，选择合适的一组指标并生成可追溯的住房市场分析报告。
 
-**目前的能力边界：**候选目录包含十六个已核验的公开序列，最终选择由真实数据检查结果决定，不预设五个入选指标。`rules` 是可离线测试的确定性基线，`llm` 是调用 SoCLaaS 或 OpenAI 的工具型 Agent。规则模式的解释来自人工审阅的机制模板，不能当成一次模型运行。初版不声称已经证明这些指标的预测能力，也不训练房价模型。
+**目前的能力边界：**候选目录包含十六个已核验的公开序列，最终选择由真实数据检查结果决定，不预设五个入选指标。`rules` 是可离线测试的确定性基线，`llm` 是调用硅基流动 GLM、SoCLaaS 或 OpenAI 的工具型 Agent。规则模式的解释来自人工审阅的机制模板，不能当成一次模型运行。初版不声称已经证明这些指标的预测能力，也不训练房价模型。
 
 **最新实测：**16 项全部从 SingStat 取得并合格；35B 模型选出 5 项，完整运行约 109 秒、43,769 tokens。模型仍缺少 11 项逐项排除理由，并有分组与住户存量的措辞问题，已单独标注。查看[完整指标池](examples/singstat_priority_verified_run/indicator_pool.md)、[模型原始报告](examples/singstat_priority_verified_run/report.md)、[人工复核说明](docs/reviewed-run-notes.md)和[同数据规则对照](examples/singstat_priority_rules_run/report.md)。这些是本次观察，不是稳定耗时或模型成功率承诺。
 
@@ -43,7 +43,23 @@ python -m pip install -r requirements-llm.lock
 cp -n .env.example .env
 ```
 
-在本地编辑 `.env`。使用 NUS SoCLaaS 时填写：
+在本地编辑 `.env`。本项目当前推荐配置为硅基流动 GLM：
+
+```dotenv
+LLM_PROVIDER=siliconflow
+SILICONFLOW_API_KEY=你的本地密钥
+SILICONFLOW_MODEL=zai-org/GLM-5.3
+```
+
+运行完整流程：
+
+```bash
+python -m housing_agent run --as-of 2026-10-01 --mode llm --provider siliconflow --limit 5 --output runs/live-glm
+```
+
+硅基流动使用固定的 `https://api.siliconflow.cn/v1` 官方地址和 Chat Completions 接口。GLM 的推理内容会随工具对话回传，以保持上下文；输出用量包含服务端报告的推理 token，不能再次叠加计费。程序请求推理预算，但它不是服务端保证的费用上限，详见[GLM 接入与费用说明](docs/siliconflow-glm.md)。
+
+使用 NUS SoCLaaS 时填写：
 
 ```dotenv
 LLM_PROVIDER=soclaas
@@ -65,7 +81,7 @@ SoCLaaS 使用固定的 NUS 服务地址和 Chat Completions 接口。固定模�
 python -m housing_agent run --as-of 2026-09-30 --mode llm --provider openai --limit 5 --output runs/live-openai
 ```
 
-OpenAI 路径保留 Responses 接口。两个服务使用各自的密钥和模型设置，互不回退。`--provider` 优先于 `LLM_PROVIDER`，都未配置时默认 OpenAI；`--model` 优先于相应服务的模型环境变量。程序只加载 `.env.example` 中列出的设置，已有环境变量优先，不执行配置内容。密钥仅保存在本地；`.env` 被 Git 忽略，交付压缩包也排除它。
+OpenAI 路径保留 Responses 接口。三个服务使用各自的密钥和模型设置，互不回退。`--provider` 优先于 `LLM_PROVIDER`，都未配置时默认 OpenAI；`--model` 优先于相应服务的模型环境变量。程序只加载 `.env.example` 中列出的设置，已有环境变量优先，不执行配置内容。密钥仅保存在本地；`.env` 被 Git 忽略，交付压缩包也排除它。
 
 若官方数据接口暂时不可用，可以**显式**复用附带的真实数据快照，并发起新的模型分析：
 
@@ -75,7 +91,7 @@ python -m housing_agent run --as-of 2026-09-30 --mode llm --provider soclaas --s
 
 `--source-run` 会核验原运行文件的校验和，以保存的完整观察重新计算报告日的数据与质量，再调用模型。新报告标明原始数据获取时间及“未刷新来源”，不会把旧快照当成刚下载的数据。它与 `replay` 不同：`replay` 只重现已保存文本，完全不调用模型。新鲜取数失败时不会自动切换快照。
 
-这会产生真实 API 调用和相应费用。模型最多运行八轮，每轮最多生成四千 token；实际输入、输出和总用量、返回模型名称与耗时写入 `agent_trace.json` 和 `manifest.json`。这些是调用上限，不是美元费用上限。API 缺失、拒绝访问、超时或输出校验失败会明确报错，不会暗中改用规则模板并声称是 Agent 结果。
+这会产生真实 API 调用和相应费用。模型最多调用八次，每次请求设置四千输出 token；硅基流动文档说明此参数不含推理，并另请求四千零九十六推理 token 的预算，GLM 上不保证严格执行。硅基流动每次请求超时为一百二十秒，另两个服务保持六十秒；SDK 不自动重试。实际输入、输出和总用量、返回模型名称与耗时写入 `agent_trace.json` 和 `manifest.json`。这些是调用上限，不是美元费用上限。API 缺失、拒绝访问、超时或输出校验失败会明确报错，不会暗中改用规则模板并声称是 Agent 结果。
 
 ## 指标怎样选
 

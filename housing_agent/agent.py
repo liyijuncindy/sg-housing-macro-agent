@@ -316,7 +316,7 @@ def _validate_submission(arguments: dict, candidates: dict, inspected: set[str],
             "narratives": narratives, "method": "openai_responses_constrained_agent"}
 
 
-def _chat_call(raw_response: dict, messages: list[dict]) -> dict:
+def _chat_call(raw_response: dict, messages: list[dict], *, preserve_reasoning: bool = False) -> dict:
     """Keep the Chat wire format in history and normalize its local tool call."""
     choices = raw_response.get("choices")
     if not isinstance(choices, list) or len(choices) != 1 or not isinstance(choices[0], dict):
@@ -337,11 +337,43 @@ def _chat_call(raw_response: dict, messages: list[dict]) -> dict:
             or not isinstance(function, dict) or not isinstance(function.get("name"), str)
             or not isinstance(function.get("arguments"), str)):
         raise AgentError("Chat response contains a malformed function call")
-    # Do not replay provider-only fields such as reasoning_content into requests.
-    messages.append({"role": "assistant", "content": message.get("content"),
-                     "tool_calls": [{"id": call["id"], "type": "function", "function": {
-                         "name": function["name"], "arguments": function["arguments"]}}]})
+    assistant = {"role": "assistant", "content": message.get("content"),
+                 "tool_calls": [{"id": call["id"], "type": "function", "function": {
+                     "name": function["name"], "arguments": function["arguments"]}}]}
+    # Thinking-enabled SiliconFlow tool turns require the prior reasoning text.
+    # Preserve only this supported field, not arbitrary provider-only metadata.
+    if preserve_reasoning and "reasoning_content" in message:
+        if message["reasoning_content"] is not None and not isinstance(message["reasoning_content"], str):
+            raise AgentError("Chat response contains malformed reasoning_content")
+        assistant["reasoning_content"] = message["reasoning_content"]
+    messages.append(assistant)
     return {"call_id": call["id"], "name": function["name"], "arguments": function["arguments"]}
+
+
+def _record_usage(trace: dict, event: dict, usage: dict, api_mode: str) -> None:
+    if not isinstance(usage, dict):
+        raise AgentError("Provider usage must be an object")
+    keys = ({"input_tokens": "prompt_tokens", "output_tokens": "completion_tokens",
+             "total_tokens": "total_tokens"} if api_mode == "chat_completions" else {})
+    for key in ("input_tokens", "output_tokens", "total_tokens"):
+        value = usage.get(keys.get(key, key), 0) or 0
+        if type(value) is not int or value < 0:
+            raise AgentError(f"Provider usage {keys.get(key, key)} must be a nonnegative integer")
+        trace["usage"][key] += value
+    details = {}
+    for target, parent, field in (
+        ("cached_input_tokens", "prompt_tokens_details" if api_mode == "chat_completions" else "input_tokens_details", "cached_tokens"),
+        ("reasoning_output_tokens", "completion_tokens_details" if api_mode == "chat_completions" else "output_tokens_details", "reasoning_tokens"),
+    ):
+        container = usage.get(parent)
+        value = container.get(field) if isinstance(container, dict) else None
+        if type(value) is int and value >= 0:
+            details[target] = value
+            trace["usage"][target] = trace["usage"].get(target, 0) + value
+    if details:
+        event["usage_details"] = details
+        trace["usage_detail_note"] = ("Cached input and reasoning output counts are reported subsets of input/output "
+                                      "tokens, not additional tokens. Only provided detail counts are aggregated.")
 
 
 def _can_repair_prose(arguments: dict, candidates: dict, inspected: set[str], limit: int) -> bool:
@@ -364,35 +396,42 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
               provider: str = "openai") -> dict:
     """Select and explain captured data, or raise AgentError with a saved trace.
 
-    Each API request has a sixty-second timeout and automatic SDK retries are
-    disabled. The finite turn budget also bounds validation-repair attempts.
+    API requests have a bounded provider-specific timeout and automatic SDK
+    retries are disabled. The turn budget bounds validation-repair attempts.
     Trace validation is syntactic/evidence-level, not a proof of economic claims.
     """
     started = time.monotonic()
     provider_settings = {
         "openai": ("OPENAI_API_KEY", "https://api.openai.com/v1", "responses"),
         "soclaas": ("SOCLAAS_API_KEY", "https://soclaas-api.comp.nus.edu.sg/v1", "chat_completions"),
+        "siliconflow": ("SILICONFLOW_API_KEY", "https://api.siliconflow.cn/v1", "chat_completions"),
     }
     key_name, base_url, api_mode = provider_settings.get(provider, ("", "", ""))
+    request_timeout = 120.0 if provider == "siliconflow" else 60.0
     api_key = os.environ.get(key_name, "").strip() if key_name else ""
     trace_path = Path(trace_path)
     trace = {"schema_version": 1, "started_at": datetime.now(timezone.utc).isoformat(),
              "as_of": as_of, "model": model, "provider": provider, "api_mode": api_mode,
              "actual_models": [], "limit": limit, "max_turns": max_turns,
-             "max_output_tokens": max_output_tokens, "request_timeout_seconds": 60,
+             "max_output_tokens": max_output_tokens, "request_timeout_seconds": request_timeout,
              "status": "running", "events": [], "usage": {"input_tokens": 0, "output_tokens": 0,
                                                            "total_tokens": 0, "requests": 0},
              "documentation": "https://developers.openai.com/api/docs/guides/function-calling"}
+    if provider == "siliconflow":
+        trace["provider_request_options"] = {"enable_thinking": True, "thinking_budget": 4096}
+        trace["token_limit_note"] = ("SiliconFlow documents max_tokens as excluding reasoning tokens. "
+                                     "thinking_budget is a requested setting, not a locally enforced or guaranteed hard cap. "
+                                     "Reported completion/total usage remains authoritative; detail counts are not added again.")
     client = None
     try:
         if provider not in provider_settings:
-            raise AgentError("provider must be 'openai' or 'soclaas'")
+            raise AgentError("provider must be 'openai', 'soclaas' or 'siliconflow'")
         if not api_key:
             raise AgentError(f"{key_name} is missing; configure it or explicitly choose rules mode")
-        if provider == "soclaas" and os.environ.get("OPENAI_CUSTOM_HEADERS", "").strip():
+        if provider != "openai" and os.environ.get("OPENAI_CUSTOM_HEADERS", "").strip():
             # The SDK can merge environment headers after its Authorization
             # header, bypassing the provider-specific key and leaking secrets.
-            raise AgentError("Unset OPENAI_CUSTOM_HEADERS before using soclaas; inherited custom headers "
+            raise AgentError(f"Unset OPENAI_CUSTOM_HEADERS before using {provider}; inherited custom headers "
                              "could override provider credentials")
         date.fromisoformat(as_of)
         if type(limit) is not int or limit < 1 or type(max_turns) is not int or max_turns < 1:
@@ -411,8 +450,8 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
             raise AgentError("Optional OpenAI SDK is missing; install the project's llm dependencies") from None
         # Fixed provider endpoints and separate keys prevent credential crossover
         # through OPENAI_BASE_URL or selection of a different provider.
-        client_options = {"api_key": api_key, "base_url": base_url, "timeout": 60.0, "max_retries": 0}
-        if provider == "soclaas":
+        client_options = {"api_key": api_key, "base_url": base_url, "timeout": request_timeout, "max_retries": 0}
+        if provider != "openai":
             # Do not inherit OpenAI account-identifying headers for a third party.
             client_options.update(organization="", project="")
         client = OpenAI(**client_options)
@@ -456,7 +495,7 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
         messages = [{"role": "user", "content": json.dumps({"as_of": as_of, "limit": limit,
                      "candidate_count": len(candidates), "task": "Select predictors and submit qualitative analysis."})}]
         tool_definitions = _tools(limit)
-        if provider == "soclaas":
+        if api_mode == "chat_completions":
             messages.insert(0, {"role": "system", "content": instructions})
             tool_definitions = [{"type": "function", "function": {
                 key: value for key, value in tool.items() if key != "type"}} for tool in tool_definitions]
@@ -467,12 +506,12 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
         numeric_repair = False
         for turn in range(1, max_turns + 1):
             forced_tool = "submit_analysis" if numeric_repair else None
-            if provider == "soclaas" and not forced_tool:
+            if api_mode == "chat_completions" and not forced_tool:
                 if not listed or (candidates and not discovered):
                     forced_tool = "list_candidates"
                 elif discovered and not inspected:
                     forced_tool = "inspect_candidate"
-            tool_choice = (({"type": "function", "function": {"name": forced_tool}} if provider == "soclaas"
+            tool_choice = (({"type": "function", "function": {"name": forced_tool}} if api_mode == "chat_completions"
                             else {"type": "function", "name": forced_tool}) if forced_tool else "required")
             event = {"turn": turn, "request": {"model": model, "tool_choice": tool_choice},
                      "tool_results": []}
@@ -480,10 +519,13 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
             trace["usage"]["requests"] += 1
             _write_trace(trace_path, trace, api_key)
             try:
-                if provider == "soclaas":
+                if api_mode == "chat_completions":
+                    provider_options = ({"reasoning_effort": "none"} if provider == "soclaas" else
+                                        {"extra_body": dict(trace["provider_request_options"])})
+                    event["request"].update(max_tokens=max_output_tokens, **provider_options)
                     response = client.chat.completions.create(model=model, messages=messages,
                         tools=tool_definitions, tool_choice=tool_choice, parallel_tool_calls=False,
-                        reasoning_effort="none", max_tokens=max_output_tokens)
+                        max_tokens=max_output_tokens, **provider_options)
                 else:
                     response = client.responses.create(model=model, instructions=instructions, input=messages,
                         tools=tool_definitions, tool_choice=tool_choice, parallel_tool_calls=False,
@@ -501,12 +543,9 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
                 if returned_model not in trace["actual_models"]:
                     trace["actual_models"].append(returned_model)
             usage = raw_response.get("usage") or {}
-            usage_keys = ({"input_tokens": "prompt_tokens", "output_tokens": "completion_tokens",
-                           "total_tokens": "total_tokens"} if provider == "soclaas" else {})
-            for key in ("input_tokens", "output_tokens", "total_tokens"):
-                trace["usage"][key] += usage.get(usage_keys.get(key, key), 0) or 0
-            if provider == "soclaas":
-                call = _chat_call(raw_response, messages)
+            _record_usage(trace, event, usage, api_mode)
+            if api_mode == "chat_completions":
+                call = _chat_call(raw_response, messages, preserve_reasoning=provider == "siliconflow")
             else:
                 if raw_response.get("status") not in (None, "completed"):
                     raise AgentError("OpenAI response was incomplete or failed; inspect the trace and token budget")
@@ -582,7 +621,7 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
                     event["repair_instruction"] = repair_reminder
             event["tool_results"].append({"call_id": call["call_id"], "output": result})
             serialized = json.dumps(result, ensure_ascii=False, allow_nan=False)
-            if provider == "soclaas":
+            if api_mode == "chat_completions":
                 messages.append({"role": "tool", "tool_call_id": call["call_id"], "content": serialized})
             else:
                 messages.append({"type": "function_call_output", "call_id": call["call_id"], "output": serialized})
@@ -594,9 +633,7 @@ def run_agent(evaluations: list[dict], as_of: str, limit: int, model: str,
                       "ended_at": datetime.now(timezone.utc).isoformat(),
                       "elapsed_seconds": round(time.monotonic() - started, 6)})
         _write_trace(trace_path, trace, api_key)
-        if isinstance(exc, AgentError):
-            raise
-        raise AgentError(str(exc)) from None
+        raise AgentError(_redact(str(exc), api_key)) from None
     finally:
         if client is not None:
             client.close()
