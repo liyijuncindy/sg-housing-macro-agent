@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import html
 import math
 import re
 import time
@@ -23,6 +24,33 @@ class SourceError(RuntimeError):
     pass
 
 
+class SourceMaintenanceError(SourceError):
+    """The official source explicitly announced maintenance; do not retry it."""
+
+
+def _response_details(status, headers) -> dict:
+    allowed = {}
+    for name in ("Server", "Content-Type", "Retry-After"):
+        value = headers.get(name) if headers is not None else None
+        if value is not None:
+            allowed[name.lower()] = str(value)[:1024]
+    return {"http_status": status, "response_headers": allowed,
+            "content_type": allowed.get("content-type", "unknown")}
+
+
+def _maintenance_notice(body: bytes) -> str | None:
+    # Only recognize the observed official notice, not generic HTML or 502s.
+    text = body[:16 * 1024].decode("utf-8", errors="replace")
+    text = re.sub(r"<(script|style)\b[^>]*>.*?</\1\s*>", " ", text, flags=re.I | re.S)
+    text = html.unescape(re.sub(r"<[^>]*>", " ", text))
+    text = " ".join(text.split())
+    match = re.search(r"SingStat Table Builder.{0,400}?undergoing maintenance", text, re.I)
+    if not match:
+        return None
+    start = max(0, match.start() - 4)
+    return text[start:start + 600]
+
+
 class SingStatClient:
     def __init__(self, run_dir: Path, timeout: float = 20, retries: int = 2):
         self.run_dir = run_dir
@@ -30,11 +58,19 @@ class SingStatClient:
         self.retries = retries
         self.records: list[dict] = []
         self.cache: dict[str, tuple[dict, dict]] = {}
+        self.maintenance: dict | None = None
 
     def get(self, endpoint: str, params: dict | None = None) -> tuple[dict, dict]:
         if not re.fullmatch(r"(?:resourceid|(?:tabledata|metadata)/[A-Za-z0-9]+)", endpoint):
             raise SourceError("Unsupported source endpoint")
         url = BASE + endpoint + ("?" + urlencode(params) if params else "")
+        if self.maintenance is not None:
+            message = "SingStat Table Builder maintenance already detected; source request skipped. " + self.maintenance["notice"]
+            self.records.append({"url": url, "retrieved_at": utc_now(), "attempts": [],
+                                 "status": "skipped", "error": message,
+                                 "maintenance_notice": self.maintenance["notice"],
+                                 "maintenance_source_url": self.maintenance["url"]})
+            raise SourceMaintenanceError(message)
         if url in self.cache:
             return self.cache[url]
         record = {"url": url, "retrieved_at": utc_now(), "attempts": [], "status": "pending"}
@@ -43,27 +79,54 @@ class SingStatClient:
         raw_path = self.run_dir / "raw" / (endpoint.replace("/", "_") + "_" + token + ".json")
         last_error = None
         for attempt in range(self.retries + 1):
+            details = {}
             try:
                 req = Request(url, headers={"User-Agent": "HousingResearchAgent/0.1 (public statistical research)", "Accept": "application/json"})
                 with urlopen(req, timeout=self.timeout) as response:
+                    details = _response_details(getattr(response, "status", 200), response.headers)
+                    record.update(details)
                     body = response.read(20 * 1024 * 1024 + 1)
                     if len(body) > 20 * 1024 * 1024:
                         raise SourceError("Response exceeds the download size limit")
+                    notice = _maintenance_notice(body)
+                    if notice is not None:
+                        record.update(maintenance_notice=notice, maintenance_source_url=url,
+                                      maintenance_body_prefix_sha256=sha256_bytes(body[:16 * 1024]))
+                        raise SourceMaintenanceError("SingStat Table Builder is undergoing maintenance. " + notice)
                     payload = json.loads(body)
                     if not isinstance(payload, dict) or not isinstance(payload.get("Data"), dict):
                         raise SourceError("Unexpected SingStat response schema: missing Data object")
                     if payload.get("StatusCode") not in (200, "200"):
                         raise SourceError(f"SingStat API returned failure status: {payload.get('StatusCode')}")
-                    record["content_type"] = response.headers.get("Content-Type", "unknown")
                 raw_path.parent.mkdir(parents=True, exist_ok=True)
                 raw_path.write_bytes(body)
                 record.update(status="ok", completed_at=utc_now(), raw_file=str(raw_path.relative_to(self.run_dir)), raw_sha256=sha256_bytes(body))
-                record["attempts"].append({"attempt": attempt + 1, "status": "ok"})
+                record["attempts"].append({"attempt": attempt + 1, "status": "ok", **details})
                 self.cache[url] = (payload, record)
                 return payload, record
             except (HTTPError, URLError, TimeoutError, OSError, ValueError, SourceError) as exc:
+                if isinstance(exc, HTTPError):
+                    details = _response_details(exc.code, exc.headers)
+                    record.update(details)
+                    prefix = b""
+                    if exc.fp is not None:
+                        try:
+                            prefix = exc.read(16 * 1024)
+                        except (OSError, ValueError, AttributeError):
+                            pass
+                        finally:
+                            exc.close()
+                    notice = _maintenance_notice(prefix) if isinstance(prefix, bytes) else None
+                    if notice is not None:
+                        record.update(maintenance_notice=notice, maintenance_source_url=url,
+                                      maintenance_body_prefix_sha256=sha256_bytes(prefix))
+                        exc = SourceMaintenanceError("SingStat Table Builder is undergoing maintenance. " + notice)
                 last_error = f"{type(exc).__name__}: {exc}"
-                record["attempts"].append({"attempt": attempt + 1, "status": "failed", "error": last_error})
+                record["attempts"].append({"attempt": attempt + 1, "status": "failed", "error": last_error, **details})
+                if isinstance(exc, SourceMaintenanceError):
+                    self.maintenance = {"notice": record["maintenance_notice"], "url": url}
+                    record.update(status="failed", error=last_error, completed_at=utc_now(), maintenance=True)
+                    raise exc from None
                 # A schema error or a permanent HTTP error cannot be fixed by blind retries.
                 if isinstance(exc, (ValueError, SourceError)) or isinstance(exc, HTTPError) and exc.code not in {408, 429, 500, 502, 503, 504}:
                     break

@@ -14,7 +14,7 @@ from pathlib import Path
 from . import __version__
 from .engine import evaluate_series, select_candidates
 from .report import render_html, render_report
-from .sources import SingStatClient, fetch_series
+from .sources import SingStatClient, SourceMaintenanceError, fetch_series
 from .storage import file_inventory, read_json, sha256_bytes, utc_now, verify_inventory, write_json
 
 AS_OF_POLICY = "Latest downloaded vintage filtered by observation reference date (or period end); not a historical point-in-time information set."
@@ -171,6 +171,10 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
                 try:
                     records = client.discover(query)
                     discoveries.append({"query": query, "records": records, "status": "ok"})
+                except SourceMaintenanceError as exc:
+                    discoveries.append({"query": query, "status": "maintenance", "error": str(exc)})
+                    write_json(output / "discovery.json", discoveries)
+                    raise
                 except Exception as exc:
                     discoveries.append({"query": query, "status": "failed", "error": str(exc)})
                     run["warnings"].append(f"Official catalogue query failed for {query}; reviewed candidate identifiers were still attempted.")
@@ -196,6 +200,8 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
                 evaluation = evaluate_series(series, as_of)
                 series_list.append(series)
                 evaluations.append(evaluation)
+            except SourceMaintenanceError:
+                raise
             except Exception as exc:
                 evaluations.append(failure_evaluation(spec, str(exc)))
                 run["warnings"].append(f"Excluded {spec['table_id']}:{spec['row_id']} after retrieval or validation failure: {exc}")
@@ -248,6 +254,10 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
             client.save_records()
         run.update(status="failed", error=f"{type(exc).__name__}: {exc}", finished_at=utc_now(),
                    elapsed_seconds=round(time.monotonic() - started, 3))
+        if isinstance(exc, SourceMaintenanceError):
+            run["failure_category"] = "source_maintenance"
+            run["recovery"] = "Retry a new run after SingStat maintenance ends, or explicitly use --source-run with a verified saved snapshot. No source fallback was automatic."
+            run["usage"] = {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "requests": 0}
         if (output / "agent_trace.json").exists():
             trace = read_json(output / "agent_trace.json")
             run["usage"] = trace.get("usage", {})

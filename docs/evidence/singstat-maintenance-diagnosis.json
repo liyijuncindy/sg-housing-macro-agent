@@ -1,0 +1,59 @@
+{
+  "checked_at": "2026-10-01T08:50:24.043182+00:00",
+  "diagnosis": "The official Table Builder gateway returns an explicit maintenance page with HTTP 502. The main SingStat homepage responds HTTP 200.",
+  "official_notice": "The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance.",
+  "proxy_configuration_present": false,
+  "checks": [
+    {
+      "label": "metadata-agent",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "status": 502,
+      "final_url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "headers": {
+        "Server": "Microsoft-Azure-Application-Gateway/v2",
+        "Date": "Thu, 01 Oct 2026 08:50:23 GMT",
+        "Content-Type": "text/html"
+      },
+      "seconds": 0.418
+    },
+    {
+      "label": "metadata-browser",
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "status": 502,
+      "final_url": "https://tablebuilder.singstat.gov.sg/api/table/metadata/M810001",
+      "headers": {
+        "Server": "Microsoft-Azure-Application-Gateway/v2",
+        "Date": "Thu, 01 Oct 2026 08:50:23 GMT",
+        "Content-Type": "text/html"
+      },
+      "seconds": 0.052
+    },
+    {
+      "label": "singstat-home",
+      "url": "https://www.singstat.gov.sg/",
+      "status": 200,
+      "final_url": "https://www.singstat.gov.sg/",
+      "headers": {
+        "Content-Type": "text/html",
+        "Date": "Thu, 01 Oct 2026 08:50:23 GMT",
+        "Server": "AmazonS3",
+        "X-Cache": "Miss from cloudfront",
+        "Via": "1.1 475d669d6a669094dfa09def007f90d6.cloudfront.net (CloudFront)"
+      },
+      "seconds": 0.316
+    },
+    {
+      "label": "tablebuilder-home",
+      "url": "https://tablebuilder.singstat.gov.sg/",
+      "status": 502,
+      "final_url": "https://tablebuilder.singstat.gov.sg/",
+      "headers": {
+        "Server": "Microsoft-Azure-Application-Gateway/v2",
+        "Date": "Thu, 01 Oct 2026 08:50:24 GMT",
+        "Content-Type": "text/html"
+      },
+      "seconds": 0.059
+    }
+  ],
+  "limitation": "No completion time was specified in the maintenance notice. The application cannot restore the upstream service."
+}

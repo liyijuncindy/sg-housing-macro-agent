@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-01T08:56:07.765554+00:00",
+  "source_url": "https://www.singstat.gov.sg/find-data/explore-data-themes/economy-prices/national-accounts/latest-news-data",
+  "http_status": 200,
+  "source_sha256": "6f004bce979868a40f37c7f805147777bf94e14b6855974972eca67e450cb0cf",
+  "columns": [
+    "Item",
+    "Unit",
+    "Latest Period",
+    "Latest Data",
+    "YoY percent",
+    "Previous Period Data",
+    "Previous YoY percent"
+  ],
+  "extracted_rows": [
+    [
+      "GDP in Chained (2015) Dollars",
+      "S$m",
+      "2Q 2026",
+      "155,247.2",
+      "5.9",
+      "151,682.7",
+      "6.3"
+    ],
+    [
+      "GDP in Chained (2015) Dollars",
+      "S$m",
+      "2025",
+      "593,869.9",
+      "5.0",
+      "565,451.0",
+      "5.3"
+    ]
+  ],
+  "limitation": "Current and previous observations displayed on the homepage are not a complete historical time series. This is a source feasibility probe, not an integrated replacement data adapter."
+}

@@ -8,12 +8,12 @@ Checked on **1 October 2026, Singapore time**, using Python 3.12.14. This docume
 python -m unittest discover -v
 ```
 
-**Observed: 118 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
+**Observed: 126 tests passed.** Full output is saved in [evidence/tests.txt](evidence/tests.txt).
 
 - 41 engine tests: true-calendar baselines, missing quarters, zero denominators, percentage/basis-point units, date cutoffs, population reference dates, quality windows, staleness and family selection.
 - 33 agent tests: mocked Responses and SoCLaaS Chat Completions calls, provider and credential isolation, truncated replies, compact fact payloads and precise repair feedback, exact evidence IDs, input/output continuity, bounded correction, prohibited numeric prose, reasonable qualitative phrasing, missing credentials and redaction. These are protocol tests, not live model calls.
-- 15 source tests: captured official GDP/population/SORA responses, exact series requests, source identity/metadata consistency, cell-limit rejection, API errors and retry audit trails.
-- 29 pipeline tests: provider routing and explicit saved-snapshot verification/reanalysis, full workflow with explicit synthetic fixtures, partial and total failure, cutoff-filtered CSV, table rendering, immutable output, environment handling, replay and tampering.
+- 21 source tests: explicit maintenance detection, immediate stop, plain-text diagnostic capture, retained generic-gateway retry, captured official GDP/population/SORA responses, exact series requests, source identity/metadata consistency, cell-limit rejection, API errors and retry audit trails.
+- 31 pipeline tests: maintenance aborts before remaining source requests or model calls, provider routing and explicit saved-snapshot verification/reanalysis, full workflow with explicit synthetic fixtures, partial and total failure, cutoff-filtered CSV, table rendering, immutable output, environment handling, replay and tampering.
 
 ## Live official-data workflow
 
@@ -81,3 +81,13 @@ The OpenAI Responses path remains supported by offline protocol tests; it has no
 ## Remaining limitations
 
 No held-out forecasting evaluation, historical-vintage reconstruction, automated revision comparison or semantic proof of generated market statements has been performed. Update cadence is inferred from official observation frequency where a release calendar is unavailable. These limits are stated in the report and engineering notes.
+
+## Confirmed SingStat maintenance and source-route checks
+
+A follow-up on 1 October 2026 received an explicit maintenance page from both the Table Builder API and homepage; the main SingStat website returned HTTP 200. Agent and browser User-Agent strings produced the same maintenance response. [The recorded diagnosis](evidence/singstat-maintenance-diagnosis.json) confirms this specific cause, rather than inferring it solely from HTTP 502.
+
+The source client now identifies that explicit notice and the workflow stops immediately, with a maintenance category and recovery advice. A live check made **one HTTP request**, stopped in the recorded duration, made **zero model calls** and created no report; see [the check](evidence/maintenance-stop-check.json). Generic gateway errors without a maintenance notice still receive bounded retries. This improves client behaviour but does not restore the upstream service.
+
+The accessible main-site national-accounts page was also fetched directly and its displayed GDP rows extracted successfully; see [the independent source feasibility probe](evidence/direct-official-gdp-probe.json). These latest/previous observations are not a replacement for a complete historical dataset. Independent official-file adapters remain a separate integration step.
+
+Independent MOM unemployment CSV and quarterly income XLSX downloads, and the MAS public daily compounded-SORA CSV export, returned HTTP 200 during source-route checks. [Recorded routes](evidence/independent-official-source-routes.json) explain scope and frequency checks still needed before integration. These checks do not claim the main workflow already supports these alternate parsers.

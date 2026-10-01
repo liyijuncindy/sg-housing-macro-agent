@@ -1,0 +1,48 @@
+{
+  "run_id": "maintenance-check-20261001",
+  "status": "failed",
+  "failure_category": "source_maintenance",
+  "elapsed_seconds": 0.1,
+  "logical_source_requests": 1,
+  "http_attempts": 1,
+  "model_usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "requests": 0
+  },
+  "report_created": false,
+  "recovery": "Retry a new run after SingStat maintenance ends, or explicitly use --source-run with a verified saved snapshot. No source fallback was automatic.",
+  "retrievals": [
+    {
+      "url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=population&searchOption=all",
+      "retrieved_at": "2026-10-01T08:55:13+00:00",
+      "attempts": [
+        {
+          "attempt": 1,
+          "status": "failed",
+          "error": "SourceMaintenanceError: SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+          "http_status": 502,
+          "response_headers": {
+            "server": "Microsoft-Azure-Application-Gateway/v2",
+            "content-type": "text/html"
+          },
+          "content_type": "text/html"
+        }
+      ],
+      "status": "failed",
+      "http_status": 502,
+      "response_headers": {
+        "server": "Microsoft-Azure-Application-Gateway/v2",
+        "content-type": "text/html"
+      },
+      "content_type": "text/html",
+      "maintenance_notice": "The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+      "maintenance_source_url": "https://tablebuilder.singstat.gov.sg/api/table/resourceid?keyword=population&searchOption=all",
+      "maintenance_body_prefix_sha256": "1589b99423c4aa657b256ac1b0a614e8dc0a52229afc158a447a89dda4f65866",
+      "error": "SourceMaintenanceError: SingStat Table Builder is undergoing maintenance. The SingStat Table Builder and SANDRA (Statistics ANd Data Retrieval A.I. assistant) are currently undergoing maintenance. We will work to complete the maintenance work ASAP. Thank you for your patience.",
+      "completed_at": "2026-10-01T08:55:13+00:00",
+      "maintenance": true
+    }
+  ]
+}

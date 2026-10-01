@@ -237,6 +237,38 @@ class ProviderPipelineTests(unittest.TestCase):
         self.assertEqual(self.agent.call_args.kwargs["provider"], "soclaas")
         self.assertEqual(self.agent.call_args.args[3], "soclaas-test-model")
 
+    def test_maintenance_during_discovery_stops_all_remaining_sources_and_model(self):
+        from housing_agent.sources import SourceMaintenanceError
+        self.configure_both()
+        self.discover.side_effect = SourceMaintenanceError("SingStat Table Builder is undergoing maintenance")
+        output = self.output_path()
+        with self.assertRaises(SourceMaintenanceError):
+            run_workflow("2026-09-30", output, mode="llm", provider="soclaas", progress=lambda _: None)
+        self.assertEqual(self.discover.call_count, 1)
+        self.fetch.assert_not_called()
+        self.agent.assert_not_called()
+        self.assertFalse((output / "report.md").exists())
+        manifest = read_json(output / "manifest.json")
+        self.assertEqual(manifest["status"], "failed")
+        self.assertEqual(manifest["failure_category"], "source_maintenance")
+        self.assertEqual(manifest["usage"]["requests"], 0)
+        self.assertIn("--source-run", manifest["recovery"])
+        self.assertEqual(read_json(output / "discovery.json")[0]["status"], "maintenance")
+
+    def test_maintenance_during_series_fetch_stops_remaining_candidates_and_model(self):
+        from housing_agent.sources import SourceMaintenanceError
+        self.configure_both()
+        self.fetch.side_effect = SourceMaintenanceError("SingStat Table Builder is undergoing maintenance")
+        output = self.output_path()
+        with self.assertRaises(SourceMaintenanceError):
+            run_workflow("2026-09-30", output, mode="llm", provider="soclaas", progress=lambda _: None)
+        self.assertEqual(self.fetch.call_count, 1)
+        self.agent.assert_not_called()
+        self.assertFalse((output / "report.md").exists())
+        manifest = read_json(output / "manifest.json")
+        self.assertEqual(manifest["failure_category"], "source_maintenance")
+        self.assertEqual(manifest["usage"]["total_tokens"], 0)
+
     def test_default_provider_is_openai_when_no_provider_is_supplied(self):
         self.configure_both()
         result, _ = self.run_llm()

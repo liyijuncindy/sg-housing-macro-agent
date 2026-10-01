@@ -42,7 +42,7 @@ Two concrete issues shaped implementation. First, an unfiltered official CPI res
 
 A nontrivial calculation test removes an intermediate quarter. A naive row-position comparison uses the wrong base and reports roughly forty-four percent growth; matching the actual calendar quarter yields thirty percent. The regression asserts the correct comparison and original evidence position. Other tests cover unavailable baselines, zero denominators, period/reference-date handling, stale and incomplete data, schema/unit changes, fabricated model evidence, model repair attempts, immutable runs, complete retrieval failure and tampered replay files. Precise commands, observed counts and live-run status are recorded in the validation document.
 
-Retries are bounded and reserved for transient retrieval failures. Permanent HTTP/schema errors cause explicit candidate exclusion. A partial report lists failures and warnings; if no candidate qualifies, the run is marked failed and no report is fabricated. Current and original snapshots allow later review of revisions, but automated revision diffing and proactive schema monitoring are future work.
+Explicit SingStat Table Builder maintenance notices stop the workflow after the first identified response, with the HTTP status, notice and recovery guidance recorded before any model call. Generic transient gateway errors still receive bounded retries. Permanent HTTP/schema errors cause explicit candidate exclusion. A partial report lists failures and warnings; if no candidate qualifies, the run is marked failed and no report is fabricated. Current and original snapshots allow later review of revisions, but automated revision diffing and proactive schema monitoring are future work.
 
 ## Limitations and two additional weeks
 

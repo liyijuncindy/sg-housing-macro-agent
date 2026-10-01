@@ -88,6 +88,8 @@ test_explicit_openai_overrides_soclaas_environment (tests.test_pipeline.Provider
 test_explicit_provider_and_model_override_environment_and_are_recorded (tests.test_pipeline.ProviderPipelineTests.test_explicit_provider_and_model_override_environment_and_are_recorded) ... ok
 test_invalid_provider_fails_before_data_or_output (tests.test_pipeline.ProviderPipelineTests.test_invalid_provider_fails_before_data_or_output) ... ok
 test_local_file_only_loads_supported_keys_and_environment_wins (tests.test_pipeline.ProviderPipelineTests.test_local_file_only_loads_supported_keys_and_environment_wins) ... ok
+test_maintenance_during_discovery_stops_all_remaining_sources_and_model (tests.test_pipeline.ProviderPipelineTests.test_maintenance_during_discovery_stops_all_remaining_sources_and_model) ... ok
+test_maintenance_during_series_fetch_stops_remaining_candidates_and_model (tests.test_pipeline.ProviderPipelineTests.test_maintenance_during_series_fetch_stops_remaining_candidates_and_model) ... ok
 test_other_provider_key_is_never_a_fallback (tests.test_pipeline.ProviderPipelineTests.test_other_provider_key_is_never_a_fallback) ... ok
 test_other_provider_model_is_never_a_fallback (tests.test_pipeline.ProviderPipelineTests.test_other_provider_model_is_never_a_fallback) ... ok
 test_provider_from_local_file_is_used_by_workflow (tests.test_pipeline.ProviderPipelineTests.test_provider_from_local_file_is_used_by_workflow) ... ok
@@ -112,12 +114,18 @@ test_population_reference_override_is_supported_by_actual_source_note (tests.tes
 test_real_gdp_quarters_normalize_without_discarding_observations (tests.test_sources.CapturedSourceTests.test_real_gdp_quarters_normalize_without_discarding_observations) ... ok
 test_real_monthly_sora_keys_and_month_end_definition_are_preserved (tests.test_sources.CapturedSourceTests.test_real_monthly_sora_keys_and_month_end_definition_are_preserved) ... ok
 test_response_table_identity_cannot_silently_change (tests.test_sources.CapturedSourceTests.test_response_table_identity_cannot_silently_change) ... ok
+test_generic_502_keeps_bounded_retry_behavior (tests.test_sources.MaintenanceTests.test_generic_502_keeps_bounded_retry_behavior) ... ok
+test_http_error_body_read_is_limited_to_sixteen_kibibytes (tests.test_sources.MaintenanceTests.test_http_error_body_read_is_limited_to_sixteen_kibibytes) ... ok
+test_http_success_with_known_maintenance_html_is_not_json_data (tests.test_sources.MaintenanceTests.test_http_success_with_known_maintenance_html_is_not_json_data) ... ok
+test_later_same_client_request_is_skipped_without_more_http (tests.test_sources.MaintenanceTests.test_later_same_client_request_is_skipped_without_more_http) ... ok
+test_observed_notice_stops_immediately_and_records_plain_text_evidence (tests.test_sources.MaintenanceTests.test_observed_notice_stops_immediately_and_records_plain_text_evidence) ... ok
+test_unrecognised_or_script_only_html_is_not_accepted_or_labelled_maintenance (tests.test_sources.MaintenanceTests.test_unrecognised_or_script_only_html_is_not_accepted_or_labelled_maintenance) ... ok
 test_api_failure_inside_http_success_is_failed_and_not_cached (tests.test_sources.TransportFailureTests.test_api_failure_inside_http_success_is_failed_and_not_cached) ... ok
 test_permanent_http_failure_is_not_blindly_retried (tests.test_sources.TransportFailureTests.test_permanent_http_failure_is_not_blindly_retried) ... ok
 test_recovery_preserves_failed_attempt_and_original_success_bytes (tests.test_sources.TransportFailureTests.test_recovery_preserves_failed_attempt_and_original_success_bytes) ... ok
 test_temporary_http_failure_has_finite_retries_and_a_failure_record (tests.test_sources.TransportFailureTests.test_temporary_http_failure_has_finite_retries_and_a_failure_record) ... ok
 
 ----------------------------------------------------------------------
-Ran 118 tests in 0.399s
+Ran 126 tests in 0.447s
 
 OK

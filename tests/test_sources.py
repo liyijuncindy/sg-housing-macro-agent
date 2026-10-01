@@ -10,7 +10,7 @@ from unittest.mock import patch
 from urllib.error import HTTPError, URLError
 from urllib.parse import parse_qs, urlparse
 
-from housing_agent.sources import SingStatClient, SourceError, fetch_series
+from housing_agent.sources import SingStatClient, SourceError, SourceMaintenanceError, fetch_series
 
 FIXTURES = Path(__file__).parent / "fixtures"
 CATALOGUE = Path(__file__).parents[1] / "housing_agent" / "data" / "catalogue.json"
@@ -268,6 +268,122 @@ class TransportFailureTests(unittest.TestCase):
         self.assertEqual([item["status"] for item in record["attempts"]], ["failed", "ok"])
         self.assertEqual((self.root / record["raw_file"]).read_bytes(), body)
         self.assertEqual(record["raw_sha256"], hashlib.sha256(body).hexdigest())
+
+
+# Actual notice excerpt returned by the official SingStat maintenance page in
+# the transport diagnostic. It is source text only; no HTML is executed.
+MAINTENANCE_HTML = b"""<!DOCTYPE html><html><head><title>Statistics Singapore</title></head>
+<body><h2>The SingStat Table Builder and SANDRA  (Statistics ANd Data Retrieval A.I. assistant)
+are currently undergoing maintenance. </h2>
+<h2>We will work to complete the maintenance work ASAP.</h2>
+<h2>Thank you for your patience.</h2></body></html>"""
+
+
+class MaintenanceTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+
+    def error(self, body, status=502):
+        return HTTPError("https://tablebuilder.singstat.gov.sg/api/table/metadata/M015661",
+                         status, "Bad Gateway", {"Content-Type": "text/html", "Retry-After": "120",
+                         "Server": "Microsoft-Azure-Application-Gateway/v2", "Set-Cookie": "never-persist"}, io.BytesIO(body))
+
+    def test_observed_notice_stops_immediately_and_records_plain_text_evidence(self):
+        client = SingStatClient(self.root, retries=2)
+        with patch("housing_agent.sources.urlopen", side_effect=self.error(MAINTENANCE_HTML)) as opening:
+            with patch("housing_agent.sources.time.sleep") as sleeping:
+                with self.assertRaisesRegex(SourceMaintenanceError, "undergoing maintenance"):
+                    client.get("metadata/M015661")
+        self.assertEqual(opening.call_count, 1)
+        sleeping.assert_not_called()
+        self.assertFalse(client.cache)
+        client.save_records()
+        record = json.loads((self.root / "retrievals.json").read_text())[0]
+        self.assertEqual(record["http_status"], 502)
+        self.assertEqual(record["response_headers"], {"server": "Microsoft-Azure-Application-Gateway/v2",
+                                                     "content-type": "text/html", "retry-after": "120"})
+        self.assertEqual(record["status"], "failed")
+        self.assertTrue(record["maintenance"])
+        self.assertEqual(len(record["attempts"]), 1)
+        self.assertEqual(record["attempts"][0]["http_status"], 502)
+        self.assertIn("SANDRA", record["maintenance_notice"])
+        self.assertNotIn("<h2>", record["maintenance_notice"])
+        self.assertLessEqual(len(record["maintenance_notice"]), 600)
+        self.assertEqual(record["maintenance_source_url"], record["url"])
+        self.assertEqual(record["maintenance_body_prefix_sha256"], hashlib.sha256(MAINTENANCE_HTML).hexdigest())
+        self.assertNotIn("never-persist", json.dumps(record))
+
+    def test_later_same_client_request_is_skipped_without_more_http(self):
+        client = SingStatClient(self.root, retries=2)
+        with patch("housing_agent.sources.urlopen", side_effect=self.error(MAINTENANCE_HTML)) as opening:
+            with self.assertRaises(SourceMaintenanceError):
+                client.get("metadata/M015661")
+            with self.assertRaisesRegex(SourceMaintenanceError, "skipped"):
+                client.get("metadata/M810001")
+        self.assertEqual(opening.call_count, 1)
+        self.assertEqual(len(client.records), 2)
+        skipped = client.records[1]
+        self.assertEqual(skipped["status"], "skipped")
+        self.assertEqual(skipped["attempts"], [])
+        self.assertTrue(skipped["url"].endswith("/metadata/M810001"))
+        self.assertTrue(skipped["maintenance_source_url"].endswith("/metadata/M015661"))
+
+    def test_http_success_with_known_maintenance_html_is_not_json_data(self):
+        response = Response(MAINTENANCE_HTML)
+        response.headers = {"Content-Type": "text/html"}
+        client = SingStatClient(self.root, retries=2)
+        with patch("housing_agent.sources.urlopen", return_value=response) as opening:
+            with patch("housing_agent.sources.time.sleep") as sleeping:
+                with self.assertRaises(SourceMaintenanceError):
+                    client.get("metadata/M015661")
+        self.assertEqual(opening.call_count, 1)
+        sleeping.assert_not_called()
+        self.assertEqual(client.records[0]["http_status"], 200)
+        self.assertFalse(client.cache)
+
+    def test_generic_502_keeps_bounded_retry_behavior(self):
+        client = SingStatClient(self.root, retries=2)
+        def fail(*args, **kwargs):
+            raise self.error(b"<html><h1>Bad Gateway</h1></html>")
+        with patch("housing_agent.sources.urlopen", side_effect=fail) as opening:
+            with patch("housing_agent.sources.time.sleep") as sleeping:
+                with self.assertRaises(SourceError) as raised:
+                    client.get("metadata/M015661")
+        self.assertNotIsInstance(raised.exception, SourceMaintenanceError)
+        self.assertEqual(opening.call_count, 3)
+        self.assertEqual(sleeping.call_count, 2)
+        self.assertEqual(len(client.records[0]["attempts"]), 3)
+        self.assertIsNone(client.maintenance)
+
+    def test_unrecognised_or_script_only_html_is_not_accepted_or_labelled_maintenance(self):
+        bodies = [b"<html>SingStat Table Builder: unexpected upstream response</html>",
+                  b'<html><script>var message="SingStat Table Builder undergoing maintenance";</script>Malformed</html>']
+        for body in bodies:
+            with self.subTest(body=body):
+                client = SingStatClient(self.root)
+                with patch("housing_agent.sources.urlopen", return_value=Response(body)):
+                    with self.assertRaises(SourceError) as raised:
+                        client.get("metadata/M015661")
+                self.assertNotIsInstance(raised.exception, SourceMaintenanceError)
+                self.assertIsNone(client.maintenance)
+                self.assertFalse(client.cache)
+
+    def test_http_error_body_read_is_limited_to_sixteen_kibibytes(self):
+        sizes = []
+        class BoundedBody(io.BytesIO):
+            def read(self, size=-1):
+                sizes.append(size)
+                return super().read(size)
+        error = HTTPError("https://tablebuilder.singstat.gov.sg/api/table/metadata/M015661",
+                          502, "Bad Gateway", {"Content-Type": "text/html"},
+                          BoundedBody(MAINTENANCE_HTML + b" " * 50000))
+        client = SingStatClient(self.root)
+        with patch("housing_agent.sources.urlopen", side_effect=error):
+            with self.assertRaises(SourceMaintenanceError):
+                client.get("metadata/M015661")
+        self.assertEqual(sizes, [16 * 1024])
 
 
 if __name__ == "__main__":
