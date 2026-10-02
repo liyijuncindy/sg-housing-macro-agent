@@ -1,0 +1,121 @@
+candidate_id,outcome_id,analysis_frequency,target_change,status,reason,holdout_start_period,holdout_end_period,method,n,mae,rmse,directional_accuracy
+M810001:2,M212261:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810001:2,M212311:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810001:2,M212161:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810001:5,M212261:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810001:5,M212311:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810001:5,M212161:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M015661:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.0323379009,1.3349014335,0.8823529412
+M015661:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,1.0182721375,1.3361928085,0.8823529412
+M015661:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.4731122676,1.8925632499,0.7647058824
+M015661:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.4577576007,1.8563441954,0.0
+M015661:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,2.61567309,3.5441133017,0.7058823529
+M015661:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,2.5261399752,3.5523822579,0.7058823529
+M015661:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.3486351653,1.7540741359,0.6470588235
+M015661:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,2.5339408592,3.809551883,0.0588235294
+M015661:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,0.9979368374,1.1431548752,0.8235294118
+M015661:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,0.9818446327,1.1489198264,0.8235294118
+M015661:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,0.4460153863,0.5487745982,0.9411764706
+M015661:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.479708579,1.7374683647,0.0
+M182342:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,0.9435201387,1.2262738645,0.8823529412
+M182342:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,1.0182721375,1.3361928085,0.8823529412
+M182342:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.4731122676,1.8925632499,0.7647058824
+M182342:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.4577576007,1.8563441954,0.0
+M182342:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,2.169843951,3.0775361073,0.7058823529
+M182342:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,2.5261399752,3.5523822579,0.7058823529
+M182342:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.3486351653,1.7540741359,0.6470588235
+M182342:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,2.5339408592,3.809551883,0.0588235294
+M182342:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,0.9393085443,1.1079272086,0.8235294118
+M182342:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,0.9818446327,1.1489198264,0.8235294118
+M182342:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,0.4460153863,0.5487745982,0.9411764706
+M182342:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.479708579,1.7374683647,0.0
+M184101:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,skipped,Insufficient history for at least twenty-four training pairs and eight subsequent holdout predictions; no annual interpolation or synthetic periods added.,,,,,,,
+M184101:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,skipped,Insufficient history for at least twenty-four training pairs and eight subsequent holdout predictions; no annual interpolation or synthetic periods added.,,,,,,,
+M184101:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,skipped,Insufficient history for at least twenty-four training pairs and eight subsequent holdout predictions; no annual interpolation or synthetic periods added.,,,,,,,
+M016081:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.092480576,1.405299551,0.8823529412
+M016081:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,1.0182721375,1.3361928085,0.8823529412
+M016081:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.4731122676,1.8925632499,0.7647058824
+M016081:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.4577576007,1.8563441954,0.0
+M016081:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,2.4927546028,3.2285706926,0.6470588235
+M016081:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,2.5261399752,3.5523822579,0.7058823529
+M016081:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.3486351653,1.7540741359,0.6470588235
+M016081:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,2.5339408592,3.809551883,0.0588235294
+M016081:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,0.9789126752,1.2873058822,0.7647058824
+M016081:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,0.9818446327,1.1489198264,0.8235294118
+M016081:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,0.4460153863,0.5487745982,0.9411764706
+M016081:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.479708579,1.7374683647,0.0
+M700071:23,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.0327876669,1.4011835725,0.8823529412
+M700071:23,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,1.0182721375,1.3361928085,0.8823529412
+M700071:23,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.4731122676,1.8925632499,0.7647058824
+M700071:23,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.4577576007,1.8563441954,0.0
+M700071:23,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,2.5955564474,3.5057631681,0.6470588235
+M700071:23,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,2.5261399752,3.5523822579,0.7058823529
+M700071:23,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.3486351653,1.7540741359,0.6470588235
+M700071:23,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,2.5339408592,3.809551883,0.0588235294
+M700071:23,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.4153929057,1.6141436203,0.6470588235
+M700071:23,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,0.9818446327,1.1489198264,0.8235294118
+M700071:23,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,0.4460153863,0.5487745982,0.9411764706
+M700071:23,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.479708579,1.7374683647,0.0
+M701091:1.2.1,M212261:1,quarterly,Quarter-on-quarter index percentage change,skipped,Insufficient history for at least twenty-four training pairs and eight subsequent holdout predictions; no annual interpolation or synthetic periods added.,,,,,,,
+M701091:1.2.1,M212311:1,quarterly,Quarter-on-quarter index percentage change,skipped,Insufficient history for at least twenty-four training pairs and eight subsequent holdout predictions; no annual interpolation or synthetic periods added.,,,,,,,
+M701091:1.2.1,M212161:1,quarterly,Quarter-on-quarter index percentage change,skipped,Insufficient history for at least twenty-four training pairs and eight subsequent holdout predictions; no annual interpolation or synthetic periods added.,,,,,,,
+M400841:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.1034607431,1.3419953811,0.8823529412
+M400841:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,1.0182721375,1.3361928085,0.8823529412
+M400841:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.4731122676,1.8925632499,0.7647058824
+M400841:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.4577576007,1.8563441954,0.0
+M400841:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,2.4843439959,3.3149321426,0.7058823529
+M400841:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,2.5261399752,3.5523822579,0.7058823529
+M400841:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.3486351653,1.7540741359,0.6470588235
+M400841:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,2.5339408592,3.809551883,0.0588235294
+M400841:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.1179709823,1.2573868791,0.8235294118
+M400841:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,0.9818446327,1.1489198264,0.8235294118
+M400841:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,0.4460153863,0.5487745982,0.9411764706
+M400841:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.479708579,1.7374683647,0.0
+M400841:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.0408090238,1.3992678083,0.8823529412
+M400841:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,1.0182721375,1.3361928085,0.8823529412
+M400841:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.4731122676,1.8925632499,0.7647058824
+M400841:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.4577576007,1.8563441954,0.0
+M400841:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,2.4354268985,3.3898962526,0.8235294118
+M400841:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,2.5261399752,3.5523822579,0.7058823529
+M400841:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.3486351653,1.7540741359,0.6470588235
+M400841:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,2.5339408592,3.809551883,0.0588235294
+M400841:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.0297780776,1.254511592,0.8235294118
+M400841:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,0.9818446327,1.1489198264,0.8235294118
+M400841:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,0.4460153863,0.5487745982,0.9411764706
+M400841:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.479708579,1.7374683647,0.0
+M400391:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.0637104729,1.3335096933,0.8823529412
+M400391:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,1.0182721375,1.3361928085,0.8823529412
+M400391:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.4731122676,1.8925632499,0.7647058824
+M400391:2,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.4577576007,1.8563441954,0.0
+M400391:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,2.4204871706,3.3835192382,0.7058823529
+M400391:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,2.5261399752,3.5523822579,0.7058823529
+M400391:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.3486351653,1.7540741359,0.6470588235
+M400391:2,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,2.5339408592,3.809551883,0.0588235294
+M400391:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,0.9926949548,1.1540651826,0.8235294118
+M400391:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,0.9818446327,1.1489198264,0.8235294118
+M400391:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,0.4460153863,0.5487745982,0.9411764706
+M400391:2,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.479708579,1.7374683647,0.0
+M213751:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,0.8971890783,1.3233073898,0.8823529412
+M213751:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,1.0182721375,1.3361928085,0.8823529412
+M213751:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.4731122676,1.8925632499,0.7647058824
+M213751:1,M212261:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.4577576007,1.8563441954,0.0
+M213751:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,1.8006401696,2.4898770719,0.7058823529
+M213751:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,2.5261399752,3.5523822579,0.7058823529
+M213751:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,1.3486351653,1.7540741359,0.6470588235
+M213751:1,M212311:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,2.5339408592,3.809551883,0.0588235294
+M213751:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,ridge,17,0.9180421295,1.0316845204,0.8235294118
+M213751:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,historical_mean,17,0.9818446327,1.1489198264,0.8235294118
+M213751:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,last_change,17,0.4460153863,0.5487745982,0.9411764706
+M213751:1,M212161:1,quarterly,Quarter-on-quarter index percentage change,evaluated,,2022-Q2,2026-Q2,zero_change,17,1.479708579,1.7374683647,0.0
+M810371:1,M212261:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810371:1,M212311:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810371:1,M212161:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810361:5,M212261:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810361:5,M212311:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M810361:5,M212161:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M183111:7,M212261:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M183111:7,M212311:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M183111:7,M212161:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M400751:1.1,M212261:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M400751:1.1,M212311:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,
+M400751:1.1,M212161:1,annual,Q4 year-on-year index percentage change,skipped,Annual candidate: quarterly interpolation was not performed; annual associations are reported separately.,,,,,,,

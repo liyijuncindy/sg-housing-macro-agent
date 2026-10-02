@@ -1,0 +1,223 @@
+{
+  "selected_ids": [
+    "M182342:2",
+    "M700071:23",
+    "M400841:2",
+    "M810371:1",
+    "M810361:5"
+  ],
+  "decisions": [
+    {
+      "id": "M810001:2",
+      "selected": false,
+      "reason": "Excluded within the population-demand family: resident population is not the number of households or homebuyers, and the household count was preferred as the more direct marker of occupied-dwelling demand. An annual headcount also cannot separate household formation or tenure shifts. Not a quality failure and not treated as fully substituted.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810001:5",
+      "selected": false,
+      "reason": "Excluded within the population-demand family: non-resident population is rental-relevant, but metadata notes its accommodation includes arrangements beyond ordinary residential letting, and residence status can restrict ownership, so the link to sales is looser. The household-count slot was consolidated for the family. A useful supplementary rental-demand signal.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M015661:1",
+      "selected": false,
+      "reason": "Excluded on capacity: gross domestic product activity links to housing largely through jobs, incomes and confidence, which are monitored more directly by the selected labour-market and household-income signals. It belongs to a distinct family that was not filled, a channel-priority choice rather than an irrelevance or substitution claim.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M182342:2",
+      "selected": true,
+      "reason": "Selected as the cyclical labour-market signal: a seasonally adjusted resident unemployment rate measured at quarter-end may speak directly to residents' purchasing capacity and willingness to commit to purchases, and to rent affordability. Complete quarterly coverage within the current window permits timely monitoring of downside stress.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M184101:1",
+      "selected": false,
+      "reason": "Excluded within household_income as a capacity choice. This is mean income per employed resident, including employer CPF and excluding bonus; it may proxy purchasing capacity but is not household income. Its captured history is shorter than several alternatives. The annual household median was preferred for household-level scope, with a loss of quarterly timeliness.",
+      "reason_origin": "editorial_review",
+      "original_model_reason": "Excluded within household-income: it is a mean income per employed resident, not income per household, so it is not a measure of household purchasing capacity; a mean can also be lifted by high earners, and the available history is comparatively short. Capacity choice, not a quality failure."
+    },
+    {
+      "id": "M016081:1",
+      "selected": false,
+      "reason": "Excluded within household_income as a capacity choice. Aggregate nominal personal disposable income is not income per household and can combine population and price changes with income changes. The median among resident employed households was preferred for that specific population; it is not a measure of every household or of the typical property buyer.",
+      "reason_origin": "editorial_review",
+      "original_model_reason": "Excluded within household-income: aggregate nominal personal disposable income is not income per household, and it partly blends price and population effects. The retained median measure better reflects typical-purchaser affordability; aggregate and median alternatives are distinct concepts."
+    },
+    {
+      "id": "M700071:23",
+      "selected": true,
+      "reason": "Selected as the financing-cost signal: a compounded Singapore-dollar overnight benchmark rate is the reference for domestic floating-rate mortgage pricing, so movements may affect borrowing capacity and tenure choices for both purchases and rentals. Long continuous coverage supports monitoring across the window.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M701091:1.2.1",
+      "selected": false,
+      "reason": "Excluded from housing-credit: this is an outstanding loan stock rather than credit availability, so it partly responds to volumes and prices already embodied in the housing market, potentially creating circularity between lending and the outcomes being explained. The distinct financing-cost channel was retained instead.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:1",
+      "selected": false,
+      "reason": "Excluded within the housing-supply family: the completed available stock is a slowly moving total, not new supply or active listings, while the vacant-unit count was preferred as the tighter slack measure, interpreted against the available-stock denominator rather than adding another selection from the same family.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M400841:2",
+      "selected": true,
+      "reason": "Selected as the housing-supply slack signal. Vacant completed private homes may provide absorption context relevant to sale prices and rents, depending on demand. The matching completed-stock series is retained in the captured data and used to derive vacancy rates, although it is outside the selected dashboard. The count does not identify active listings or establish predictive value.",
+      "reason_origin": "editorial_review",
+      "original_model_reason": "Selected as the housing-supply slack signal: vacant completed private homes at quarter-end may indicate absorption weakness relevant to both capital values and rents, depending on demand. The count must be interpreted against the completed-stock denominator from the same source, which is not separately retained."
+    },
+    {
+      "id": "M400391:2",
+      "selected": false,
+      "reason": "Excluded within housing_supply as a capacity choice. This is the total non-landed private residential pipeline across development stages, not an unpurchased or unsold subset. The expectations channel may matter, but completion timing and cancellations prevent interpreting the pipeline as a completion forecast. The vacant-stock measure was preferred for current absorption context; incremental predictive value has not been established.",
+      "reason_origin": "editorial_review",
+      "original_model_reason": "Excluded within the housing-supply family: the unpurchased pipeline may shape expectations about future supply, but it is not a completion forecast and its timing is unknown. Slower-moving and potentially double-counted with completions in practice; the forward channel may still add signal."
+    },
+    {
+      "id": "M213751:1",
+      "selected": false,
+      "reason": "Excluded: the all-items price index partially overlaps with the outcomes through its accommodation components, which risks mechanically induced rather than independently predictive variation, and its relationship to sale and rent growth is ambiguous. A related but cleaner money-rate channel is retained.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810371:1",
+      "selected": true,
+      "reason": "Selected as the structural demand signal: the resident household count may better represent the base of dwelling demand than population alone, since households are the units that occupy homes, whether as owners or tenants. Complete annual coverage within the window.",
+      "reason_origin": "model"
+    },
+    {
+      "id": "M810361:5",
+      "selected": true,
+      "reason": "Selected for affordability context among resident employed households. The household employment-income median is less sensitive to very high incomes than the mean, but it does not represent non-employed households, all households or the typical property buyer. It includes employer CPF and annual bonus allocation, is nominal, and is not take-home income. Its annual frequency limits near-term monitoring.",
+      "reason_origin": "editorial_review",
+      "original_model_reason": "Selected as the affordability signal: median household employment income covers resident employed households, so it reflects the typical household's purchasing capacity for both purchase affordability and rent affordability, distinct from per employed person measures."
+    },
+    {
+      "id": "M183111:7",
+      "selected": false,
+      "reason": "Excluded within labour_market as a capacity choice. Total year-end employment includes resident and non-resident employees, self-employed persons and migrant domestic workers. Some workers do not require an ordinary separate rental unit, but these data do not establish how most workers are housed or a strong correlation with GDP. Quarterly resident unemployment was preferred for resident labour-market stress; total employment remains potentially informative.",
+      "reason_origin": "editorial_review",
+      "original_model_reason": "Excluded within the labour-market family: annual year-end employment includes many temporary pass holders whose housing needs are largely employer-arranged, and it is highly correlated with overall activity. The resident unemployment rate was preferred as the sharper residential-risk indicator. Not a quality failure."
+    },
+    {
+      "id": "M400751:1.1",
+      "selected": false,
+      "reason": "Excluded within housing_supply as a capacity choice. Total HDB flats are public-housing stock, not new additions. This is distinct from private-sector vacancy and may inform the HDB resale outcome; private vacancy does not fully substitute for it. The model preferred other dashboard channels, but this does not establish that HDB stock lacks explanatory or predictive value.",
+      "reason_origin": "editorial_review",
+      "original_model_reason": "Excluded within the housing-supply family: total HDB flats are the settled public-housing stock, not new additions, and they follow a distinct regulatory regime that may respond differently from private values; vacancy and financial-condition channels were ranked higher. Retaining private-market slack made this overlap less central."
+    }
+  ],
+  "narratives": {
+    "M182342:2": {
+      "sales": "A rise in the resident unemployment rate could weaken employment security and debt-service expectations among households, which may reduce willingness or capacity to commit to home purchases and soften purchase demand, while a fall could restore confidence and demand.",
+      "rents": "Weaker resident labour conditions may strain rent budgets among affected resident households. The effect on aggregate rents remains uncertain because tenant composition, incomes and housing supply also matter; this series does not identify household splits or lease-renewal outcomes.",
+      "lag": "Housing decisions may adjust after labour-market changes, but the supplied metadata and correlations do not establish unemployment as an early business-cycle indicator or a fixed response delay.",
+      "limitations": "The seasonally adjusted series is revised annually; no data interpolation or smoothing is applied beyond what the source provides. It excludes non-residents and says nothing about wage levels or underemployment, and possible mechanisms here are not tested causal relationships.",
+      "evidence_ids": [
+        "M182342:2:latest",
+        "M182342:2:year_on_year"
+      ]
+    },
+    "M700071:23": {
+      "sales": "A higher overnight benchmark rate could translate into higher floating-rate mortgage pricing, reducing achievable loan amounts and squeezing debt-service affordability, which may depress purchase demand and transaction activity; lower benchmark rates could ease repayment burdens and support demand.",
+      "rents": "Costlier financing may affect landlords' holding costs and households' tenure choices, possibly nudging some would-be buyers towards renting; the net effect on rents is not determined and depends on balance between investor supply and deferred buyers seeking rentals.",
+      "lag": "Pass-through depends on when mortgage repricing occurs, including fixed-rate periods and refinancing terms, so plausible effects can extend over a length of time rather than appearing instantly.",
+      "limitations": "This is a month-end observation of a three-month compounded benchmark, expressed as an annual percentage rate; it is not a monthly average or an individual mortgage quote. Actual borrowing costs depend on lender spreads, contract types, repricing dates and policy measures. No additional smoothing or interpolation was performed.",
+      "evidence_ids": [
+        "M700071:23:latest",
+        "M700071:23:year_on_year"
+      ]
+    },
+    "M400841:2": {
+      "sales": "A higher count of vacant completed private homes could signal weaker absorption, and owners facing persistent vacancy may cut asking prices, easing upward price pressure; a lower count could indicate a tightening balance between demand and available homes.",
+      "rents": "More vacant homes may give prospective tenants more bargaining room and could restrain achievable rents, while fewer vacant homes could encourage firmer asking rents, subject to location and unit mix.",
+      "lag": "Vacancy is a quarter-end stock measure. Price or rent responses may occur as listings, tenancies and owners' expectations adjust, but the supplied data do not establish a fixed response delay or that later effects exceed immediate effects.",
+      "limitations": "This series counts vacant completed private homes rather than active sale or rental listings. The matching completed-stock series is retained in the captured data and used to calculate vacancy rates, although it is outside the selected dashboard. Count changes can reflect changes in total stock as well as vacancy shares. Coverage excludes HDB flats and Executive Condominiums.",
+      "evidence_ids": [
+        "M400841:2:latest",
+        "M400841:2:year_on_year"
+      ]
+    },
+    "M810371:1": {
+      "sales": "A growing count of resident households reflects net additions to the occupier base, potentially adding owner-occupier housing needs that may be met through purchases where affordability and eligibility allow; slower growth could ease underlying demand.",
+      "rents": "Growth in resident household counts may support rental demand among households that rent rather than own, subject to tenure choices, affordability and eligibility. The aggregate count does not identify households' ages, independence status or actual rental arrangements.",
+      "lag": "Annual household-stock changes provide structural demand context, not a measure of gross household formation. Housing responses may develop gradually, subject to tenure and affordability; the supplied series does not establish a fixed behavioural lag or a historical publication delay.",
+      "limitations": "This is a stock of resident households. Its changes are net changes and cannot separately identify gross formation or dissolution. Tenure choices, eligibility, sampling variability and source changes limit housing-demand interpretation; publication-time historical availability is not reconstructed.",
+      "evidence_ids": [
+        "M810371:1:latest",
+        "M810371:1:year_on_year"
+      ]
+    },
+    "M810361:5": {
+      "sales": "Higher nominal median employment income among resident employed households could support affordability and debt servicing within that group. Employer CPF and bonus treatment, household composition, inflation and lending rules prevent interpreting this as universal take-home purchasing power.",
+      "rents": "Higher nominal employment income among resident employed households may support rent affordability within that group. Its relationship with aggregate rents remains uncertain because tenant coverage, inflation, employer CPF contributions, bonus allocation and household composition differ from cash resources available for rent.",
+      "lag": "Annual observation frequency limits short-term timing analysis. Changes in affordability could feed into purchase and rental decisions gradually, but the supplied metadata do not establish an exact within-year reference date, historical publication availability or a fixed behavioural lag.",
+      "limitations": "The series covers resident households with at least one employed member and excludes households with no employed member. It includes employer CPF contributions and annual bonus allocation, is nominal, and is not a wage index, income per household member or take-home income. It does not represent all households, all tenants or the typical property buyer. Supply conditions and borrowing rules also matter.",
+      "evidence_ids": [
+        "M810361:5:latest",
+        "M810361:5:year_on_year"
+      ]
+    }
+  },
+  "method": "siliconflow_chat_completions_constrained_agent",
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "total_tokens": 0,
+    "requests": 0
+  },
+  "editorial_review": {
+    "summary": "Reviewed all newly displayed narrative fields against captured definitions, retained prior corrections, and clarified vacancy denominators, household-stock scope, income coverage and unverified timing.",
+    "decision_edits": {
+      "M184101:1": "Excluded within household_income as a capacity choice. This is mean income per employed resident, including employer CPF and excluding bonus; it may proxy purchasing capacity but is not household income. Its captured history is shorter than several alternatives. The annual household median was preferred for household-level scope, with a loss of quarterly timeliness.",
+      "M016081:1": "Excluded within household_income as a capacity choice. Aggregate nominal personal disposable income is not income per household and can combine population and price changes with income changes. The median among resident employed households was preferred for that specific population; it is not a measure of every household or of the typical property buyer.",
+      "M400391:2": "Excluded within housing_supply as a capacity choice. This is the total non-landed private residential pipeline across development stages, not an unpurchased or unsold subset. The expectations channel may matter, but completion timing and cancellations prevent interpreting the pipeline as a completion forecast. The vacant-stock measure was preferred for current absorption context; incremental predictive value has not been established.",
+      "M183111:7": "Excluded within labour_market as a capacity choice. Total year-end employment includes resident and non-resident employees, self-employed persons and migrant domestic workers. Some workers do not require an ordinary separate rental unit, but these data do not establish how most workers are housed or a strong correlation with GDP. Quarterly resident unemployment was preferred for resident labour-market stress; total employment remains potentially informative.",
+      "M810361:5": "Selected for affordability context among resident employed households. The household employment-income median is less sensitive to very high incomes than the mean, but it does not represent non-employed households, all households or the typical property buyer. It includes employer CPF and annual bonus allocation, is nominal, and is not take-home income. Its annual frequency limits near-term monitoring.",
+      "M400751:1.1": "Excluded within housing_supply as a capacity choice. Total HDB flats are public-housing stock, not new additions. This is distinct from private-sector vacancy and may inform the HDB resale outcome; private vacancy does not fully substitute for it. The model preferred other dashboard channels, but this does not establish that HDB stock lacks explanatory or predictive value.",
+      "M400841:2": "Selected as the housing-supply slack signal. Vacant completed private homes may provide absorption context relevant to sale prices and rents, depending on demand. The matching completed-stock series is retained in the captured data and used to derive vacancy rates, although it is outside the selected dashboard. The count does not identify active listings or establish predictive value."
+    },
+    "narrative_edits": {
+      "M182342:2": {
+        "lag": "Housing decisions may adjust after labour-market changes, but the supplied metadata and correlations do not establish unemployment as an early business-cycle indicator or a fixed response delay.",
+        "rents": "Weaker resident labour conditions may strain rent budgets among affected resident households. The effect on aggregate rents remains uncertain because tenant composition, incomes and housing supply also matter; this series does not identify household splits or lease-renewal outcomes."
+      },
+      "M810361:5": {
+        "sales": "Higher nominal median employment income among resident employed households could support affordability and debt servicing within that group. Employer CPF and bonus treatment, household composition, inflation and lending rules prevent interpreting this as universal take-home purchasing power.",
+        "rents": "Higher nominal employment income among resident employed households may support rent affordability within that group. Its relationship with aggregate rents remains uncertain because tenant coverage, inflation, employer CPF contributions, bonus allocation and household composition differ from cash resources available for rent.",
+        "limitations": "The series covers resident households with at least one employed member and excludes households with no employed member. It includes employer CPF contributions and annual bonus allocation, is nominal, and is not a wage index, income per household member or take-home income. It does not represent all households, all tenants or the typical property buyer. Supply conditions and borrowing rules also matter.",
+        "lag": "Annual observation frequency limits short-term timing analysis. Changes in affordability could feed into purchase and rental decisions gradually, but the supplied metadata do not establish an exact within-year reference date, historical publication availability or a fixed behavioural lag."
+      },
+      "M810371:1": {
+        "limitations": "This is a stock of resident households. Its changes are net changes and cannot separately identify gross formation or dissolution. Tenure choices, eligibility, sampling variability and source changes limit housing-demand interpretation; publication-time historical availability is not reconstructed.",
+        "lag": "Annual household-stock changes provide structural demand context, not a measure of gross household formation. Housing responses may develop gradually, subject to tenure and affordability; the supplied series does not establish a fixed behavioural lag or a historical publication delay.",
+        "rents": "Growth in resident household counts may support rental demand among households that rent rather than own, subject to tenure choices, affordability and eligibility. The aggregate count does not identify households' ages, independence status or actual rental arrangements."
+      },
+      "M400841:2": {
+        "limitations": "This series counts vacant completed private homes rather than active sale or rental listings. The matching completed-stock series is retained in the captured data and used to calculate vacancy rates, although it is outside the selected dashboard. Count changes can reflect changes in total stock as well as vacancy shares. Coverage excludes HDB flats and Executive Condominiums.",
+        "lag": "Vacancy is a quarter-end stock measure. Price or rent responses may occur as listings, tenancies and owners' expectations adjust, but the supplied data do not establish a fixed response delay or that later effects exceed immediate effects."
+      },
+      "M700071:23": {
+        "limitations": "This is a month-end observation of a three-month compounded benchmark, expressed as an annual percentage rate; it is not a monthly average or an individual mortgage quote. Actual borrowing costs depend on lender spreads, contract types, repricing dates and policy measures. No additional smoothing or interpolation was performed."
+      }
+    },
+    "notes": [
+      "All original model decisions and narratives are preserved in original_selection.json. Selected IDs, raw observations, evidence IDs and statistical calculations are unchanged.",
+      "Pipeline correction: evaluation metadata for M400391:2 defines total non-landed pipeline across development statuses. It does not identify unpurchased units or substantiate double-counting.",
+      "Employment correction: metadata for M183111:7 identifies resident and non-resident employment coverage, including migrant domestic workers. No tenure-share or GDP-correlation evidence was supplied.",
+      "Income corrections preserve the distinction between a per-employed-person mean, aggregate disposable income and the median among resident employed households.",
+      "Unemployment lag wording is now conditional; early-cycle behavior was not established. Annual seasonal revisions are stated in the supplied mechanism notes and were retained.",
+      "These editorial corrections are review judgements grounded in the captured definitions, not additional model output or automatic semantic proof.",
+      "The prior six decision edits and three narrative edits are retained. Newly displayed narratives were separately reviewed; field-level labels identify every explicit edit.",
+      "Vacancy correction: M400841:1 is preserved in evaluations and research. The denominator is outside the selected dashboard, not absent from the captured data.",
+      "Household counts measure stocks, not gross formation or age-specific tenancy. The income measure is conditional on at least one employed member, not on all tenants or all sources of household income.",
+      "Annual frequency and contemporaneous quarterly measures do not establish within-period reference dates, fixed behavioural lags or relative magnitudes of immediate and delayed effects.",
+      "The three-month compounded SORA benchmark is sampled at month-end; not a monthly average does not mean that it is not a compounded average.",
+      "No new data, model selection, numerical calculation or network/model call is introduced by this presentation."
+    ]
+  }
+}

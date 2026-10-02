@@ -1,0 +1,86 @@
+{
+  "status": "passed",
+  "source_run": "english_glm_v2_run",
+  "submission_run": "english_submission_run",
+  "source_manifest_sha256": "c0a0cef196dc4ec304c778df7cf252a7607816ca840f5678c081993a74cd2ce4",
+  "submission_manifest_sha256": "633ce73bb99c95b4b7577deb3ec3febe8011e8aabad7ad1e2e6a2669e2750aaf",
+  "unchanged_source_artifacts": 80,
+  "all_raw_and_charts_unchanged": true,
+  "required_selected_series_fields": 5,
+  "labelled_narrative_fields": 20,
+  "editorial_narrative_fields": 12,
+  "original_model_narrative_fields": 8,
+  "decision_edits": 7,
+  "selected_ids_unchanged": true,
+  "automated_tests": 260,
+  "source_calls": 0,
+  "model_calls": 0,
+  "replays": [
+    {
+      "run": "english_glm_v2_reviewed_run",
+      "report_sha256": "73b9837de93ef2f20561a253f91bd3180956388808054676059457c7a512654d",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "english_glm_v2_run",
+      "report_sha256": "1a8a8eecc30cf9521594f9720e1cdb180461afe51604dd20eaac5aa2cf9fe54c",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "english_submission_run",
+      "report_sha256": "1cf291fda29248ad7e14da493f7dc057bd73e3fc20b97f15208e6df3a32d0163",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "independent_sources_run",
+      "report_sha256": "5dd1d793e43e401a3ae4fb6bd399b75822140f247fa91643e3ede6841e262709",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "sample_run",
+      "report_sha256": "d76430d7eb42579694fd1bb2523683d5ed239e271148daf85d6952523c9d39d6",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "siliconflow_glm_reviewed_run",
+      "report_sha256": "f9da1fb8acde5fb510abeab2ff9e0e36a270a907c08a85da69e414404d2668a6",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "siliconflow_glm_verified_run",
+      "report_sha256": "1eca85879501d250dc50f2103274fe99f1e22a36d67f5dd48fe873f74d7722e1",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "singstat_priority_agent_run",
+      "report_sha256": "879f367c15eab45a74eabe6f7457b8ee3f8ea1a41ff8fa6a009285ac7c8f01f8",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "singstat_priority_rules_run",
+      "report_sha256": "5e64b43c94a904c14e55562f27a540fbc00bb6b53a40b59d089c1cb8d3baab34",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "singstat_priority_verified_run",
+      "report_sha256": "258ba9833aaf13dfd2475ad5491668d2f3aac4da78d62c0b284afc4e633644df",
+      "network_calls": 0,
+      "model_calls": 0
+    },
+    {
+      "run": "soclaas_verified_run",
+      "report_sha256": "5162ae5ddd22c1dc08dd79a9f2eaf8264f7c7f18b24733f5da8d10fbc9f5ae57",
+      "network_calls": 0,
+      "model_calls": 0
+    }
+  ]
+}

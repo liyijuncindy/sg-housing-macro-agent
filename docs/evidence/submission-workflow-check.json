@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "mode": "rules",
+  "source_policy": "saved",
+  "as_of": "2026-10-01",
+  "selection_count": 5,
+  "downloaded_outcomes_from_snapshot": 3,
+  "report_fields_version": 2,
+  "model_tokens": 0,
+  "new_source_requests": 0,
+  "output": "work/submission-workflow-check",
+  "report_sha256": "4da965d1bac6057bceb523addb1c5f70b118de6ed138122cac7b167571f625af"
+}

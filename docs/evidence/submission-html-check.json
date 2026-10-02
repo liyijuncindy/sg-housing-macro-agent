@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "embedded_svg_images": 8,
+  "selected_series_update_statements": 5,
+  "complete_narrative_sections": 5,
+  "relative_links_resolve": true,
+  "browser_preview": "Not performed: browser file-URL policy disallows direct automated navigation. Static markup, SVG and link validation completed."
+}
