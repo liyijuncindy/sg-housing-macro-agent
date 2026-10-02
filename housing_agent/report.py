@@ -261,7 +261,45 @@ def _benchmark_reading(comparisons):
             f"It beats all three on {all_wins} {'pair' if all_wins == 1 else 'pairs'}. Each comparison uses its own matching test dates; these counts do not validate the selected dashboard as a joint forecasting model.")
 
 
+def _quality_label(item, enhanced):
+    if enhanced and (not item.get('latest') or not item.get('observations')
+                     or not item.get('metadata', {}).get('provenance', {}).get('raw_file')):
+        return 'Not assessed'
+    return fmt(item['quality'].get('score'))
+
+
+def _narrative_lines(run, item, selection):
+    """Preserve saved wording and identify editorial changes at field level."""
+    saved = selection.get('narratives', {}).get(item['id'], {})
+    mechanism = item['metadata'].get('mechanism', {})
+    edits = selection.get('editorial_review', {}).get('narrative_edits', {}).get(item['id'], {})
+    output = []
+    for field, label in [('sales', 'Possible sales-market channel'), ('rents', 'Possible rental-market channel'),
+                         ('lag', 'Possible economic response lag'), ('limitations', 'Limitations')]:
+        wording = saved.get(field)
+        if wording:
+            if field in edits:
+                source = 'Editorial review; see the [review record](selection_review.json) and [original selection](original_selection.json).'
+            elif run.get('mode') == 'llm':
+                source = 'Original model narrative; numerical checks do not establish the correctness of this interpretation.'
+            elif run.get('mode') == 'rules':
+                source = 'Reviewed catalogue mechanism, used by deterministic rules; no model wording.'
+            else:
+                source = 'Saved narrative; author not recorded.'
+        elif mechanism.get(field):
+            wording = mechanism[field]
+            source = 'Reviewed catalogue mechanism used as a fallback; no model wording.'
+        else:
+            wording = 'Not supplied.'
+            source = 'No narrative supplied.'
+        output += [f'**{label}:** {wording}', '', f'Wording source: {source}', '']
+    if saved.get('evidence_ids'):
+        output += ['Referenced evidence: ' + ', '.join(f'`{value}`' for value in saved['evidence_ids']) + '.', '']
+    return output
+
+
 def _render_report_v2(run, evaluations, selection, research):
+    enhanced = run.get('report_fields_version', 1) == 2
     by_id = {x['id']: x for x in evaluations}
     chosen = [by_id[sid] for sid in selection['selected_ids'] if sid in by_id]
     outcomes = research.get('outcomes', [])
@@ -421,10 +459,14 @@ def _render_report_v2(run, evaluations, selection, research):
     decisions = {x['id']: x for x in selection.get('decisions', [])}
     output += _table(['Candidate', 'Family', 'Latest period', 'Quality', 'Decision', 'Reason origin', 'Reason'], [
         [x['metadata']['name'] + ' (' + x['id'] + ')', x['metadata'].get('selection_family', x['metadata'].get('theme', 'Unknown')),
-         (x.get('latest') or {}).get('period', 'Unavailable'), fmt(x['quality'].get('score')),
+         (x.get('latest') or {}).get('period', 'Unavailable'), _quality_label(x, enhanced),
          'Selected' if x['id'] in chosen_ids else 'Excluded', decisions.get(x['id'], {}).get('reason_origin', 'Not supplied'),
          decisions.get(x['id'], {}).get('reason', 'No decision reason supplied.')] for x in evaluations])
     output += ['', '## Appendix: definitions and calculation evidence', '']
+    if enhanced:
+        output += ['The economic response lags below are qualitative hypotheses. The statistical lag settings in the empirical checks '
+                   'align observations; they do not establish an economic response delay or causation. '
+                   'Update frequency describes the recorded release cadence, not an observation-level publication date.', '']
     for item in chosen:
         meta = item['metadata'];latest = item.get('latest') or {};provenance = meta.get('provenance', {})
         output += [f"### {meta['name']}", '', f"**Series:** `{item['id']}` · **Source:** {_source_link(item)}", '',
@@ -432,6 +474,9 @@ def _render_report_v2(run, evaluations, selection, research):
                    f"**Frequency:** {_FREQUENCIES.get(meta.get('frequency'), meta.get('frequency', 'Unknown'))}; **Unit:** {meta.get('unit', 'Unknown')}; **Seasonal adjustment:** {meta.get('seasonal_adjustment', 'Not established')}", '',
                    f"**Observation reference date:** {latest.get('observation_date', 'Period end used conservatively')}; **Source table updated:** {meta.get('source_updated_at') or 'Not supplied'}; **Retrieved:** {meta.get('retrieved_at', 'Not supplied')}", '',
                    f"**Feature used for empirical checks:** {candidates.get(item['id'], {}).get('feature_definition', 'Not supplied or not estimable')}", '']
+        if enhanced:
+            output += [f"**Update frequency:** {meta.get('update_frequency') or 'Not supplied'}", '']
+            output += _narrative_lines(run, item, selection)
         output += _table(['Evidence', 'Latest period', 'Base period', 'Formula', 'Latest input', 'Base input', 'Change'], [
             [x.get('id', ''), x.get('latest_period', ''), x.get('base_period', ''), x.get('formula', ''),
              fmt(x.get('latest_value')), fmt(x.get('base_value')), _change_text(x)] for x in item.get('changes', [])])

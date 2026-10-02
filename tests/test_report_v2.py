@@ -70,6 +70,114 @@ class CompleteEnglishDecisionTests(unittest.TestCase):
             _validate_submission(s,{'income':candidate()},{'income'},1,require_complete_decisions=True)
 
 
+class VersionedReportFieldsTests(unittest.TestCase):
+    def setUp(self):
+        self.run={'report_version':2,'report_fields_version':2,'as_of':'2026-10-01','run_id':'synthetic',
+                  'created_at':'2026-10-02','mode':'llm','mode_label':'Synthetic model fixture',
+                  'data_basis':'Synthetic observations only'}
+        self.item={'id':'rate','metadata':{'name':'Synthetic rate','theme':'financing_cost','unit':'Percent',
+                    'frequency':'M','update_frequency':'Published each month after the reference month',
+                    'definition':'Synthetic interest rate','source_updated_at':'2026-09-07',
+                    'provenance':{'raw_file':'raw/rate.json','raw_sha256':'synthetic'}},
+                   'latest':{'period':'2026-08','value':1.5},'observations':[{'period':'2026-08','value':1.5}],
+                   'quality':{'eligible':True,'score':90},'changes':[]}
+        self.narrative={'sales':'Loan payments may affect purchase affordability.',
+                        'rents':'Financing costs may affect rents, conditional on tenant budgets.',
+                        'lag':'The response may follow mortgage resets and lease renewals; no fixed delay is established.',
+                        'limitations':'Mortgage spreads and borrower composition are not captured.',
+                        'evidence_ids':['rate:latest']}
+        self.selection={'selected_ids':['rate'],'decisions':[{'id':'rate','selected':True,'reason':'Synthetic selection.',
+                         'reason_origin':'model'}],'narratives':{'rate':deepcopy(self.narrative)}}
+
+    def test_new_fields_preserve_all_saved_narrative_text_and_release_cadence(self):
+        md=render_report(self.run,[self.item],self.selection)
+        self.assertIn('**Update frequency:** '+self.item['metadata']['update_frequency'],md)
+        self.assertIn('**Frequency:** Monthly',md)
+        for field in ('sales','rents','lag','limitations'):
+            self.assertIn(self.narrative[field],md)
+        self.assertEqual(md.count('Wording source: Original model narrative;'),4)
+        self.assertIn('Referenced evidence: `rate:latest`.',md)
+        page=render_html(md)
+        self.assertIn('<strong>Update frequency:</strong>',page)
+        self.assertIn(self.narrative['lag'],page)
+
+    def test_economic_lag_is_retained_separately_from_statistical_alignment(self):
+        research={'outcomes':[{'id':'price','name':'Synthetic price','latest':None}],
+                  'comparisons':[{'candidate_id':'rate','outcome_id':'price','analysis_frequency':'quarterly',
+                                  'correlations':[{'lag':1,'lag_unit':'quarters','n':8,'pearson_r':.25}],
+                                  'walk_forward':{'status':'skipped','reason':'Synthetic short sample'}}]}
+        md=render_report(self.run,[self.item],self.selection,research)
+        self.assertIn('0.250 (n=8)',md)
+        self.assertIn('**Possible economic response lag:** '+self.narrative['lag'],md)
+        self.assertIn('they do not establish an economic response delay or causation',md)
+
+    def test_only_edited_fields_are_labelled_editorial_review(self):
+        edited='The supplied evidence does not establish a fixed housing response delay.'
+        self.selection['narratives']['rate']['lag']=edited
+        self.selection['editorial_review']={'narrative_edits':{'rate':{'lag':edited}}}
+        self.selection['decisions'][0]['reason_origin']='editorial_review'
+        md=render_report(self.run,[self.item],self.selection)
+        self.assertIn('**Possible economic response lag:** '+edited,md)
+        self.assertNotIn(self.narrative['lag'],md)
+        self.assertEqual(md.count('Wording source: Editorial review;'),1)
+        self.assertEqual(md.count('Wording source: Original model narrative;'),3)
+        self.assertIn('[original selection](original_selection.json)',md)
+
+    def test_catalogue_fallback_and_missing_fields_never_claim_model_authorship(self):
+        self.item['metadata']['mechanism']=deepcopy(self.narrative)
+        self.selection['narratives']={}
+        del self.item['metadata']['update_frequency']
+        del self.item['metadata']['mechanism']['lag']
+        md=render_report(self.run,[self.item],self.selection)
+        self.assertIn('**Update frequency:** Not supplied',md)
+        self.assertNotIn('**Update frequency:** 2026-09-07',md)
+        self.assertIn('**Possible economic response lag:** Not supplied.',md)
+        self.assertEqual(md.count('Wording source: Reviewed catalogue mechanism used as a fallback;'),3)
+        self.assertNotIn('Wording source: Original model narrative',md)
+        self.run['mode']='rules';self.selection['narratives']['rate']=deepcopy(self.narrative)
+        md=render_report(self.run,[self.item],self.selection)
+        self.assertEqual(md.count('Wording source: Reviewed catalogue mechanism, used by deterministic rules;'),4)
+
+    def test_failed_or_uncaptured_inputs_are_not_scored_but_observed_zero_is(self):
+        observations=[]
+        for identifier,missing in [('no_latest','latest'),('no_observations','observations'),('no_capture','capture'),('observed_zero',None)]:
+            item=deepcopy(self.item);item['id']=identifier;item['metadata']['name']=identifier
+            item['quality']={'eligible':False,'score':0}
+            if missing=='capture':
+                item['metadata']['provenance']={}
+            elif missing:
+                item[missing]=None if missing=='latest' else []
+            observations.append(item)
+        selection={'selected_ids':[],'decisions':[]}
+        md=render_report(self.run,observations,selection)
+        rows={name:next(line for line in md.splitlines() if line.startswith('| '+name+' ('))
+              for name in ['no_latest','no_observations','no_capture','observed_zero']}
+        for name in ['no_latest','no_observations','no_capture']:
+            self.assertIn('| Not assessed |',rows[name])
+        self.assertIn('| 0 |',rows['observed_zero'])
+        legacy=render_report({**self.run,'report_fields_version':1},observations,selection)
+        self.assertNotIn('Not assessed',legacy)
+
+    def test_existing_saved_reports_remain_byte_identical_without_new_marker(self):
+        versions=set();checked=0
+        for context in sorted((ROOT/'examples').glob('*/report_context.json')):
+            run=json.loads(context.read_text())
+            if run.get('report_fields_version',1)!=1:
+                continue
+            directory=context.parent
+            with self.subTest(run=directory.name):
+                evaluations=json.loads((directory/'evaluations.json').read_text())
+                selection=json.loads((directory/'selection.json').read_text())
+                actual=render_report(run,evaluations,selection)
+                self.assertEqual(actual.encode(),(directory/'report.md').read_bytes())
+                self.assertEqual(render_report({**run,'report_fields_version':1},evaluations,selection),actual)
+                if run.get('report_version')!=2:
+                    self.assertEqual(render_report({**run,'report_fields_version':2},evaluations,selection),actual)
+                versions.add(run.get('report_version',1));checked+=1
+        self.assertGreaterEqual(checked,2)
+        self.assertEqual(versions,{1,2})
+
+
 class ReportV2IntegrationTests(unittest.TestCase):
     def setup_run(self,root):
         with patch('housing_agent.pipeline.SingStatClient.discover',return_value=[]),patch('housing_agent.pipeline.fetch_series',side_effect=fixture),patch('housing_agent.charts.require_chart_dependencies'),patch('housing_agent.charts.write_charts',side_effect=charts):

@@ -37,6 +37,8 @@ class EditorialReviewTests(unittest.TestCase):
                 self.assertEqual((root/"reviewed"/name).read_bytes(),(root/"run"/name).read_bytes())
             self.assertEqual(result["model_calls"],0);self.assertEqual(result["network_calls"],0)
             self.assertEqual(result["usage"]["total_tokens"],0)
+            self.assertEqual(result["report_fields_version"],2)
+            self.assertEqual(result["editorial_review"]["narrative_edits"],0)
             self.assertEqual(result["source_execution"]["manifest_sha256"],sha256_bytes(before))
             self.assertEqual(replay(root/"reviewed",root/"replayed.md")["model_calls"],0)
 

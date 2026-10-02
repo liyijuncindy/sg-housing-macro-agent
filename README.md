@@ -6,7 +6,9 @@ The default CLI report is **version 2**: an executive summary, actual private pr
 
 Quality scores measure data usability, not predictive importance. The checks do not establish causation, an optimal indicator set, historical publication-time forecasting ability, or a production price forecast.
 
-**Latest verified report:** [reviewed English report](examples/english_glm_v2_reviewed_run/report.md), [HTML report](examples/english_glm_v2_reviewed_run/report.html), and [complete indicator pool](examples/english_glm_v2_reviewed_run/indicator_pool.md). The full live GLM run captured all 19 series from SingStat, made six model requests and finished in about 225 seconds. All 16 decisions have model reasons; six reasons and three narrative fields were subsequently corrected in a labelled editorial presentation. Original output is preserved in [the live run](examples/english_glm_v2_run/report.md). See [current validation and cost](docs/report-v2-validation.md).
+**Submission report:** [complete English report](examples/english_submission_run/report.md), [HTML report](examples/english_submission_run/report.html), and [indicator pool](examples/english_submission_run/indicator_pool.md). This offline editorial presentation restores each selected indicator's update-cadence statement, sales and rental mechanisms, possible lag and limitations. Edited narrative fields are labelled separately from original model wording. It retains the October 1 observations, selected IDs and calculations, and makes no new source or model requests. See [submission checks](docs/submission-validation.md) and the [engineering report](docs/engineering-report.md).
+
+The underlying live GLM run captured all 19 series from SingStat, made six model requests and finished in about 225 seconds. All 16 decisions have model reasons; original output is preserved in [the live run](examples/english_glm_v2_run/report.md). The [earlier reviewed presentation](examples/english_glm_v2_reviewed_run/report.md) remains immutable. See [original validation and cost](docs/report-v2-validation.md).
 
 ## Quick start
 
@@ -26,10 +28,12 @@ Offline replay needs no key, source connection, or optional dependencies:
 
 ```bash
 python -m pip install -e .
-python -m housing_agent replay examples/sample_run --output runs/replayed-report.md
+python -m housing_agent replay examples/english_submission_run --output runs/replayed-report.md
 ```
 
 Replay validates saved hashes and regenerates the exact Markdown report. Its destination must be a new file outside the original run. Historical examples remain immutable, including their original language and limitations.
+
+New v2 runs record `report_fields_version=2`. Older snapshots without this marker use their original presentation when replayed, so adding report fields does not rewrite historical reports. Uncaptured candidates display **Not assessed**, rather than a placeholder quality score.
 
 ## Configure the live agent
 
@@ -128,6 +132,14 @@ python -m housing_agent --help
 Standalone pool export verifies its source run without modifying it, fetching data, selecting indicators or calling a model. It retains the source run's presentation version.
 
 Editorial review creates a separate presentation from verified v2 artifacts, preserves original model output, labels corrected reasons, and records zero new API calls. Selected IDs, raw observations, charts and statistical results remain unchanged. Corrections are explicit English review input, not additional model output; this step is not automatic semantic validation.
+
+The submitted presentation can be recreated in a new directory with:
+
+```bash
+python -m housing_agent review-report examples/english_glm_v2_run --review-file docs/evidence/submission-editorial-review.json --output runs/submission-review
+```
+
+The final archive is named `Yijun Li Engineering Task.zip` and contains a clean Git checkout with its history. Downloading GitHub's ordinary source ZIP omits `.git` and does not satisfy that submission requirement.
 
 Historical audit notes and examples are preserved in their original form, including Chinese documentation. They record earlier behavior, not current results. New report v2 outputs and documentation are English. Earlier evidence includes [source verification](docs/source-evidence.md), [retry diagnosis](docs/evidence/singstat-maintenance-diagnosis.json), [GLM review](docs/glm-run-review.md) and [earlier validation](docs/validation.md).
 

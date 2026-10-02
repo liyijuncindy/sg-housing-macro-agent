@@ -2,6 +2,8 @@
 
 Version 2 replaces the indicator brief with a structured English research report. The CLI defaults to v2; Python callers opt in with `report_version=2`. Version 1 rendering remains available to replay immutable historical examples exactly.
 
+New runs and offline editorial presentations record `report_fields_version=2`. This presentation revision includes every selected series' recorded update-frequency statement and the saved sales, rental, economic-lag and limitations fields. Each narrative field identifies original model wording, editorial corrections or catalogue fallback. Observation frequency, inferred update cadence and unverified publication dates remain distinct. Failed or uncaptured candidates display `Not assessed`; genuine observed zero quality scores remain zero. Snapshots lacking this marker retain their original format on replay. The completed submission and verification are linked from [submission validation](submission-validation.md).
+
 ## Completed report features
 
 - An executive summary reports observed market movements before possible explanatory channels.

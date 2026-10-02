@@ -266,7 +266,7 @@ def run_workflow(as_of: str, output: Path, mode: str = "rules", limit: int = 5, 
            "warnings": [], "status": "running",
            "usage": {"input_tokens": 0, "output_tokens": 0, "total_tokens": 0, "requests": 0}}
     if report_version == 2:
-        run.update(report_version=2, report_language="en")
+        run.update(report_version=2, report_language="en", report_fields_version=2)
     if saved is not None:
         run["source_run"] = saved["provenance"]
         capture = saved["provenance"]["retrieved_at_min"] or saved["provenance"]["original_created_at"] or "unknown capture time"

@@ -63,7 +63,9 @@ def review_report(run_dir: Path, review_file: Path, output: Path) -> dict:
                usage={"input_tokens":0,"output_tokens":0,"total_tokens":0,"requests":0},
                source_execution={"run":root.name,"manifest_sha256":sha256_bytes((root/"manifest.json").read_bytes()),
                                  "created_at":manifest["created_at"],"code_commit":manifest.get("code_commit")},
+               report_fields_version=2,
                editorial_review={"summary":review["summary"],"decision_edits":len(review["decision_edits"]),
+                                 "narrative_edits":sum(len(fields) for fields in review["narrative_edits"].values()),
                                  "review_file":"selection_review.json","original_selection":"original_selection.json",
                                  "input_review_sha256":sha256_bytes(review_bytes)},
                network_calls=0, model_calls=0, elapsed_seconds=0, agent_elapsed_seconds=0)
